@@ -16,7 +16,8 @@ class ViewController: UICollectionViewController {
     
     private let imageURLs = [
         NSURL(string: "https://artseer.files.wordpress.com/2014/04/050rt_1.jpg")!,
-        NSURL(string: "https://worldonaforkdotcom.files.wordpress.com/2013/10/untitled-126.jpg")!
+        NSURL(string: "https://worldonaforkdotcom.files.wordpress.com/2013/10/untitled-126.jpg")!,
+        NSURL(string: "https://bellaremyphotography.files.wordpress.com/2015/02/bma7feb15-01118.jpg")!,
     ]
     
     override func prefersStatusBarHidden() -> Bool {

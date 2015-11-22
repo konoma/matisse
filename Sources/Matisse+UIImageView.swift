@@ -12,8 +12,26 @@ import Foundation
 public extension ImageRequest {
     
     public func into(imageView: UIImageView) {
+        
+        imageView.matisseRequestIdentifier = identifier
+        
         execute { result in
-            imageView.image = result.value
+            if imageView.matisseRequestIdentifier == self.identifier {
+                imageView.image = result.value
+                imageView.matisseRequestIdentifier = nil
+            }
         }
+    }
+}
+
+
+private var requestIdentifierKey: Void
+
+
+public extension UIImageView {
+    
+    public var matisseRequestIdentifier: NSUUID? {
+        get { return objc_getAssociatedObject(self, &requestIdentifierKey) as? NSUUID }
+        set { objc_setAssociatedObject(self, &requestIdentifierKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
 }

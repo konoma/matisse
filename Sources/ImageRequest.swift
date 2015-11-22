@@ -15,13 +15,15 @@ public class ImageRequest : NSObject {
     private var completion: (Result<UIImage> -> Void)?
     private var submitted: Bool = false
     
-    internal let url: NSURL
+    public let identifier: NSUUID
+    public let url: NSURL
     
     
     // MARK: - Initialization
     
     internal init(context: MatisseContext, url: NSURL) {
         self.context = context
+        self.identifier = NSUUID()
         self.url = url
     }
     
