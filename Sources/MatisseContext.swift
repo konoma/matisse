@@ -37,7 +37,7 @@ public class MatisseContext : NSObject {
                 
                 do {
                     let image = try self.createAndTransformImageAtURL(url, transformations: request.transformations)
-                    result = Result.success(UIImage(CGImage: image))
+                    result = Result.success(UIImage(CGImage: image, scale: UIScreen.mainScreen().scale, orientation: .Up))
                 } catch {
                     result = Result.error(error)
                 }

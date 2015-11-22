@@ -43,7 +43,7 @@ class ViewController: UICollectionViewController {
         
         Matisse
             .load(url)
-            .resize(CGSize(width: itemSize, height: itemSize))
+            .resizeTo(CGSize(width: itemSize, height: itemSize), contentMode: .ScaleAspectFill)
             .into(cell.imageView)
         
         return cell
