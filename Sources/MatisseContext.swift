@@ -11,23 +11,24 @@ import Foundation
 
 public class MatisseContext : NSObject {
     
-    // MARK: - Public API
+    private let imageLoaderQueue = ImageLoaderQueue(imageLoader: DefaultImageLoader())
     
-    public func load(url: NSURL) -> ImageRequest {
-        return ImageRequest(context: self, url: url)
+    
+    // MARK: - Loading Images
+    
+    public func load(url: NSURL) -> MatisseRequest {
+        return MatisseRequest(context: self, URL: url)
     }
     
     
     // MARK: - Internals
     
-    internal func submitRequest(request: ImageRequest) {
-        let urlRequest = NSURLRequest(URL: request.url)
-        
-        NSURLConnection.sendAsynchronousRequest(urlRequest, queue: NSOperationQueue.mainQueue()) { response, data, error in
-            if let imageData = data, image = UIImage(data: imageData) {
+    internal func submitRequest(request: MatisseRequest) {
+        imageLoaderQueue.submitFetchRequestForURL(request.URL) { result in
+            if let url = result.value, path = url.path, image = UIImage(contentsOfFile: path) {
                 request.notifyResult(Result.success(image))
             } else {
-                request.notifyResult(Result.error(error ?? NSError(domain: "", code: 0, userInfo: nil)))
+                request.notifyResult(Result.error(result.error ?? NSError(domain: "", code: 0, userInfo: nil)))
             }
         }
     }

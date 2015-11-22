@@ -1,5 +1,5 @@
 //
-//  ImageRequest.swift
+//  MatisseRequest.swift
 //  Matisse
 //
 //  Created by Markus Gasser on 22.11.15.
@@ -9,28 +9,30 @@
 import Foundation
 
 
-public class ImageRequest : NSObject {
+public class MatisseRequest : NSObject {
     
     private weak var context: MatisseContext?
     private var completion: (Result<UIImage> -> Void)?
     private var submitted: Bool = false
     
     public let identifier: NSUUID
-    public let url: NSURL
+    public let URL: NSURL
     
     
     // MARK: - Initialization
     
-    internal init(context: MatisseContext, url: NSURL) {
+    internal init(context: MatisseContext, URL: NSURL) {
         self.context = context
         self.identifier = NSUUID()
-        self.url = url
+        self.URL = URL
     }
     
     
     // MARK: - Executing the Request
     
     public func execute(completion compl: Result<UIImage> -> Void) {
+        assert(NSThread.isMainThread())
+        
         checkNotYetSubmitted()
         
         completion = compl
@@ -42,6 +44,7 @@ public class ImageRequest : NSObject {
     
     internal func notifyResult(result: Result<UIImage>) {
         assert(completion != nil, "Cannot notify a result twice or before ")
+        assert(NSThread.isMainThread())
         
         completion?(result)
         completion = nil // make sure we're not holding a strong reference that may lead to a retain cycle

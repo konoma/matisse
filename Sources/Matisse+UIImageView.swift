@@ -9,9 +9,10 @@
 import Foundation
 
 
-public extension ImageRequest {
+public extension MatisseRequest {
     
     public func into(imageView: UIImageView) {
+        assert(NSThread.isMainThread())
         
         imageView.matisseRequestIdentifier = identifier
         
@@ -25,7 +26,7 @@ public extension ImageRequest {
 }
 
 
-private var requestIdentifierKey: Void
+private var requestIdentifierKey: Int = 0
 
 
 public extension UIImageView {

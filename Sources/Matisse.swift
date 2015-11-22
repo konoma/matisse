@@ -15,7 +15,7 @@ public final class Matisse : NSObject {
     
     private static let context = MatisseContext()
     
-    public class func load(url: NSURL) -> ImageRequest {
+    public class func load(url: NSURL) -> MatisseRequest {
         return context.load(url)
     }
 }
