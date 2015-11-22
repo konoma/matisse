@@ -16,6 +16,8 @@
 		05A791781C0256A000A65E7B /* ImageFetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A791771C0256A000A65E7B /* ImageFetchRequest.swift */; };
 		05A7917A1C025D0900A65E7B /* MatisseImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A791791C025D0900A65E7B /* MatisseImageLoader.swift */; };
 		05A7917D1C026A2100A65E7B /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A7917C1C026A2100A65E7B /* DispatchQueue.swift */; };
+		05A791801C0273F500A65E7B /* MatisseTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A7917F1C0273F500A65E7B /* MatisseTransformation.swift */; };
+		05A791821C0274E900A65E7B /* ResizeTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A791811C0274E900A65E7B /* ResizeTransformation.swift */; };
 		05F50C361C022E2500859782 /* Matisse.h in Headers */ = {isa = PBXBuildFile; fileRef = 05F50C351C022E2500859782 /* Matisse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05F50C3D1C022E2600859782 /* Matisse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05F50C321C022E2500859782 /* Matisse.framework */; };
 		05F50C421C022E2600859782 /* MatisseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F50C411C022E2600859782 /* MatisseTests.swift */; };
@@ -55,6 +57,8 @@
 		05A791771C0256A000A65E7B /* ImageFetchRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFetchRequest.swift; sourceTree = "<group>"; };
 		05A791791C025D0900A65E7B /* MatisseImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatisseImageLoader.swift; sourceTree = "<group>"; };
 		05A7917C1C026A2100A65E7B /* DispatchQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchQueue.swift; sourceTree = "<group>"; };
+		05A7917F1C0273F500A65E7B /* MatisseTransformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatisseTransformation.swift; sourceTree = "<group>"; };
+		05A791811C0274E900A65E7B /* ResizeTransformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizeTransformation.swift; sourceTree = "<group>"; };
 		05F50C321C022E2500859782 /* Matisse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Matisse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05F50C351C022E2500859782 /* Matisse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Matisse.h; sourceTree = "<group>"; };
 		05F50C371C022E2500859782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -104,6 +108,7 @@
 				055061E81C023DB4009462D9 /* MatisseContext.swift */,
 				055061E61C023D0D009462D9 /* MatisseRequest.swift */,
 				05A791761C0255EB00A65E7B /* Image Loading */,
+				05A7917E1C0273C800A65E7B /* Image Preparation */,
 				05A7917B1C026A1300A65E7B /* Util */,
 			);
 			name = Core;
@@ -134,6 +139,15 @@
 				05A7917C1C026A2100A65E7B /* DispatchQueue.swift */,
 			);
 			name = Util;
+			sourceTree = "<group>";
+		};
+		05A7917E1C0273C800A65E7B /* Image Preparation */ = {
+			isa = PBXGroup;
+			children = (
+				05A7917F1C0273F500A65E7B /* MatisseTransformation.swift */,
+				05A791811C0274E900A65E7B /* ResizeTransformation.swift */,
+			);
+			name = "Image Preparation";
 			sourceTree = "<group>";
 		};
 		05F50C281C022E2500859782 = {
@@ -339,8 +353,10 @@
 				05A7916F1C0249EE00A65E7B /* Matisse+UIImageView.swift in Sources */,
 				05A791781C0256A000A65E7B /* ImageFetchRequest.swift in Sources */,
 				05F50C641C02316F00859782 /* Matisse.swift in Sources */,
+				05A791801C0273F500A65E7B /* MatisseTransformation.swift in Sources */,
 				055061E71C023D0D009462D9 /* MatisseRequest.swift in Sources */,
 				05A7917D1C026A2100A65E7B /* DispatchQueue.swift in Sources */,
+				05A791821C0274E900A65E7B /* ResizeTransformation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

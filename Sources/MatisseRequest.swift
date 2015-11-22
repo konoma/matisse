@@ -17,6 +17,7 @@ public class MatisseRequest : NSObject {
     
     public let identifier: NSUUID
     public let URL: NSURL
+    internal var transformations: [MatisseTransformation] = []
     
     
     // MARK: - Initialization
@@ -28,11 +29,21 @@ public class MatisseRequest : NSObject {
     }
     
     
+    // MARK: - Configuration
+    
+    public func addTransformation(transformation: MatisseTransformation) -> MatisseRequest {
+        checkIsMainThread()
+        checkNotYetSubmitted()
+        
+        transformations.append(transformation)
+        return self
+    }
+    
+    
     // MARK: - Executing the Request
     
     public func execute(completion compl: Result<UIImage> -> Void) {
-        assert(NSThread.isMainThread())
-        
+        checkIsMainThread()
         checkNotYetSubmitted()
         
         completion = compl
@@ -43,8 +54,9 @@ public class MatisseRequest : NSObject {
     }
     
     internal func notifyResult(result: Result<UIImage>) {
+        checkIsMainThread()
+        
         assert(completion != nil, "Cannot notify a result twice or before ")
-        assert(NSThread.isMainThread())
         
         completion?(result)
         completion = nil // make sure we're not holding a strong reference that may lead to a retain cycle
@@ -55,5 +67,9 @@ public class MatisseRequest : NSObject {
     
     private func checkNotYetSubmitted() {
         assert(!submitted, "This ImageRequest was already submitted and cannot be modified or executed anymore")
+    }
+    
+    private func checkIsMainThread() {
+        assert(NSThread.isMainThread(), "Must be called on the main thread")
     }
 }

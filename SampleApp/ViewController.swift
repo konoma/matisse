@@ -41,7 +41,10 @@ class ViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ImageCell", forIndexPath: indexPath) as! ImageCell
         let url = imageURLs[indexPath.row % imageURLs.count]
         
-        Matisse.load(url).into(cell.imageView)
+        Matisse
+            .load(url)
+            .resize(CGSize(width: itemSize, height: itemSize))
+            .into(cell.imageView)
         
         return cell
     }
