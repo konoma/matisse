@@ -7,11 +7,17 @@
 //
 
 import UIKit
+import Matisse
 
 
 class ViewController: UICollectionViewController {
     
     private let itemSize: CGFloat = 150.0
+    
+    private let imageURLs = [
+        NSURL(string: "https://artseer.files.wordpress.com/2014/04/050rt_1.jpg")!,
+        NSURL(string: "https://worldonaforkdotcom.files.wordpress.com/2013/10/untitled-126.jpg")!
+    ]
     
     override func prefersStatusBarHidden() -> Bool {
         return true
@@ -31,14 +37,10 @@ class ViewController: UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ImageCell", forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ImageCell", forIndexPath: indexPath) as! ImageCell
+        let url = imageURLs[indexPath.row % imageURLs.count]
         
-        cell.backgroundColor = UIColor(
-            hue: (CGFloat(arc4random_uniform(256)) / 255.0),
-            saturation: (CGFloat((100 + arc4random_uniform(156))) / 255.0),
-            brightness: (CGFloat((100 + arc4random_uniform(156))) / 255.0),
-            alpha: 1.0
-        )
+        Matisse.load(url).into(cell.imageView)
         
         return cell
     }

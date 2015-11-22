@@ -9,9 +9,13 @@
 import Foundation
 
 
-public final class Matisse {
+public final class Matisse : NSObject {
     
-    private init() {} // prevent initialization
+    private override init() {} // prevent initialization
     
+    private static let context = MatisseContext()
     
+    public class func load(url: NSURL) -> ImageRequest {
+        return context.load(url)
+    }
 }

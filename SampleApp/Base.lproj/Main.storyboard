@@ -21,17 +21,33 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageCell" id="t5d-Id-aYh">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageCell" id="t5d-Id-aYh" customClass="ImageCell" customModule="Matisse_Sample" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kw7-zR-GDz">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                            <animations/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </imageView>
+                                    </subviews>
                                     <animations/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Kw7-zR-GDz" secondAttribute="trailing" id="0Jt-wf-JhQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="Kw7-zR-GDz" secondAttribute="bottom" id="PUq-jf-gSv"/>
+                                    <constraint firstItem="Kw7-zR-GDz" firstAttribute="top" secondItem="t5d-Id-aYh" secondAttribute="top" id="kbk-3n-NcU"/>
+                                    <constraint firstItem="Kw7-zR-GDz" firstAttribute="leading" secondItem="t5d-Id-aYh" secondAttribute="leading" id="xab-ZW-Ie7"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="imageView" destination="Kw7-zR-GDz" id="5NJ-sv-r2N"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
