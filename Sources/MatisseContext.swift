@@ -14,6 +14,7 @@ public class MatisseContext : NSObject {
     
     private let imageLoaderQueue = ImageLoaderQueue(imageLoader: DefaultImageLoader())
     private let transformationQueue = DispatchQueue(label: "ch.konoma.matisse/transformationQueue", type: .Concurrent)
+    private let memoryCache = NSCache()
     
     
     // MARK: - Loading Images
@@ -26,6 +27,13 @@ public class MatisseContext : NSObject {
     // MARK: - Internals
     
     internal func submitRequest(request: MatisseRequest) {
+        if let image = self.memoryCache.objectForKey(request.URL.absoluteString) as? UIImage {
+            DispatchQueue.main.async {
+                request.notifyResult(Result.success(image))
+            }
+            return
+        }
+        
         imageLoaderQueue.submitFetchRequestForURL(request.URL) { result in
             guard let url = result.value else {
                 request.notifyResult(Result.error(result.error ?? NSError(domain: "", code: 0, userInfo: nil)))
@@ -42,8 +50,8 @@ public class MatisseContext : NSObject {
                     result = Result.error(error)
                 }
                 
-                
                 DispatchQueue.main.async {
+                    self.memoryCache.setObject(result.value!, forKey: request.URL.absoluteString)
                     request.notifyResult(result)
                 }
             }
