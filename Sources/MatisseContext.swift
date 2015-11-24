@@ -7,13 +7,13 @@
 //
 
 import Foundation
-import ImageIO
 
 
 public class MatisseContext : NSObject {
     
     private let imageLoaderQueue = ImageLoaderQueue(imageLoader: DefaultImageLoader())
-    private let transformationQueue = DispatchQueue(label: "ch.konoma.matisse/transformationQueue", type: .Concurrent)
+    private let imageCreatorQueue = ImageCreatorQueue()
+    
     private let memoryCache = NSCache()
     
     
@@ -40,37 +40,14 @@ public class MatisseContext : NSObject {
                 return
             }
             
-            self.transformationQueue.async {
-                let result: Result<UIImage>
-                
-                do {
-                    let image = try self.createAndTransformImageAtURL(url, transformations: request.transformations)
-                    result = Result.success(UIImage(CGImage: image, scale: UIScreen.mainScreen().scale, orientation: .Up))
-                } catch {
-                    result = Result.error(error)
-                }
-                
+            self.imageCreatorQueue.createImageFromURL(url, request: request) { result in
                 DispatchQueue.main.async {
-                    self.memoryCache.setObject(result.value!, forKey: request.URL.absoluteString)
+                    if let image = result.value {
+                        self.memoryCache.setObject(image, forKey: request.URL.absoluteString)
+                    }
                     request.notifyResult(result)
                 }
             }
-        }
-    }
-    
-    private func createAndTransformImageAtURL(url: NSURL, transformations: [MatisseTransformation]) throws -> CGImage {
-        let options = [ (kCGImageSourceShouldCache as NSString): false ] as NSDictionary
-        
-        guard let source = CGImageSourceCreateWithURL(url, options) else {
-            throw NSError(domain: "", code: 0, userInfo: nil)
-        }
-        
-        guard let image = CGImageSourceCreateImageAtIndex(source, 0, options) else {
-            throw NSError(domain: "", code: 0, userInfo: nil)
-        }
-        
-        return try transformations.reduce(image) { image, transformation in
-            try transformation.transformImage(image)
         }
     }
 }

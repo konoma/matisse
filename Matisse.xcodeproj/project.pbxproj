@@ -19,6 +19,7 @@
 		05A791801C0273F500A65E7B /* MatisseTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A7917F1C0273F500A65E7B /* MatisseTransformation.swift */; };
 		05A791821C0274E900A65E7B /* ResizeTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A791811C0274E900A65E7B /* ResizeTransformation.swift */; };
 		05A791851C033A4300A65E7B /* Matisse.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05F50C321C022E2500859782 /* Matisse.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05B9515D1C038B1900920508 /* ImageCreatorQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B9515C1C038B1900920508 /* ImageCreatorQueue.swift */; };
 		05F50C361C022E2500859782 /* Matisse.h in Headers */ = {isa = PBXBuildFile; fileRef = 05F50C351C022E2500859782 /* Matisse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05F50C3D1C022E2600859782 /* Matisse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05F50C321C022E2500859782 /* Matisse.framework */; };
 		05F50C421C022E2600859782 /* MatisseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F50C411C022E2600859782 /* MatisseTests.swift */; };
@@ -74,6 +75,7 @@
 		05A7917C1C026A2100A65E7B /* DispatchQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchQueue.swift; sourceTree = "<group>"; };
 		05A7917F1C0273F500A65E7B /* MatisseTransformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatisseTransformation.swift; sourceTree = "<group>"; };
 		05A791811C0274E900A65E7B /* ResizeTransformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizeTransformation.swift; sourceTree = "<group>"; };
+		05B9515C1C038B1900920508 /* ImageCreatorQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCreatorQueue.swift; sourceTree = "<group>"; };
 		05F50C321C022E2500859782 /* Matisse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Matisse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05F50C351C022E2500859782 /* Matisse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Matisse.h; sourceTree = "<group>"; };
 		05F50C371C022E2500859782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 		05A7917E1C0273C800A65E7B /* Image Preparation */ = {
 			isa = PBXGroup;
 			children = (
+				05B9515C1C038B1900920508 /* ImageCreatorQueue.swift */,
 				05A7917F1C0273F500A65E7B /* MatisseTransformation.swift */,
 				05A791811C0274E900A65E7B /* ResizeTransformation.swift */,
 			);
@@ -370,6 +373,7 @@
 				05A791781C0256A000A65E7B /* ImageFetchRequest.swift in Sources */,
 				05F50C641C02316F00859782 /* Matisse.swift in Sources */,
 				05A791801C0273F500A65E7B /* MatisseTransformation.swift in Sources */,
+				05B9515D1C038B1900920508 /* ImageCreatorQueue.swift in Sources */,
 				055061E71C023D0D009462D9 /* MatisseRequest.swift in Sources */,
 				05A7917D1C026A2100A65E7B /* DispatchQueue.swift in Sources */,
 				05A791821C0274E900A65E7B /* ResizeTransformation.swift in Sources */,

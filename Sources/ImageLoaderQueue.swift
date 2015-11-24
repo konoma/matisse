@@ -14,7 +14,7 @@ internal class ImageLoaderQueue {
     typealias FetchResultHandler = (Result<NSURL>) -> Void
     
     private let imageLoader: MatisseImageLoader
-    private let loaderQueue: DispatchQueue
+    private let dispatchQueue: DispatchQueue
     private var queuedFetchRequests: [NSURL: ImageFetchRequest] = [:]
     
     
@@ -22,14 +22,14 @@ internal class ImageLoaderQueue {
     
     init(imageLoader: MatisseImageLoader) {
         self.imageLoader = imageLoader
-        self.loaderQueue = DispatchQueue(label: "ch.konoma.matisse/imageLoaderQueue", type: .Serial)
+        self.dispatchQueue = DispatchQueue(label: "ch.konoma.matisse/imageLoaderQueue", type: .Serial)
     }
     
     
     // MARK: - Submitting Requests
     
     func submitFetchRequestForURL(url: NSURL, completion: FetchResultHandler) {
-        loaderQueue.async {
+        dispatchQueue.async {
             if let existingRequest = self.queuedFetchRequests[url] {
                 existingRequest.completionHandlers.append(completion)
             } else {
@@ -44,7 +44,7 @@ internal class ImageLoaderQueue {
         let destinationURL = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent(NSUUID().UUIDString)
         
         imageLoader.loadImageForURL(fetchRequest.URL, toURL: destinationURL) { result in
-            self.loaderQueue.async {
+            self.dispatchQueue.async {
                 self.queuedFetchRequests[fetchRequest.URL] = nil
                 
                 DispatchQueue.main.async {
