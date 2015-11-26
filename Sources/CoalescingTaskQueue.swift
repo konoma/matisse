@@ -16,7 +16,7 @@ import Foundation
  */
 internal class CoalescingTaskQueue<Worker: CoalescingTaskQueueWorker> {
     
-    typealias CompletionHandler = (Result<Worker.ResultType>) -> Void
+    typealias CompletionHandler = (Worker.ResultType?, NSError?) -> Void
     
     private let worker: Worker
     private let syncQueue: DispatchQueue
@@ -50,12 +50,12 @@ internal class CoalescingTaskQueue<Worker: CoalescingTaskQueueWorker> {
     }
     
     private func executePendingTask(pendingTask: PendingTask<Worker.TaskType, Worker.ResultType>) {
-        self.worker.handleTask(pendingTask.task) { result in
+        self.worker.handleTask(pendingTask.task) { result, error in
             self.syncQueue.async {
                 if let index = self.pendingTasks.indexOf({ $0 === pendingTask }) {
                     self.pendingTasks.removeAtIndex(index)
                 }
-                pendingTask.notifyResult(result)
+                pendingTask.notifyResult(result, error: error)
             }
         }
     }
@@ -89,7 +89,7 @@ internal protocol CoalescingTaskQueueWorker {
     /**
      * Called when the worker needs to execute the given task.
      */
-    func handleTask(task: TaskType, completion: (Result<ResultType>) -> Void)
+    func handleTask(task: TaskType, completion: (ResultType?, NSError?) -> Void)
     
     /**
      * Called to let the handler decide wether two tasks can be executed as one.
@@ -105,9 +105,9 @@ internal protocol CoalescingTaskQueueWorker {
 internal class PendingTask<TaskType, ResultType> {
     
     private let task: TaskType
-    private var completionHandlers: [(Result<ResultType>) -> Void]
+    private var completionHandlers: [(ResultType?, NSError?) -> Void]
     
-    init(task: TaskType, completionHandler: (Result<ResultType>) -> Void) {
+    init(task: TaskType, completionHandler: (ResultType?, NSError?) -> Void) {
         self.task = task
         self.completionHandlers = [completionHandler]
     }
@@ -117,7 +117,7 @@ internal class PendingTask<TaskType, ResultType> {
      *
      * Used to coalesce two tasks.
      */
-    func addCompletionHandler(completionHandler: (Result<ResultType>) -> Void) {
+    func addCompletionHandler(completionHandler: (ResultType?, NSError?) -> Void) {
         completionHandlers.append(completionHandler)
     }
     
@@ -126,9 +126,9 @@ internal class PendingTask<TaskType, ResultType> {
      *
      * Must be called on the sync queue.
      */
-    func notifyResult(result: Result<ResultType>) {
+    func notifyResult(result: ResultType?, error: NSError?) {
         for handler in completionHandlers {
-            handler(result)
+            handler(result, error)
         }
     }
 }

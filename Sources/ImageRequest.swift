@@ -60,7 +60,7 @@ public class ImageRequestBuilder : NSObject {
         return request
     }
     
-    public func execute(completion: Result<UIImage> -> Void) {
+    public func execute(completion: (UIImage?, NSError?) -> Void) {
         context.submitRequest(build(), completion: completion)
     }
     

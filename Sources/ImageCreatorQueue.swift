@@ -12,7 +12,7 @@ import ImageIO
 
 internal class ImageCreatorQueue {
     
-    typealias CreateResultHandler = (Result<UIImage>) -> Void
+    typealias CreateResultHandler = (UIImage?, NSError?) -> Void
     
     private let dispatchQueue = DispatchQueue(label: "ch.konoma.matisse/imageCreatorQueue", type: .Concurrent)
     
@@ -21,17 +21,20 @@ internal class ImageCreatorQueue {
     
     func createImageFromURL(url: NSURL, request: ImageRequest, completion: CreateResultHandler) {
         dispatchQueue.async {
-            let result: Result<UIImage>
+            let result: UIImage?
+            let err: NSError?
             
             do {
                 let image = try self.createAndTransformImageAtURL(url, transformations: request.transformations)
-                result = Result.success(UIImage(CGImage: image, scale: UIScreen.mainScreen().scale, orientation: .Up))
+                result = UIImage(CGImage: image, scale: UIScreen.mainScreen().scale, orientation: .Up)
+                err = nil
             } catch {
-                result = Result.error(error)
+                result = nil
+                err = error as NSError
             }
             
             DispatchQueue.main.async {
-                completion(result)
+                completion(result, err)
             }
         }
     }

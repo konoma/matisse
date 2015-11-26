@@ -25,9 +25,9 @@ internal class ImageFetchRequest {
     
     // MARK: - Notification
     
-    func notifyResult(result: Result<NSURL>) {
+    func notifyResult(result: NSURL?, error: NSError?) {
         for handler in completionHandlers {
-            handler(result)
+            handler(result, error)
         }
     }
 }

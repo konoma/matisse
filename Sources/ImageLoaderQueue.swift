@@ -11,7 +11,7 @@ import Foundation
 
 internal class ImageLoaderQueue {
     
-    typealias FetchResultHandler = (Result<NSURL>) -> Void
+    typealias FetchResultHandler = (NSURL?, NSError?) -> Void
     
     private let imageLoader: ImageLoader
     private let dispatchQueue: DispatchQueue
@@ -43,12 +43,12 @@ internal class ImageLoaderQueue {
     private func startFetchRequest(fetchRequest: ImageFetchRequest) {
         let destinationURL = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent(NSUUID().UUIDString)
         
-        imageLoader.loadImageForURL(fetchRequest.URL, toURL: destinationURL) { result in
+        imageLoader.loadImageForURL(fetchRequest.URL, toURL: destinationURL) { result, error in
             self.dispatchQueue.async {
                 self.queuedFetchRequests[fetchRequest.URL] = nil
                 
                 DispatchQueue.main.async {
-                    fetchRequest.notifyResult(result)
+                    fetchRequest.notifyResult(result, error: error)
                 }
             }
         }

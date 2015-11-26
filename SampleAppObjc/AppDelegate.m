@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 
+@import Matisse;
+
 
 @implementation AppDelegate
 @end

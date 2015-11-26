@@ -10,34 +10,40 @@
 import Foundation
 
 
+@objc(MTSImageLoader)
 public protocol ImageLoader : NSObjectProtocol {
     
-    func loadImageForURL(url: NSURL, toURL destinationURL: NSURL, completion: Result<NSURL> -> Void)
+    func loadImageForURL(url: NSURL, toURL destinationURL: NSURL, completion: (NSURL?, NSError?) -> Void)
 }
 
 
+@objc(MTSDefaultImageLoader)
 public class DefaultImageLoader : NSObject, ImageLoader {
     
     private let urlSession: NSURLSession
     private let fileManager: NSFileManager
     
-    public init(urlSession: NSURLSession = NSURLSession.sharedSession(), fileManager: NSFileManager = NSFileManager()) {
+    public init(urlSession: NSURLSession, fileManager: NSFileManager) {
         self.urlSession = urlSession
         self.fileManager = fileManager
     }
     
-    public func loadImageForURL(url: NSURL, toURL destinationURL: NSURL, completion: Result<NSURL> -> Void) {
+    override public convenience init() {
+        self.init(urlSession: NSURLSession.sharedSession(), fileManager: NSFileManager())
+    }
+    
+    public func loadImageForURL(url: NSURL, toURL destinationURL: NSURL, completion: (NSURL?, NSError?) -> Void) {
         let task = urlSession.downloadTaskWithRequest(NSURLRequest(URL: url)) { temporaryURL, response, error in
             guard let temporaryURL = temporaryURL else {
-                completion(Result.error(error ?? NSError(domain: "", code: 0, userInfo: nil)))
+                completion(nil, error)
                 return
             }
             
             do {
                 try self.fileManager.moveItemAtURL(temporaryURL, toURL: destinationURL)
-                completion(Result.success(destinationURL))
+                completion(destinationURL, nil)
             } catch {
-                completion(Result.error(error))
+                completion(nil, error as NSError)
             }
         }
         task.resume()

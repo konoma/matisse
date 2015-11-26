@@ -17,7 +17,12 @@ public class Matisse : NSObject {
     private static var _sharedContext: Matisse?
     private static var _imageLoader: ImageLoader = DefaultImageLoader()
     
-    @objc
+    public class func useImageLoader(imageLoader: ImageLoader) {
+        assert(_sharedContext == nil, "Can't configure the shared Matisse context after first usage")
+        
+        _imageLoader = imageLoader
+    }
+    
     public class func sharedContext() -> Matisse {
         struct Static {
             static var onceToken: dispatch_once_t = 0
@@ -54,33 +59,33 @@ public class Matisse : NSObject {
         return ImageRequestBuilder(context: self, URL: url)
     }
     
-    public func executeRequest(request: ImageRequest, completion: (Result<UIImage>) -> Void) -> UIImage? {
+    public func executeRequest(request: ImageRequest, completion: (UIImage?, NSError?) -> Void) -> UIImage? {
         return nil
     }
     
     
     // MARK: - Internals
     
-    internal func submitRequest(request: ImageRequest, completion: (Result<UIImage>) -> Void) {
+    internal func submitRequest(request: ImageRequest, completion: (UIImage?, NSError?) -> Void) {
         if let image = self.memoryCache.objectForKey(request.URL.absoluteString) as? UIImage {
             DispatchQueue.main.async {
-                completion(Result.success(image))
+                completion(image, nil)
             }
             return
         }
         
-        imageLoaderQueue.submitFetchRequestForURL(request.URL) { result in
-            guard let url = result.value else {
-                completion(Result.error(result.error ?? NSError(domain: "", code: 0, userInfo: nil)))
+        imageLoaderQueue.submitFetchRequestForURL(request.URL) { result, error in
+            guard let url = result else {
+                completion(nil, error)
                 return
             }
             
-            self.imageCreatorQueue.createImageFromURL(url, request: request) { result in
+            self.imageCreatorQueue.createImageFromURL(url, request: request) { result, error in
                 DispatchQueue.main.async {
-                    if let image = result.value {
+                    if let image = result {
                         self.memoryCache.setObject(image, forKey: request.URL.absoluteString)
                     }
-                    completion(result)
+                    completion(result, error)
                 }
             }
         }
@@ -97,9 +102,9 @@ public extension ImageRequestBuilder {
         
         imageView.matisseRequestIdentifier = identifier
         
-        execute { result in
+        execute { result, error in
             if imageView.matisseRequestIdentifier == identifier {
-                imageView.image = result.value
+                imageView.image = result
                 imageView.matisseRequestIdentifier = nil
             }
         }
