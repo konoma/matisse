@@ -9,9 +9,9 @@
 import Foundation
 
 
-public final class Matisse : NSObject {
+public final class Matisse {
     
-    private override init() {} // prevent initialization
+    private init() {} // prevent initialization
     
     private static let context = MatisseContext()
     

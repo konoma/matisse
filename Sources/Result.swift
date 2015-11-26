@@ -9,7 +9,7 @@
 import Foundation
 
 
-public class Result<T : AnyObject> {
+public class Result<T> {
     
     public let value: T?
     public let error: ErrorType?

@@ -11,7 +11,7 @@ import Foundation
 
 internal class DispatchQueue {
     
-    enum Type {
+    enum ExecutionType {
         case Serial
         case Concurrent
         
@@ -31,7 +31,7 @@ internal class DispatchQueue {
         self.dispatchQueue = dispatchQueue
     }
     
-    convenience init(label: String, type: Type) {
+    convenience init(label: String, type: ExecutionType) {
         self.init(dispatchQueue: dispatch_queue_create(label, type.dispatchAttribute()))
     }
     
