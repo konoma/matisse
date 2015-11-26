@@ -16,53 +16,93 @@ import Foundation
  */
 internal class CoalescingTaskQueue<Worker: CoalescingTaskQueueWorker> {
     
+    typealias CompletionHandler = (Result<Worker.ResultType>) -> Void
+    
     private let worker: Worker
     private let syncQueue: DispatchQueue
-    private var pendingTasks = [CoalescedTaskHolder<Worker.TaskType, Worker.ResultType>]()
+    private var pendingTasks = [PendingTask<Worker.TaskType, Worker.ResultType>]()
     
     
+    /**
+     * Create a new task queue given a worker and a sync queue.
+     *
+     * The sync queue is used to synchronize access to the pending tasks
+     * and must be a serial queue.
+     */
     init(worker: Worker, syncQueue: DispatchQueue) {
         self.worker = worker
         self.syncQueue = syncQueue
     }
     
-    func submit(task: Worker.TaskType, completion: (Result<Worker.ResultType>) -> Void) {
+    /**
+     * Submit a new task with the given completion handler.
+     *
+     * The task may be coalesced with an earlier task, thus reducing the load on the worker.
+     *
+     * The completion block will be called on the syncQueue.
+     */
+    func submit(task: Worker.TaskType, completion: CompletionHandler) {
         syncQueue.async {
-            if self.addPendingTask(task, withCompletion: completion) {
-                self.worker.handleTask(task, completionQueue:self.syncQueue, completion: completion)
+            if let pendingTask = self.addPendingTask(task, withCompletion: completion) {
+                self.executePendingTask(pendingTask)
             }
         }
     }
     
-    // adds a pending task, will return true if the task needs to be passed to the worker (i.e. can't be coalesced)
-    private func addPendingTask(task: Worker.TaskType, withCompletion completion: (Result<Worker.ResultType>) -> Void) -> Bool {
+    private func executePendingTask(pendingTask: PendingTask<Worker.TaskType, Worker.ResultType>) {
+        self.worker.handleTask(pendingTask.task) { result in
+            self.syncQueue.async {
+                if let index = self.pendingTasks.indexOf({ $0 === pendingTask }) {
+                    self.pendingTasks.removeAtIndex(index)
+                }
+                pendingTask.notifyResult(result)
+            }
+        }
+    }
+    
+    private func addPendingTask(task: Worker.TaskType, withCompletion completion: CompletionHandler) -> PendingTask<Worker.TaskType, Worker.ResultType>? {
         // try coalescing first
         for pendingTask in pendingTasks {
             if worker.canCoalesceTask(task, withTask: pendingTask.task) {
                 pendingTask.addCompletionHandler(completion)
-                return false
+                return nil
             }
         }
         
         // couldn't coalesce, add a new task instead
-        pendingTasks.append(CoalescedTaskHolder(task: task, completionHandler: completion))
-        return true
+        let pendingTask = PendingTask(task: task, completionHandler: completion)
+        pendingTasks.append(pendingTask)
+        return pendingTask
     }
 }
 
 
+/**
+ * Protocol for classes that execute tasks in a CoalescingTaskQueue.
+ * Specify wether tasks can be coalesced or not.
+ */
 internal protocol CoalescingTaskQueueWorker {
     
     typealias TaskType
     typealias ResultType
     
-    func handleTask(task: TaskType, completionQueue: DispatchQueue, completion: (Result<ResultType>) -> Void)
+    /**
+     * Called when the worker needs to execute the given task.
+     */
+    func handleTask(task: TaskType, completion: (Result<ResultType>) -> Void)
     
+    /**
+     * Called to let the handler decide wether two tasks can be executed as one.
+     */
     func canCoalesceTask(newTask: TaskType, withTask currentTask: TaskType) -> Bool
 }
 
 
-internal class CoalescedTaskHolder<TaskType, ResultType> {
+/**
+ * Represents a task currently being executed. Allows adding completion handlers
+ * to support task coalescing.
+ */
+internal class PendingTask<TaskType, ResultType> {
     
     private let task: TaskType
     private var completionHandlers: [(Result<ResultType>) -> Void]
@@ -72,7 +112,23 @@ internal class CoalescedTaskHolder<TaskType, ResultType> {
         self.completionHandlers = [completionHandler]
     }
     
+    /**
+     * Add a completion handler to this pending task.
+     *
+     * Used to coalesce two tasks.
+     */
     func addCompletionHandler(completionHandler: (Result<ResultType>) -> Void) {
         completionHandlers.append(completionHandler)
+    }
+    
+    /**
+     * Notify all registered completion handlers of a result.
+     *
+     * Must be called on the sync queue.
+     */
+    func notifyResult(result: Result<ResultType>) {
+        for handler in completionHandlers {
+            handler(result)
+        }
     }
 }
