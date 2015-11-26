@@ -10,13 +10,13 @@
 import Foundation
 
 
-public protocol MatisseImageLoader : NSObjectProtocol {
+public protocol ImageLoader : NSObjectProtocol {
     
     func loadImageForURL(url: NSURL, toURL destinationURL: NSURL, completion: Result<NSURL> -> Void)
 }
 
 
-public class DefaultImageLoader : NSObject, MatisseImageLoader {
+public class DefaultImageLoader : NSObject, ImageLoader {
     
     private let urlSession: NSURLSession
     private let fileManager: NSFileManager

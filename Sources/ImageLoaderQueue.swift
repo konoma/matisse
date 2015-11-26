@@ -13,14 +13,14 @@ internal class ImageLoaderQueue {
     
     typealias FetchResultHandler = (Result<NSURL>) -> Void
     
-    private let imageLoader: MatisseImageLoader
+    private let imageLoader: ImageLoader
     private let dispatchQueue: DispatchQueue
     private var queuedFetchRequests: [NSURL: ImageFetchRequest] = [:]
     
     
     // MARK: - Initialization
     
-    init(imageLoader: MatisseImageLoader) {
+    init(imageLoader: ImageLoader) {
         self.imageLoader = imageLoader
         self.dispatchQueue = DispatchQueue(label: "ch.konoma.matisse/imageLoaderQueue", type: .Serial)
     }

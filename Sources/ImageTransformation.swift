@@ -1,5 +1,5 @@
 //
-//  MatisseTransformation.swift
+//  ImageTransformation.swift
 //  Matisse
 //
 //  Created by Markus Gasser on 22.11.15.
@@ -9,7 +9,7 @@
 import Foundation
 
 
-public protocol MatisseTransformation : NSObjectProtocol {
+public protocol ImageTransformation : NSObjectProtocol {
     
     func transformImage(image: CGImage) throws -> CGImage
 }

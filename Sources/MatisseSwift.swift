@@ -1,5 +1,5 @@
 //
-//  Matisse+UIImageView.swift
+//  Matisse.swift
 //  Matisse
 //
 //  Created by Markus Gasser on 22.11.15.
@@ -9,15 +9,29 @@
 import Foundation
 
 
-public extension MatisseRequest {
+public final class Matisse {
+    
+    private init() {} // prevent initialization
+    
+    private static let context = MatisseContext()
+    
+    public class func load(url: NSURL) -> ImageRequestBuilder {
+        return context.load(url)
+    }
+}
+
+
+public extension ImageRequestBuilder {
     
     public func into(imageView: UIImageView) {
         assert(NSThread.isMainThread())
         
+        let identifier = build().identifier
+        
         imageView.matisseRequestIdentifier = identifier
         
         execute { result in
-            if imageView.matisseRequestIdentifier == self.identifier {
+            if imageView.matisseRequestIdentifier == identifier {
                 imageView.image = result.value
                 imageView.matisseRequestIdentifier = nil
             }
@@ -27,7 +41,6 @@ public extension MatisseRequest {
 
 
 private var requestIdentifierKey: Int = 0
-
 
 public extension UIImageView {
     

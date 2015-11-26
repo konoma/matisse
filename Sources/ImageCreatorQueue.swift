@@ -19,7 +19,7 @@ internal class ImageCreatorQueue {
     
     // MARK: - Submitting Requests
     
-    func createImageFromURL(url: NSURL, request: MatisseRequest, completion: CreateResultHandler) {
+    func createImageFromURL(url: NSURL, request: ImageRequest, completion: CreateResultHandler) {
         dispatchQueue.async {
             let result: Result<UIImage>
             
@@ -36,7 +36,7 @@ internal class ImageCreatorQueue {
         }
     }
     
-    private func createAndTransformImageAtURL(url: NSURL, transformations: [MatisseTransformation]) throws -> CGImage {
+    private func createAndTransformImageAtURL(url: NSURL, transformations: [ImageTransformation]) throws -> CGImage {
         let options = [ (kCGImageSourceShouldCache as NSString): false ] as NSDictionary
         
         guard let source = CGImageSourceCreateWithURL(url, options) else {

@@ -9,34 +9,67 @@
 import Foundation
 
 
+@objc(MTSMatisseContext)
 public class MatisseContext : NSObject {
     
-    private let imageLoaderQueue = ImageLoaderQueue(imageLoader: DefaultImageLoader())
+    // MARK: - Shared Context
+    
+    private static var _sharedContext: MatisseContext?
+    private static var _imageLoader: ImageLoader = DefaultImageLoader()
+    
+    @objc
+    public class func sharedContext() -> MatisseContext {
+        struct Static {
+            static var onceToken: dispatch_once_t = 0
+            static var instance: MatisseContext? = nil
+        }
+        
+        dispatch_once(&Static.onceToken) {
+            Static.instance = MatisseContext(imageLoader: _imageLoader)
+        }
+        
+        return Static.instance!
+    }
+    
+    
+    // MARK: - Initialization
+    
+    private let imageLoaderQueue: ImageLoaderQueue
     private let imageCreatorQueue = ImageCreatorQueue()
     
     private let memoryCache = NSCache()
     
+    public init(imageLoader: ImageLoader = DefaultImageLoader()) {
+        self.imageLoaderQueue = ImageLoaderQueue(imageLoader: imageLoader)
+    }
+    
     
     // MARK: - Loading Images
     
-    public func load(url: NSURL) -> MatisseRequest {
-        return MatisseRequest(context: self, URL: url)
+    public func load(url: NSURL) -> ImageRequestBuilder {
+        return ImageRequestBuilder(context: self, URL: url)
+    }
+    
+    public func executeRequest(request: ImageRequest, completion: (Result<UIImage>) -> Void) -> UIImage? {
+        return nil
     }
     
     
     // MARK: - Internals
     
-    internal func submitRequest(request: MatisseRequest) {
+    
+    
+    internal func submitRequest(request: ImageRequest, completion: (Result<UIImage>) -> Void) {
         if let image = self.memoryCache.objectForKey(request.URL.absoluteString) as? UIImage {
             DispatchQueue.main.async {
-                request.notifyResult(Result.success(image))
+                completion(Result.success(image))
             }
             return
         }
         
         imageLoaderQueue.submitFetchRequestForURL(request.URL) { result in
             guard let url = result.value else {
-                request.notifyResult(Result.error(result.error ?? NSError(domain: "", code: 0, userInfo: nil)))
+                completion(Result.error(result.error ?? NSError(domain: "", code: 0, userInfo: nil)))
                 return
             }
             
@@ -45,7 +78,7 @@ public class MatisseContext : NSObject {
                     if let image = result.value {
                         self.memoryCache.setObject(image, forKey: request.URL.absoluteString)
                     }
-                    request.notifyResult(result)
+                    completion(result)
                 }
             }
         }

@@ -9,7 +9,7 @@
 import Foundation
 
 
-public class ResizeTransformation : NSObject, MatisseTransformation {
+public class ResizeTransformation : NSObject, ImageTransformation {
     
     public let targetSize: CGSize
     public let contentMode: UIViewContentMode
@@ -69,9 +69,9 @@ public class ResizeTransformation : NSObject, MatisseTransformation {
 }
 
 
-public extension MatisseRequest {
+public extension ImageRequestBuilder {
     
-    public func resizeTo(targetSize: CGSize, contentMode: UIViewContentMode = .ScaleToFill) -> MatisseRequest {
+    public func resizeTo(targetSize: CGSize, contentMode: UIViewContentMode = .ScaleToFill) -> ImageRequestBuilder {
         return addTransformation(ResizeTransformation(targetSize: targetSize, contentMode: contentMode))
     }
 }

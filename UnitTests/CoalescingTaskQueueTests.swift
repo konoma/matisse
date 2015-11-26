@@ -14,35 +14,6 @@ import Nimble
 
 class CoalescingTaskQueueTests: XCTestCase {
 
-    class NonCoalescingWorker: CoalescingTaskQueueWorker {
-        
-        var handledTaskCount = 0
-        
-        func handleTask(task: String, completion: (Result<String>) -> Void) {
-            handledTaskCount += 1
-            completion(Result.success(task))
-        }
-        
-        func canCoalesceTask(newTask: String, withTask currentTask: String) -> Bool {
-            return false
-        }
-    }
-    
-    class CoalescingWorker: CoalescingTaskQueueWorker {
-        
-        var handledTaskCount = 0
-        
-        func handleTask(task: String, completion: (Result<String>) -> Void) {
-            handledTaskCount += 1
-            completion(Result.success(task))
-        }
-        
-        func canCoalesceTask(newTask: String, withTask currentTask: String) -> Bool {
-            return newTask == currentTask
-        }
-    }
-    
-    
     func test_submitting_will_handle_the_task_using_the_worker() {
         let queue = CoalescingTaskQueue(worker: NonCoalescingWorker(), syncQueue: DispatchQueue.main)
         
@@ -78,5 +49,35 @@ class CoalescingTaskQueueTests: XCTestCase {
         // we expect two completion calls to be made, and also two tasks to be executed
         expect(resultCount).toEventually(equal(2))
         expect(worker.handledTaskCount).toEventually(equal(2))
+    }
+}
+
+
+private class NonCoalescingWorker: CoalescingTaskQueueWorker {
+    
+    var handledTaskCount = 0
+    
+    func handleTask(task: String, completion: (Result<String>) -> Void) {
+        handledTaskCount += 1
+        completion(Result.success(task))
+    }
+    
+    func canCoalesceTask(newTask: String, withTask currentTask: String) -> Bool {
+        return false
+    }
+}
+
+
+private class CoalescingWorker: CoalescingTaskQueueWorker {
+    
+    var handledTaskCount = 0
+    
+    func handleTask(task: String, completion: (Result<String>) -> Void) {
+        handledTaskCount += 1
+        completion(Result.success(task))
+    }
+    
+    func canCoalesceTask(newTask: String, withTask currentTask: String) -> Bool {
+        return newTask == currentTask
     }
 }

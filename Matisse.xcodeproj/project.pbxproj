@@ -7,21 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		055061E71C023D0D009462D9 /* MatisseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055061E61C023D0D009462D9 /* MatisseRequest.swift */; };
+		055061E71C023D0D009462D9 /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055061E61C023D0D009462D9 /* ImageRequest.swift */; };
 		055061E91C023DB4009462D9 /* MatisseContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055061E81C023DB4009462D9 /* MatisseContext.swift */; };
 		05A7916B1C02484D00A65E7B /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A7916A1C02484D00A65E7B /* ImageCell.swift */; };
-		05A7916F1C0249EE00A65E7B /* Matisse+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A7916E1C0249EE00A65E7B /* Matisse+UIImageView.swift */; };
 		05A791711C024AAE00A65E7B /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A791701C024AAE00A65E7B /* Result.swift */; };
 		05A791751C0255CE00A65E7B /* ImageLoaderQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A791741C0255CE00A65E7B /* ImageLoaderQueue.swift */; };
 		05A791781C0256A000A65E7B /* ImageFetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A791771C0256A000A65E7B /* ImageFetchRequest.swift */; };
-		05A7917A1C025D0900A65E7B /* MatisseImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A791791C025D0900A65E7B /* MatisseImageLoader.swift */; };
+		05A7917A1C025D0900A65E7B /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A791791C025D0900A65E7B /* ImageLoader.swift */; };
 		05A7917D1C026A2100A65E7B /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A7917C1C026A2100A65E7B /* DispatchQueue.swift */; };
-		05A791801C0273F500A65E7B /* MatisseTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A7917F1C0273F500A65E7B /* MatisseTransformation.swift */; };
+		05A791801C0273F500A65E7B /* ImageTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A7917F1C0273F500A65E7B /* ImageTransformation.swift */; };
 		05A791821C0274E900A65E7B /* ResizeTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A791811C0274E900A65E7B /* ResizeTransformation.swift */; };
 		05A791851C033A4300A65E7B /* Matisse.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05F50C321C022E2500859782 /* Matisse.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05B9515D1C038B1900920508 /* ImageCreatorQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B9515C1C038B1900920508 /* ImageCreatorQueue.swift */; };
 		05C34DDC1C04E79600E0AEC8 /* CoalescingTaskQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C34DDB1C04E79600E0AEC8 /* CoalescingTaskQueue.swift */; };
 		05C34DDF1C07140A00E0AEC8 /* CoalescingTaskQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C34DDE1C07140A00E0AEC8 /* CoalescingTaskQueueTests.swift */; };
+		05C34DE11C079DC800E0AEC8 /* MatisseContextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C34DE01C079DC800E0AEC8 /* MatisseContextTests.swift */; };
+		05C34DE61C07A1B700E0AEC8 /* MatisseObjc.h in Headers */ = {isa = PBXBuildFile; fileRef = 05C34DE41C07A1B700E0AEC8 /* MatisseObjc.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		05C34DF11C07A5FD00E0AEC8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C34DF01C07A5FC00E0AEC8 /* main.m */; };
+		05C34DF41C07A5FD00E0AEC8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C34DF31C07A5FD00E0AEC8 /* AppDelegate.m */; };
+		05C34DF71C07A5FD00E0AEC8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C34DF61C07A5FD00E0AEC8 /* ViewController.m */; };
+		05C34DFA1C07A5FD00E0AEC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05C34DF81C07A5FD00E0AEC8 /* Main.storyboard */; };
+		05C34DFC1C07A5FD00E0AEC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05C34DFB1C07A5FD00E0AEC8 /* Assets.xcassets */; };
+		05C34DFF1C07A5FD00E0AEC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05C34DFD1C07A5FD00E0AEC8 /* LaunchScreen.storyboard */; };
+		05C34E061C07A65A00E0AEC8 /* ImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C34E051C07A65A00E0AEC8 /* ImageCell.m */; };
+		05C34E091C07ABDF00E0AEC8 /* Matisse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05F50C321C022E2500859782 /* Matisse.framework */; };
+		05C34E0A1C07ABE700E0AEC8 /* Matisse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05F50C321C022E2500859782 /* Matisse.framework */; };
+		05C34E0B1C07ABE700E0AEC8 /* Matisse.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05F50C321C022E2500859782 /* Matisse.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05F50C361C022E2500859782 /* Matisse.h in Headers */ = {isa = PBXBuildFile; fileRef = 05F50C351C022E2500859782 /* Matisse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05F50C3D1C022E2600859782 /* Matisse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05F50C321C022E2500859782 /* Matisse.framework */; };
 		05F50C421C022E2600859782 /* MatisseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F50C411C022E2600859782 /* MatisseTests.swift */; };
@@ -31,12 +42,19 @@
 		05F50C5A1C0230D600859782 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05F50C591C0230D600859782 /* Assets.xcassets */; };
 		05F50C5D1C0230D600859782 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05F50C5B1C0230D600859782 /* LaunchScreen.storyboard */; };
 		05F50C621C02312900859782 /* Matisse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05F50C321C022E2500859782 /* Matisse.framework */; };
-		05F50C641C02316F00859782 /* Matisse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F50C631C02316F00859782 /* Matisse.swift */; };
+		05F50C641C02316F00859782 /* MatisseSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F50C631C02316F00859782 /* MatisseSwift.swift */; };
 		322BF78201D3BEEE65600C11 /* Pods_UnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80CE975AC9048242613E0051 /* Pods_UnitTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		05A791721C024C1F00A65E7B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05F50C291C022E2500859782 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05F50C311C022E2500859782;
+			remoteInfo = Matisse;
+		};
+		05C34E071C07ABDA00E0AEC8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 05F50C291C022E2500859782 /* Project object */;
 			proxyType = 1;
@@ -64,23 +82,47 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		05C34E0C1C07ABE700E0AEC8 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				05C34E0B1C07ABE700E0AEC8 /* Matisse.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		055061E61C023D0D009462D9 /* MatisseRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatisseRequest.swift; sourceTree = "<group>"; };
+		055061E61C023D0D009462D9 /* ImageRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRequest.swift; sourceTree = "<group>"; };
 		055061E81C023DB4009462D9 /* MatisseContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatisseContext.swift; sourceTree = "<group>"; };
 		05A7916A1C02484D00A65E7B /* ImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
-		05A7916E1C0249EE00A65E7B /* Matisse+UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Matisse+UIImageView.swift"; sourceTree = "<group>"; };
 		05A791701C024AAE00A65E7B /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		05A791741C0255CE00A65E7B /* ImageLoaderQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoaderQueue.swift; sourceTree = "<group>"; };
 		05A791771C0256A000A65E7B /* ImageFetchRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFetchRequest.swift; sourceTree = "<group>"; };
-		05A791791C025D0900A65E7B /* MatisseImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatisseImageLoader.swift; sourceTree = "<group>"; };
+		05A791791C025D0900A65E7B /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		05A7917C1C026A2100A65E7B /* DispatchQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchQueue.swift; sourceTree = "<group>"; };
-		05A7917F1C0273F500A65E7B /* MatisseTransformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatisseTransformation.swift; sourceTree = "<group>"; };
+		05A7917F1C0273F500A65E7B /* ImageTransformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTransformation.swift; sourceTree = "<group>"; };
 		05A791811C0274E900A65E7B /* ResizeTransformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizeTransformation.swift; sourceTree = "<group>"; };
 		05B9515C1C038B1900920508 /* ImageCreatorQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCreatorQueue.swift; sourceTree = "<group>"; };
 		05C34DDB1C04E79600E0AEC8 /* CoalescingTaskQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoalescingTaskQueue.swift; sourceTree = "<group>"; };
 		05C34DDE1C07140A00E0AEC8 /* CoalescingTaskQueueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoalescingTaskQueueTests.swift; sourceTree = "<group>"; };
+		05C34DE01C079DC800E0AEC8 /* MatisseContextTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatisseContextTests.swift; sourceTree = "<group>"; };
+		05C34DE41C07A1B700E0AEC8 /* MatisseObjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatisseObjc.h; sourceTree = "<group>"; };
+		05C34DED1C07A5FC00E0AEC8 /* Matisse Sample Objc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Matisse Sample Objc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		05C34DF01C07A5FC00E0AEC8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		05C34DF21C07A5FD00E0AEC8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		05C34DF31C07A5FD00E0AEC8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		05C34DF51C07A5FD00E0AEC8 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		05C34DF61C07A5FD00E0AEC8 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		05C34DF91C07A5FD00E0AEC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		05C34DFB1C07A5FD00E0AEC8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		05C34DFE1C07A5FD00E0AEC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		05C34E001C07A5FD00E0AEC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05C34E041C07A65A00E0AEC8 /* ImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCell.h; sourceTree = "<group>"; };
+		05C34E051C07A65A00E0AEC8 /* ImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCell.m; sourceTree = "<group>"; };
 		05F50C321C022E2500859782 /* Matisse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Matisse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05F50C351C022E2500859782 /* Matisse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Matisse.h; sourceTree = "<group>"; };
 		05F50C371C022E2500859782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -94,13 +136,22 @@
 		05F50C591C0230D600859782 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		05F50C5C1C0230D600859782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		05F50C5E1C0230D600859782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		05F50C631C02316F00859782 /* Matisse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matisse.swift; sourceTree = "<group>"; };
+		05F50C631C02316F00859782 /* MatisseSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatisseSwift.swift; sourceTree = "<group>"; };
 		62ED7FA899BD7D3F53E66C43 /* Pods-UnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		6D393984DC36299E60D2793D /* Pods-UnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		80CE975AC9048242613E0051 /* Pods_UnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		05C34DEA1C07A5FC00E0AEC8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05C34E091C07ABDF00E0AEC8 /* Matisse.framework in Frameworks */,
+				05C34E0A1C07ABE700E0AEC8 /* Matisse.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05F50C2E1C022E2500859782 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -132,20 +183,12 @@
 			isa = PBXGroup;
 			children = (
 				055061E81C023DB4009462D9 /* MatisseContext.swift */,
-				055061E61C023D0D009462D9 /* MatisseRequest.swift */,
+				055061E61C023D0D009462D9 /* ImageRequest.swift */,
+				05A791791C025D0900A65E7B /* ImageLoader.swift */,
 				05A791761C0255EB00A65E7B /* Image Loading */,
 				05A7917E1C0273C800A65E7B /* Image Preparation */,
-				05A7917B1C026A1300A65E7B /* Util */,
 			);
 			name = Core;
-			sourceTree = "<group>";
-		};
-		05A7916D1C0249CD00A65E7B /* UIKit */ = {
-			isa = PBXGroup;
-			children = (
-				05A7916E1C0249EE00A65E7B /* Matisse+UIImageView.swift */,
-			);
-			name = UIKit;
 			sourceTree = "<group>";
 		};
 		05A791761C0255EB00A65E7B /* Image Loading */ = {
@@ -153,7 +196,6 @@
 			children = (
 				05A791741C0255CE00A65E7B /* ImageLoaderQueue.swift */,
 				05A791771C0256A000A65E7B /* ImageFetchRequest.swift */,
-				05A791791C025D0900A65E7B /* MatisseImageLoader.swift */,
 			);
 			name = "Image Loading";
 			sourceTree = "<group>";
@@ -172,10 +214,37 @@
 			isa = PBXGroup;
 			children = (
 				05B9515C1C038B1900920508 /* ImageCreatorQueue.swift */,
-				05A7917F1C0273F500A65E7B /* MatisseTransformation.swift */,
+				05A7917F1C0273F500A65E7B /* ImageTransformation.swift */,
 				05A791811C0274E900A65E7B /* ResizeTransformation.swift */,
 			);
 			name = "Image Preparation";
+			sourceTree = "<group>";
+		};
+		05C34DE81C07A26D00E0AEC8 /* Swift DSL */ = {
+			isa = PBXGroup;
+			children = (
+				05F50C631C02316F00859782 /* MatisseSwift.swift */,
+				05C34DE41C07A1B700E0AEC8 /* MatisseObjc.h */,
+			);
+			name = "Swift DSL";
+			sourceTree = "<group>";
+		};
+		05C34DEE1C07A5FC00E0AEC8 /* SampleAppObjc */ = {
+			isa = PBXGroup;
+			children = (
+				05C34E001C07A5FD00E0AEC8 /* Info.plist */,
+				05C34DFB1C07A5FD00E0AEC8 /* Assets.xcassets */,
+				05C34DFD1C07A5FD00E0AEC8 /* LaunchScreen.storyboard */,
+				05C34DF81C07A5FD00E0AEC8 /* Main.storyboard */,
+				05C34DF01C07A5FC00E0AEC8 /* main.m */,
+				05C34DF21C07A5FD00E0AEC8 /* AppDelegate.h */,
+				05C34DF31C07A5FD00E0AEC8 /* AppDelegate.m */,
+				05C34DF51C07A5FD00E0AEC8 /* ViewController.h */,
+				05C34DF61C07A5FD00E0AEC8 /* ViewController.m */,
+				05C34E041C07A65A00E0AEC8 /* ImageCell.h */,
+				05C34E051C07A65A00E0AEC8 /* ImageCell.m */,
+			);
+			path = SampleAppObjc;
 			sourceTree = "<group>";
 		};
 		05F50C281C022E2500859782 = {
@@ -184,6 +253,7 @@
 				05F50C341C022E2500859782 /* Sources */,
 				05F50C401C022E2600859782 /* UnitTests */,
 				05F50C511C0230D600859782 /* SampleApp */,
+				05C34DEE1C07A5FC00E0AEC8 /* SampleAppObjc */,
 				05F50C331C022E2500859782 /* Products */,
 				256083006CA9C7905B86AB62 /* Pods */,
 				CBD48006834BCE90A91F38FA /* Frameworks */,
@@ -196,6 +266,7 @@
 				05F50C321C022E2500859782 /* Matisse.framework */,
 				05F50C3C1C022E2600859782 /* UnitTests.xctest */,
 				05F50C501C0230D500859782 /* Matisse Sample.app */,
+				05C34DED1C07A5FC00E0AEC8 /* Matisse Sample Objc.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -205,9 +276,9 @@
 			children = (
 				05F50C371C022E2500859782 /* Info.plist */,
 				05F50C351C022E2500859782 /* Matisse.h */,
-				05F50C631C02316F00859782 /* Matisse.swift */,
 				05A7916C1C0249C100A65E7B /* Core */,
-				05A7916D1C0249CD00A65E7B /* UIKit */,
+				05C34DE81C07A26D00E0AEC8 /* Swift DSL */,
+				05A7917B1C026A1300A65E7B /* Util */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -217,6 +288,7 @@
 			children = (
 				05F50C431C022E2600859782 /* Info.plist */,
 				05F50C411C022E2600859782 /* MatisseTests.swift */,
+				05C34DE01C079DC800E0AEC8 /* MatisseContextTests.swift */,
 				05C34DDE1C07140A00E0AEC8 /* CoalescingTaskQueueTests.swift */,
 			);
 			path = UnitTests;
@@ -260,6 +332,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05C34DE61C07A1B700E0AEC8 /* MatisseObjc.h in Headers */,
 				05F50C361C022E2500859782 /* Matisse.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -267,6 +340,25 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		05C34DEC1C07A5FC00E0AEC8 /* SampleAppObjc */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05C34E011C07A5FD00E0AEC8 /* Build configuration list for PBXNativeTarget "SampleAppObjc" */;
+			buildPhases = (
+				05C34DE91C07A5FC00E0AEC8 /* Sources */,
+				05C34DEA1C07A5FC00E0AEC8 /* Frameworks */,
+				05C34DEB1C07A5FC00E0AEC8 /* Resources */,
+				05C34E0C1C07ABE700E0AEC8 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				05C34E081C07ABDA00E0AEC8 /* PBXTargetDependency */,
+			);
+			name = SampleAppObjc;
+			productName = SampleAppObjc;
+			productReference = 05C34DED1C07A5FC00E0AEC8 /* Matisse Sample Objc.app */;
+			productType = "com.apple.product-type.application";
+		};
 		05F50C311C022E2500859782 /* Matisse */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05F50C461C022E2600859782 /* Build configuration list for PBXNativeTarget "Matisse" */;
@@ -335,6 +427,9 @@
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "konoma GmbH";
 				TargetAttributes = {
+					05C34DEC1C07A5FC00E0AEC8 = {
+						CreatedOnToolsVersion = 7.1.1;
+					};
 					05F50C311C022E2500859782 = {
 						CreatedOnToolsVersion = 7.1;
 					};
@@ -362,11 +457,22 @@
 				05F50C311C022E2500859782 /* Matisse */,
 				05F50C3B1C022E2600859782 /* UnitTests */,
 				05F50C4F1C0230D500859782 /* SampleApp */,
+				05C34DEC1C07A5FC00E0AEC8 /* SampleAppObjc */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		05C34DEB1C07A5FC00E0AEC8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05C34DFF1C07A5FD00E0AEC8 /* LaunchScreen.storyboard in Resources */,
+				05C34DFC1C07A5FD00E0AEC8 /* Assets.xcassets in Resources */,
+				05C34DFA1C07A5FD00E0AEC8 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05F50C301C022E2500859782 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -442,6 +548,17 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		05C34DE91C07A5FC00E0AEC8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05C34DF71C07A5FD00E0AEC8 /* ViewController.m in Sources */,
+				05C34E061C07A65A00E0AEC8 /* ImageCell.m in Sources */,
+				05C34DF41C07A5FD00E0AEC8 /* AppDelegate.m in Sources */,
+				05C34DF11C07A5FD00E0AEC8 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05F50C2D1C022E2500859782 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -449,14 +566,13 @@
 				05A791751C0255CE00A65E7B /* ImageLoaderQueue.swift in Sources */,
 				05A791711C024AAE00A65E7B /* Result.swift in Sources */,
 				055061E91C023DB4009462D9 /* MatisseContext.swift in Sources */,
-				05A7917A1C025D0900A65E7B /* MatisseImageLoader.swift in Sources */,
-				05A7916F1C0249EE00A65E7B /* Matisse+UIImageView.swift in Sources */,
+				05A7917A1C025D0900A65E7B /* ImageLoader.swift in Sources */,
 				05A791781C0256A000A65E7B /* ImageFetchRequest.swift in Sources */,
-				05F50C641C02316F00859782 /* Matisse.swift in Sources */,
-				05A791801C0273F500A65E7B /* MatisseTransformation.swift in Sources */,
+				05F50C641C02316F00859782 /* MatisseSwift.swift in Sources */,
+				05A791801C0273F500A65E7B /* ImageTransformation.swift in Sources */,
 				05B9515D1C038B1900920508 /* ImageCreatorQueue.swift in Sources */,
 				05C34DDC1C04E79600E0AEC8 /* CoalescingTaskQueue.swift in Sources */,
-				055061E71C023D0D009462D9 /* MatisseRequest.swift in Sources */,
+				055061E71C023D0D009462D9 /* ImageRequest.swift in Sources */,
 				05A7917D1C026A2100A65E7B /* DispatchQueue.swift in Sources */,
 				05A791821C0274E900A65E7B /* ResizeTransformation.swift in Sources */,
 			);
@@ -466,6 +582,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05C34DE11C079DC800E0AEC8 /* MatisseContextTests.swift in Sources */,
 				05C34DDF1C07140A00E0AEC8 /* CoalescingTaskQueueTests.swift in Sources */,
 				05F50C421C022E2600859782 /* MatisseTests.swift in Sources */,
 			);
@@ -489,6 +606,11 @@
 			target = 05F50C311C022E2500859782 /* Matisse */;
 			targetProxy = 05A791721C024C1F00A65E7B /* PBXContainerItemProxy */;
 		};
+		05C34E081C07ABDA00E0AEC8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05F50C311C022E2500859782 /* Matisse */;
+			targetProxy = 05C34E071C07ABDA00E0AEC8 /* PBXContainerItemProxy */;
+		};
 		05F50C3F1C022E2600859782 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 05F50C311C022E2500859782 /* Matisse */;
@@ -497,6 +619,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		05C34DF81C07A5FD00E0AEC8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05C34DF91C07A5FD00E0AEC8 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		05C34DFD1C07A5FD00E0AEC8 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05C34DFE1C07A5FD00E0AEC8 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 		05F50C561C0230D600859782 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -516,6 +654,30 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		05C34E021C07A5FD00E0AEC8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = SampleAppObjc/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ch.konoma.matisse-sample-app-objc";
+				PRODUCT_NAME = "Matisse Sample Objc";
+			};
+			name = Debug;
+		};
+		05C34E031C07A5FD00E0AEC8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = SampleAppObjc/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ch.konoma.matisse-sample-app-objc";
+				PRODUCT_NAME = "Matisse Sample Objc";
+			};
+			name = Release;
+		};
 		05F50C441C022E2600859782 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -687,6 +849,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		05C34E011C07A5FD00E0AEC8 /* Build configuration list for PBXNativeTarget "SampleAppObjc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05C34E021C07A5FD00E0AEC8 /* Debug */,
+				05C34E031C07A5FD00E0AEC8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		05F50C2C1C022E2500859782 /* Build configuration list for PBXProject "Matisse" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
