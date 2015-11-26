@@ -24,14 +24,15 @@ public class ImageRequest : NSObject {
 }
 
 
+@objc(MTSImageRequestBuilder)
 public class ImageRequestBuilder : NSObject {
     
-    private let context: MatisseContext
+    private let context: Matisse
     private let URL: NSURL
     private var transformations: [ImageTransformation] = []
     private var builtRequest: ImageRequest?
     
-    internal init(context: MatisseContext, URL: NSURL) {
+    internal init(context: Matisse, URL: NSURL) {
         self.context = context
         self.URL = URL
     }

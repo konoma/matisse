@@ -54,15 +54,9 @@
     ImageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageCell" forIndexPath:indexPath];
     NSURL *url = self.imageURLs[indexPath.row % self.imageURLs.count];
     
-    // Matisse.load(url).resizeTo(CGSize(width: itemSize, height: itemSize), contentMode: .ScaleAspectFill).into(cell.imageView)
-    
-    MTSMatisseContext *context = Matisse;
-    
-    [[[Matisse load:url]
-      resizeTo:CGSizeMake(self.itemSize, self.itemSize) contentMode:UIViewContentModeScaleAspectFill]
-     into:cell.imageView];
-    
-    NSLog(@"%@, %@", [context description], url);
+    MTSImageRequestBuilder *builder = [MTSMatisse load:url];
+    [builder resizeTo:CGSizeMake(self.itemSize, self.itemSize) contentMode:UIViewContentModeScaleAspectFill];
+    [builder into:cell.imageView];
     
     return cell;
 }

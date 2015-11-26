@@ -9,29 +9,33 @@
 import Foundation
 
 
-@objc(MTSMatisseContext)
-public class MatisseContext : NSObject {
+@objc(MTSMatisse)
+public class Matisse : NSObject {
     
     // MARK: - Shared Context
     
-    private static var _sharedContext: MatisseContext?
+    private static var _sharedContext: Matisse?
     private static var _imageLoader: ImageLoader = DefaultImageLoader()
     
     @objc
-    public class func sharedContext() -> MatisseContext {
+    public class func sharedContext() -> Matisse {
         struct Static {
             static var onceToken: dispatch_once_t = 0
-            static var instance: MatisseContext? = nil
+            static var instance: Matisse? = nil
         }
         
         dispatch_once(&Static.onceToken) {
-            Static.instance = MatisseContext(imageLoader: _imageLoader)
+            Static.instance = Matisse(imageLoader: _imageLoader)
         }
         
         return Static.instance!
     }
     
+    public class func load(url: NSURL) -> ImageRequestBuilder {
+        return sharedContext().load(url)
+    }
     
+
     // MARK: - Initialization
     
     private let imageLoaderQueue: ImageLoaderQueue
@@ -57,8 +61,6 @@ public class MatisseContext : NSObject {
     
     // MARK: - Internals
     
-    
-    
     internal func submitRequest(request: ImageRequest, completion: (Result<UIImage>) -> Void) {
         if let image = self.memoryCache.objectForKey(request.URL.absoluteString) as? UIImage {
             DispatchQueue.main.async {
@@ -82,5 +84,35 @@ public class MatisseContext : NSObject {
                 }
             }
         }
+    }
+}
+
+
+public extension ImageRequestBuilder {
+    
+    public func into(imageView: UIImageView) {
+        assert(NSThread.isMainThread())
+        
+        let identifier = build().identifier
+        
+        imageView.matisseRequestIdentifier = identifier
+        
+        execute { result in
+            if imageView.matisseRequestIdentifier == identifier {
+                imageView.image = result.value
+                imageView.matisseRequestIdentifier = nil
+            }
+        }
+    }
+}
+
+
+private var requestIdentifierKey: Int = 0
+
+public extension UIImageView {
+    
+    public var matisseRequestIdentifier: NSUUID? {
+        get { return objc_getAssociatedObject(self, &requestIdentifierKey) as? NSUUID }
+        set { objc_setAssociatedObject(self, &requestIdentifierKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
 }
