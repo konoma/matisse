@@ -24,6 +24,10 @@ public class ResizeTransformation : NSObject, ImageTransformation {
         self.scaledTargeSize = CGSize(width: (targetSize.width * deviceScale), height: (targetSize.height * deviceScale))
     }
     
+    public var descriptor: String {
+        return "resize(\(targetSize.width),\(targetSize.height),\(deviceScale),\(contentMode.rawValue))"
+    }
+    
     public func transformImage(image: CGImage) throws -> CGImage {
         let bitsPerComponent = CGImageGetBitsPerComponent(image)
         let bytesPerRow = CGImageGetBytesPerRow(image)

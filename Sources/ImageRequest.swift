@@ -21,6 +21,10 @@ public class ImageRequest : NSObject {
         self.URL = URL
         self.transformations = transformations
     }
+    
+    public var descriptor: String {
+        return URL.absoluteString + ";" + (transformations.map { $0.descriptor }).joinWithSeparator(";")
+    }
 }
 
 

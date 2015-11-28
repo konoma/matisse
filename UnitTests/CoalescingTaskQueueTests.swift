@@ -15,23 +15,23 @@ import Nimble
 class CoalescingTaskQueueTests: XCTestCase {
 
     func test_submitting_will_handle_the_task_using_the_worker() {
-        let queue = CoalescingTaskQueue(worker: NonCoalescingWorker(), syncQueue: DispatchQueue.main)
+        let queue = CoalescingTaskQueue(worker: InspectableTaskQueueWorker(coalesce: true), syncQueue: DispatchQueue.main)
         
         var resultValue: String?
-        queue.submit("Test") { result in
-            resultValue = result.value
+        queue.submit("Test") { result, error in
+            resultValue = result
         }
         
         expect(resultValue).toEventually(equal("Test"))
     }
     
     func test_submitting_multiple_tasks_will_coalesce_if_allowed() {
-        let worker = CoalescingWorker()
+        let worker = InspectableTaskQueueWorker(coalesce: true)
         let queue = CoalescingTaskQueue(worker: worker, syncQueue: DispatchQueue.main)
         
         var resultCount = 0
-        queue.submit("Test") { result in expect(result.value).to(equal("Test")); resultCount += 1 }
-        queue.submit("Test") { result in expect(result.value).to(equal("Test")); resultCount += 1 }
+        queue.submit("Test") { result, _ in expect(result).to(equal("Test")); resultCount += 1 }
+        queue.submit("Test") { result, _ in expect(result).to(equal("Test")); resultCount += 1 }
         
         // we expect two completion calls to be made, but only one task should be executed
         expect(resultCount).toEventually(equal(2))
@@ -39,12 +39,12 @@ class CoalescingTaskQueueTests: XCTestCase {
     }
     
     func test_submitting_multiple_tasks_will_not_coalesce_if_disallowed() {
-        let worker = NonCoalescingWorker()
+        let worker = InspectableTaskQueueWorker(coalesce: false)
         let queue = CoalescingTaskQueue(worker: worker, syncQueue: DispatchQueue.main)
         
         var resultCount = 0
-        queue.submit("Test") { result in expect(result.value).to(equal("Test")); resultCount += 1 }
-        queue.submit("Test") { result in expect(result.value).to(equal("Test")); resultCount += 1 }
+        queue.submit("Test") { result, _ in expect(result).to(equal("Test")); resultCount += 1 }
+        queue.submit("Test") { result, _ in expect(result).to(equal("Test")); resultCount += 1 }
         
         // we expect two completion calls to be made, and also two tasks to be executed
         expect(resultCount).toEventually(equal(2))
@@ -53,31 +53,22 @@ class CoalescingTaskQueueTests: XCTestCase {
 }
 
 
-private class NonCoalescingWorker: CoalescingTaskQueueWorker {
+private class InspectableTaskQueueWorker: CoalescingTaskQueueWorker {
+    
+    private let coalesce: Bool
+    
+    init(coalesce: Bool) {
+        self.coalesce = coalesce
+    }
     
     var handledTaskCount = 0
     
-    func handleTask(task: String, completion: (Result<String>) -> Void) {
+    func handleTask(task: String, completion: (String?, NSError?) -> Void) {
         handledTaskCount += 1
-        completion(Result.success(task))
+        completion(task, nil)
     }
     
     func canCoalesceTask(newTask: String, withTask currentTask: String) -> Bool {
-        return false
-    }
-}
-
-
-private class CoalescingWorker: CoalescingTaskQueueWorker {
-    
-    var handledTaskCount = 0
-    
-    func handleTask(task: String, completion: (Result<String>) -> Void) {
-        handledTaskCount += 1
-        completion(Result.success(task))
-    }
-    
-    func canCoalesceTask(newTask: String, withTask currentTask: String) -> Bool {
-        return newTask == currentTask
+        return coalesce && newTask == currentTask
     }
 }

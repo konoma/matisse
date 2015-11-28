@@ -12,4 +12,6 @@ import Foundation
 public protocol ImageTransformation : NSObjectProtocol {
     
     func transformImage(image: CGImage) throws -> CGImage
+    
+    var descriptor: String { get }
 }

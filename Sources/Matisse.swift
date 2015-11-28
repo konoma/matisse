@@ -15,6 +15,8 @@ public class Matisse : NSObject {
     // MARK: - Shared Context
     
     private static var _sharedContext: Matisse?
+    private static var _fastCache: ImageCache? = MemoryImageCache()
+    private static var _slowCache: ImageCache? = MemoryImageCache()
     private static var _imageLoader: ImageLoader = DefaultImageLoader()
     
     public class func useImageLoader(imageLoader: ImageLoader) {
@@ -30,7 +32,7 @@ public class Matisse : NSObject {
         }
         
         dispatch_once(&Static.onceToken) {
-            Static.instance = Matisse(imageLoader: _imageLoader)
+            Static.instance = Matisse(fastCache: _fastCache, slowCache: _slowCache, imageLoader: _imageLoader)
         }
         
         return Static.instance!
@@ -43,23 +45,44 @@ public class Matisse : NSObject {
 
     // MARK: - Initialization
     
+    private let fastCache: ImageCache?
+    private let slowCache: ImageCache?
+    private let syncQueue: DispatchQueue
+    
     private let imageLoaderQueue: ImageLoaderQueue
     private let imageCreatorQueue = ImageCreatorQueue()
     
     private let memoryCache = NSCache()
     
-    public init(imageLoader: ImageLoader = DefaultImageLoader()) {
+    public init(fastCache: ImageCache?, slowCache: ImageCache?, imageLoader: ImageLoader) {
+        self.fastCache = fastCache
+        self.slowCache = slowCache
         self.imageLoaderQueue = ImageLoaderQueue(imageLoader: imageLoader)
+        
+        self.syncQueue = DispatchQueue(label: "ch.konoma.matisse.syncQueue", type: .Serial)
     }
     
     
     // MARK: - Loading Images
     
-    public func load(url: NSURL) -> ImageRequestBuilder {
-        return ImageRequestBuilder(context: self, URL: url)
-    }
-    
     public func executeRequest(request: ImageRequest, completion: (UIImage?, NSError?) -> Void) -> UIImage? {
+        // first try to get an image from the fastCache, without going to a background queue
+        if let image = fastCache?.retrieveImageForRequest(request) {
+            DispatchQueue.main.async { completion(image, nil) }
+            return image
+        }
+        
+        // if we can't get an image out of the fast cache, go to background
+        syncQueue.async {
+            
+            // secondly try to get an image from the slow cache
+            if let image = self.slowCache?.retrieveImageForRequest(request) {
+                DispatchQueue.main.async { completion(image, nil) }
+                return
+            }
+        }
+        
+        // for all async request executing, return nil
         return nil
     }
     
@@ -89,6 +112,14 @@ public class Matisse : NSObject {
                 }
             }
         }
+    }
+}
+
+
+public extension Matisse {
+    
+    public func load(url: NSURL) -> ImageRequestBuilder {
+        return ImageRequestBuilder(context: self, URL: url)
     }
 }
 

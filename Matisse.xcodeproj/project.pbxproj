@@ -20,7 +20,6 @@
 		05B9515D1C038B1900920508 /* ImageCreatorQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B9515C1C038B1900920508 /* ImageCreatorQueue.swift */; };
 		05C34DDC1C04E79600E0AEC8 /* CoalescingTaskQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C34DDB1C04E79600E0AEC8 /* CoalescingTaskQueue.swift */; };
 		05C34DDF1C07140A00E0AEC8 /* CoalescingTaskQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C34DDE1C07140A00E0AEC8 /* CoalescingTaskQueueTests.swift */; };
-		05C34DE11C079DC800E0AEC8 /* MatisseContextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C34DE01C079DC800E0AEC8 /* MatisseContextTests.swift */; };
 		05C34DF11C07A5FD00E0AEC8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C34DF01C07A5FC00E0AEC8 /* main.m */; };
 		05C34DF41C07A5FD00E0AEC8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C34DF31C07A5FD00E0AEC8 /* AppDelegate.m */; };
 		05C34DF71C07A5FD00E0AEC8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C34DF61C07A5FD00E0AEC8 /* ViewController.m */; };
@@ -31,6 +30,8 @@
 		05C34E091C07ABDF00E0AEC8 /* Matisse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05F50C321C022E2500859782 /* Matisse.framework */; };
 		05C34E0A1C07ABE700E0AEC8 /* Matisse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05F50C321C022E2500859782 /* Matisse.framework */; };
 		05C34E0B1C07ABE700E0AEC8 /* Matisse.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05F50C321C022E2500859782 /* Matisse.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05DBCFD81C09F565009C0CC0 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DBCFD71C09F565009C0CC0 /* ImageCache.swift */; };
+		05DBCFDB1C09F752009C0CC0 /* MemoryImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DBCFDA1C09F752009C0CC0 /* MemoryImageCache.swift */; };
 		05F50C361C022E2500859782 /* Matisse.h in Headers */ = {isa = PBXBuildFile; fileRef = 05F50C351C022E2500859782 /* Matisse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05F50C3D1C022E2600859782 /* Matisse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05F50C321C022E2500859782 /* Matisse.framework */; };
 		05F50C421C022E2600859782 /* MatisseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F50C411C022E2600859782 /* MatisseTests.swift */; };
@@ -105,7 +106,6 @@
 		05B9515C1C038B1900920508 /* ImageCreatorQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCreatorQueue.swift; sourceTree = "<group>"; };
 		05C34DDB1C04E79600E0AEC8 /* CoalescingTaskQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoalescingTaskQueue.swift; sourceTree = "<group>"; };
 		05C34DDE1C07140A00E0AEC8 /* CoalescingTaskQueueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoalescingTaskQueueTests.swift; sourceTree = "<group>"; };
-		05C34DE01C079DC800E0AEC8 /* MatisseContextTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatisseContextTests.swift; sourceTree = "<group>"; };
 		05C34DED1C07A5FC00E0AEC8 /* Matisse Sample Objc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Matisse Sample Objc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		05C34DF01C07A5FC00E0AEC8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		05C34DF21C07A5FD00E0AEC8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -118,6 +118,8 @@
 		05C34E001C07A5FD00E0AEC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05C34E041C07A65A00E0AEC8 /* ImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCell.h; sourceTree = "<group>"; };
 		05C34E051C07A65A00E0AEC8 /* ImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCell.m; sourceTree = "<group>"; };
+		05DBCFD71C09F565009C0CC0 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		05DBCFDA1C09F752009C0CC0 /* MemoryImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryImageCache.swift; sourceTree = "<group>"; };
 		05F50C321C022E2500859782 /* Matisse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Matisse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05F50C351C022E2500859782 /* Matisse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Matisse.h; sourceTree = "<group>"; };
 		05F50C371C022E2500859782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				055061E81C023DB4009462D9 /* Matisse.swift */,
 				055061E61C023D0D009462D9 /* ImageRequest.swift */,
 				05A791791C025D0900A65E7B /* ImageLoader.swift */,
+				05DBCFD91C09F602009C0CC0 /* Caching */,
 				05A791761C0255EB00A65E7B /* Image Loading */,
 				05A7917E1C0273C800A65E7B /* Image Preparation */,
 			);
@@ -231,6 +234,15 @@
 			path = SampleAppObjc;
 			sourceTree = "<group>";
 		};
+		05DBCFD91C09F602009C0CC0 /* Caching */ = {
+			isa = PBXGroup;
+			children = (
+				05DBCFD71C09F565009C0CC0 /* ImageCache.swift */,
+				05DBCFDA1C09F752009C0CC0 /* MemoryImageCache.swift */,
+			);
+			name = Caching;
+			sourceTree = "<group>";
+		};
 		05F50C281C022E2500859782 = {
 			isa = PBXGroup;
 			children = (
@@ -271,7 +283,6 @@
 			children = (
 				05F50C431C022E2600859782 /* Info.plist */,
 				05F50C411C022E2600859782 /* MatisseTests.swift */,
-				05C34DE01C079DC800E0AEC8 /* MatisseContextTests.swift */,
 				05C34DDE1C07140A00E0AEC8 /* CoalescingTaskQueueTests.swift */,
 			);
 			path = UnitTests;
@@ -549,10 +560,12 @@
 				055061E91C023DB4009462D9 /* Matisse.swift in Sources */,
 				05A7917A1C025D0900A65E7B /* ImageLoader.swift in Sources */,
 				05A791781C0256A000A65E7B /* ImageFetchRequest.swift in Sources */,
+				05DBCFD81C09F565009C0CC0 /* ImageCache.swift in Sources */,
 				05A791801C0273F500A65E7B /* ImageTransformation.swift in Sources */,
 				05B9515D1C038B1900920508 /* ImageCreatorQueue.swift in Sources */,
 				05C34DDC1C04E79600E0AEC8 /* CoalescingTaskQueue.swift in Sources */,
 				055061E71C023D0D009462D9 /* ImageRequest.swift in Sources */,
+				05DBCFDB1C09F752009C0CC0 /* MemoryImageCache.swift in Sources */,
 				05A7917D1C026A2100A65E7B /* DispatchQueue.swift in Sources */,
 				05A791821C0274E900A65E7B /* ResizeTransformation.swift in Sources */,
 			);
@@ -562,7 +575,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05C34DE11C079DC800E0AEC8 /* MatisseContextTests.swift in Sources */,
 				05C34DDF1C07140A00E0AEC8 /* CoalescingTaskQueueTests.swift in Sources */,
 				05F50C421C022E2600859782 /* MatisseTests.swift in Sources */,
 			);
