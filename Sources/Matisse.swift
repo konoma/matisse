@@ -66,7 +66,9 @@ public class Matisse : NSObject {
             
             // secondly try to get an image from the slow cache
             if let image = self.slowCache?.retrieveImageForRequest(request) {
-                DispatchQueue.main.async { completion(image, nil) }
+                DispatchQueue.main.async {
+                    completion(image, nil)
+                }
                 return
             }
             
@@ -74,22 +76,32 @@ public class Matisse : NSObject {
             self.requestHandler.retrieveImageForRequest(request) { image, error in
                 // cache a retrieved image before notifying
                 if let image = image {
-                    let cost = 0 // to be calculated, e.g. using the time it took to create the image
-                    
-                    // cache the result in the slow cache on the background sync queue
-                    self.syncQueue.async { self.slowCache?.storeImage(image, forRequest: request, withCost: cost) }
-                    
-                    // cache the result in the fast cache on the main queue
-                    DispatchQueue.main.async { self.fastCache?.storeImage(image, forRequest: request, withCost: cost) }
+                    self.cacheImage(image, forRequest: request)
                 }
                 
                 // report the result on the main queue
-                DispatchQueue.main.async { completion(image, error) }
+                DispatchQueue.main.async {
+                    completion(image, error)
+                }
             }
         }
         
         // return nil for all requests resolved in background
         return nil
+    }
+    
+    private func cacheImage(image: UIImage, forRequest request: ImageRequest) {
+        let cost = 0 // to be calculated, e.g. using the time it took to create the image
+        
+        // cache the result in the slow cache on the background sync queue
+        self.syncQueue.async {
+            self.slowCache?.storeImage(image, forRequest: request, withCost: cost)
+        }
+        
+        // cache the result in the fast cache on the main queue
+        DispatchQueue.main.async {
+            self.fastCache?.storeImage(image, forRequest: request, withCost: cost)
+        }
     }
 }
 
