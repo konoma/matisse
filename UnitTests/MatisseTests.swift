@@ -16,6 +16,7 @@ class MatisseTests: XCTestCase {
     
     let fastCache = InspectableImageCache()
     let slowCache = InspectableImageCache()
+    let requestHandler = InspectableImageRequestHandler()
     var matisse: Matisse!
     
     let sampleImage = UIImage()
@@ -25,7 +26,7 @@ class MatisseTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        matisse = Matisse(fastCache: fastCache, slowCache: slowCache, imageLoader: DefaultImageLoader())
+        matisse = Matisse(fastCache: fastCache, slowCache: slowCache, requestHandler: requestHandler)
     }
     
     func test_executing_request_returns_from_fastCache_if_possible() {
@@ -54,6 +55,21 @@ class MatisseTests: XCTestCase {
         expect(syncImage).to(beNil())
         expect(asyncImage).toEventually(equal(sampleImage))
     }
+    
+    func test_executing_request_returns_from_handler_if_needed() {
+        // fast cache does not return an image for the request
+        // slow cache does not return an image for the request
+        // handler will return an image
+        requestHandler.responses[sampleRequest.identifier] = sampleImage
+        
+        var asyncImage: UIImage?
+        let syncImage = matisse.executeRequest(sampleRequest) { image, error in
+            asyncImage = image
+        }
+        
+        expect(syncImage).to(beNil())
+        expect(asyncImage).toEventually(equal(sampleImage))
+    }
 }
 
 
@@ -61,15 +77,25 @@ class MatisseTests: XCTestCase {
 class InspectableImageCache: NSObject, ImageCache {
     
     var cached: [NSUUID: UIImage] = [:]
-    var stored: [(image: UIImage, request: ImageRequest, cost: Int)] = []
-    var retrieved: [ImageRequest] = []
     
     func storeImage(image: UIImage, forRequest request: ImageRequest, withCost cost: Int) {
-        stored.append((image, request, cost))
     }
     
     func retrieveImageForRequest(request: ImageRequest) -> UIImage? {
-        retrieved.append(request)
         return cached[request.identifier]
+    }
+}
+
+
+@objc
+class InspectableImageRequestHandler: NSObject, ImageRequestHandler {
+    
+    var responses: [NSUUID: AnyObject] = [:]
+    
+    func retrieveImageForRequest(request: ImageRequest, completion: (UIImage?, NSError?) -> Void) {
+        DispatchQueue.main.async {
+            let response: AnyObject? = self.responses[request.identifier]
+            completion(response as? UIImage, response as? NSError)
+        }
     }
 }

@@ -17,13 +17,7 @@ public class Matisse : NSObject {
     private static var _sharedContext: Matisse?
     private static var _fastCache: ImageCache? = MemoryImageCache()
     private static var _slowCache: ImageCache? = MemoryImageCache()
-    private static var _imageLoader: ImageLoader = DefaultImageLoader()
-    
-    public class func useImageLoader(imageLoader: ImageLoader) {
-        assert(_sharedContext == nil, "Can't configure the shared Matisse context after first usage")
-        
-        _imageLoader = imageLoader
-    }
+    private static var _requestHandler: ImageRequestHandler = DefaultImageRequestHandler(imageLoader: DefaultImageLoader())
     
     public class func sharedContext() -> Matisse {
         struct Static {
@@ -32,7 +26,7 @@ public class Matisse : NSObject {
         }
         
         dispatch_once(&Static.onceToken) {
-            Static.instance = Matisse(fastCache: _fastCache, slowCache: _slowCache, imageLoader: _imageLoader)
+            Static.instance = Matisse(fastCache: _fastCache, slowCache: _slowCache, requestHandler: _requestHandler)
         }
         
         return Static.instance!
@@ -47,18 +41,13 @@ public class Matisse : NSObject {
     
     private let fastCache: ImageCache?
     private let slowCache: ImageCache?
+    private let requestHandler: ImageRequestHandler
     private let syncQueue: DispatchQueue
     
-    private let imageLoaderQueue: ImageLoaderQueue
-    private let imageCreatorQueue = ImageCreatorQueue()
-    
-    private let memoryCache = NSCache()
-    
-    public init(fastCache: ImageCache?, slowCache: ImageCache?, imageLoader: ImageLoader) {
+    public init(fastCache: ImageCache?, slowCache: ImageCache?, requestHandler: ImageRequestHandler) {
         self.fastCache = fastCache
         self.slowCache = slowCache
-        self.imageLoaderQueue = ImageLoaderQueue(imageLoader: imageLoader)
-        
+        self.requestHandler = requestHandler
         self.syncQueue = DispatchQueue(label: "ch.konoma.matisse.syncQueue", type: .Serial)
     }
     
@@ -80,38 +69,15 @@ public class Matisse : NSObject {
                 DispatchQueue.main.async { completion(image, nil) }
                 return
             }
+            
+            // if we can't get a cached image, try to retrieve it from the handler
+            self.requestHandler.retrieveImageForRequest(request) { image, error in
+                DispatchQueue.main.async { completion(image, error) }
+            }
         }
         
         // for all async request executing, return nil
         return nil
-    }
-    
-    
-    // MARK: - Internals
-    
-    internal func submitRequest(request: ImageRequest, completion: (UIImage?, NSError?) -> Void) {
-        if let image = self.memoryCache.objectForKey(request.URL.absoluteString) as? UIImage {
-            DispatchQueue.main.async {
-                completion(image, nil)
-            }
-            return
-        }
-        
-        imageLoaderQueue.submitFetchRequestForURL(request.URL) { result, error in
-            guard let url = result else {
-                completion(nil, error)
-                return
-            }
-            
-            self.imageCreatorQueue.createImageFromURL(url, request: request) { result, error in
-                DispatchQueue.main.async {
-                    if let image = result {
-                        self.memoryCache.setObject(image, forKey: request.URL.absoluteString)
-                    }
-                    completion(result, error)
-                }
-            }
-        }
     }
 }
 
