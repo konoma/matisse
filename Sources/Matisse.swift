@@ -72,11 +72,23 @@ public class Matisse : NSObject {
             
             // if we can't get a cached image, try to retrieve it from the handler
             self.requestHandler.retrieveImageForRequest(request) { image, error in
+                // cache a retrieved image before notifying
+                if let image = image {
+                    let cost = 0 // to be calculated, e.g. using the time it took to create the image
+                    
+                    // cache the result in the slow cache on the background sync queue
+                    self.syncQueue.async { self.slowCache?.storeImage(image, forRequest: request, withCost: cost) }
+                    
+                    // cache the result in the fast cache on the main queue
+                    DispatchQueue.main.async { self.fastCache?.storeImage(image, forRequest: request, withCost: cost) }
+                }
+                
+                // report the result on the main queue
                 DispatchQueue.main.async { completion(image, error) }
             }
         }
         
-        // for all async request executing, return nil
+        // return nil for all requests resolved in background
         return nil
     }
 }

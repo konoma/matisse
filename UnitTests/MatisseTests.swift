@@ -29,7 +29,7 @@ class MatisseTests: XCTestCase {
         matisse = Matisse(fastCache: fastCache, slowCache: slowCache, requestHandler: requestHandler)
     }
     
-    func test_executing_request_returns_from_fastCache_if_possible() {
+    func test_executing_request_returns_from_fastCache() {
         // fast cache will return an image for the sample request
         fastCache.cached[sampleRequest.identifier] = sampleImage
         
@@ -42,7 +42,7 @@ class MatisseTests: XCTestCase {
         expect(asyncImage).toEventually(equal(sampleImage))
     }
     
-    func test_executing_request_returns_from_slowCache_if_possible() {
+    func test_executing_request_returns_from_slowCache() {
         // fast cache does not return an image for the request
         // slow cache will return an image for the sample request
         slowCache.cached[sampleRequest.identifier] = sampleImage
@@ -56,7 +56,7 @@ class MatisseTests: XCTestCase {
         expect(asyncImage).toEventually(equal(sampleImage))
     }
     
-    func test_executing_request_returns_from_handler_if_needed() {
+    func test_executing_request_returns_from_handler() {
         // fast cache does not return an image for the request
         // slow cache does not return an image for the request
         // handler will return an image
@@ -70,6 +70,38 @@ class MatisseTests: XCTestCase {
         expect(syncImage).to(beNil())
         expect(asyncImage).toEventually(equal(sampleImage))
     }
+    
+    func test_executing_request_reports_error_from_handler() {
+        // fast cache does not return an image for the request
+        // slow cache does not return an image for the request
+        // handler will return an error
+        let error = NSError(domain: "Test", code: 0, userInfo: nil)
+        requestHandler.responses[sampleRequest.identifier] = error
+        
+        var asyncImage: UIImage? = UIImage() // to make sure the later check to `nil` is not fooled by a default value
+        var asyncError: NSError?
+        let syncImage = matisse.executeRequest(sampleRequest) { image, error in
+            asyncImage = image
+            asyncError = error
+        }
+        
+        expect(syncImage).to(beNil())
+        expect(asyncImage).toEventually(beNil())
+        expect(asyncError).toEventually(equal(error))
+    }
+    
+    func test_executing_request_with_handler_will_cache_result() {
+        // fast cache does not return an image for the request
+        // slow cache does not return an image for the request
+        // handler will return an image
+        requestHandler.responses[sampleRequest.identifier] = sampleImage
+        
+        // should give both caches a chance to store the result
+        matisse.executeRequest(sampleRequest) { image, error in }
+        
+        expect(self.fastCache.cached[self.sampleRequest.identifier]).toEventually(equal(sampleImage))
+        expect(self.slowCache.cached[self.sampleRequest.identifier]).toEventually(equal(sampleImage))
+    }
 }
 
 
@@ -79,6 +111,7 @@ class InspectableImageCache: NSObject, ImageCache {
     var cached: [NSUUID: UIImage] = [:]
     
     func storeImage(image: UIImage, forRequest request: ImageRequest, withCost cost: Int) {
+        cached[request.identifier] = image
     }
     
     func retrieveImageForRequest(request: ImageRequest) -> UIImage? {
