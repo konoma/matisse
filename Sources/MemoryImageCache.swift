@@ -9,6 +9,7 @@
 import Foundation
 
 
+@objc(MTSMemoryImageCache)
 public class MemoryImageCache: NSObject, ImageCache {
     
     private let cache: NSCache

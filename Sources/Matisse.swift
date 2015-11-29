@@ -192,7 +192,7 @@ public extension Matisse {
     
     private static var _sharedInstance: Matisse?
     private static var _fastCache: ImageCache? = MemoryImageCache()
-    private static var _slowCache: ImageCache? = MemoryImageCache()
+    private static var _slowCache: ImageCache? = DiskImageCache()
     private static var _requestHandler: ImageRequestHandler = DefaultImageRequestHandler(imageLoader: DefaultImageLoader())
     
     /**

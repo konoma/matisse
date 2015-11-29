@@ -34,6 +34,9 @@
 		05DBCFE91C0AF6C5009C0CC0 /* DefaultImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DBCFE81C0AF6C5009C0CC0 /* DefaultImageLoader.swift */; };
 		05DBCFEB1C0AFDB1009C0CC0 /* MatisseErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DBCFEA1C0AFDB1009C0CC0 /* MatisseErrors.swift */; };
 		05DBCFED1C0B015C009C0CC0 /* ImageCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DBCFEC1C0B015C009C0CC0 /* ImageCreator.swift */; };
+		05DBCFEF1C0B0744009C0CC0 /* DiskImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DBCFEE1C0B0744009C0CC0 /* DiskImageCache.swift */; };
+		05DBCFF21C0B122B009C0CC0 /* NSString+MD5.h in Headers */ = {isa = PBXBuildFile; fileRef = 05DBCFF01C0B122B009C0CC0 /* NSString+MD5.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		05DBCFF31C0B122B009C0CC0 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DBCFF11C0B122B009C0CC0 /* NSString+MD5.m */; };
 		05F50C361C022E2500859782 /* Matisse.h in Headers */ = {isa = PBXBuildFile; fileRef = 05F50C351C022E2500859782 /* Matisse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05F50C3D1C022E2600859782 /* Matisse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05F50C321C022E2500859782 /* Matisse.framework */; };
 		05F50C421C022E2600859782 /* MatisseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F50C411C022E2600859782 /* MatisseTests.swift */; };
@@ -125,6 +128,9 @@
 		05DBCFE81C0AF6C5009C0CC0 /* DefaultImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultImageLoader.swift; sourceTree = "<group>"; };
 		05DBCFEA1C0AFDB1009C0CC0 /* MatisseErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatisseErrors.swift; sourceTree = "<group>"; };
 		05DBCFEC1C0B015C009C0CC0 /* ImageCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCreator.swift; sourceTree = "<group>"; };
+		05DBCFEE1C0B0744009C0CC0 /* DiskImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiskImageCache.swift; sourceTree = "<group>"; };
+		05DBCFF01C0B122B009C0CC0 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
+		05DBCFF11C0B122B009C0CC0 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		05F50C321C022E2500859782 /* Matisse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Matisse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05F50C351C022E2500859782 /* Matisse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Matisse.h; sourceTree = "<group>"; };
 		05F50C371C022E2500859782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -210,6 +216,8 @@
 				05C34DDB1C04E79600E0AEC8 /* CoalescingTaskQueue.swift */,
 				05A7917C1C026A2100A65E7B /* DispatchQueue.swift */,
 				05DBCFEA1C0AFDB1009C0CC0 /* MatisseErrors.swift */,
+				05DBCFF01C0B122B009C0CC0 /* NSString+MD5.h */,
+				05DBCFF11C0B122B009C0CC0 /* NSString+MD5.m */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -237,6 +245,7 @@
 			children = (
 				05DBCFD71C09F565009C0CC0 /* ImageCache.swift */,
 				05DBCFDA1C09F752009C0CC0 /* MemoryImageCache.swift */,
+				05DBCFEE1C0B0744009C0CC0 /* DiskImageCache.swift */,
 			);
 			name = Caching;
 			sourceTree = "<group>";
@@ -334,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05F50C361C022E2500859782 /* Matisse.h in Headers */,
+				05DBCFF21C0B122B009C0CC0 /* NSString+MD5.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,8 +574,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				05DBCFED1C0B015C009C0CC0 /* ImageCreator.swift in Sources */,
+				05DBCFEF1C0B0744009C0CC0 /* DiskImageCache.swift in Sources */,
 				055061E91C023DB4009462D9 /* Matisse.swift in Sources */,
 				05A7917A1C025D0900A65E7B /* ImageLoader.swift in Sources */,
+				05DBCFF31C0B122B009C0CC0 /* NSString+MD5.m in Sources */,
 				05DBCFE01C0A0563009C0CC0 /* DefaultImageRequestHandler.swift in Sources */,
 				05DBCFD81C09F565009C0CC0 /* ImageCache.swift in Sources */,
 				05A791801C0273F500A65E7B /* ImageTransformation.swift in Sources */,

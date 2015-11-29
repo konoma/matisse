@@ -9,7 +9,7 @@
 import Foundation
 
 
-@objc(MTSCache)
+@objc(MTSImageCache)
 public protocol ImageCache: NSObjectProtocol {
     
     func storeImage(image: UIImage, forRequest request: ImageRequest, withCost cost: Int)
