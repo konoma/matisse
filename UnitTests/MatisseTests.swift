@@ -103,6 +103,17 @@ class MatisseTests: XCTestCase {
         expect(self.slowCache.cached[self.sampleRequest.identifier]).toEventually(equal(sampleImage))
     }
     
+    func test_executing_request_with_slow_cache_will_cache_result_in_fast_cache() {
+        // fast cache does not return an image for the request
+        // slow cache will return an image for the sample request
+        slowCache.cached[sampleRequest.identifier] = sampleImage
+        
+        // should give both caches a chance to store the result
+        matisse.executeRequest(sampleRequest) { image, error in }
+        
+        expect(self.fastCache.cached[self.sampleRequest.identifier]).toEventually(equal(sampleImage))
+    }
+    
     func test_executing_multiple_requests_coalesces_when_using_handler() {
         // fast cache does not return an image for the request
         // slow cache does not return an image for the request

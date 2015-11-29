@@ -142,6 +142,8 @@ public class Matisse : NSObject {
             // secondly try to get an image from the slow cache
             if let image = self.slowCache?.retrieveImageForRequest(request) {
                 DispatchQueue.main.async {
+                    // store it also in the fast cache
+                    self.fastCache?.storeImage(image, forRequest: request, withCost: 0)
                     completion(image, nil)
                 }
                 return
