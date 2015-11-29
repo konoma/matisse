@@ -24,11 +24,29 @@ import Foundation
 @objc(MTSMatisse)
 public class Matisse : NSObject {
     
+    private class RequestWorker: CoalescingTaskQueueWorker {
+        
+        let requestHandler: ImageRequestHandler
+        
+        init(requestHandler: ImageRequestHandler) {
+            self.requestHandler = requestHandler
+        }
+        
+        func handleTask(task: ImageRequest, completion: (UIImage?, NSError?) -> Void) {
+            requestHandler.retrieveImageForRequest(task, completion: completion)
+        }
+        
+        func canCoalesceTask(newTask: ImageRequest, withTask currentTask: ImageRequest) -> Bool {
+            return newTask.descriptor == currentTask.descriptor
+        }
+    }
+    
+    
     // MARK: - Initialization
     
     private let fastCache: ImageCache?
     private let slowCache: ImageCache?
-    private let requestHandler: ImageRequestHandler
+    private let requestQueue: CoalescingTaskQueue<RequestWorker>
     private let syncQueue: DispatchQueue
     
     /**
@@ -59,8 +77,8 @@ public class Matisse : NSObject {
     public init(fastCache: ImageCache?, slowCache: ImageCache?, requestHandler: ImageRequestHandler, syncQueue: dispatch_queue_t = dispatch_queue_create("ch.konoma.matisse.syncQueue", DISPATCH_QUEUE_SERIAL)) {
         self.fastCache = fastCache
         self.slowCache = slowCache
-        self.requestHandler = requestHandler
         self.syncQueue = DispatchQueue(dispatchQueue: syncQueue)
+        self.requestQueue = CoalescingTaskQueue(worker: RequestWorker(requestHandler: requestHandler), syncQueue: self.syncQueue)
     }
     
     
@@ -112,15 +130,20 @@ public class Matisse : NSObject {
             }
             
             // if we can't get a cached image, try to retrieve it from the handler and cache it in turn
-            self.requestHandler.retrieveImageForRequest(request) { image, error in
-                if let image = image {
-                    self.cacheImage(image, forRequest: request)
-                }
+            self.requestQueue.submit(request,
                 
-                DispatchQueue.main.async {
-                    completion(image, error)
+                requestCompletion: { image, error in
+                    if let image = image {
+                        self.cacheImage(image, forRequest: request)
+                    }
+                },
+                
+                taskCompletion: { image, error in
+                    DispatchQueue.main.async {
+                        completion(image, error)
+                    }
                 }
-            }
+            )
         }
         
         // return nil for all requests resolved in background

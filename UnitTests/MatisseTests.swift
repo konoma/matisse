@@ -26,7 +26,7 @@ class MatisseTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        matisse = Matisse(fastCache: fastCache, slowCache: slowCache, requestHandler: requestHandler)
+        matisse = Matisse(fastCache: fastCache, slowCache: slowCache, requestHandler: requestHandler, syncQueue: dispatch_get_main_queue())
     }
     
     func test_executing_request_returns_from_fastCache() {
@@ -101,6 +101,43 @@ class MatisseTests: XCTestCase {
         
         expect(self.fastCache.cached[self.sampleRequest.identifier]).toEventually(equal(sampleImage))
         expect(self.slowCache.cached[self.sampleRequest.identifier]).toEventually(equal(sampleImage))
+    }
+    
+    func test_executing_multiple_requests_coalesces_when_using_handler() {
+        // fast cache does not return an image for the request
+        // slow cache does not return an image for the request
+        // handler will return an image
+        requestHandler.responses[sampleRequest.identifier] = sampleImage
+        let secondRequest = ImageRequest(URL: sampleRequest.URL, transformations: sampleRequest.transformations)
+        
+        var asyncImage1: UIImage?
+        var asyncImage2: UIImage?
+        matisse.executeRequest(sampleRequest) { image, error in asyncImage1 = image }
+        matisse.executeRequest(secondRequest) { image, error in asyncImage2 = image }
+        
+        expect(asyncImage1).toEventually(equal(sampleImage))
+        expect(asyncImage2).toEventually(equal(sampleImage))
+    }
+    
+    func test_executing_multiple_requests_only_caches_a_single_result() {
+        // fast cache does not return an image for the request
+        // slow cache does not return an image for the request
+        // handler will return an image
+        requestHandler.responses[sampleRequest.identifier] = sampleImage
+        let secondRequest = ImageRequest(URL: sampleRequest.URL, transformations: sampleRequest.transformations)
+        
+        var done = false
+        matisse.executeRequest(sampleRequest) { image, error in }
+        matisse.executeRequest(secondRequest) { image, error in
+            // we must check this in here because there is no way (I know of)
+            // to make sure the value will _never_ be nil with expect(...)
+            // when we get here, the value will already be cached
+            expect(self.fastCache.cached[secondRequest.identifier]).to(beNil())
+            expect(self.slowCache.cached[secondRequest.identifier]).to(beNil())
+            done = true
+        }
+        
+        expect(done).toEventually(beTrue())
     }
 }
 

@@ -41,20 +41,21 @@ internal class CoalescingTaskQueue<Worker: CoalescingTaskQueueWorker> {
      *
      * The completion block will be called on the syncQueue.
      */
-    func submit(task: Worker.TaskType, completion: CompletionHandler) {
+    func submit(task: Worker.TaskType, requestCompletion: CompletionHandler?, taskCompletion: CompletionHandler) {
         syncQueue.async {
-            if let pendingTask = self.addPendingTask(task, withCompletion: completion) {
-                self.executePendingTask(pendingTask)
+            if let pendingTask = self.addPendingTask(task, withCompletion: taskCompletion) {
+                self.executePendingTask(pendingTask, requestCompletion: requestCompletion)
             }
         }
     }
     
-    private func executePendingTask(pendingTask: PendingTask<Worker.TaskType, Worker.ResultType>) {
+    private func executePendingTask(pendingTask: PendingTask<Worker.TaskType, Worker.ResultType>, requestCompletion: CompletionHandler?) {
         self.worker.handleTask(pendingTask.task) { result, error in
             self.syncQueue.async {
                 if let index = self.pendingTasks.indexOf({ $0 === pendingTask }) {
                     self.pendingTasks.removeAtIndex(index)
                 }
+                requestCompletion?(result, error)
                 pendingTask.notifyResult(result, error: error)
             }
         }

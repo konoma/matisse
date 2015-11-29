@@ -18,7 +18,7 @@ class CoalescingTaskQueueTests: XCTestCase {
         let queue = CoalescingTaskQueue(worker: InspectableTaskQueueWorker(coalesce: true), syncQueue: DispatchQueue.main)
         
         var resultValue: String?
-        queue.submit("Test") { result, error in
+        queue.submit("Test", requestCompletion: nil) { result, error in
             resultValue = result
         }
         
@@ -30,8 +30,8 @@ class CoalescingTaskQueueTests: XCTestCase {
         let queue = CoalescingTaskQueue(worker: worker, syncQueue: DispatchQueue.main)
         
         var resultCount = 0
-        queue.submit("Test") { result, _ in expect(result).to(equal("Test")); resultCount += 1 }
-        queue.submit("Test") { result, _ in expect(result).to(equal("Test")); resultCount += 1 }
+        queue.submit("Test", requestCompletion: nil) { result, _ in expect(result).to(equal("Test")); resultCount += 1 }
+        queue.submit("Test", requestCompletion: nil) { result, _ in expect(result).to(equal("Test")); resultCount += 1 }
         
         // we expect two completion calls to be made, but only one task should be executed
         expect(resultCount).toEventually(equal(2))
@@ -43,12 +43,40 @@ class CoalescingTaskQueueTests: XCTestCase {
         let queue = CoalescingTaskQueue(worker: worker, syncQueue: DispatchQueue.main)
         
         var resultCount = 0
-        queue.submit("Test") { result, _ in expect(result).to(equal("Test")); resultCount += 1 }
-        queue.submit("Test") { result, _ in expect(result).to(equal("Test")); resultCount += 1 }
+        queue.submit("Test", requestCompletion: nil) { result, _ in expect(result).to(equal("Test")); resultCount += 1 }
+        queue.submit("Test", requestCompletion: nil) { result, _ in expect(result).to(equal("Test")); resultCount += 1 }
         
         // we expect two completion calls to be made, and also two tasks to be executed
         expect(resultCount).toEventually(equal(2))
         expect(worker.handledTaskCount).toEventually(equal(2))
+    }
+    
+    func test_submitting_coalesced_tasks_will_call_request_completion_once() {
+        let worker = InspectableTaskQueueWorker(coalesce: true)
+        let queue = CoalescingTaskQueue(worker: worker, syncQueue: DispatchQueue.main)
+        
+        var resultCount = 0
+        let requestCompletion = { (result: String?, _: NSError?) in expect(result).to(equal("Test")); resultCount += 1 }
+        
+        queue.submit("Test", requestCompletion: requestCompletion) { _, _ in }
+        queue.submit("Test", requestCompletion: requestCompletion) { _, _ in }
+        
+        // we expect two completion calls to be made, and also two tasks to be executed
+        expect(resultCount).toEventually(equal(1))
+    }
+    
+    func test_submitting_non_coalesced_tasks_will_call_request_completion_for_each() {
+        let worker = InspectableTaskQueueWorker(coalesce: false)
+        let queue = CoalescingTaskQueue(worker: worker, syncQueue: DispatchQueue.main)
+        
+        var resultCount = 0
+        let requestCompletion = { (result: String?, _: NSError?) in expect(result).to(equal("Test")); resultCount += 1 }
+        
+        queue.submit("Test", requestCompletion: requestCompletion) { _, _ in }
+        queue.submit("Test", requestCompletion: requestCompletion) { _, _ in }
+        
+        // we expect two completion calls to be made, and also two tasks to be executed
+        expect(resultCount).toEventually(equal(2))
     }
 }
 
