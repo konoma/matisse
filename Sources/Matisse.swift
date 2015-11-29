@@ -9,34 +9,21 @@
 import Foundation
 
 
+/**
+ * The context object which schedules and executes image loading requests.
+ *
+ * This is the main object you interact with to fetch images. Usually
+ * this is done via the class method itself. A simple example would be
+ *
+ *     Matisse.load(imageURL).into(myImageView)
+ *
+ * The Matisse class itself actually only provides the means to execute an
+ * ImageRequest. DSL related methods can be found on `ImageRequestBuilder`.
+ 
+ */
 @objc(MTSMatisse)
 public class Matisse : NSObject {
     
-    // MARK: - Shared Context
-    
-    private static var _sharedContext: Matisse?
-    private static var _fastCache: ImageCache? = MemoryImageCache()
-    private static var _slowCache: ImageCache? = MemoryImageCache()
-    private static var _requestHandler: ImageRequestHandler = DefaultImageRequestHandler(imageLoader: DefaultImageLoader())
-    
-    public class func sharedContext() -> Matisse {
-        struct Static {
-            static var onceToken: dispatch_once_t = 0
-            static var instance: Matisse? = nil
-        }
-        
-        dispatch_once(&Static.onceToken) {
-            Static.instance = Matisse(fastCache: _fastCache, slowCache: _slowCache, requestHandler: _requestHandler)
-        }
-        
-        return Static.instance!
-    }
-    
-    public class func load(url: NSURL) -> ImageRequestBuilder {
-        return sharedContext().load(url)
-    }
-    
-
     // MARK: - Initialization
     
     private let fastCache: ImageCache?
@@ -44,17 +31,69 @@ public class Matisse : NSObject {
     private let requestHandler: ImageRequestHandler
     private let syncQueue: DispatchQueue
     
-    public init(fastCache: ImageCache?, slowCache: ImageCache?, requestHandler: ImageRequestHandler) {
+    /**
+     * Create a custom instance of Matisse.
+     *
+     * If for some reason you need a second Matisse instance you can create
+     * one yourself. You need to specify the fast cache, the slow cache and
+     * the image request handler. Optionally you can also pass a queue to be
+     * used as the synchronization queue, though this is mostly intended for
+     * testing purposes.
+     * 
+     * If you pass `nil` for either of the caches, caching at that level is
+     * disabled.
+     *
+     * You should not have to use this very often, instead you would configure
+     * the shared Matisse instance using e.g. `Matisse.useFastCache(myCache)`
+     * at the beginning of your program.
+     *
+     * - Parameters:
+     *   - fastCache:      The cache to use on the main thread. Pass `nil` to disable.
+     *   - slowCache:      The cache that is used from the background. Pass `nil` to disable.
+     *   - requestHandler: The ImageRequestHandler that is used to resolve
+     *                     requests that were not cached.
+     *
+     * - Returns:
+     *   A custom Matisse instance.
+     */
+    public init(fastCache: ImageCache?, slowCache: ImageCache?, requestHandler: ImageRequestHandler, syncQueue: dispatch_queue_t = dispatch_queue_create("ch.konoma.matisse.syncQueue", DISPATCH_QUEUE_SERIAL)) {
         self.fastCache = fastCache
         self.slowCache = slowCache
         self.requestHandler = requestHandler
-        self.syncQueue = DispatchQueue(label: "ch.konoma.matisse.syncQueue", type: .Serial)
+        self.syncQueue = DispatchQueue(dispatchQueue: syncQueue)
     }
     
     
     // MARK: - Loading Images
     
+    /**
+     * Executes the given image request and returns the result asynchronously.
+     *
+     * This method first tries to fetch the image from the `fastCache`,
+     * directly on the main thread. If this fails, the `slowCache` is tried on
+     * the background in turn. If this cache too has no image, then the
+     * `requestHandler` is called to fetch and prepare the request. The result
+     * is stored in the caches if successful and delivered via the passed
+     * completion block.
+     *
+     * The completion block is always called asynchronous on the main thread.
+     * If the request can be resolved via the fast cache, then the image is
+     * also returned from the method, allowing you to act on it without delay.
+     *
+     * - Note:
+     *   This method must be called from the main thread.
+     *
+     * - Parameters:
+     *   - request:    The image request to resolve.
+     *   - completion: The completion handler that will be called with the result
+     *
+     * - Returns:
+     *   If the request could be resolved using the fast cache, this returns the
+     *   resolved image. Otherwise `nil` is returned.
+     */
     public func executeRequest(request: ImageRequest, completion: (UIImage?, NSError?) -> Void) -> UIImage? {
+        assert(NSThread.isMainThread(), "You must call this method on the main thread")
+
         // first try to get an image from the fastCache, without going to a background queue
         if let image = fastCache?.retrieveImageForRequest(request) {
             DispatchQueue.main.async { completion(image, nil) }
@@ -72,14 +111,12 @@ public class Matisse : NSObject {
                 return
             }
             
-            // if we can't get a cached image, try to retrieve it from the handler
+            // if we can't get a cached image, try to retrieve it from the handler and cache it in turn
             self.requestHandler.retrieveImageForRequest(request) { image, error in
-                // cache a retrieved image before notifying
                 if let image = image {
                     self.cacheImage(image, forRequest: request)
                 }
                 
-                // report the result on the main queue
                 DispatchQueue.main.async {
                     completion(image, error)
                 }
@@ -106,39 +143,27 @@ public class Matisse : NSObject {
 }
 
 
+// MARK: - Shared Matisse Instance
+
 public extension Matisse {
     
-    public func load(url: NSURL) -> ImageRequestBuilder {
-        return ImageRequestBuilder(context: self, URL: url)
-    }
-}
-
-
-public extension ImageRequestBuilder {
+    // MARK: - Shared Context
     
-    public func into(imageView: UIImageView) {
-        assert(NSThread.isMainThread())
-        
-        let identifier = build().identifier
-        
-        imageView.matisseRequestIdentifier = identifier
-        
-        execute { result, error in
-            if imageView.matisseRequestIdentifier == identifier {
-                imageView.image = result
-                imageView.matisseRequestIdentifier = nil
-            }
+    private static var _sharedContext: Matisse?
+    private static var _fastCache: ImageCache? = MemoryImageCache()
+    private static var _slowCache: ImageCache? = MemoryImageCache()
+    private static var _requestHandler: ImageRequestHandler = DefaultImageRequestHandler(imageLoader: DefaultImageLoader())
+    
+    public class func sharedContext() -> Matisse {
+        struct Static {
+            static var onceToken: dispatch_once_t = 0
+            static var instance: Matisse? = nil
         }
-    }
-}
-
-
-private var requestIdentifierKey: Int = 0
-
-public extension UIImageView {
-    
-    public var matisseRequestIdentifier: NSUUID? {
-        get { return objc_getAssociatedObject(self, &requestIdentifierKey) as? NSUUID }
-        set { objc_setAssociatedObject(self, &requestIdentifierKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
+        
+        dispatch_once(&Static.onceToken) {
+            Static.instance = Matisse(fastCache: _fastCache, slowCache: _slowCache, requestHandler: _requestHandler)
+        }
+        
+        return Static.instance!
     }
 }

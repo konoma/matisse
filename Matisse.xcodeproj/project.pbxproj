@@ -33,6 +33,7 @@
 		05DBCFDB1C09F752009C0CC0 /* MemoryImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DBCFDA1C09F752009C0CC0 /* MemoryImageCache.swift */; };
 		05DBCFDE1C0A0420009C0CC0 /* ImageRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DBCFDD1C0A0420009C0CC0 /* ImageRequestHandler.swift */; };
 		05DBCFE01C0A0563009C0CC0 /* DefaultImageRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DBCFDF1C0A0563009C0CC0 /* DefaultImageRequestHandler.swift */; };
+		05DBCFE41C0AD897009C0CC0 /* ImageRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DBCFE31C0AD897009C0CC0 /* ImageRequestBuilder.swift */; };
 		05F50C361C022E2500859782 /* Matisse.h in Headers */ = {isa = PBXBuildFile; fileRef = 05F50C351C022E2500859782 /* Matisse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05F50C3D1C022E2600859782 /* Matisse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05F50C321C022E2500859782 /* Matisse.framework */; };
 		05F50C421C022E2600859782 /* MatisseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F50C411C022E2600859782 /* MatisseTests.swift */; };
@@ -123,6 +124,7 @@
 		05DBCFDA1C09F752009C0CC0 /* MemoryImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryImageCache.swift; sourceTree = "<group>"; };
 		05DBCFDD1C0A0420009C0CC0 /* ImageRequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRequestHandler.swift; sourceTree = "<group>"; };
 		05DBCFDF1C0A0563009C0CC0 /* DefaultImageRequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultImageRequestHandler.swift; sourceTree = "<group>"; };
+		05DBCFE31C0AD897009C0CC0 /* ImageRequestBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRequestBuilder.swift; sourceTree = "<group>"; };
 		05F50C321C022E2500859782 /* Matisse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Matisse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05F50C351C022E2500859782 /* Matisse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Matisse.h; sourceTree = "<group>"; };
 		05F50C371C022E2500859782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 			children = (
 				055061E81C023DB4009462D9 /* Matisse.swift */,
 				055061E61C023D0D009462D9 /* ImageRequest.swift */,
+				05DBCFE31C0AD897009C0CC0 /* ImageRequestBuilder.swift */,
 				05A791791C025D0900A65E7B /* ImageLoader.swift */,
 				05DBCFD91C09F602009C0CC0 /* Caching */,
 				05A791761C0255EB00A65E7B /* Image Loading */,
@@ -567,6 +570,7 @@
 				05DBCFE01C0A0563009C0CC0 /* DefaultImageRequestHandler.swift in Sources */,
 				05DBCFD81C09F565009C0CC0 /* ImageCache.swift in Sources */,
 				05A791801C0273F500A65E7B /* ImageTransformation.swift in Sources */,
+				05DBCFE41C0AD897009C0CC0 /* ImageRequestBuilder.swift in Sources */,
 				05B9515D1C038B1900920508 /* ImageCreatorQueue.swift in Sources */,
 				05C34DDC1C04E79600E0AEC8 /* CoalescingTaskQueue.swift in Sources */,
 				055061E71C023D0D009462D9 /* ImageRequest.swift in Sources */,
