@@ -91,7 +91,7 @@ public class Matisse : NSObject {
      * - Returns:
      *   A custom Matisse instance.
      */
-    public init(fastCache: ImageCache?, slowCache: ImageCache?, requestHandler: ImageRequestHandler, syncQueue: dispatch_queue_t = dispatch_queue_create("ch.konoma.matisse.syncQueue", DISPATCH_QUEUE_SERIAL)) {
+    public init(fastCache: ImageCache?, slowCache: ImageCache?, requestHandler: ImageRequestHandler, syncQueue: dispatch_queue_t = dispatch_queue_create("ch.konoma.matisse/syncQueue", DISPATCH_QUEUE_SERIAL)) {
         self.fastCache = fastCache
         self.slowCache = slowCache
         self.syncQueue = DispatchQueue(dispatchQueue: syncQueue)
