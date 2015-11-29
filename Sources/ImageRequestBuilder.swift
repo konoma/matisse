@@ -45,8 +45,11 @@ public class ImageRequestBuilder : NSObject {
         return request
     }
     
-    public func execute(completion: (UIImage?, NSError?) -> Void) {
-        context.executeRequest(build(), completion: completion)
+    public func fetch(completion: (ImageRequest, UIImage?, NSError?) -> Void) {
+        let request = build()
+        context.executeRequest(request) { image, error in
+            completion(request, image, error)
+        }
     }
     
     
@@ -76,14 +79,12 @@ public extension Matisse {
 
 public extension ImageRequestBuilder {
     
-    public func into(imageView: UIImageView) {
-        let identifier = build().identifier
+    public func showIn(imageView: UIImageView) {
+        imageView.matisseRequestIdentifier = build().identifier
         
-        imageView.matisseRequestIdentifier = identifier
-        
-        execute { result, error in
-            if imageView.matisseRequestIdentifier == identifier {
-                imageView.image = result
+        fetch { request, image, error in
+            if imageView.matisseRequestIdentifier == request.identifier {
+                imageView.image = image
                 imageView.matisseRequestIdentifier = nil
             }
         }

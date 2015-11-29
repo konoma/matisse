@@ -78,4 +78,8 @@ public extension ImageRequestBuilder {
     public func resizeTo(targetSize: CGSize, contentMode: UIViewContentMode = .ScaleToFill) -> ImageRequestBuilder {
         return addTransformation(ResizeTransformation(targetSize: targetSize, contentMode: contentMode))
     }
+    
+    public func resizeTo(width width: CGFloat, height: CGFloat, contentMode: UIViewContentMode = .ScaleToFill) -> ImageRequestBuilder {
+        return resizeTo(CGSize(width: width, height: height), contentMode: contentMode)
+    }
 }

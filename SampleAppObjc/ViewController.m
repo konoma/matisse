@@ -47,7 +47,7 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 100;
+    return 1000;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -56,7 +56,7 @@
     
     MTSImageRequestBuilder *builder = [MTSMatisse load:url];
     [builder resizeTo:CGSizeMake(self.itemSize, self.itemSize) contentMode:UIViewContentModeScaleAspectFill];
-    [builder into:cell.imageView];
+    [builder showIn:cell.imageView];
     
     return cell;
 }

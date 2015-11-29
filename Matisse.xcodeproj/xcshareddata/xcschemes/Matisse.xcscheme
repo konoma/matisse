@@ -34,6 +34,34 @@
                ReferencedContainer = "container:Matisse.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "05F50C4F1C0230D500859782"
+               BuildableName = "Matisse Sample.app"
+               BlueprintName = "SampleApp"
+               ReferencedContainer = "container:Matisse.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "05C34DEC1C07A5FC00E0AEC8"
+               BuildableName = "Matisse Sample Objc.app"
+               BlueprintName = "SampleAppObjc"
+               ReferencedContainer = "container:Matisse.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
