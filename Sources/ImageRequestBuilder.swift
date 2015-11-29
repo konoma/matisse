@@ -63,7 +63,7 @@ public class ImageRequestBuilder : NSObject {
 public extension Matisse {
     
     public class func load(url: NSURL) -> ImageRequestBuilder {
-        return sharedContext().load(url)
+        return sharedInstance().load(url)
     }
     
     public func load(url: NSURL) -> ImageRequestBuilder {
