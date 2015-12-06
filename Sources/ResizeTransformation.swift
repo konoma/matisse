@@ -76,7 +76,7 @@ public class ResizeTransformation : NSObject, ImageTransformation {
 public extension ImageRequestBuilder {
     
     public func resizeTo(targetSize: CGSize, contentMode: UIViewContentMode = .ScaleToFill) -> ImageRequestBuilder {
-        return addTransformation(ResizeTransformation(targetSize: targetSize, contentMode: contentMode))
+        return transform(ResizeTransformation(targetSize: targetSize, contentMode: contentMode))
     }
     
     public func resizeTo(width width: CGFloat, height: CGFloat, contentMode: UIViewContentMode = .ScaleToFill) -> ImageRequestBuilder {
