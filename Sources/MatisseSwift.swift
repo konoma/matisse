@@ -58,9 +58,9 @@ public class Matisse {
     ///
     /// - Returns: An image request creator configured for the given URL.
     ///
-    public func load(url: NSURL) -> MatisseImageRequestCreator {
+    public func load(url: NSURL) -> SwiftImageRequestCreator {
         let requestBuilder = ImageRequestBuilder(context: self.context, URL: url)
-        return MatisseImageRequestCreator(requestBuilder: requestBuilder)
+        return SwiftImageRequestCreator(requestBuilder: requestBuilder)
     }
 
 
@@ -150,7 +150,7 @@ public class Matisse {
     ///
     /// - Returns: An image request creator configured for the given URL.
     ///
-    public class func load(url: NSURL) -> MatisseImageRequestCreator {
+    public class func load(url: NSURL) -> SwiftImageRequestCreator {
         return shared().load(url)
     }
     
@@ -197,7 +197,7 @@ public class Matisse {
 ///           }
 ///       }
 ///
-public class MatisseImageRequestCreator {
+public class SwiftImageRequestCreator {
     
     private let requestBuilder: ImageRequestBuilder
     

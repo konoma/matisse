@@ -16,4 +16,6 @@ FOUNDATION_EXPORT double MatisseVersionNumber;
 FOUNDATION_EXPORT const unsigned char MatisseVersionString[];
 
 
+#import <Matisse/MTSMatisseObjc.h>
+#import <Matisse/ResizeTransformation+DSL.h>
 #import <Matisse/NSString+MD5.h>

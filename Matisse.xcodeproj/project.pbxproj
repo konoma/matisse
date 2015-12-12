@@ -18,7 +18,12 @@
 		05B47A931C1C2C760042FE21 /* MatisseSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B47A921C1C2C760042FE21 /* MatisseSwift.swift */; };
 		05B47A961C1C35A80042FE21 /* UIImageView+ImageRequestTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B47A951C1C35A80042FE21 /* UIImageView+ImageRequestTarget.swift */; };
 		05B47A981C1C36660042FE21 /* ImageRequestTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B47A971C1C36660042FE21 /* ImageRequestTarget.swift */; };
-		05B47A9A1C1C3AE50042FE21 /* MatisseObjc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B47A991C1C3AE50042FE21 /* MatisseObjc.swift */; };
+		05B47A9D1C1C3B2F0042FE21 /* MTSMatisseObjc.h in Headers */ = {isa = PBXBuildFile; fileRef = 05B47A9B1C1C3B2F0042FE21 /* MTSMatisseObjc.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		05B47A9E1C1C3B2F0042FE21 /* MTSMatisseObjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B47A9C1C1C3B2F0042FE21 /* MTSMatisseObjc.m */; };
+		05B47AA01C1C3C4B0042FE21 /* MTSMatisseObjc+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 05B47A9F1C1C3C4B0042FE21 /* MTSMatisseObjc+Internal.h */; };
+		05B47AA91C1C41940042FE21 /* ResizeTransformation+DSL.h in Headers */ = {isa = PBXBuildFile; fileRef = 05B47AA71C1C41940042FE21 /* ResizeTransformation+DSL.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		05B47AAA1C1C41940042FE21 /* ResizeTransformation+DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B47AA81C1C41940042FE21 /* ResizeTransformation+DSL.m */; };
+		05B47AAC1C1C48DE0042FE21 /* ResizeTransformation+DSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B47AAB1C1C48DE0042FE21 /* ResizeTransformation+DSL.swift */; };
 		05C34DDC1C04E79600E0AEC8 /* CoalescingTaskQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C34DDB1C04E79600E0AEC8 /* CoalescingTaskQueue.swift */; };
 		05C34DDF1C07140A00E0AEC8 /* CoalescingTaskQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C34DDE1C07140A00E0AEC8 /* CoalescingTaskQueueTests.swift */; };
 		05C34DF11C07A5FD00E0AEC8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C34DF01C07A5FC00E0AEC8 /* main.m */; };
@@ -113,7 +118,12 @@
 		05B47A921C1C2C760042FE21 /* MatisseSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatisseSwift.swift; sourceTree = "<group>"; };
 		05B47A951C1C35A80042FE21 /* UIImageView+ImageRequestTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+ImageRequestTarget.swift"; sourceTree = "<group>"; };
 		05B47A971C1C36660042FE21 /* ImageRequestTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRequestTarget.swift; sourceTree = "<group>"; };
-		05B47A991C1C3AE50042FE21 /* MatisseObjc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatisseObjc.swift; sourceTree = "<group>"; };
+		05B47A9B1C1C3B2F0042FE21 /* MTSMatisseObjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTSMatisseObjc.h; sourceTree = "<group>"; };
+		05B47A9C1C1C3B2F0042FE21 /* MTSMatisseObjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTSMatisseObjc.m; sourceTree = "<group>"; };
+		05B47A9F1C1C3C4B0042FE21 /* MTSMatisseObjc+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MTSMatisseObjc+Internal.h"; sourceTree = "<group>"; };
+		05B47AA71C1C41940042FE21 /* ResizeTransformation+DSL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ResizeTransformation+DSL.h"; sourceTree = "<group>"; };
+		05B47AA81C1C41940042FE21 /* ResizeTransformation+DSL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ResizeTransformation+DSL.m"; sourceTree = "<group>"; };
+		05B47AAB1C1C48DE0042FE21 /* ResizeTransformation+DSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ResizeTransformation+DSL.swift"; sourceTree = "<group>"; };
 		05C34DDB1C04E79600E0AEC8 /* CoalescingTaskQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoalescingTaskQueue.swift; sourceTree = "<group>"; };
 		05C34DDE1C07140A00E0AEC8 /* CoalescingTaskQueueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoalescingTaskQueueTests.swift; sourceTree = "<group>"; };
 		05C34DED1C07A5FC00E0AEC8 /* Matisse Sample Objc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Matisse Sample Objc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -246,6 +256,9 @@
 			isa = PBXGroup;
 			children = (
 				05A791811C0274E900A65E7B /* ResizeTransformation.swift */,
+				05B47AAB1C1C48DE0042FE21 /* ResizeTransformation+DSL.swift */,
+				05B47AA71C1C41940042FE21 /* ResizeTransformation+DSL.h */,
+				05B47AA81C1C41940042FE21 /* ResizeTransformation+DSL.m */,
 			);
 			name = Transformations;
 			sourceTree = "<group>";
@@ -271,7 +284,9 @@
 			isa = PBXGroup;
 			children = (
 				05B47A921C1C2C760042FE21 /* MatisseSwift.swift */,
-				05B47A991C1C3AE50042FE21 /* MatisseObjc.swift */,
+				05B47A9B1C1C3B2F0042FE21 /* MTSMatisseObjc.h */,
+				05B47A9F1C1C3C4B0042FE21 /* MTSMatisseObjc+Internal.h */,
+				05B47A9C1C1C3B2F0042FE21 /* MTSMatisseObjc.m */,
 			);
 			name = DSL;
 			sourceTree = "<group>";
@@ -390,6 +405,9 @@
 			files = (
 				05F50C361C022E2500859782 /* Matisse.h in Headers */,
 				05DBCFF21C0B122B009C0CC0 /* NSString+MD5.h in Headers */,
+				05B47A9D1C1C3B2F0042FE21 /* MTSMatisseObjc.h in Headers */,
+				05B47AA01C1C3C4B0042FE21 /* MTSMatisseObjc+Internal.h in Headers */,
+				05B47AA91C1C41940042FE21 /* ResizeTransformation+DSL.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -622,12 +640,14 @@
 				05B47A961C1C35A80042FE21 /* UIImageView+ImageRequestTarget.swift in Sources */,
 				05DBCFED1C0B015C009C0CC0 /* DefaultImageCreator.swift in Sources */,
 				05DBCFEF1C0B0744009C0CC0 /* DiskImageCache.swift in Sources */,
+				05B47A9E1C1C3B2F0042FE21 /* MTSMatisseObjc.m in Sources */,
 				055061E91C023DB4009462D9 /* MatisseContext.swift in Sources */,
 				05A7917A1C025D0900A65E7B /* ImageLoader.swift in Sources */,
-				05B47A9A1C1C3AE50042FE21 /* MatisseObjc.swift in Sources */,
+				05B47AAA1C1C41940042FE21 /* ResizeTransformation+DSL.m in Sources */,
 				05DBCFF31C0B122B009C0CC0 /* NSString+MD5.m in Sources */,
 				05DBCFE01C0A0563009C0CC0 /* DefaultImageRequestHandler.swift in Sources */,
 				05B47A931C1C2C760042FE21 /* MatisseSwift.swift in Sources */,
+				05B47AAC1C1C48DE0042FE21 /* ResizeTransformation+DSL.swift in Sources */,
 				05DBCFD81C09F565009C0CC0 /* ImageCache.swift in Sources */,
 				05A791801C0273F500A65E7B /* ImageTransformation.swift in Sources */,
 				05DBCFE41C0AD897009C0CC0 /* ImageRequestBuilder.swift in Sources */,
