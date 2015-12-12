@@ -7,9 +7,17 @@
 //
 
 #import "MTSMatisseObjc.h"
-#import "MTSMatisseObjc+Internal.h"
 
 #import <Matisse/Matisse-Swift.h>
+
+
+@interface MTSObjcImageRequestCreator ()
+
+- (instancetype)initWithRequestBuilder:(MTSImageRequestBuilder *)builder;
+
+@property (nonatomic, readonly) MTSImageRequestBuilder *requestBuilder;
+
+@end
 
 
 @implementation MTSMatisse
