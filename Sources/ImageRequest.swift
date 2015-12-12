@@ -9,17 +9,36 @@
 import Foundation
 
 
-/**
- * Encapsulates information about an image request.
- *
- * Image requests are uniquely identifiable by their identifier.
- * If necessary they can be checked for content equality by comparing
- * their descriptor. This is a string created by combining the URL
- * of the request with any transformations applied to the image.
- * This is then for example used to implement request coalescing.
- */
+/// Encapsulates information about an image request.
+///
+/// Image requests are uniquely identifiable by their identifier. If necessary
+/// they can be checked for content equality by comparing their descriptor. This
+/// is a string created by combining the URL of the request with any transformations
+/// applied to the image. The descriptor is used for example to implement request
+/// coalescing.
+///
 @objc(MTSImageRequest)
 public class ImageRequest: NSObject {
+
+    // MARK: - Initialization
+
+    /// Create a new image request for the given URL and transformations.
+    ///
+    /// - Parameters:
+    ///   - url:             The URL where to retrieve the image from.
+    ///   - transformations: The `ImageTransformation`s to apply to the downloaded image.
+    ///
+    /// - Returns:
+    ///   An `ImageRequest` for the given URL and transformations.
+    ///
+    public init(url: NSURL, transformations: [ImageTransformation]) {
+        self.identifier = NSUUID()
+        self.url = url
+        self.transformations = transformations
+    }
+
+
+    // MARK: - Properties
 
     /// The unique identifier for this request
     public let identifier: NSUUID
@@ -30,22 +49,14 @@ public class ImageRequest: NSObject {
     /// Any transformations to apply after downloading the image
     public let transformations: [ImageTransformation]
 
-    /**
-     * Create a new image request.
-     */
-    public init(url: NSURL, transformations: [ImageTransformation]) {
-        self.identifier = NSUUID()
-        self.url = url
-        self.transformations = transformations
-    }
-
-    /**
-     * A description created by combining the URL and any transformations.
-     *
-     * Can be used to check if two image requests are semantically equal
-     * (i.e. they have the same source URL and transformations in the same
-     * order).
-     */
+    /// A description created by combining the URL and the descriptors of any transformations.
+    ///
+    /// The descriptor can be used to check if two image requests are semantically equal.
+    /// If two requests use the same source URL and have the same transformations in the
+    /// same order, then their result will be identical. If this case is detected, the
+    /// `MatisseContext` can coalesce the requests and only execute one of them to receive
+    /// the result for both requests.
+    ///
     public var descriptor: String {
         return url.absoluteString + ";" + (transformations.map { $0.descriptor }).joinWithSeparator(";")
     }

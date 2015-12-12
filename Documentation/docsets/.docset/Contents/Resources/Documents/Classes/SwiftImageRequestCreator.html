@@ -13,7 +13,7 @@
     <a title="SwiftImageRequestCreator Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (40% documented)</p>
+        <p><a href="../index.html"> Docs</a> (45% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -120,15 +120,15 @@
               </div>
             <p>This class provides a fluid interface to configure an image request.</p>
 
-<p>You cannot create instances of this class yourself. Instead use the <code>load(_:)</code> method on
-a <code><a href="../Classes/Matisse.html">Matisse</a></code> instance or on the class to retrieve one.</p>
+<p>You cannot create instances of this class yourself. Instead use the <code><a href="../Classes/Matisse.html#/s:FC7Matisse7Matisse4loadFS0_FCSo5NSURLCS_24SwiftImageRequestCreator">Matisse.load(_:)</a></code>
+method on to retrieve a <code>SwiftImageRequestCreator</code>.</p>
 
 <p>Then configure the request using the methods on the creator.</p>
 
 <pre class="highlight plaintext"><code>Matisse.load(exampleURL).resizeTo(width: 100.0, height: 100.0)
 </code></pre>
 
-<p>Finally execute the request with <code>fetch(completion:)</code> or another execution method.</p>
+<p>Finally execute the request with <code>fetch(_:)</code> or another execution method.</p>
 
 <pre class="highlight plaintext"><code>Matisse.load(exampleURL).resizeTo(width: 100.0, height: 100.0).showIn(imageView)
 </code></pre>
@@ -137,9 +137,9 @@ a <code><a href="../Classes/Matisse.html">Matisse</a></code> instance or on the 
 creator. Make sure you return the creator instance so that a fluid call chain can
 be maintained.</p>
 
-<pre class="highlight plaintext"><code>extension MatisseImageRequestCreator {
+<pre class="highlight plaintext"><code>extension SwiftImageRequestCreator {
 
-    func circleCrop() -&gt; ImageRequestBuilder {
+    func circleCrop() -&gt; Self {
         return transform(CircleCropTransformation())
     }
 }

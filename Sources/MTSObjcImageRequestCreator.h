@@ -14,22 +14,22 @@
 @protocol MTSImageRequestTarget;
 
 
-/// Helper macros to delcare a creator method.
-///
-/// Defines a property with the given name that returns a block which returns the MTSObjcImageRequestCreator instance.
-///
-/// Use like this:
-///
-///     MTS_DECLARE_CREATOR_METHOD(circleCrop, CGFloat radius);
-///     MTS_DECLARE_CREATOR_METHOD(somethingElse, void);
-///     MTS_DECLARE_CREATOR_METHOD(multiParam, NSUInteger foo, CGFloat bar);
-///
-/// And to implement it:
-///
-///     MTS_IMPLEMENT_CREATOR_METHOD(circleCrop, ^(CGFloat radius) {
-///         return self.transform([[CircleCropTransform alloc] init]);
-///     })
-///
+// Helper macros to delcare a creator method.
+//
+// Defines a property with the given name that returns a block which returns the MTSObjcImageRequestCreator instance.
+//
+// Use like this:
+//
+//     MTS_DECLARE_CREATOR_METHOD(circleCrop, CGFloat radius);
+//     MTS_DECLARE_CREATOR_METHOD(somethingElse, void);
+//     MTS_DECLARE_CREATOR_METHOD(multiParam, NSUInteger foo, CGFloat bar);
+//
+// And to implement it:
+//
+//     MTS_IMPLEMENT_CREATOR_METHOD(circleCrop, ^(CGFloat radius) {
+//         return self.transform([[CircleCropTransform alloc] init]);
+//     })
+//
 #define MTS_DECLARE_CREATOR_METHOD(NAME, ...) MTS_DECLARE_CREATOR_METHOD_TYPED(MTSObjcImageRequestCreator*, NAME, ##__VA_ARGS__)
 #define MTS_DECLARE_CREATOR_METHOD_TYPED(RETURN_TYPE, NAME, ...) @property (nonatomic, readonly) RETURN_TYPE(^NAME)(__VA_ARGS__)
 #define MTS_IMPLEMENT_CREATOR_METHOD(NAME, BLOCK_IMPL) - (typeof(((MTSObjcImageRequestCreator*)nil).NAME))NAME { return BLOCK_IMPL; }

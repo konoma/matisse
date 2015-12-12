@@ -12,7 +12,7 @@
     <a title="Classes  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (40% documented)</p>
+        <p><a href="index.html"> Docs</a> (45% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -362,15 +362,15 @@ customMatisse.load(imageURL).showIn(myImageView)
                       <div class="abstract">
                         <p>This class provides a fluid interface to configure an image request.</p>
 
-<p>You cannot create instances of this class yourself. Instead use the <code>load(_:)</code> method on
-a <code><a href="Classes/Matisse.html">Matisse</a></code> instance or on the class to retrieve one.</p>
+<p>You cannot create instances of this class yourself. Instead use the <code><a href="Classes/Matisse.html#/s:FC7Matisse7Matisse4loadFS0_FCSo5NSURLCS_24SwiftImageRequestCreator">Matisse.load(_:)</a></code>
+method on to retrieve a <code>SwiftImageRequestCreator</code>.</p>
 
 <p>Then configure the request using the methods on the creator.</p>
 
 <pre class="highlight plaintext"><code>Matisse.load(exampleURL).resizeTo(width: 100.0, height: 100.0)
 </code></pre>
 
-<p>Finally execute the request with <code>fetch(completion:)</code> or another execution method.</p>
+<p>Finally execute the request with <code>fetch(_:)</code> or another execution method.</p>
 
 <pre class="highlight plaintext"><code>Matisse.load(exampleURL).resizeTo(width: 100.0, height: 100.0).showIn(imageView)
 </code></pre>
@@ -379,9 +379,9 @@ a <code><a href="Classes/Matisse.html">Matisse</a></code> instance or on the cla
 creator. Make sure you return the creator instance so that a fluid call chain can
 be maintained.</p>
 
-<pre class="highlight plaintext"><code>extension MatisseImageRequestCreator {
+<pre class="highlight plaintext"><code>extension SwiftImageRequestCreator {
 
-    func circleCrop() -&gt; ImageRequestBuilder {
+    func circleCrop() -&gt; Self {
         return transform(CircleCropTransformation())
     }
 }
@@ -418,6 +418,10 @@ be maintained.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>ImageRequestBuilder provides a common interface for creating an ImageRequest.</p>
+
+<p>The Swift and Objective-C DSL classes wrap this builder to provide their
+interface to API clients. This class encapsulates common logic, such as
+protecting against modifications after the request was built.</p>
 
                         <a href="Classes/ImageRequestBuilder.html" class="slightly-smaller">See more</a>
                       </div>
@@ -475,11 +479,11 @@ be maintained.</p>
                       <div class="abstract">
                         <p>Encapsulates information about an image request.</p>
 
-<p>Image requests are uniquely identifiable by their identifier.
- If necessary they can be checked for content equality by comparing
- their descriptor. This is a string created by combining the URL
- of the request with any transformations applied to the image.
- This is then for example used to implement request coalescing.</p>
+<p>Image requests are uniquely identifiable by their identifier. If necessary
+they can be checked for content equality by comparing their descriptor. This
+is a string created by combining the URL of the request with any transformations
+applied to the image. The descriptor is used for example to implement request
+coalescing.</p>
 
                         <a href="Classes/ImageRequest.html" class="slightly-smaller">See more</a>
                       </div>

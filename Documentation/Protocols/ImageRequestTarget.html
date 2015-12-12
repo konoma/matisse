@@ -13,7 +13,7 @@
     <a title="ImageRequestTarget Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (40% documented)</p>
+        <p><a href="../index.html"> Docs</a> (45% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -112,7 +112,21 @@
         <section>
           <section class="section">
             <h1>ImageRequestTarget</h1>
-            <p>Undocumented</p>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ImageRequestTarget</span><span class="p">:</span> <span class="kt">NSObjectProtocol</span></code></pre>
+
+                </div>
+              </div>
+            <p>An <code>ImageRequestTarget</code> specifies an object that can display the result of an <code><a href="../Classes/ImageRequest.html">ImageRequest</a></code></p>
+
+<p>When a request is loaded into a target (using the <code>showInTarget(_:)</code> method on <code><a href="../Classes/ImageRequestBuilder.html">ImageRequestBuilder</a></code>)
+the handler calls <code>updateForImageRequest(_:, image:, error:)</code> on the target with the results
+from the completion block. The target may then decide what it does with this information.</p>
+
+<p>Additionally the handler associates the target with a request to make sure that multiple
+request don&rsquo;t overwrite now invalid targets. For this the request identifier is stored on
+the target.</p>
 
           </section>
           <section class="section task-group-section">
@@ -131,8 +145,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The identifier of the <code><a href="../Classes/ImageRequest.html">ImageRequest</a></code> currently owning this target.</p>
 
+<p>When a request finishes it checks to see wether the request is still
+the owner of this target, and if not discards the results.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">matisseRequestIdentifier</span><span class="p">:</span> <span class="kt">NSUUID</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -150,8 +175,72 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Update the target with the results of the given <code><a href="../Classes/ImageRequest.html">ImageRequest</a></code>.</p>
 
+<ul>
+<li>Parameters:
+
+<ul>
+<li>imageRequest: The <code><a href="../Classes/ImageRequest.html">ImageRequest</a></code> whose results should be displayed.</li>
+<li>image:        The resolved image if the request was successful, or <code>nil</code>.</li>
+<li>error:        The error if the request failed, or <code>nil</code>.</li>
+</ul></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">updateForImageRequest</span><span class="p">(</span><span class="nv">imageRequest</span><span class="p">:</span> <span class="kt">ImageRequest</span><span class="p">,</span> <span class="nv">image</span><span class="p">:</span> <span class="kt">UIImage</span><span class="p">?,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">NSError</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>imageRequest</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>ImageRequest</code> whose results should be displayed.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>image</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The resolved image if the request was successful, or <code>nil</code>.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The error if the request failed, or <code>nil</code>.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>

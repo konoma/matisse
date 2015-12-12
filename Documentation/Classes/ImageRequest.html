@@ -13,7 +13,7 @@
     <a title="ImageRequest Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (40% documented)</p>
+        <p><a href="../index.html"> Docs</a> (45% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -120,15 +120,110 @@
               </div>
             <p>Encapsulates information about an image request.</p>
 
-<p>Image requests are uniquely identifiable by their identifier.
- If necessary they can be checked for content equality by comparing
- their descriptor. This is a string created by combining the URL
- of the request with any transformations applied to the image.
- This is then for example used to implement request coalescing.</p>
+<p>Image requests are uniquely identifiable by their identifier. If necessary
+they can be checked for content equality by comparing their descriptor. This
+is a string created by combining the URL of the request with any transformations
+applied to the image. The descriptor is used for example to implement request
+coalescing.</p>
 
           </section>
           <section class="section task-group-section">
             <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Initialization"></a>
+                <a name="//apple_ref/swift/Section/Initialization" class="dashAnchor"></a>
+                <a href="#/Initialization">
+                  <h3 class="section-name">Initialization</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC7Matisse12ImageRequestcFMS0_FT3urlCSo5NSURL15transformationsGSaPS_19ImageTransformation___S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(url:transformations:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC7Matisse12ImageRequestcFMS0_FT3urlCSo5NSURL15transformationsGSaPS_19ImageTransformation___S0_">init(url:transformations:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new image request for the given URL and transformations.</p>
+
+<p><li><p>Parameters:</p></p>
+
+<p><ul>
+<li>url:             The URL where to retrieve the image from.</li>
+<li>transformations: The <code><a href="../Protocols/ImageTransformation.html">ImageTransformation</a></code>s to apply to the downloaded image.</li>
+</ul></li>
+<div class="aside aside-returns">
+          <p class="aside-title">Returns</p>
+          <p>An <code><a href="../Classes/ImageRequest.html">ImageRequest</a></code> for the given URL and transformations.</p></p>
+<pre class="highlight plaintext"><code>    &lt;/div&gt;
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="kt">NSURL</span><span class="p">,</span> <span class="nv">transformations</span><span class="p">:</span> <span class="p">[</span><span class="kt">ImageTransformation</span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>url</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The URL where to retrieve the image from.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>transformations</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>ImageTransformation</code>s to apply to the downloaded image.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An <code><a href="../Classes/ImageRequest.html">ImageRequest</a></code> for the given URL and transformations.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Properties"></a>
+                <a name="//apple_ref/swift/Section/Properties" class="dashAnchor"></a>
+                <a href="#/Properties">
+                  <h3 class="section-name">Properties</h3>
+                </a>
+              </div>
               <ul>
                 <li class="item">
                   <div>
@@ -214,33 +309,6 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC7Matisse12ImageRequestcFMS0_FT3urlCSo5NSURL15transformationsGSaPS_19ImageTransformation___S0_"></a>
-                    <a name="//apple_ref/swift/Method/init(url:transformations:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC7Matisse12ImageRequestcFMS0_FT3urlCSo5NSURL15transformationsGSaPS_19ImageTransformation___S0_">init(url:transformations:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Create a new image request.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="kt">NSURL</span><span class="p">,</span> <span class="nv">transformations</span><span class="p">:</span> <span class="p">[</span><span class="kt">ImageTransformation</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:vC7Matisse12ImageRequest10descriptorSS"></a>
                     <a name="//apple_ref/swift/Property/descriptor" class="dashAnchor"></a>
                     <a class="token" href="#/s:vC7Matisse12ImageRequest10descriptorSS">descriptor</a>
@@ -251,11 +319,13 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A description created by combining the URL and any transformations.</p>
+                        <p>A description created by combining the URL and the descriptors of any transformations.</p>
 
-<p>Can be used to check if two image requests are semantically equal
- (i.e. they have the same source URL and transformations in the same
- order).</p>
+<p>The descriptor can be used to check if two image requests are semantically equal.
+If two requests use the same source URL and have the same transformations in the
+same order, then their result will be identical. If this case is detected, the
+<code><a href="../Classes/MatisseContext.html">MatisseContext</a></code> can coalesce the requests and only execute one of them to receive
+the result for both requests.</p>
 
                       </div>
                       <div class="declaration">

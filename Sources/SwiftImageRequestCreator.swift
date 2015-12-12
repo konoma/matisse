@@ -11,14 +11,14 @@ import Foundation
 
 /// This class provides a fluid interface to configure an image request.
 ///
-/// You cannot create instances of this class yourself. Instead use the `load(_:)` method on
-/// a `Matisse` instance or on the class to retrieve one.
+/// You cannot create instances of this class yourself. Instead use the `Matisse.load(_:)`
+/// method on to retrieve a `SwiftImageRequestCreator`.
 ///
 /// Then configure the request using the methods on the creator.
 ///
 ///     Matisse.load(exampleURL).resizeTo(width: 100.0, height: 100.0)
 ///
-/// Finally execute the request with `fetch(completion:)` or another execution method.
+/// Finally execute the request with `fetch(_:)` or another execution method.
 ///
 ///     Matisse.load(exampleURL).resizeTo(width: 100.0, height: 100.0).showIn(imageView)
 ///
@@ -26,9 +26,9 @@ import Foundation
 /// creator. Make sure you return the creator instance so that a fluid call chain can
 /// be maintained.
 ///
-///     extension MatisseImageRequestCreator {
+///     extension SwiftImageRequestCreator {
 ///
-///         func circleCrop() -> ImageRequestBuilder {
+///         func circleCrop() -> Self {
 ///             return transform(CircleCropTransformation())
 ///         }
 ///     }

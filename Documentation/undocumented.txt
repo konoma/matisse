@@ -32,10 +32,6 @@ DefaultImageLoader.swift
 	public init(urlSession: NSURLSession, fileManager: NSFileManager)
 	public convenience init()
 	public override func loadImageAtURL(sourceURL: NSURL, toURL destinationURL: NSURL, completion: (NSURLResponse?, NSError?) -> Void)
-ImageRequestTarget.swift
-	public protocol ImageRequestTarget: NSObjectProtocol
-	var matisseRequestIdentifier: NSUUID? { get set }
-	func updateForImageRequest(imageRequest: ImageRequest, image: UIImage?, error: NSError?)
 MemoryImageCache.swift
 	public class MemoryImageCache: NSObject, ImageCache
 	public override convenience init()
@@ -54,9 +50,6 @@ MatisseErrors.swift
 	public class func matisseDownloadError(message: String? = nil) -> NSError
 	public class func matisseCreationError(message: String? = nil) -> NSError
 	public class func matisseErrorWithCode(code: MatisseErrorCode, message: String? = nil) -> NSError
-ImageRequestHandler.swift
-	public protocol ImageRequestHandler: NSObjectProtocol
-	func retrieveImageForRequest(request: ImageRequest, completion: (UIImage?, NSError?) -> Void)
 ResizeTransformation.swift
 	public class ResizeTransformation: NSObject, ImageTransformation
 	public let targetSize: CGSize

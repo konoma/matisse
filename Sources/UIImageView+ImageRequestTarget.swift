@@ -9,7 +9,7 @@
 import UIKit
 
 
-extension UIImageView : ImageRequestTarget {
+public extension UIImageView {
 
     private static var requestIdentifierKey: Int = 0
 
@@ -21,4 +21,9 @@ extension UIImageView : ImageRequestTarget {
     public func updateForImageRequest(imageRequest: ImageRequest, image: UIImage?, error: NSError?) {
         self.image = image
     }
+}
+
+// Cannot publicly specify protocol compliance. The image view is
+// still compliant, because the methods are implemented above.
+extension UIImageView : ImageRequestTarget {
 }

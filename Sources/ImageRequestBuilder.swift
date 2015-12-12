@@ -11,6 +11,10 @@ import Foundation
 
 /// ImageRequestBuilder provides a common interface for creating an ImageRequest.
 ///
+/// The Swift and Objective-C DSL classes wrap this builder to provide their
+/// interface to API clients. This class encapsulates common logic, such as
+/// protecting against modifications after the request was built.
+///
 @objc(MTSImageRequestBuilder)
 public class ImageRequestBuilder: NSObject {
 
@@ -19,14 +23,17 @@ public class ImageRequestBuilder: NSObject {
     private var transformations: [ImageTransformation] = []
     private var builtRequest: ImageRequest?
 
+
+    // MARK: - Initialization
+
     /// Create a new image request builder.
-    ///
-    /// You don't need to create a builder yourself usually. Instead use the `load(url:)`
-    /// method on a `Matisse` instance.
     ///
     /// - Parameters:
     ///   - context: The Matisse instance to execute the built request in.
-    ///   - URL: The source URL of the image to fetch.
+    ///   - url:     The source URL of the image to fetch.
+    ///
+    /// - Returns:
+    ///   An `ImageRequestBuilder` configured for the given `MatisseContext` and URL.
     ///
     public init(context: MatisseContext, url: NSURL) {
         self.context = context
@@ -40,7 +47,8 @@ public class ImageRequestBuilder: NSObject {
     ///
     /// Transformations will be applied in the order they are added to the request.
     ///
-    /// - Note: You cannot modify the request after it was first accessed.
+    /// - Note:
+    ///   You cannot modify the request after it was first accessed.
     ///
     /// - Parameters:
     ///   - transformation: The transformation to apply to the downloaded image.
@@ -78,8 +86,12 @@ public class ImageRequestBuilder: NSObject {
     ///
     /// After calling this method it's not possible to modify the request further.
     ///
-    /// - Parameter completion: The block to call when the image is either downloaded or
-    ///                         if an error happened.
+    /// - Parameters:
+    ///   - completion: The block to call when the image is either downloaded or
+    ///                 if an error happens.
+    ///
+    /// - Returns:
+    ///   The cached image if the request was fulfilled from the fast cache, otherwise `nil`.
     ///
     public func fetch(completion: (ImageRequest, UIImage?, NSError?) -> Void) -> UIImage? {
         let request = imageRequest
@@ -112,6 +124,7 @@ public class ImageRequestBuilder: NSObject {
 
     // MARK: - Helper
 
+    /// Makes sure the request was not built before. Should be checked when trying to modify the request.
     private func checkNotYetBuilt() {
         assert(builtRequest == nil, "Cannot modify the request because it was already built")
     }

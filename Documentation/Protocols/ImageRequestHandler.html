@@ -13,7 +13,7 @@
     <a title="ImageRequestHandler Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (40% documented)</p>
+        <p><a href="../index.html"> Docs</a> (45% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -112,7 +112,20 @@
         <section>
           <section class="section">
             <h1>ImageRequestHandler</h1>
-            <p>Undocumented</p>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ImageRequestHandler</span><span class="p">:</span> <span class="kt">NSObjectProtocol</span></code></pre>
+
+                </div>
+              </div>
+            <p>An <code>ImageRequestHandler</code> is responsible for resolving an <code><a href="../Classes/ImageRequest.html">ImageRequest</a></code>.</p>
+
+<p>The request handler is called by the <code><a href="../Classes/MatisseContext.html">MatisseContext</a></code> if a request cannot
+be fulfilled from the caches. The handler is likely to be called from a
+background thread, but is never called concurrently on multiple threads.</p>
+
+<p>Resolving the request includes downloading the image, creating the image
+and applying any transformations on it, if specified by the request.</p>
 
           </section>
           <section class="section task-group-section">
@@ -131,8 +144,66 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Retrieve and prepare the image for the given <code><a href="../Classes/ImageRequest.html">ImageRequest</a></code></p>
 
+<p>This includes downloading the image, creating it and applying any
+transformations specified in the passed image request.</p>
+
+<p><div class="aside aside-note">
+          <p class="aside-title">Note</p>
+          <p>This method will be called from a background thread, but not concurrently.
+The completion handler may be executed on any thread.</p></p>
+<pre class="highlight plaintext"><code>    &lt;/div&gt;&lt;li&gt;&lt;p&gt;Parameters:&lt;/p&gt;
+</code></pre>
+
+<p><ul>
+<li>request:    The <code><a href="../Classes/ImageRequest.html">ImageRequest</a></code> to resolve.</li>
+<li>completion: The completion block that must be called when the request
+        succeeded or failed. Pass <code>nil</code> for the image to mark the
+        request as failed.</li>
+</ul></li></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">retrieveImageForRequest</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="kt">ImageRequest</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="p">(</span><span class="kt">UIImage</span><span class="p">?,</span> <span class="kt">NSError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>request</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>ImageRequest</code> to resolve.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The completion block that must be called when the request succeeded or failed. Pass <code>nil</code> for the image to mark the request as failed.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>

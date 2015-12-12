@@ -13,7 +13,7 @@
     <a title="ImageRequestBuilder Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (40% documented)</p>
+        <p><a href="../index.html"> Docs</a> (45% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -120,9 +120,20 @@
               </div>
             <p>ImageRequestBuilder provides a common interface for creating an ImageRequest.</p>
 
+<p>The Swift and Objective-C DSL classes wrap this builder to provide their
+interface to API clients. This class encapsulates common logic, such as
+protecting against modifications after the request was built.</p>
+
           </section>
           <section class="section task-group-section">
             <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Initialization"></a>
+                <a name="//apple_ref/swift/Section/Initialization" class="dashAnchor"></a>
+                <a href="#/Initialization">
+                  <h3 class="section-name">Initialization</h3>
+                </a>
+              </div>
               <ul>
                 <li class="item">
                   <div>
@@ -139,17 +150,17 @@
                       <div class="abstract">
                         <p>Create a new image request builder.</p>
 
-<p>You don&rsquo;t need to create a builder yourself usually. Instead use the <code>load(url:)</code>
-method on a <code><a href="../Classes/Matisse.html">Matisse</a></code> instance.</p>
+<p><li><p>Parameters:</p></p>
 
-<ul>
-<li>Parameters:
-
-<ul>
+<p><ul>
 <li>context: The Matisse instance to execute the built request in.</li>
-<li>URL: The source URL of the image to fetch.</li>
+<li>url:     The source URL of the image to fetch.</li>
 </ul></li>
-</ul>
+<div class="aside aside-returns">
+          <p class="aside-title">Returns</p>
+          <p>An <code><a href="../Classes/ImageRequestBuilder.html">ImageRequestBuilder</a></code> configured for the given <code><a href="../Classes/MatisseContext.html">MatisseContext</a></code> and URL.</p></p>
+<pre class="highlight plaintext"><code>    &lt;/div&gt;
+</code></pre>
 
                       </div>
                       <div class="declaration">
@@ -180,7 +191,7 @@ method on a <code><a href="../Classes/Matisse.html">Matisse</a></code> instance.
                             <tr>
                               <td>
                                 <code>
-                                <em>URL</em>
+                                <em>url</em>
                                 </code>
                               </td>
                               <td>
@@ -192,6 +203,11 @@ method on a <code><a href="../Classes/Matisse.html">Matisse</a></code> instance.
                             </tr>
                           </tbody>
                         </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An <code><a href="../Classes/ImageRequestBuilder.html">ImageRequestBuilder</a></code> configured for the given <code><a href="../Classes/MatisseContext.html">MatisseContext</a></code> and URL.</p>
+
                       </div>
                     </section>
                   </div>
@@ -328,12 +344,17 @@ completes, the completion handler is called.</p>
 
 <p>After calling this method it&rsquo;s not possible to modify the request further.</p>
 
-<div class="aside aside-parameter">
-          <p class="aside-title">Parameter</p>
-          Parameter completion: The block to call when the image is either downloaded or
-                    if an error happened.
+<p><li><p>Parameters:</p></p>
 
-        </div>
+<p><ul>
+<li>completion: The block to call when the image is either downloaded or
+        if an error happens.</li>
+</ul></li>
+<div class="aside aside-returns">
+          <p class="aside-title">Returns</p>
+          <p>The cached image if the request was fulfilled from the fast cache, otherwise <code>nil</code>.</p></p>
+<pre class="highlight plaintext"><code>    &lt;/div&gt;
+</code></pre>
 
                       </div>
                       <div class="declaration">
@@ -356,13 +377,18 @@ completes, the completion handler is called.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The block to call when the image is either downloaded or if an error happened.</p>
+                                  <p>The block to call when the image is either downloaded or if an error happens.</p>
 
                                 </div>
                               </td>
                             </tr>
                           </tbody>
                         </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The cached image if the request was fulfilled from the fast cache, otherwise <code>nil</code>.</p>
+
                       </div>
                     </section>
                   </div>

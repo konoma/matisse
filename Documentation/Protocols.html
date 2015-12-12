@@ -12,7 +12,7 @@
     <a title="Protocols  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (40% documented)</p>
+        <p><a href="index.html"> Docs</a> (45% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -213,9 +213,25 @@ the <code><a href="Classes/ImageLoaderBase.html">ImageLoaderBase</a></code> as a
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>An <code>ImageRequestTarget</code> specifies an object that can display the result of an <code><a href="Classes/ImageRequest.html">ImageRequest</a></code></p>
+
+<p>When a request is loaded into a target (using the <code>showInTarget(_:)</code> method on <code><a href="Classes/ImageRequestBuilder.html">ImageRequestBuilder</a></code>)
+the handler calls <code>updateForImageRequest(_:, image:, error:)</code> on the target with the results
+from the completion block. The target may then decide what it does with this information.</p>
+
+<p>Additionally the handler associates the target with a request to make sure that multiple
+request don&rsquo;t overwrite now invalid targets. For this the request identifier is stored on
+the target.</p>
 
                         <a href="Protocols/ImageRequestTarget.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ImageRequestTarget</span><span class="p">:</span> <span class="kt">NSObjectProtocol</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -237,9 +253,24 @@ the <code><a href="Classes/ImageLoaderBase.html">ImageLoaderBase</a></code> as a
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>An <code>ImageRequestHandler</code> is responsible for resolving an <code><a href="Classes/ImageRequest.html">ImageRequest</a></code>.</p>
+
+<p>The request handler is called by the <code><a href="Classes/MatisseContext.html">MatisseContext</a></code> if a request cannot
+be fulfilled from the caches. The handler is likely to be called from a
+background thread, but is never called concurrently on multiple threads.</p>
+
+<p>Resolving the request includes downloading the image, creating the image
+and applying any transformations on it, if specified by the request.</p>
 
                         <a href="Protocols/ImageRequestHandler.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ImageRequestHandler</span><span class="p">:</span> <span class="kt">NSObjectProtocol</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>

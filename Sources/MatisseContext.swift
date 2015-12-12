@@ -51,13 +51,13 @@ import Foundation
 @objc(MTSMatisseContext)
 public class MatisseContext: NSObject {
 
-    // MARK: - Initialization
-
     private let fastCache: ImageCache?
     private let slowCache: ImageCache?
     private let requestQueue: CoalescingTaskQueue<RequestWorker>
     private let syncQueue: DispatchQueue
 
+
+    // MARK: - Initialization
 
     /// Create a custom matisse context with the given caches and request handler.
     ///
