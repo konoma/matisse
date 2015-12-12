@@ -83,15 +83,38 @@ public class MatisseContext : NSObject {
      *   - slowCache:      The cache that is used from the background. Pass `nil` to disable.
      *   - requestHandler: The ImageRequestHandler that is used to resolve
      *                     requests that were not cached.
-     *   - syncQueue:      The queue used to synchronize requests. MUST be a
-     *                     serial queue, and SHOULD be in the background. There
+     *
+     * - Returns:
+     *   A custom Matisse instance.
+     */
+    public convenience init(fastCache: ImageCache?, slowCache: ImageCache?, requestHandler: ImageRequestHandler) {
+        self.init(
+            fastCache: fastCache,
+            slowCache: slowCache,
+            requestHandler: requestHandler,
+            syncQueue: dispatch_queue_create("ch.konoma.matisse/syncQueue", DISPATCH_QUEUE_SERIAL)
+        )
+    }
+    
+    /**
+     * Create a custom instance of Matisse.
+     *
+     * Extended initializer for testing.
+     *
+     * - Parameters:
+     *   - fastCache:      The cache to use on the main thread. Pass `nil` to disable.
+     *   - slowCache:      The cache that is used from the background. Pass `nil` to disable.
+     *   - requestHandler: The ImageRequestHandler that is used to resolve
+     *                     requests that were not cached.
+     *   - syncQueue:      The queue used to synchronize requests. _Must_ be a
+     *                     serial queue, and _should_ be in the background. There
      *                     is usually no need to change this, and it's provided
      *                     only for testing.
      *
      * - Returns:
      *   A custom Matisse instance.
      */
-    public init(fastCache: ImageCache?, slowCache: ImageCache?, requestHandler: ImageRequestHandler, syncQueue: dispatch_queue_t = dispatch_queue_create("ch.konoma.matisse/syncQueue", DISPATCH_QUEUE_SERIAL)) {
+    internal init(fastCache: ImageCache?, slowCache: ImageCache?, requestHandler: ImageRequestHandler, syncQueue: dispatch_queue_t) {
         self.fastCache = fastCache
         self.slowCache = slowCache
         self.syncQueue = DispatchQueue(dispatchQueue: syncQueue)

@@ -14,12 +14,90 @@
 
 @implementation MTSMatisse
 
+#pragma mark - Initialization
+
+- (instancetype)initWithContext:(MTSMatisseContext *)context {
+    NSParameterAssert(context != nil);
+    
+    if ((self = [super init])) {
+        _context = context;
+    }
+    return self;
+}
+
+
+#pragma mark - Creating Requests
+
 - (MTSObjcImageRequestCreator *)load:(NSURL *)url {
-    return nil;
+    MTSImageRequestBuilder *builder = [[MTSImageRequestBuilder alloc] initWithContext:self.context URL:url];
+    return [[MTSObjcImageRequestCreator alloc] initWithRequestBuilder:builder];
+}
+
+
+#pragma mark - Shared Matisse Instance - Configuration
+
+static MTSMatisse *_sharedInstance;
+static id<MTSImageCache> _fastCache;
+static id<MTSImageCache> _slowCache;
+static id<MTSImageRequestHandler> _requestHandler;
+
++ (void)initialize {
+    if (self != [MTSMatisse class]) {
+        return;
+    }
+    
+    _fastCache = [[MTSMemoryImageCache alloc] init];
+    _slowCache = [[MTSDiskImageCache alloc] init];
+    _requestHandler = [[MTSDefaultImageRequestHandler alloc] initWithImageLoader:[[MTSDefaultImageLoader alloc] init]];
+}
+
++ (void)useFastCache:(id<MTSImageCache>)cache {
+    [self checkMainThread];
+    [self checkUnused];
+    
+    _fastCache = cache;
+}
+
++ (void)useSlowCache:(id<MTSImageCache>)cache {
+    [self checkMainThread];
+    [self checkUnused];
+    
+    _slowCache = cache;
+}
+
++ (void)useRequestHandler:(id<MTSImageRequestHandler>)requestHandler {
+    NSParameterAssert(requestHandler != nil);
+    
+    [self checkMainThread];
+    [self checkUnused];
+    
+    _requestHandler = requestHandler;
+}
+
++ (instancetype)shared {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        MTSMatisseContext *context = [[MTSMatisseContext alloc] initWithFastCache:_fastCache slowCache:_slowCache requestHandler:_requestHandler];
+        _sharedInstance = [[MTSMatisse alloc] initWithContext:context];
+    });
+    
+    return _sharedInstance;
 }
 
 + (MTSObjcImageRequestCreator *)load:(NSURL *)url {
-    return nil;
+    return [[self shared] load:url];
+}
+
+
+#pragma mark - Helpers
+
++ (void)checkUnused {
+    NSAssert(_sharedInstance == nil, @"You cannot modify the shared Matisse instance after it was first used");
+}
+
+
++ (void)checkMainThread {
+    NSAssert([NSThread isMainThread], @"You must access Matisse from the main thread");
 }
 
 @end

@@ -18,7 +18,7 @@ import Foundation
 ///
 /// Example:
 ///
-///     Matisse.load(imageURL).into(myImageView)
+///     Matisse.load(imageURL).showIn(myImageView)
 ///
 ///
 /// If you need more than one Matisse DSL object you can create them by passing a context in by hand.
@@ -27,7 +27,7 @@ import Foundation
 ///
 ///     let customMatisse = Matisse(preconfiguredContext)
 ///
-///     customMatisse.load(imageURL).into(myImageView)
+///     customMatisse.load(imageURL).showIn(myImageView)
 ///
 public class Matisse {
     
@@ -246,7 +246,7 @@ public class SwiftImageRequestCreator {
     /// - Parameters:
     ///   - target: The `ImageRequestTarget` to show the image in.
     ///
-    public func showInTarget(target: ImageRequestTarget) {
+    public func showIn(target: ImageRequestTarget) {
         requestBuilder.showInTarget(target)
     }
     
