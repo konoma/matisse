@@ -1,0 +1,68 @@
+UIImageView+ImageRequestTarget.swift
+	public var matisseRequestIdentifier: NSUUID?
+	public func updateForImageRequest(imageRequest: ImageRequest, image: UIImage?, error: NSError?)
+DefaultImageCreator.swift
+	public class DefaultImageCreator: NSObject
+	public func createImageFromURL(url: NSURL, request: ImageRequest) throws -> UIImage
+DiskImageCache.swift
+	public class DiskImageCache: NSObject, ImageCache
+	public class func defaultCacheDirectory() -> NSURL
+	public override convenience init()
+	public init(cacheDirectoryURL: NSURL, fileManager: NSFileManager)
+	public func storeImage(image: UIImage, forRequest request: ImageRequest, withCost cost: Int)
+	public func retrieveImageForRequest(request: ImageRequest) -> UIImage?
+DefaultImageRequestHandler.swift
+	public class DefaultImageRequestHandler: NSObject, ImageRequestHandler
+	public convenience init(imageLoader: ImageLoader)
+	public init(imageLoader: ImageLoader, imageCreator: DefaultImageCreator, workerQueue: dispatch_queue_t)
+	public func retrieveImageForRequest(request: ImageRequest, completion: (UIImage?, NSError?) -> Void)
+ResizeTransformation+DSL.swift
+	public func resizeTo(targetSize: CGSize, contentMode: UIViewContentMode = .ScaleToFill) -> Self
+	public func resizeTo(width width: CGFloat, height: CGFloat, contentMode: UIViewContentMode = .ScaleToFill) -> Self
+ImageCache.swift
+	public protocol ImageCache: NSObjectProtocol
+	func storeImage(image: UIImage, forRequest request: ImageRequest, withCost cost: Int)
+	func retrieveImageForRequest(request: ImageRequest) -> UIImage?
+ImageTransformation.swift
+	public protocol ImageTransformation : NSObjectProtocol
+	func transformImage(image: CGImage) throws -> CGImage
+	var descriptor: String { get }
+DefaultImageLoader.swift
+	public class DefaultImageLoader : ImageLoaderBase
+	public init(urlSession: NSURLSession, fileManager: NSFileManager)
+	public convenience init()
+	public override func loadImageAtURL(sourceURL: NSURL, toURL destinationURL: NSURL, completion: (NSURLResponse?, NSError?) -> Void)
+ImageRequestTarget.swift
+	public protocol ImageRequestTarget : NSObjectProtocol
+	var matisseRequestIdentifier: NSUUID? { get set }
+	func updateForImageRequest(imageRequest: ImageRequest, image: UIImage?, error: NSError?)
+MemoryImageCache.swift
+	public class MemoryImageCache: NSObject, ImageCache
+	public override convenience init()
+	public init(cache: NSCache)
+	public func storeImage(image: UIImage, forRequest request: ImageRequest, withCost cost: Int)
+	public func retrieveImageForRequest(request: ImageRequest) -> UIImage?
+MatisseErrors.swift
+	public let MatisseErrorDomain: String = "MatisseErrorDomain"
+	public enum MatisseErrorCode: Int
+	case Unknown = 0
+	case DownloadError = 1
+	case CreationError = 2
+	public var isMatisseError: Bool
+	public var matisseErrorCode: MatisseErrorCode
+	public class func matisseUnknownError(message: String? = nil) -> NSError
+	public class func matisseDownloadError(message: String? = nil) -> NSError
+	public class func matisseCreationError(message: String? = nil) -> NSError
+	public class func matisseErrorWithCode(code: MatisseErrorCode, message: String? = nil) -> NSError
+ImageRequestHandler.swift
+	public protocol ImageRequestHandler: NSObjectProtocol
+	func retrieveImageForRequest(request: ImageRequest, completion: (UIImage?, NSError?) -> Void)
+ResizeTransformation.swift
+	public class ResizeTransformation : NSObject, ImageTransformation
+	public let targetSize: CGSize
+	public let contentMode: UIViewContentMode
+	public let deviceScale: CGFloat
+	public convenience init(targetSize: CGSize, contentMode: UIViewContentMode)
+	public init(targetSize: CGSize, contentMode: UIViewContentMode, deviceScale: CGFloat)
+	public var descriptor: String
+	public func transformImage(image: CGImage) throws -> CGImage

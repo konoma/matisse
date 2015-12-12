@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>MatisseContext Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/MatisseContext" class="dashAnchor"></a>
+    <a title="MatisseContext Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (40% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        MatisseContext Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/DefaultImageCreator.html">DefaultImageCreator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DefaultImageLoader.html">DefaultImageLoader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DefaultImageRequestHandler.html">DefaultImageRequestHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DiskImageCache.html">DiskImageCache</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ImageLoaderBase.html">ImageLoaderBase</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ImageRequest.html">ImageRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ImageRequestBuilder.html">ImageRequestBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Matisse.html">Matisse</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MatisseContext.html">MatisseContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MemoryImageCache.html">MemoryImageCache</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ResizeTransformation.html">ResizeTransformation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SwiftImageRequestCreator.html">SwiftImageRequestCreator</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Global Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:v7Matisse18MatisseErrorDomainSS">MatisseErrorDomain</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/MatisseErrorCode.html">MatisseErrorCode</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/NSError.html">NSError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UIImageView.html">UIImageView</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/ImageCache.html">ImageCache</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ImageLoader.html">ImageLoader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ImageRequestHandler.html">ImageRequestHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ImageRequestTarget.html">ImageRequestTarget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ImageTransformation.html">ImageTransformation</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>MatisseContext</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">MatisseContext</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                </div>
+              </div>
+            <p>The context object that schedules and executes image loading requests.</p>
+
+<p>This is the central class coordinating image loading, creating and caching.
+It also takes care of request coalescing, so that multiple requests for the same
+image only need to do the download and creation once.</p>
+
+<p><a href='#caching' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='caching'>Caching</h2></p>
+
+<p>Caching in Matisse is done on two levels: fast and slow.</p>
+
+<p>The fast cache is read/written directly on the main thread and therefore
+must retrieve and store images fast (as the name indicates). This is
+usually implemented using some kind of in-memory cache (like <code>NSCache</code>).
+The default Matisse instance uses the <code><a href="../Classes/MemoryImageCache.html">MemoryImageCache</a></code> for this if not
+explicitely configured.</p>
+
+<p>The second level is the slow cache. This cache will only be accessed from the sync
+queue which is in the background. The slow cache may take more time to retrieve
+cache images, and will often involve file IO.</p>
+
+<p>You provide the fast and slow cache in the initializer as classes implementing
+<code><a href="../Protocols/ImageCache.html">ImageCache</a></code>. You may disable one or both chaches by passing <code>nil</code> instead of
+a cache object.</p>
+
+<p><a href='#request_handling' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='request_handling'>Request Handling</h2></p>
+
+<p>When an image request is submitted, the context first tries to find a matching
+image in the slow cache, and if this fails the fast cache. If that fails, it
+tries to find a currently executed request that is equivalent to the submitted
+request. If such a request is found then the result of the running request will
+be used for this request too. In case no such request can be found then the
+contexts <code><a href="../Protocols/ImageRequestHandler.html">ImageRequestHandler</a></code> is asked to fullfill the image request. The result
+is then cached if possible and returned for all equivalent requests.</p>
+
+<p>If you want to customize downloading or image creation behavior, pass a custom
+<code><a href="../Protocols/ImageRequestHandler.html">ImageRequestHandler</a></code> instance when creating the context.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Initialization"></a>
+                <a name="//apple_ref/swift/Section/Initialization" class="dashAnchor"></a>
+                <a href="#/Initialization">
+                  <h3 class="section-name">Initialization</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC7Matisse14MatisseContextcFMS0_FT9fastCacheGSqPS_10ImageCache__9slowCacheGSqPS1___14requestHandlerPS_19ImageRequestHandler__S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(fastCache:slowCache:requestHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC7Matisse14MatisseContextcFMS0_FT9fastCacheGSqPS_10ImageCache__9slowCacheGSqPS1___14requestHandlerPS_19ImageRequestHandler__S0_">init(fastCache:slowCache:requestHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a custom matisse context with the given caches and request handler.</p>
+
+<p>You only need to create a custom <code><a href="../Classes/MatisseContext.html">MatisseContext</a></code> if you want to create your own DSL object.
+If you want to configure the main DSL object you can do so directly using class methods on
+the DSL class (see the respective class documentation for Swift/Objective-C).</p>
+
+<p><li><p>Parameters:</p></p>
+
+<p><ul>
+<li>fastCache:      The cache to use as fast cache (on the main thread). Pass <code>nil</code> to disable the fast cache.</li>
+<li>slowCache:      The cache to use as slow cache (in the background). Pass <code>nil</code> to disable the slow cache.</li>
+<li>requestHandler: The <code><a href="../Protocols/ImageRequestHandler.html">ImageRequestHandler</a></code> that is used to resolve <code><a href="../Classes/ImageRequest.html">ImageRequest</a></code>s</li>
+</ul></li>
+<div class="aside aside-returns">
+          <p class="aside-title">Returns</p>
+          <p>A <code><a href="../Classes/MatisseContext.html">MatisseContext</a></code> configured with the given caches and request handler.</p></p>
+<pre class="highlight plaintext"><code>    &lt;/div&gt;
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">fastCache</span><span class="p">:</span> <span class="kt">ImageCache</span><span class="p">?,</span> <span class="nv">slowCache</span><span class="p">:</span> <span class="kt">ImageCache</span><span class="p">?,</span> <span class="nv">requestHandler</span><span class="p">:</span> <span class="kt">ImageRequestHandler</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>fastCache</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The cache to use as fast cache (on the main thread). Pass <code>nil</code> to disable the fast cache.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>slowCache</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The cache to use as slow cache (in the background). Pass <code>nil</code> to disable the slow cache.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>requestHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>ImageRequestHandler</code> that is used to resolve <code>ImageRequest</code>s</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code><a href="../Classes/MatisseContext.html">MatisseContext</a></code> configured with the given caches and request handler.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Handling%20Image%20Requests"></a>
+                <a name="//apple_ref/swift/Section/Handling Image Requests" class="dashAnchor"></a>
+                <a href="#/Handling%20Image%20Requests">
+                  <h3 class="section-name">Handling Image Requests</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC7Matisse14MatisseContext14executeRequestFS0_FTCS_12ImageRequest10completionFTGSqCSo7UIImage_GSqCSo7NSError__T__GSqS2__"></a>
+                    <a name="//apple_ref/swift/Method/executeRequest(_:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC7Matisse14MatisseContext14executeRequestFS0_FTCS_12ImageRequest10completionFTGSqCSo7UIImage_GSqCSo7NSError__T__GSqS2__">executeRequest(_:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Executes the given <code><a href="../Classes/ImageRequest.html">ImageRequest</a></code> and returns the result asynchronously.</p>
+
+<p>First the request is attempted to resolve using the fast cache on the main
+thread. If an image is found, it&rsquo;s returned from this method and the completion
+Block is called asynchronously. If this cache misses or no fast cache is set,
+<code>nil</code> is returned and the request will be tried to resolve in the background.</p>
+
+<p>First in the background, the slow cache is checked for a match. If successful,
+the completion block is called with the result. If that fails too, the request
+is passed to a queue that manages equivalent requests such that the work of
+downloading and creating the image only needs to be done once. If no equivalent
+request is already being resolved, then this request is resovled using the
+<code><a href="../Protocols/ImageRequestHandler.html">ImageRequestHandler</a></code>. The result of this operation is reported using the
+completion block.</p>
+
+<div class="aside aside-note">
+          <p class="aside-title">Note</p>
+          <p>This method must be called from the main thread</p>
+
+        </div><li><p>Parameters:</p>
+
+<ul>
+<li>request:    The image request to resolve.</li>
+<li>completion: The completion handler that will be called with the result. This
+        block is always called asynchronously, even if the request was
+        resolved using the fast cache.</li>
+</ul></li>
+<div class="aside aside-returns">
+          <p class="aside-title">Returns</p>
+          <p>If the request could be resolved using the fast cache, this returns the resolved
+image. Otherwise <code>nil</code> is returned.</p>
+
+        </div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">executeRequest</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="kt">ImageRequest</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="p">(</span><span class="kt">UIImage</span><span class="p">?,</span> <span class="kt">NSError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIImage</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>request</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The image request to resolve.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The completion handler that will be called with the result. This block is always called asynchronously, even if the request was resolved using the fast cache.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>If the request could be resolved using the fast cache, this returns the resolved image. Otherwise <code>nil</code> is returned.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-12-12)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.4.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

@@ -434,6 +434,7 @@
 			buildConfigurationList = 05F50C461C022E2600859782 /* Build configuration list for PBXNativeTarget "Matisse" */;
 			buildPhases = (
 				05F50C2D1C022E2500859782 /* Sources */,
+				05A4F2571C1C71300044F72C /* Lint Swift Code */,
 				05F50C2E1C022E2500859782 /* Frameworks */,
 				05F50C2F1C022E2500859782 /* Headers */,
 				05F50C301C022E2500859782 /* Resources */,
@@ -570,6 +571,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		05A4F2571C1C71300044F72C /* Lint Swift Code */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Lint Swift Code";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
+			showEnvVarsInLog = 0;
+		};
 		1D94053F02D14ECE0DF9BB48 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

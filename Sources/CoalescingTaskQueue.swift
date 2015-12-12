@@ -15,14 +15,15 @@ import Foundation
  * coalesced.
  */
 internal class CoalescingTaskQueue<Worker: CoalescingTaskQueueWorker> {
-    
+
     typealias CompletionHandler = (Worker.ResultType?, NSError?) -> Void
-    
+    typealias Task = PendingTask<Worker.TaskType, Worker.ResultType>
+
     private let worker: Worker
     private let syncQueue: DispatchQueue
     private var pendingTasks = [PendingTask<Worker.TaskType, Worker.ResultType>]()
-    
-    
+
+
     /**
      * Create a new task queue given a worker and a sync queue.
      *
@@ -33,7 +34,7 @@ internal class CoalescingTaskQueue<Worker: CoalescingTaskQueueWorker> {
         self.worker = worker
         self.syncQueue = syncQueue
     }
-    
+
     /**
      * Submit a new task with the given completion handler.
      *
@@ -48,8 +49,8 @@ internal class CoalescingTaskQueue<Worker: CoalescingTaskQueueWorker> {
             }
         }
     }
-    
-    private func executePendingTask(pendingTask: PendingTask<Worker.TaskType, Worker.ResultType>, requestCompletion: CompletionHandler?) {
+
+    private func executePendingTask(pendingTask: Task, requestCompletion: CompletionHandler?) {
         self.worker.handleTask(pendingTask.task) { result, error in
             self.syncQueue.async {
                 if let index = self.pendingTasks.indexOf({ $0 === pendingTask }) {
@@ -60,8 +61,8 @@ internal class CoalescingTaskQueue<Worker: CoalescingTaskQueueWorker> {
             }
         }
     }
-    
-    private func addPendingTask(task: Worker.TaskType, withCompletion completion: CompletionHandler) -> PendingTask<Worker.TaskType, Worker.ResultType>? {
+
+    private func addPendingTask(task: Worker.TaskType, withCompletion completion: CompletionHandler) -> Task? {
         // try coalescing first
         for pendingTask in pendingTasks {
             if worker.canCoalesceTask(task, withTask: pendingTask.task) {
@@ -69,7 +70,7 @@ internal class CoalescingTaskQueue<Worker: CoalescingTaskQueueWorker> {
                 return nil
             }
         }
-        
+
         // couldn't coalesce, add a new task instead
         let pendingTask = PendingTask(task: task, completionHandler: completion)
         pendingTasks.append(pendingTask)
@@ -83,15 +84,15 @@ internal class CoalescingTaskQueue<Worker: CoalescingTaskQueueWorker> {
  * Specify wether tasks can be coalesced or not.
  */
 internal protocol CoalescingTaskQueueWorker {
-    
+
     typealias TaskType
     typealias ResultType
-    
+
     /**
      * Called when the worker needs to execute the given task.
      */
     func handleTask(task: TaskType, completion: (ResultType?, NSError?) -> Void)
-    
+
     /**
      * Called to let the handler decide wether two tasks can be executed as one.
      */
@@ -104,15 +105,15 @@ internal protocol CoalescingTaskQueueWorker {
  * to support task coalescing.
  */
 internal class PendingTask<TaskType, ResultType> {
-    
+
     private let task: TaskType
     private var completionHandlers: [(ResultType?, NSError?) -> Void]
-    
+
     init(task: TaskType, completionHandler: (ResultType?, NSError?) -> Void) {
         self.task = task
         self.completionHandlers = [completionHandler]
     }
-    
+
     /**
      * Add a completion handler to this pending task.
      *
@@ -121,7 +122,7 @@ internal class PendingTask<TaskType, ResultType> {
     func addCompletionHandler(completionHandler: (ResultType?, NSError?) -> Void) {
         completionHandlers.append(completionHandler)
     }
-    
+
     /**
      * Notify all registered completion handlers of a result.
      *

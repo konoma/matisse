@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ImageLoaderBase Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/ImageLoaderBase" class="dashAnchor"></a>
+    <a title="ImageLoaderBase Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (40% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        ImageLoaderBase Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/DefaultImageCreator.html">DefaultImageCreator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DefaultImageLoader.html">DefaultImageLoader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DefaultImageRequestHandler.html">DefaultImageRequestHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DiskImageCache.html">DiskImageCache</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ImageLoaderBase.html">ImageLoaderBase</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ImageRequest.html">ImageRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ImageRequestBuilder.html">ImageRequestBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Matisse.html">Matisse</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MatisseContext.html">MatisseContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MemoryImageCache.html">MemoryImageCache</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ResizeTransformation.html">ResizeTransformation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SwiftImageRequestCreator.html">SwiftImageRequestCreator</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Global Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:v7Matisse18MatisseErrorDomainSS">MatisseErrorDomain</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/MatisseErrorCode.html">MatisseErrorCode</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/NSError.html">NSError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UIImageView.html">UIImageView</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/ImageCache.html">ImageCache</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ImageLoader.html">ImageLoader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ImageRequestHandler.html">ImageRequestHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ImageRequestTarget.html">ImageRequestTarget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ImageTransformation.html">ImageTransformation</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>ImageLoaderBase</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ImageLoaderBase</span><span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">ImageLoader</span></code></pre>
+
+                </div>
+              </div>
+            <p>Abstract base class for <code><a href="../Protocols/ImageLoader.html">ImageLoader</a></code> implementors.</p>
+
+<p>Implements common logic such as generating temporary URLs
+and checking response status codes.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC7Matisse15ImageLoaderBase11fileManagerCSo13NSFileManager"></a>
+                    <a name="//apple_ref/swift/Property/fileManager" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC7Matisse15ImageLoaderBase11fileManagerCSo13NSFileManager">fileManager</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The file manager used to create the temporary directory if necessary</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">fileManager</span><span class="p">:</span> <span class="kt">NSFileManager</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC7Matisse15ImageLoaderBasecFMS0_FT11fileManagerCSo13NSFileManager_S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(fileManager:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC7Matisse15ImageLoaderBasecFMS0_FT11fileManagerCSo13NSFileManager_S0_">init(fileManager:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new instance of this class.</p>
+
+<ul>
+<li>Parameters:
+
+<ul>
+<li>fileManager: Allows providing a custom file manager. Used for testing purposes, you should not need this.</li>
+</ul></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">fileManager</span><span class="p">:</span> <span class="kt">NSFileManager</span> <span class="o">=</span> <span class="kt">NSFileManager</span><span class="p">())</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>fileManager</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Allows providing a custom file manager. Used for testing purposes, you should not need this.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC7Matisse15ImageLoaderBase19loadImageForRequestFS0_FTCS_12ImageRequest10completionFTGSqCSo5NSURL_GSqCSo7NSError__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/loadImageForRequest(_:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC7Matisse15ImageLoaderBase19loadImageForRequestFS0_FTCS_12ImageRequest10completionFTGSqCSo5NSURL_GSqCSo7NSError__T__T_">loadImageForRequest(_:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Load the image for the given request.</p>
+
+<p>Implements the <code><a href="../Protocols/ImageLoader.html">ImageLoader</a></code> protocol requirement. This method first creates a temporary file path
+and prepares it for the actual request. Then this calls <code>loadImageAtURL(_:, toURL:)</code> with the request
+URL and the destination URL respective, passing a completion block. The completion block then handles
+the response by checking the status code and potential errors. Afterwards the completion block of this
+method is called with appropriate values.</p>
+
+<p>In your subclass you only need to override <code>loadImageAtURL(_:, toURL:)</code> to provide the actual download.</p>
+
+<ul>
+<li>Parameters:
+
+<ul>
+<li>request:    The image request for which the image should be loaded.</li>
+<li>completion: The completion block to call when the request has finished.</li>
+</ul></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">loadImageForRequest</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="kt">ImageRequest</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="p">(</span><span class="kt">NSURL</span><span class="p">?,</span> <span class="kt">NSError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>request</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The image request for which the image should be loaded.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The completion block to call when the request has finished.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC7Matisse15ImageLoaderBase14loadImageAtURLFS0_FTCSo5NSURL5toURLS1_10completionFTGSqCSo13NSURLResponse_GSqCSo7NSError__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/loadImageAtURL(_:toURL:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC7Matisse15ImageLoaderBase14loadImageAtURLFS0_FTCSo5NSURL5toURLS1_10completionFTGSqCSo13NSURLResponse_GSqCSo7NSError__T__T_">loadImageAtURL(_:toURL:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Donwload the image at the given source URL to a destination URL.</p>
+
+<p>This method is called by the default implementation of <code>loadImageForRequest(_:, completion:)</code> to actually
+download the image. When the download finishes call the completion block with the url response and error.</p>
+
+<p><div class="aside aside-note">
+          <p class="aside-title">Note</p>
+          <p>You must override this method.</p></p>
+<pre class="highlight plaintext"><code>    &lt;/div&gt;&lt;li&gt;&lt;p&gt;Parameters:&lt;/p&gt;
+</code></pre>
+
+<p><ul>
+<li>sourceURL:      The URL where to download the image from</li>
+<li>destinationURL: The local URL to save the downloaded image to</li>
+<li>completion:     The completion block to call after the download finishes (either successfully or not)</li>
+</ul></li></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">loadImageAtURL</span><span class="p">(</span><span class="nv">sourceURL</span><span class="p">:</span> <span class="kt">NSURL</span><span class="p">,</span> <span class="n">toURL</span> <span class="nv">destinationURL</span><span class="p">:</span> <span class="kt">NSURL</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="p">(</span><span class="kt">NSURLResponse</span><span class="p">?,</span> <span class="kt">NSError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sourceURL</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The URL where to download the image from</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>destinationURL</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The local URL to save the downloaded image to</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The completion block to call after the download finishes (either successfully or not)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-12-12)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.4.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
