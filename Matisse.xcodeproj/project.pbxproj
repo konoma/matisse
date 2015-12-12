@@ -8,13 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		055061E71C023D0D009462D9 /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055061E61C023D0D009462D9 /* ImageRequest.swift */; };
-		055061E91C023DB4009462D9 /* Matisse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055061E81C023DB4009462D9 /* Matisse.swift */; };
+		055061E91C023DB4009462D9 /* MatisseContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055061E81C023DB4009462D9 /* MatisseContext.swift */; };
 		05A7916B1C02484D00A65E7B /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A7916A1C02484D00A65E7B /* ImageCell.swift */; };
 		05A7917A1C025D0900A65E7B /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A791791C025D0900A65E7B /* ImageLoader.swift */; };
 		05A7917D1C026A2100A65E7B /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A7917C1C026A2100A65E7B /* DispatchQueue.swift */; };
 		05A791801C0273F500A65E7B /* ImageTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A7917F1C0273F500A65E7B /* ImageTransformation.swift */; };
 		05A791821C0274E900A65E7B /* ResizeTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A791811C0274E900A65E7B /* ResizeTransformation.swift */; };
 		05A791851C033A4300A65E7B /* Matisse.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05F50C321C022E2500859782 /* Matisse.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05B47A931C1C2C760042FE21 /* MatisseSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B47A921C1C2C760042FE21 /* MatisseSwift.swift */; };
+		05B47A961C1C35A80042FE21 /* UIImageView+ImageRequestTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B47A951C1C35A80042FE21 /* UIImageView+ImageRequestTarget.swift */; };
+		05B47A981C1C36660042FE21 /* ImageRequestTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B47A971C1C36660042FE21 /* ImageRequestTarget.swift */; };
+		05B47A9A1C1C3AE50042FE21 /* MatisseObjc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B47A991C1C3AE50042FE21 /* MatisseObjc.swift */; };
 		05C34DDC1C04E79600E0AEC8 /* CoalescingTaskQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C34DDB1C04E79600E0AEC8 /* CoalescingTaskQueue.swift */; };
 		05C34DDF1C07140A00E0AEC8 /* CoalescingTaskQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C34DDE1C07140A00E0AEC8 /* CoalescingTaskQueueTests.swift */; };
 		05C34DF11C07A5FD00E0AEC8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C34DF01C07A5FC00E0AEC8 /* main.m */; };
@@ -39,7 +43,7 @@
 		05DBCFF31C0B122B009C0CC0 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DBCFF11C0B122B009C0CC0 /* NSString+MD5.m */; };
 		05F50C361C022E2500859782 /* Matisse.h in Headers */ = {isa = PBXBuildFile; fileRef = 05F50C351C022E2500859782 /* Matisse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05F50C3D1C022E2600859782 /* Matisse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05F50C321C022E2500859782 /* Matisse.framework */; };
-		05F50C421C022E2600859782 /* MatisseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F50C411C022E2600859782 /* MatisseTests.swift */; };
+		05F50C421C022E2600859782 /* MatisseContextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F50C411C022E2600859782 /* MatisseContextTests.swift */; };
 		05F50C531C0230D600859782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F50C521C0230D600859782 /* AppDelegate.swift */; };
 		05F50C551C0230D600859782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F50C541C0230D600859782 /* ViewController.swift */; };
 		05F50C581C0230D600859782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05F50C561C0230D600859782 /* Main.storyboard */; };
@@ -100,12 +104,16 @@
 
 /* Begin PBXFileReference section */
 		055061E61C023D0D009462D9 /* ImageRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRequest.swift; sourceTree = "<group>"; };
-		055061E81C023DB4009462D9 /* Matisse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matisse.swift; sourceTree = "<group>"; };
+		055061E81C023DB4009462D9 /* MatisseContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatisseContext.swift; sourceTree = "<group>"; };
 		05A7916A1C02484D00A65E7B /* ImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		05A791791C025D0900A65E7B /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		05A7917C1C026A2100A65E7B /* DispatchQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchQueue.swift; sourceTree = "<group>"; };
 		05A7917F1C0273F500A65E7B /* ImageTransformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTransformation.swift; sourceTree = "<group>"; };
 		05A791811C0274E900A65E7B /* ResizeTransformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizeTransformation.swift; sourceTree = "<group>"; };
+		05B47A921C1C2C760042FE21 /* MatisseSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatisseSwift.swift; sourceTree = "<group>"; };
+		05B47A951C1C35A80042FE21 /* UIImageView+ImageRequestTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+ImageRequestTarget.swift"; sourceTree = "<group>"; };
+		05B47A971C1C36660042FE21 /* ImageRequestTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRequestTarget.swift; sourceTree = "<group>"; };
+		05B47A991C1C3AE50042FE21 /* MatisseObjc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatisseObjc.swift; sourceTree = "<group>"; };
 		05C34DDB1C04E79600E0AEC8 /* CoalescingTaskQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoalescingTaskQueue.swift; sourceTree = "<group>"; };
 		05C34DDE1C07140A00E0AEC8 /* CoalescingTaskQueueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoalescingTaskQueueTests.swift; sourceTree = "<group>"; };
 		05C34DED1C07A5FC00E0AEC8 /* Matisse Sample Objc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Matisse Sample Objc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,7 +144,7 @@
 		05F50C351C022E2500859782 /* Matisse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Matisse.h; sourceTree = "<group>"; };
 		05F50C371C022E2500859782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05F50C3C1C022E2600859782 /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		05F50C411C022E2600859782 /* MatisseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatisseTests.swift; sourceTree = "<group>"; };
+		05F50C411C022E2600859782 /* MatisseContextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatisseContextTests.swift; sourceTree = "<group>"; };
 		05F50C431C022E2600859782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05F50C501C0230D500859782 /* Matisse Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Matisse Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		05F50C521C0230D600859782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -189,9 +197,10 @@
 		05A7916C1C0249C100A65E7B /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				055061E81C023DB4009462D9 /* Matisse.swift */,
+				055061E81C023DB4009462D9 /* MatisseContext.swift */,
 				055061E61C023D0D009462D9 /* ImageRequest.swift */,
 				05DBCFE31C0AD897009C0CC0 /* ImageRequestBuilder.swift */,
+				05B47A971C1C36660042FE21 /* ImageRequestTarget.swift */,
 				05DBCFDD1C0A0420009C0CC0 /* ImageRequestHandler.swift */,
 				05A791791C025D0900A65E7B /* ImageLoader.swift */,
 				05DBCFD71C09F565009C0CC0 /* ImageCache.swift */,
@@ -216,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				05B47A8F1C1C26530042FE21 /* Request Handlers */,
+				05B47A941C1C35840042FE21 /* Request Targets */,
 				05B47A8E1C1C25ED0042FE21 /* Loaders */,
 				05B47A8C1C1C25CE0042FE21 /* Caches */,
 				05B47A8D1C1C25D30042FE21 /* Transformations */,
@@ -255,6 +265,23 @@
 				05DBCFEC1C0B015C009C0CC0 /* DefaultImageCreator.swift */,
 			);
 			name = "Request Handlers";
+			sourceTree = "<group>";
+		};
+		05B47A901C1C2B580042FE21 /* DSL */ = {
+			isa = PBXGroup;
+			children = (
+				05B47A921C1C2C760042FE21 /* MatisseSwift.swift */,
+				05B47A991C1C3AE50042FE21 /* MatisseObjc.swift */,
+			);
+			name = DSL;
+			sourceTree = "<group>";
+		};
+		05B47A941C1C35840042FE21 /* Request Targets */ = {
+			isa = PBXGroup;
+			children = (
+				05B47A951C1C35A80042FE21 /* UIImageView+ImageRequestTarget.swift */,
+			);
+			name = "Request Targets";
 			sourceTree = "<group>";
 		};
 		05C34DEE1C07A5FC00E0AEC8 /* SampleAppObjc */ = {
@@ -306,6 +333,7 @@
 				05F50C371C022E2500859782 /* Info.plist */,
 				05F50C351C022E2500859782 /* Matisse.h */,
 				05A7916C1C0249C100A65E7B /* Core */,
+				05B47A901C1C2B580042FE21 /* DSL */,
 				05B47A8B1C1C25B30042FE21 /* Built-Ins */,
 				05A7917B1C026A1300A65E7B /* Util */,
 			);
@@ -316,7 +344,7 @@
 			isa = PBXGroup;
 			children = (
 				05F50C431C022E2600859782 /* Info.plist */,
-				05F50C411C022E2600859782 /* MatisseTests.swift */,
+				05F50C411C022E2600859782 /* MatisseContextTests.swift */,
 				05C34DDE1C07140A00E0AEC8 /* CoalescingTaskQueueTests.swift */,
 			);
 			path = UnitTests;
@@ -591,18 +619,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05B47A961C1C35A80042FE21 /* UIImageView+ImageRequestTarget.swift in Sources */,
 				05DBCFED1C0B015C009C0CC0 /* DefaultImageCreator.swift in Sources */,
 				05DBCFEF1C0B0744009C0CC0 /* DiskImageCache.swift in Sources */,
-				055061E91C023DB4009462D9 /* Matisse.swift in Sources */,
+				055061E91C023DB4009462D9 /* MatisseContext.swift in Sources */,
 				05A7917A1C025D0900A65E7B /* ImageLoader.swift in Sources */,
+				05B47A9A1C1C3AE50042FE21 /* MatisseObjc.swift in Sources */,
 				05DBCFF31C0B122B009C0CC0 /* NSString+MD5.m in Sources */,
 				05DBCFE01C0A0563009C0CC0 /* DefaultImageRequestHandler.swift in Sources */,
+				05B47A931C1C2C760042FE21 /* MatisseSwift.swift in Sources */,
 				05DBCFD81C09F565009C0CC0 /* ImageCache.swift in Sources */,
 				05A791801C0273F500A65E7B /* ImageTransformation.swift in Sources */,
 				05DBCFE41C0AD897009C0CC0 /* ImageRequestBuilder.swift in Sources */,
 				05C34DDC1C04E79600E0AEC8 /* CoalescingTaskQueue.swift in Sources */,
 				05DBCFE91C0AF6C5009C0CC0 /* DefaultImageLoader.swift in Sources */,
 				055061E71C023D0D009462D9 /* ImageRequest.swift in Sources */,
+				05B47A981C1C36660042FE21 /* ImageRequestTarget.swift in Sources */,
 				05DBCFDB1C09F752009C0CC0 /* MemoryImageCache.swift in Sources */,
 				05DBCFEB1C0AFDB1009C0CC0 /* MatisseErrors.swift in Sources */,
 				05A7917D1C026A2100A65E7B /* DispatchQueue.swift in Sources */,
@@ -616,7 +648,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05C34DDF1C07140A00E0AEC8 /* CoalescingTaskQueueTests.swift in Sources */,
-				05F50C421C022E2600859782 /* MatisseTests.swift in Sources */,
+				05F50C421C022E2600859782 /* MatisseContextTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

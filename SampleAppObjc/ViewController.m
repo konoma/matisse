@@ -54,9 +54,9 @@
     ImageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageCell" forIndexPath:indexPath];
     NSURL *url = self.imageURLs[indexPath.row % self.imageURLs.count];
     
-    MTSImageRequestBuilder *builder = [MTSMatisse load:url];
-    [builder resizeTo:CGSizeMake(self.itemSize, self.itemSize) contentMode:UIViewContentModeScaleAspectFill];
-    [builder showIn:cell.imageView];
+//    MTSImageRequestBuilder *builder = [MTSMatisse load:url];
+//    [builder resizeTo:CGSizeMake(self.itemSize, self.itemSize) contentMode:UIViewContentModeScaleAspectFill];
+//    [builder showIn:cell.imageView];
     
     return cell;
 }

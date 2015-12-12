@@ -33,8 +33,8 @@ import Foundation
  * more time to retrieve cache images, often involving file IO. The default
  * Matisse instance uses the `DiskImageCache` if not explicitely configured.
  */
-@objc(MTSMatisse)
-public class Matisse : NSObject {
+@objc(MTSMatisseContext)
+public class MatisseContext : NSObject {
     
     /// Worker implementation for the image request handler to support task coalescing.
     private class RequestWorker: CoalescingTaskQueueWorker {
@@ -182,96 +182,5 @@ public class Matisse : NSObject {
         DispatchQueue.main.async {
             self.fastCache?.storeImage(image, forRequest: request, withCost: cost)
         }
-    }
-}
-
-
-// MARK: - Shared Matisse Instance
-
-public extension Matisse {
-    
-    // MARK: - Shared Context
-    
-    private static var _sharedInstance: Matisse?
-    private static var _fastCache: ImageCache? = MemoryImageCache()
-    private static var _slowCache: ImageCache? = DiskImageCache()
-    private static var _requestHandler: ImageRequestHandler = DefaultImageRequestHandler(imageLoader: DefaultImageLoader())
-    
-    /**
-     * Use a different fast cache for the shared Matisse instance.
-     *
-     * - Note:
-     *   This method must only be called before using the shared Matisse instance
-     *   for the first time.
-     *
-     * - Parameter cache: The cache to use, or `nil` to disable the fast cache
-     */
-    public class func useFastCache(cache: ImageCache?) {
-        checkMainThread()
-        checkUnused()
-        
-        _fastCache = cache
-    }
-    
-    /**
-     * Use a different slow cache for the shared Matisse instance.
-     *
-     * - Note:
-     *   This method must only be called before using the shared Matisse instance
-     *   for the first time.
-     *
-     * - Parameter cache: The cache to use, or `nil` to disable the slow cache
-     */
-    public class func useSlowCache(cache: ImageCache?) {
-        checkMainThread()
-        checkUnused()
-        
-        _slowCache = cache
-    }
-    
-    /**
-     * Use a different request handler for the shared Matisse instance.
-     *
-     * - Note:
-     *   This method must only be called before using the shared Matisse instance
-     *   for the first time.
-     *
-     * - Parameter requestHandler: The request handler to use
-     */
-    public class func useRequestHandler(requestHandler: ImageRequestHandler) {
-        checkMainThread()
-        checkUnused()
-        
-        _requestHandler = requestHandler
-    }
-    
-    /**
-     * Access the shared Matisse instance.
-     *
-     * When first accessed the instance is built using the current configuration.
-     * Afterwards it's not possible to change this instance anymore.
-     *
-     * Usually you don't need to access the shared instance directly, instead
-     * you can use the `load()` class func which will in turn access this instance.
-     *
-     * - Returns: The shared Matisse instance
-     */
-    public class func sharedInstance() -> Matisse {
-        checkMainThread()
-        
-        if _sharedInstance == nil {
-            _sharedInstance = Matisse(fastCache: _fastCache, slowCache: _slowCache, requestHandler: _requestHandler)
-        }
-        return _sharedInstance!
-    }
-    
-    /// Checks wether the shared instance was already built
-    private class func checkUnused() {
-        assert(_sharedInstance == nil, "You cannot modify the shared Matisse instance after it was first used")
-    }
-    
-    /// Checks that all access is done on the main thread
-    private class func checkMainThread() {
-        assert(NSThread.isMainThread(), "You must access Matisse from the main thread")
     }
 }
