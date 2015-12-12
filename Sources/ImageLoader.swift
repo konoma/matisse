@@ -25,6 +25,9 @@ public protocol ImageLoader: NSObjectProtocol {
     /// caller takes ownership of this file and is responsible for
     /// deleting it when no longer in use.
     ///
+    /// - Note:
+    ///   This method may be called from a background thread, but not concurrently.
+    ///
     /// - Parameters:
     ///   - request:    The image request for which the image should be loaded.
     ///   - completion: The completion block to call when the request has finished.

@@ -13,7 +13,7 @@
     <a title="ImageLoader Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (45% documented)</p>
+        <p><a href="../index.html"> Docs</a> (48% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -147,14 +147,16 @@ that holds the downloaded image to the completion block. The
 caller takes ownership of this file and is responsible for
 deleting it when no longer in use.</p>
 
-<ul>
-<li>Parameters:
+<p><div class="aside aside-note">
+          <p class="aside-title">Note</p>
+          <p>This method may be called from a background thread, but not concurrently.</p></p>
+<pre class="highlight plaintext"><code>    &lt;/div&gt;&lt;li&gt;&lt;p&gt;Parameters:&lt;/p&gt;
+</code></pre>
 
-<ul>
+<p><ul>
 <li>request:    The image request for which the image should be loaded.</li>
 <li>completion: The completion block to call when the request has finished.</li>
-</ul></li>
-</ul>
+</ul></li></p>
 
                       </div>
                       <div class="declaration">

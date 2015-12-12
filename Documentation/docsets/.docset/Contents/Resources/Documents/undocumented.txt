@@ -19,10 +19,6 @@ DefaultImageRequestHandler.swift
 ResizeTransformation+DSL.swift
 	public func resizeTo(targetSize: CGSize, contentMode: UIViewContentMode = .ScaleToFill) -> Self
 	public func resizeTo(width width: CGFloat, height: CGFloat, contentMode: UIViewContentMode = .ScaleToFill) -> Self
-ImageCache.swift
-	public protocol ImageCache: NSObjectProtocol
-	func storeImage(image: UIImage, forRequest request: ImageRequest, withCost cost: Int)
-	func retrieveImageForRequest(request: ImageRequest) -> UIImage?
 ImageTransformation.swift
 	public protocol ImageTransformation: NSObjectProtocol
 	func transformImage(image: CGImage) throws -> CGImage
