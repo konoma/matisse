@@ -1,5 +1,5 @@
 //
-//  MatisseTests.swift
+//  MatisseContextTests.swift
 //  MatisseTests
 //
 //  Created by Markus Gasser on 22.11.15.
@@ -12,12 +12,12 @@ import Nimble
 @testable import Matisse
 
 
-class MatisseTests: XCTestCase {
+class MatisseContextTests: XCTestCase {
     
     let fastCache = InspectableImageCache()
     let slowCache = InspectableImageCache()
     let requestHandler = InspectableImageRequestHandler()
-    var matisse: Matisse!
+    var matisse: MatisseContext!
     
     let sampleImage = UIImage()
     let sampleRequest = ImageRequest(URL: NSURL(string: "test://request")!, transformations: [])
@@ -26,7 +26,7 @@ class MatisseTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        matisse = Matisse(fastCache: fastCache, slowCache: slowCache, requestHandler: requestHandler, syncQueue: dispatch_get_main_queue())
+        matisse = MatisseContext(fastCache: fastCache, slowCache: slowCache, requestHandler: requestHandler, syncQueue: dispatch_get_main_queue())
     }
     
     func test_executing_request_returns_from_fastCache() {

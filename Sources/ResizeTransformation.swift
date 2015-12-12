@@ -6,9 +6,10 @@
 //  Copyright © 2015 konoma GmbH. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 
+@objc(MTSResizeTransformation)
 public class ResizeTransformation : NSObject, ImageTransformation {
     
     public let targetSize: CGSize
@@ -16,7 +17,11 @@ public class ResizeTransformation : NSObject, ImageTransformation {
     public let deviceScale: CGFloat
     private let scaledTargeSize: CGSize
     
-    public init(targetSize: CGSize, contentMode: UIViewContentMode, deviceScale: CGFloat = UIScreen.mainScreen().scale) {
+    public convenience init(targetSize: CGSize, contentMode: UIViewContentMode) {
+        self.init(targetSize: targetSize, contentMode: contentMode, deviceScale: UIScreen.mainScreen().scale)
+    }
+    
+    public init(targetSize: CGSize, contentMode: UIViewContentMode, deviceScale: CGFloat) {
         self.targetSize = targetSize
         self.contentMode = contentMode
         self.deviceScale = deviceScale
@@ -61,7 +66,7 @@ public class ResizeTransformation : NSObject, ImageTransformation {
             return centerRectWithSize(scaledSize, inSize: scaledTargeSize)
             
         default:
-            return CGRect(origin: CGPointZero, size: targetSize)
+            fatalError("Unsupported contentMode: \(contentMode)")
         }
     }
     
@@ -69,17 +74,5 @@ public class ResizeTransformation : NSObject, ImageTransformation {
         let xOffset = round(targetSize.width - size.width) / 2.0
         let yOffset = round(targetSize.height - size.height) / 2.0
         return CGRect(origin: CGPoint(x: xOffset, y: yOffset), size: size)
-    }
-}
-
-
-public extension ImageRequestBuilder {
-    
-    public func resizeTo(targetSize: CGSize, contentMode: UIViewContentMode = .ScaleToFill) -> ImageRequestBuilder {
-        return transform(ResizeTransformation(targetSize: targetSize, contentMode: contentMode))
-    }
-    
-    public func resizeTo(width width: CGFloat, height: CGFloat, contentMode: UIViewContentMode = .ScaleToFill) -> ImageRequestBuilder {
-        return resizeTo(CGSize(width: width, height: height), contentMode: contentMode)
     }
 }

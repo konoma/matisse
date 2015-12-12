@@ -14,7 +14,11 @@ public class MemoryImageCache: NSObject, ImageCache {
     
     private let cache: NSCache
     
-    public init(cache: NSCache = NSCache()) {
+    public override convenience init() {
+        self.init(cache: NSCache())
+    }
+    
+    public init(cache: NSCache) {
         self.cache = cache
     }
     

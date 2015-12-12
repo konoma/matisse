@@ -20,7 +20,11 @@ public class DiskImageCache: NSObject, ImageCache {
     private let cacheDirectoryURL: NSURL
     private let fileManager: NSFileManager
     
-    public init(cacheDirectoryURL: NSURL = DiskImageCache.defaultCacheDirectory(), fileManager: NSFileManager = NSFileManager()) {
+    public override convenience init() {
+        self.init(cacheDirectoryURL: DiskImageCache.defaultCacheDirectory(), fileManager: NSFileManager())
+    }
+    
+    public init(cacheDirectoryURL: NSURL, fileManager: NSFileManager) {
         self.cacheDirectoryURL = cacheDirectoryURL
         self.fileManager = fileManager
     }

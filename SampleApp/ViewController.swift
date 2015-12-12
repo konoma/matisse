@@ -41,8 +41,7 @@ class ViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ImageCell", forIndexPath: indexPath) as! ImageCell
         let url = imageURLs[indexPath.row % imageURLs.count]
         
-        Matisse
-            .load(url)
+        Matisse.load(url)
             .resizeTo(width: itemSize, height: itemSize, contentMode: .ScaleAspectFill)
             .showIn(cell.imageView)
         

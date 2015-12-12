@@ -9,17 +9,22 @@
 import Foundation
 
 
+@objc(MTSDefaultImageRequestHandler)
 public class DefaultImageRequestHandler: NSObject, ImageRequestHandler {
     
     private let imageLoader: ImageLoader
-    private let imageCreator: ImageCreator
+    private let imageCreator: DefaultImageCreator
     private let workerQueue: DispatchQueue
     
-    public init(
-        imageLoader: ImageLoader,
-        imageCreator: ImageCreator = ImageCreator(),
-        workerQueue: dispatch_queue_t = dispatch_queue_create("ch.konoma.matisse/creatorQueue", DISPATCH_QUEUE_CONCURRENT))
-    {
+    public convenience init(imageLoader: ImageLoader) {
+        self.init(
+            imageLoader: imageLoader,
+            imageCreator: DefaultImageCreator(),
+            workerQueue: dispatch_queue_create("ch.konoma.matisse/creatorQueue", DISPATCH_QUEUE_CONCURRENT)
+        )
+    }
+    
+    public init(imageLoader: ImageLoader, imageCreator: DefaultImageCreator, workerQueue: dispatch_queue_t) {
         self.imageLoader = imageLoader
         self.imageCreator = imageCreator
         self.workerQueue = DispatchQueue(dispatchQueue: workerQueue)

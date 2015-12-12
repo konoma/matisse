@@ -9,6 +9,7 @@
 import Foundation
 
 
+@objc(MTSImageTransformation)
 public protocol ImageTransformation : NSObjectProtocol {
     
     func transformImage(image: CGImage) throws -> CGImage
