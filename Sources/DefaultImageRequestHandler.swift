@@ -12,12 +12,12 @@ import Foundation
 public class DefaultImageRequestHandler: NSObject, ImageRequestHandler {
     
     private let imageLoader: ImageLoader
-    private let imageCreator: ImageCreator
+    private let imageCreator: DefaultImageCreator
     private let workerQueue: DispatchQueue
     
     public init(
         imageLoader: ImageLoader,
-        imageCreator: ImageCreator = ImageCreator(),
+        imageCreator: DefaultImageCreator = DefaultImageCreator(),
         workerQueue: dispatch_queue_t = dispatch_queue_create("ch.konoma.matisse/creatorQueue", DISPATCH_QUEUE_CONCURRENT))
     {
         self.imageLoader = imageLoader

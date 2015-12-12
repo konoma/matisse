@@ -1,5 +1,5 @@
 //
-//  ImageCreator.swift
+//  DefaultImageCreator.swift
 //  Matisse
 //
 //  Created by Markus Gasser on 29.11.15.
@@ -10,8 +10,8 @@ import Foundation
 import ImageIO
 
 
-@objc(MTSImageCreator)
-public class ImageCreator: NSObject {
+@objc(MTSDefaultImageCreator)
+public class DefaultImageCreator: NSObject {
     
     public func createImageFromURL(url: NSURL, request: ImageRequest) throws -> UIImage {
         let rawImage = try createCGImageFromURL(url)
