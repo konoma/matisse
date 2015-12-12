@@ -19,26 +19,26 @@ import Foundation
  * This is then for example used to implement request coalescing.
  */
 @objc(MTSImageRequest)
-public class ImageRequest : NSObject {
-    
+public class ImageRequest: NSObject {
+
     /// The unique identifier for this request
     public let identifier: NSUUID
-    
+
     /// The source URL for this image
-    public let URL: NSURL
-    
+    public let url: NSURL
+
     /// Any transformations to apply after downloading the image
     public let transformations: [ImageTransformation]
-    
+
     /**
      * Create a new image request.
      */
-    public init(URL: NSURL, transformations: [ImageTransformation]) {
+    public init(url: NSURL, transformations: [ImageTransformation]) {
         self.identifier = NSUUID()
-        self.URL = URL
+        self.url = url
         self.transformations = transformations
     }
-    
+
     /**
      * A description created by combining the URL and any transformations.
      *
@@ -47,6 +47,6 @@ public class ImageRequest : NSObject {
      * order).
      */
     public var descriptor: String {
-        return URL.absoluteString + ";" + (transformations.map { $0.descriptor }).joinWithSeparator(";")
+        return url.absoluteString + ";" + (transformations.map { $0.descriptor }).joinWithSeparator(";")
     }
 }

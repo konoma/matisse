@@ -11,8 +11,8 @@ import Foundation
 
 @objc(MTSImageCache)
 public protocol ImageCache: NSObjectProtocol {
-    
+
     func storeImage(image: UIImage, forRequest request: ImageRequest, withCost cost: Int)
-    
+
     func retrieveImageForRequest(request: ImageRequest) -> UIImage?
 }

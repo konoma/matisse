@@ -49,16 +49,16 @@ import Foundation
 /// `ImageRequestHandler` instance when creating the context.
 ///
 @objc(MTSMatisseContext)
-public class MatisseContext : NSObject {
-    
+public class MatisseContext: NSObject {
+
     // MARK: - Initialization
-    
+
     private let fastCache: ImageCache?
     private let slowCache: ImageCache?
     private let requestQueue: CoalescingTaskQueue<RequestWorker>
     private let syncQueue: DispatchQueue
-    
-    
+
+
     /// Create a custom matisse context with the given caches and request handler.
     ///
     /// You only need to create a custom `MatisseContext` if you want to create your own DSL object.
@@ -81,7 +81,7 @@ public class MatisseContext : NSObject {
             syncQueue: dispatch_queue_create("ch.konoma.matisse/syncQueue", DISPATCH_QUEUE_SERIAL)
         )
     }
-    
+
     /// The internal constructor that also allows to pass the dispatch queue to act as sync queue. Used for testing.
     internal init(fastCache: ImageCache?, slowCache: ImageCache?, requestHandler: ImageRequestHandler, syncQueue: dispatch_queue_t) {
         self.fastCache = fastCache
@@ -89,10 +89,10 @@ public class MatisseContext : NSObject {
         self.syncQueue = DispatchQueue(dispatchQueue: syncQueue)
         self.requestQueue = CoalescingTaskQueue(worker: RequestWorker(requestHandler: requestHandler), syncQueue: self.syncQueue)
     }
-    
-    
+
+
     // MARK: - Handling Image Requests
-    
+
     /// Executes the given `ImageRequest` and returns the result asynchronously.
     ///
     /// First the request is attempted to resolve using the fast cache on the main
@@ -129,10 +129,10 @@ public class MatisseContext : NSObject {
             DispatchQueue.main.async { completion(image, nil) }
             return image
         }
-        
+
         // if we can't get an image out of the fast cache, go to background
         syncQueue.async {
-            
+
             // secondly try to get an image from the slow cache
             if let image = self.slowCache?.retrieveImageForRequest(request) {
                 DispatchQueue.main.async {
@@ -142,16 +142,16 @@ public class MatisseContext : NSObject {
                 }
                 return
             }
-            
+
             // if we can't get a cached image, try to retrieve it from the handler and cache it in turn
             self.requestQueue.submit(request,
-                
+
                 requestCompletion: { image, error in
                     if let image = image {
                         self.cacheImage(image, forRequest: request)
                     }
                 },
-                
+
                 taskCompletion: { image, error in
                     DispatchQueue.main.async {
                         completion(image, error)
@@ -159,43 +159,43 @@ public class MatisseContext : NSObject {
                 }
             )
         }
-        
+
         // return nil for all requests resolved in background
         return nil
     }
-    
-    
+
+
     // MARK: - Helper
-    
+
     /// Cache an image both in the fast and the slow cache
     private func cacheImage(image: UIImage, forRequest request: ImageRequest) {
         let cost = 0 // to be calculated, e.g. using the time it took to create the image
-        
+
         // cache the result in the slow cache on the background sync queue
         self.syncQueue.async {
             self.slowCache?.storeImage(image, forRequest: request, withCost: cost)
         }
-        
+
         // cache the result in the fast cache on the main queue
         DispatchQueue.main.async {
             self.fastCache?.storeImage(image, forRequest: request, withCost: cost)
         }
     }
-    
-    
+
+
     /// Worker implementation for the image request handler to support task coalescing.
     private class RequestWorker: CoalescingTaskQueueWorker {
-        
+
         let requestHandler: ImageRequestHandler
-        
+
         init(requestHandler: ImageRequestHandler) {
             self.requestHandler = requestHandler
         }
-        
+
         func handleTask(task: ImageRequest, completion: (UIImage?, NSError?) -> Void) {
             requestHandler.retrieveImageForRequest(task, completion: completion)
         }
-        
+
         func canCoalesceTask(newTask: ImageRequest, withTask currentTask: ImageRequest) -> Bool {
             return newTask.descriptor == currentTask.descriptor
         }

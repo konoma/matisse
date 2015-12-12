@@ -16,8 +16,8 @@ import Foundation
 /// the `ImageLoaderBase` as a parent class for your image loader.
 ///
 @objc(MTSImageLoader)
-public protocol ImageLoader : NSObjectProtocol {
-    
+public protocol ImageLoader: NSObjectProtocol {
+
     /// Load the image for the given request.
     ///
     /// When the image was loaded, pass an NSURL of a temporary file
@@ -40,10 +40,10 @@ public protocol ImageLoader : NSObjectProtocol {
 ///
 @objc(MTSImageLoaderBase)
 public class ImageLoaderBase: NSObject, ImageLoader {
-    
+
     /// The file manager used to create the temporary directory if necessary
     public let fileManager: NSFileManager
-    
+
     /// Create a new instance of this class.
     ///
     /// - Parameters:
@@ -52,7 +52,7 @@ public class ImageLoaderBase: NSObject, ImageLoader {
     public init(fileManager: NSFileManager = NSFileManager()) {
         self.fileManager = fileManager
     }
-    
+
     /// Load the image for the given request.
     ///
     /// Implements the `ImageLoader` protocol requirement. This method first creates a temporary file path
@@ -78,26 +78,26 @@ public class ImageLoaderBase: NSObject, ImageLoader {
                 // A likely error is that this directory already exists
             }
         }
-        
+
         // call the actual implementation to really download the image
-        loadImageAtURL(request.URL, toURL: destinationURL) { response, error in
+        loadImageAtURL(request.url, toURL: destinationURL) { response, error in
             // handle any response error
             guard let response = response else {
                 completion(nil, error ?? NSError.matisseUnknownError())
                 return
             }
-            
+
             // check for a 200 OK status code from the server
             if let httpResponse = response as? NSHTTPURLResponse where httpResponse.statusCode != 200 {
                 completion(nil, NSError.matisseDownloadError("Unexpected status code \(httpResponse.statusCode) (expected 200)"))
                 return
             }
-            
+
             // all good!
             completion(destinationURL, nil)
         }
     }
-    
+
     /// Donwload the image at the given source URL to a destination URL.
     ///
     /// This method is called by the default implementation of `loadImageForRequest(_:, completion:)` to actually
@@ -113,7 +113,7 @@ public class ImageLoaderBase: NSObject, ImageLoader {
     public func loadImageAtURL(sourceURL: NSURL, toURL destinationURL: NSURL, completion: (NSURLResponse?, NSError?) -> Void) {
         fatalError("You must override this method in a subclass")
     }
-    
+
     /// Create a unique temporary file URL.
     ///
     /// - Returns: A path to a unique temporary file.

@@ -11,21 +11,21 @@ import Foundation
 
 @objc(MTSMemoryImageCache)
 public class MemoryImageCache: NSObject, ImageCache {
-    
+
     private let cache: NSCache
-    
+
     public override convenience init() {
         self.init(cache: NSCache())
     }
-    
+
     public init(cache: NSCache) {
         self.cache = cache
     }
-    
+
     public func storeImage(image: UIImage, forRequest request: ImageRequest, withCost cost: Int) {
         cache.setObject(image, forKey: request.descriptor, cost: cost)
     }
-    
+
     public func retrieveImageForRequest(request: ImageRequest) -> UIImage? {
         return cache.objectForKey(request.descriptor) as? UIImage
     }

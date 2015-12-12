@@ -11,9 +11,9 @@ import Foundation
 
 
 @objc(MTSImageRequestTarget)
-public protocol ImageRequestTarget : NSObjectProtocol {
-    
+public protocol ImageRequestTarget: NSObjectProtocol {
+
     var matisseRequestIdentifier: NSUUID? { get set }
-    
+
     func updateForImageRequest(imageRequest: ImageRequest, image: UIImage?, error: NSError?)
 }

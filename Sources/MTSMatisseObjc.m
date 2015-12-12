@@ -37,7 +37,7 @@
 #pragma mark - Creating Requests
 
 - (MTSObjcImageRequestCreator *)load:(NSURL *)url {
-    MTSImageRequestBuilder *builder = [[MTSImageRequestBuilder alloc] initWithContext:self.context URL:url];
+    MTSImageRequestBuilder *builder = [[MTSImageRequestBuilder alloc] initWithContext:self.context url:url];
     return [[MTSObjcImageRequestCreator alloc] initWithRequestBuilder:builder];
 }
 

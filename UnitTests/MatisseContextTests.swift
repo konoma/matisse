@@ -20,7 +20,7 @@ class MatisseContextTests: XCTestCase {
     var matisse: MatisseContext!
     
     let sampleImage = UIImage()
-    let sampleRequest = ImageRequest(URL: NSURL(string: "test://request")!, transformations: [])
+    let sampleRequest = ImageRequest(url: NSURL(string: "test://request")!, transformations: [])
     
     
     override func setUp() {
@@ -119,7 +119,7 @@ class MatisseContextTests: XCTestCase {
         // slow cache does not return an image for the request
         // handler will return an image
         requestHandler.responses[sampleRequest.identifier] = sampleImage
-        let secondRequest = ImageRequest(URL: sampleRequest.URL, transformations: sampleRequest.transformations)
+        let secondRequest = ImageRequest(url: sampleRequest.url, transformations: sampleRequest.transformations)
         
         var asyncImage1: UIImage?
         var asyncImage2: UIImage?
@@ -135,7 +135,7 @@ class MatisseContextTests: XCTestCase {
         // slow cache does not return an image for the request
         // handler will return an image
         requestHandler.responses[sampleRequest.identifier] = sampleImage
-        let secondRequest = ImageRequest(URL: sampleRequest.URL, transformations: sampleRequest.transformations)
+        let secondRequest = ImageRequest(url: sampleRequest.url, transformations: sampleRequest.transformations)
         
         var done = false
         matisse.executeRequest(sampleRequest) { image, error in }

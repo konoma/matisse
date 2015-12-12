@@ -30,12 +30,12 @@ import Foundation
 ///     customMatisse.load(imageURL).showIn(myImageView)
 ///
 public class Matisse {
-    
+
     // MARK: - Initialization
-    
+
     /// The internal MatisseContext that handles image requests
     private let context: MatisseContext
-    
+
     /// Create a custom instance of the Matisse DSL class.
     ///
     /// If for some reason you need to have multiple different Matisse DSL objects you can create
@@ -47,10 +47,10 @@ public class Matisse {
     public init(context: MatisseContext) {
         self.context = context
     }
-    
-    
+
+
     // MARK: - Creating Requests
-    
+
     /// Start a new image request for the given URL.
     ///
     /// - Parameters:
@@ -59,18 +59,18 @@ public class Matisse {
     /// - Returns: An image request creator configured for the given URL.
     ///
     public func load(url: NSURL) -> SwiftImageRequestCreator {
-        let requestBuilder = ImageRequestBuilder(context: self.context, URL: url)
+        let requestBuilder = ImageRequestBuilder(context: self.context, url: url)
         return SwiftImageRequestCreator(requestBuilder: requestBuilder)
     }
 
 
     // MARK: - Shared Matisse Instance - Configuration
-    
+
     private static var _sharedInstance: Matisse?
     private static var _fastCache: ImageCache? = MemoryImageCache()
     private static var _slowCache: ImageCache? = DiskImageCache()
     private static var _requestHandler: ImageRequestHandler = DefaultImageRequestHandler(imageLoader: DefaultImageLoader())
-    
+
 
     /// Use a different fast cache for the shared Matisse instance.
     ///
@@ -84,10 +84,10 @@ public class Matisse {
     public class func useFastCache(cache: ImageCache?) {
         checkMainThread()
         checkUnused()
-        
+
         _fastCache = cache
     }
-    
+
     /// Use a different slow cache for the shared Matisse instance.
     ///
     /// - Note:
@@ -100,10 +100,10 @@ public class Matisse {
     public class func useSlowCache(cache: ImageCache?) {
         checkMainThread()
         checkUnused()
-        
+
         _slowCache = cache
     }
-    
+
     /// Use a different request handler for the shared Matisse instance.
     ///
     /// - Note:
@@ -116,10 +116,10 @@ public class Matisse {
     public class func useRequestHandler(requestHandler: ImageRequestHandler) {
         checkMainThread()
         checkUnused()
-        
+
         _requestHandler = requestHandler
     }
-    
+
     /// Access the shared Matisse instance.
     ///
     /// When first accessed the instance is built using the current configuration.
@@ -132,17 +132,17 @@ public class Matisse {
     ///
     public class func shared() -> Matisse {
         checkMainThread()
-        
+
         if _sharedInstance == nil {
             let context = MatisseContext(fastCache: _fastCache, slowCache: _slowCache, requestHandler: _requestHandler)
             _sharedInstance = Matisse(context: context)
         }
         return _sharedInstance!
     }
-    
-    
+
+
     // MARK: - Shared Matisse Instance - Creating Requests
-    
+
     /// Start a new image request for the given URL using the shared Matisse instance.
     ///
     /// - Parameters:
@@ -153,15 +153,15 @@ public class Matisse {
     public class func load(url: NSURL) -> SwiftImageRequestCreator {
         return shared().load(url)
     }
-    
-    
+
+
     // MARK: - Helpers
-    
+
     /// Checks wether the shared instance was already built
     private class func checkUnused() {
         assert(_sharedInstance == nil, "You cannot modify the shared Matisse instance after it was first used")
     }
-    
+
     /// Checks that all access is done on the main thread
     private class func checkMainThread() {
         assert(NSThread.isMainThread(), "You must access Matisse from the main thread")
@@ -198,14 +198,14 @@ public class Matisse {
 ///       }
 ///
 public class SwiftImageRequestCreator {
-    
+
     private let requestBuilder: ImageRequestBuilder
-    
+
     /// Create a new request creator with the given builder.
     internal init(requestBuilder: ImageRequestBuilder) {
         self.requestBuilder = requestBuilder
     }
-    
+
     /// Append a transformation to this image request.
     ///
     /// This will apply the passed transformation to the image when the requested
@@ -222,7 +222,7 @@ public class SwiftImageRequestCreator {
         requestBuilder.addTransformation(transformation)
         return self
     }
-    
+
     /// Creates the image request and fetches it using the configured Matisse context.
     ///
     /// Downloading and preparing the image are performed in the background. After it
@@ -236,7 +236,7 @@ public class SwiftImageRequestCreator {
     public func fetch(completion: (ImageRequest, UIImage?, NSError?) -> Void) -> UIImage? {
         return requestBuilder.fetch(completion)
     }
-    
+
     /// Fetches the image and passes it to the given `ImageRequestTarget`.
     ///
     /// This method checks wether the target is still valid after the request resolves,
@@ -249,7 +249,7 @@ public class SwiftImageRequestCreator {
     public func showIn(target: ImageRequestTarget) {
         requestBuilder.showInTarget(target)
     }
-    
+
     /// Same as `showInTarget(_: ImageRequestTarget)` but repeated here because of swift limitations.
     ///
     public func showIn(imageView: UIImageView) {

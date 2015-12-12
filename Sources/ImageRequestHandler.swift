@@ -11,6 +11,6 @@ import Foundation
 
 @objc(MTSImageRequestHandler)
 public protocol ImageRequestHandler: NSObjectProtocol {
-    
+
     func retrieveImageForRequest(request: ImageRequest, completion: (UIImage?, NSError?) -> Void)
 }

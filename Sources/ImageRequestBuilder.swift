@@ -12,13 +12,13 @@ import Foundation
 /// ImageRequestBuilder provides a common interface for creating an ImageRequest.
 ///
 @objc(MTSImageRequestBuilder)
-public class ImageRequestBuilder : NSObject {
-    
+public class ImageRequestBuilder: NSObject {
+
     private let context: MatisseContext
-    private let URL: NSURL
+    private let url: NSURL
     private var transformations: [ImageTransformation] = []
     private var builtRequest: ImageRequest?
-    
+
     /// Create a new image request builder.
     ///
     /// You don't need to create a builder yourself usually. Instead use the `load(url:)`
@@ -28,14 +28,14 @@ public class ImageRequestBuilder : NSObject {
     ///   - context: The Matisse instance to execute the built request in.
     ///   - URL: The source URL of the image to fetch.
     ///
-    public init(context: MatisseContext, URL: NSURL) {
+    public init(context: MatisseContext, url: NSURL) {
         self.context = context
-        self.URL = URL
+        self.url = url
     }
-    
-    
+
+
     // MARK: - Configuring and Building the Request
-    
+
     /// Add a new image transformation to the request.
     ///
     /// Transformations will be applied in the order they are added to the request.
@@ -47,11 +47,11 @@ public class ImageRequestBuilder : NSObject {
     ///
     public func addTransformation(transformation: ImageTransformation) {
         checkNotYetBuilt()
-        
+
         transformations.append(transformation)
     }
-    
-    
+
+
     /// The image request created by this builder.
     ///
     /// If accessed for the first time it creates the image request using the current
@@ -62,15 +62,15 @@ public class ImageRequestBuilder : NSObject {
         if let request = builtRequest {
             return request
         }
-        
-        let request = ImageRequest(URL: URL, transformations: transformations)
+
+        let request = ImageRequest(url: url, transformations: transformations)
         builtRequest = request
         return request
     }
-    
-    
+
+
     // MARK: - Executing the Request
-    
+
     /// Creates the image request and fetches it using the configured Matisse context.
     ///
     /// Downloading and preparing the image are performed in the background. After it
@@ -83,12 +83,12 @@ public class ImageRequestBuilder : NSObject {
     ///
     public func fetch(completion: (ImageRequest, UIImage?, NSError?) -> Void) -> UIImage? {
         let request = imageRequest
-        
+
         return context.executeRequest(request) { image, error in
             completion(request, image, error)
         }
     }
-    
+
     /// Fetches the image and passes it to the given `ImageRequestTarget`.
     ///
     /// This method checks wether the target is still valid after the request resolves,
@@ -100,7 +100,7 @@ public class ImageRequestBuilder : NSObject {
     ///
     public func showInTarget(target: ImageRequestTarget) {
         target.matisseRequestIdentifier = imageRequest.identifier
-        
+
         fetch { request, image, error in
             if target.matisseRequestIdentifier == request.identifier {
                 target.updateForImageRequest(request, image: image, error: error)
@@ -108,10 +108,10 @@ public class ImageRequestBuilder : NSObject {
             }
         }
     }
-    
-    
+
+
     // MARK: - Helper
-    
+
     private func checkNotYetBuilt() {
         assert(builtRequest == nil, "Cannot modify the request because it was already built")
     }
