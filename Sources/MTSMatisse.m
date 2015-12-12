@@ -1,23 +1,16 @@
 //
-//  MTSMatisseObjc.m
+//  MTSMatisse.m
 //  Matisse
 //
 //  Created by Markus Gasser on 12.12.15.
 //  Copyright © 2015 konoma GmbH. All rights reserved.
 //
 
-#import "MTSMatisseObjc.h"
+#import "MTSMatisse.h"
+#import "MTSObjcImageRequestCreator.h"
+#import "MTSObjcImageRequestCreator+Internal.h"
 
 #import <Matisse/Matisse-Swift.h>
-
-
-@interface MTSObjcImageRequestCreator ()
-
-- (instancetype)initWithRequestBuilder:(MTSImageRequestBuilder *)builder;
-
-@property (nonatomic, readonly) MTSImageRequestBuilder *requestBuilder;
-
-@end
 
 
 @implementation MTSMatisse
@@ -107,44 +100,5 @@ static id<MTSImageRequestHandler> _requestHandler;
 + (void)checkMainThread {
     NSAssert([NSThread isMainThread], @"You must access Matisse from the main thread");
 }
-
-@end
-
-
-@implementation MTSObjcImageRequestCreator
-
-#pragma mark - Initialization
-
-- (instancetype)initWithRequestBuilder:(MTSImageRequestBuilder *)builder {
-    NSParameterAssert(builder != nil);
-    
-    if ((self = [super init])) {
-        _requestBuilder = builder;
-    }
-    return self;
-}
-
-
-#pragma mark - Modifying the Request
-
-MTS_IMPLEMENT_CREATOR_METHOD(transform, ^(id<MTSImageTransformation> transformation) {
-    [self.requestBuilder addTransformation:transformation];
-    return self;
-})
-
-
-#pragma mark - Executing the Request
-
-MTS_IMPLEMENT_CREATOR_METHOD(fetch, ^(void(^completion)(MTSImageRequest*, UIImage*, NSError*)) {
-    return [self.requestBuilder fetch:completion];
-});
-
-MTS_IMPLEMENT_CREATOR_METHOD(showInTarget, ^(id<MTSImageRequestTarget> target) {
-    return [self.requestBuilder showInTarget:target];
-});
-
-MTS_IMPLEMENT_CREATOR_METHOD(showIn, ^(UIImageView *imageView) {
-    return [self.requestBuilder showInTarget:(id)imageView];
-});
 
 @end

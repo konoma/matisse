@@ -67,14 +67,6 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="Global Variables.html">Global Variables</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="Global Variables.html#/s:v7Matisse18MatisseErrorDomainSS">MatisseErrorDomain</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
             <a href="Enums.html">Enums</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -229,7 +221,7 @@ is then cached if possible and returned for all equivalent requests.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">MatisseContext</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">MatisseContext</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
 
                         </div>
                       </div>
@@ -354,13 +346,6 @@ customMatisse.load(imageURL).showIn(myImageView)
               </ul>
             </div>
             <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Request%20Creator"></a>
-                <a name="//apple_ref/swift/Section/Request Creator" class="dashAnchor"></a>
-                <a href="#/Request%20Creator">
-                  <h3 class="section-name">Request Creator</h3>
-                </a>
-              </div>
               <ul>
                 <li class="item">
                   <div>
@@ -390,21 +375,17 @@ a <code><a href="Classes/Matisse.html">Matisse</a></code> instance or on the cla
 <pre class="highlight plaintext"><code>Matisse.load(exampleURL).resizeTo(width: 100.0, height: 100.0).showIn(imageView)
 </code></pre>
 
-<div class="aside aside-note">
-          <p class="aside-title">Note</p>
-          <p>If you create custom image transformations, you should add an extension to this
+<p>If you create custom image transformations, you should add an extension to this
 creator. Make sure you return the creator instance so that a fluid call chain can
 be maintained.</p>
 
-<p>extension MatisseImageRequestCreator {</p>
-<pre class="highlight plaintext"><code>  func circleCrop() -&gt; ImageRequestBuilder {
-      return transform(CircleCropTransformation())
-  }
+<pre class="highlight plaintext"><code>extension MatisseImageRequestCreator {
+
+    func circleCrop() -&gt; ImageRequestBuilder {
+        return transform(CircleCropTransformation())
+    }
+}
 </code></pre>
-
-<p>}</p>
-
-        </div>
 
                         <a href="Classes/SwiftImageRequestCreator.html" class="slightly-smaller">See more</a>
                       </div>
@@ -444,7 +425,7 @@ be maintained.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ImageRequestBuilder</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ImageRequestBuilder</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
 
                         </div>
                       </div>
@@ -506,7 +487,7 @@ be maintained.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ImageRequest</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ImageRequest</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
 
                         </div>
                       </div>

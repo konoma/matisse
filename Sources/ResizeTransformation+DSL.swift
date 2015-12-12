@@ -9,6 +9,7 @@
 import UIKit
 
 
+/// This is a test
 public extension SwiftImageRequestCreator {
 
     public func resizeTo(targetSize: CGSize, contentMode: UIViewContentMode = .ScaleToFill) -> Self {

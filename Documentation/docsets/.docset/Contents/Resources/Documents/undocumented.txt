@@ -24,16 +24,16 @@ ImageCache.swift
 	func storeImage(image: UIImage, forRequest request: ImageRequest, withCost cost: Int)
 	func retrieveImageForRequest(request: ImageRequest) -> UIImage?
 ImageTransformation.swift
-	public protocol ImageTransformation : NSObjectProtocol
+	public protocol ImageTransformation: NSObjectProtocol
 	func transformImage(image: CGImage) throws -> CGImage
 	var descriptor: String { get }
 DefaultImageLoader.swift
-	public class DefaultImageLoader : ImageLoaderBase
+	public class DefaultImageLoader: ImageLoaderBase
 	public init(urlSession: NSURLSession, fileManager: NSFileManager)
 	public convenience init()
 	public override func loadImageAtURL(sourceURL: NSURL, toURL destinationURL: NSURL, completion: (NSURLResponse?, NSError?) -> Void)
 ImageRequestTarget.swift
-	public protocol ImageRequestTarget : NSObjectProtocol
+	public protocol ImageRequestTarget: NSObjectProtocol
 	var matisseRequestIdentifier: NSUUID? { get set }
 	func updateForImageRequest(imageRequest: ImageRequest, image: UIImage?, error: NSError?)
 MemoryImageCache.swift
@@ -43,11 +43,11 @@ MemoryImageCache.swift
 	public func storeImage(image: UIImage, forRequest request: ImageRequest, withCost cost: Int)
 	public func retrieveImageForRequest(request: ImageRequest) -> UIImage?
 MatisseErrors.swift
-	public let MatisseErrorDomain: String = "MatisseErrorDomain"
 	public enum MatisseErrorCode: Int
 	case Unknown = 0
 	case DownloadError = 1
 	case CreationError = 2
+	public static var MatisseErrorDomain: String { return "MatisseErrorDomain" }
 	public var isMatisseError: Bool
 	public var matisseErrorCode: MatisseErrorCode
 	public class func matisseUnknownError(message: String? = nil) -> NSError
@@ -58,7 +58,7 @@ ImageRequestHandler.swift
 	public protocol ImageRequestHandler: NSObjectProtocol
 	func retrieveImageForRequest(request: ImageRequest, completion: (UIImage?, NSError?) -> Void)
 ResizeTransformation.swift
-	public class ResizeTransformation : NSObject, ImageTransformation
+	public class ResizeTransformation: NSObject, ImageTransformation
 	public let targetSize: CGSize
 	public let contentMode: UIViewContentMode
 	public let deviceScale: CGFloat

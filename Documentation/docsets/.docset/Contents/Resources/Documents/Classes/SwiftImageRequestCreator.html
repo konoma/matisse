@@ -68,14 +68,6 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Global Variables.html">Global Variables</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="../Global Variables.html#/s:v7Matisse18MatisseErrorDomainSS">MatisseErrorDomain</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
             <a href="../Enums.html">Enums</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -141,21 +133,17 @@ a <code><a href="../Classes/Matisse.html">Matisse</a></code> instance or on the 
 <pre class="highlight plaintext"><code>Matisse.load(exampleURL).resizeTo(width: 100.0, height: 100.0).showIn(imageView)
 </code></pre>
 
-<div class="aside aside-note">
-          <p class="aside-title">Note</p>
-          <p>If you create custom image transformations, you should add an extension to this
+<p>If you create custom image transformations, you should add an extension to this
 creator. Make sure you return the creator instance so that a fluid call chain can
 be maintained.</p>
 
-<p>extension MatisseImageRequestCreator {</p>
-<pre class="highlight plaintext"><code>  func circleCrop() -&gt; ImageRequestBuilder {
-      return transform(CircleCropTransformation())
-  }
+<pre class="highlight plaintext"><code>extension MatisseImageRequestCreator {
+
+    func circleCrop() -&gt; ImageRequestBuilder {
+        return transform(CircleCropTransformation())
+    }
+}
 </code></pre>
-
-<p>}</p>
-
-        </div>
 
           </section>
           <section class="section task-group-section">

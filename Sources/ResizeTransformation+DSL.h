@@ -6,7 +6,7 @@
 //  Copyright © 2015 konoma GmbH. All rights reserved.
 //
 
-#import <Matisse/MTSMatisseObjc.h>
+#import <Matisse/MTSObjcImageRequestCreator.h>
 
 
 @interface MTSObjcImageRequestCreator (ResizeTransformation)
