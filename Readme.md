@@ -11,6 +11,10 @@ a single line:
 
     Matisse.load(imageURL).showIn(imageView)
 
+Or in Objective-C:
+
+    [MTSMatisse load:imageURL].showIn(imageView)
+
 This automatically takes care of downloading, caching and showing the image
 in the view. If you use this code in a `UITableViewDataSource` it also makes
 sure that the correct image is shown even in case of a cell reuse.

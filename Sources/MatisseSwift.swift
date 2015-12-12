@@ -25,7 +25,7 @@ import Foundation
 ///
 /// Example:
 ///
-///     let customMatisse = Matisse(preconfiguredContext)
+///     let customMatisse = Matisse(context: preconfiguredContext)
 ///
 ///     customMatisse.load(imageURL).showIn(myImageView)
 ///

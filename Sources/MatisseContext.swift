@@ -9,51 +9,47 @@
 import Foundation
 
 
-/**
- * The context object which schedules and executes image loading requests.
- *
- * This is the main object you interact with to fetch images. Usually
- * this is done via the class method itself. A simple example would be
- *
- *     Matisse.load(imageURL).into(myImageView)
- *
- * The Matisse class itself actually only provides the means to execute an
- * ImageRequest. DSL related methods can be found on `ImageRequestBuilder`.
- *
- * Caching in Matisse is done on two levels: fast and slow.
- *
- * The fast cache is read/written directly on the main thread and therefore
- * must retrieve and store images fast (as the name indicates). This is
- * usually implemented using some kind of in-memory cache (like `NSCache`).
- * The default Matisse instance uses the `MemoryImageCache` for this if not
- * explicitely configured.
- *
- * The second level is the slow cache. This cache will only be accessed
- * from the syncQueue which should be the background. The slow cache may take
- * more time to retrieve cache images, often involving file IO. The default
- * Matisse instance uses the `DiskImageCache` if not explicitely configured.
- */
+/// The context object that schedules and executes image loading requests.
+///
+/// This is the central class coordinating image loading, creating and caching.
+/// It also takes care of request coalescing, so that multiple requests for the same
+/// image only need to do the download and creation once.
+///
+///
+/// ## Caching
+///
+/// Caching in Matisse is done on two levels: fast and slow.
+///
+/// The fast cache is read/written directly on the main thread and therefore
+/// must retrieve and store images fast (as the name indicates). This is
+/// usually implemented using some kind of in-memory cache (like `NSCache`).
+/// The default Matisse instance uses the `MemoryImageCache` for this if not
+/// explicitely configured.
+///
+/// The second level is the slow cache. This cache will only be accessed from the sync
+/// queue which is in the background. The slow cache may take more time to retrieve
+/// cache images, and will often involve file IO.
+///
+/// You provide the fast and slow cache in the initializer as classes implementing
+/// `ImageCache`. You may disable one or both chaches by passing `nil` instead of
+/// a cache object.
+///
+///
+/// ## Request Handling
+///
+/// When an image request is submitted, the context first tries to find a matching
+/// image in the slow cache, and if this fails the fast cache. If that fails, it
+/// tries to find a currently executed request that is equivalent to the submitted
+/// request. If such a request is found then the result of the running request will
+/// be used for this request too. In case no such request can be found then the
+/// contexts `ImageRequestHandler` is asked to fullfill the image request. The result
+/// is then cached if possible and returned for all equivalent requests.
+///
+/// If you want to customize downloading or image creation behavior, pass a custom
+/// `ImageRequestHandler` instance when creating the context.
+///
 @objc(MTSMatisseContext)
 public class MatisseContext : NSObject {
-    
-    /// Worker implementation for the image request handler to support task coalescing.
-    private class RequestWorker: CoalescingTaskQueueWorker {
-        
-        let requestHandler: ImageRequestHandler
-        
-        init(requestHandler: ImageRequestHandler) {
-            self.requestHandler = requestHandler
-        }
-        
-        func handleTask(task: ImageRequest, completion: (UIImage?, NSError?) -> Void) {
-            requestHandler.retrieveImageForRequest(task, completion: completion)
-        }
-        
-        func canCoalesceTask(newTask: ImageRequest, withTask currentTask: ImageRequest) -> Bool {
-            return newTask.descriptor == currentTask.descriptor
-        }
-    }
-    
     
     // MARK: - Initialization
     
@@ -62,31 +58,21 @@ public class MatisseContext : NSObject {
     private let requestQueue: CoalescingTaskQueue<RequestWorker>
     private let syncQueue: DispatchQueue
     
-    /**
-     * Create a custom instance of Matisse.
-     *
-     * If for some reason you need a second Matisse instance you can create
-     * one yourself. You need to specify the fast cache, the slow cache and
-     * the image request handler. Optionally you can also pass a queue to be
-     * used as the synchronization queue, though this is mostly intended for
-     * testing purposes.
-     * 
-     * If you pass `nil` for either of the caches, caching at that level is
-     * disabled.
-     *
-     * You should not have to use this very often, instead you would configure
-     * the shared Matisse instance using e.g. `Matisse.useFastCache(myCache)`
-     * at the beginning of your program.
-     *
-     * - Parameters:
-     *   - fastCache:      The cache to use on the main thread. Pass `nil` to disable.
-     *   - slowCache:      The cache that is used from the background. Pass `nil` to disable.
-     *   - requestHandler: The ImageRequestHandler that is used to resolve
-     *                     requests that were not cached.
-     *
-     * - Returns:
-     *   A custom Matisse instance.
-     */
+    
+    /// Create a custom matisse context with the given caches and request handler.
+    ///
+    /// You only need to create a custom `MatisseContext` if you want to create your own DSL object.
+    /// If you want to configure the main DSL object you can do so directly using class methods on
+    /// the DSL class (see the respective class documentation for Swift/Objective-C).
+    ///
+    /// - Parameters:
+    ///   - fastCache:      The cache to use as fast cache (on the main thread). Pass `nil` to disable the fast cache.
+    ///   - slowCache:      The cache to use as slow cache (in the background). Pass `nil` to disable the slow cache.
+    ///   - requestHandler: The `ImageRequestHandler` that is used to resolve `ImageRequest`s
+    ///
+    /// - Returns:
+    ///   A `MatisseContext` configured with the given caches and request handler.
+    ///
     public convenience init(fastCache: ImageCache?, slowCache: ImageCache?, requestHandler: ImageRequestHandler) {
         self.init(
             fastCache: fastCache,
@@ -96,24 +82,7 @@ public class MatisseContext : NSObject {
         )
     }
     
-    /**
-     * Create a custom instance of Matisse.
-     *
-     * Extended initializer for testing.
-     *
-     * - Parameters:
-     *   - fastCache:      The cache to use on the main thread. Pass `nil` to disable.
-     *   - slowCache:      The cache that is used from the background. Pass `nil` to disable.
-     *   - requestHandler: The ImageRequestHandler that is used to resolve
-     *                     requests that were not cached.
-     *   - syncQueue:      The queue used to synchronize requests. _Must_ be a
-     *                     serial queue, and _should_ be in the background. There
-     *                     is usually no need to change this, and it's provided
-     *                     only for testing.
-     *
-     * - Returns:
-     *   A custom Matisse instance.
-     */
+    /// The internal constructor that also allows to pass the dispatch queue to act as sync queue. Used for testing.
     internal init(fastCache: ImageCache?, slowCache: ImageCache?, requestHandler: ImageRequestHandler, syncQueue: dispatch_queue_t) {
         self.fastCache = fastCache
         self.slowCache = slowCache
@@ -122,34 +91,36 @@ public class MatisseContext : NSObject {
     }
     
     
-    // MARK: - Loading Images
+    // MARK: - Handling Image Requests
     
-    /**
-     * Executes the given image request and returns the result asynchronously.
-     *
-     * This method first tries to fetch the image from the `fastCache`,
-     * directly on the main thread. If this fails, the `slowCache` is tried on
-     * the background in turn. If this cache too has no image, then the
-     * `requestHandler` is called to fetch and prepare the request. The result
-     * is stored in the caches if successful and delivered via the passed
-     * completion block.
-     *
-     * The completion block is always called asynchronous on the main thread.
-     * If the request can be resolved via the fast cache, then the image is
-     * also returned from the method, allowing you to act on it without delay.
-     *
-     * - Note:
-     *   This method must be called from the main thread.
-     *
-     * - Parameters:
-     *   - request:    The image request to resolve.
-     *   - completion: The completion handler that will be called with the result.
-     *                 This is called asynchronously on the main thread.
-     *
-     * - Returns:
-     *   If the request could be resolved using the fast cache, this returns the
-     *   resolved image. Otherwise `nil` is returned.
-     */
+    /// Executes the given `ImageRequest` and returns the result asynchronously.
+    ///
+    /// First the request is attempted to resolve using the fast cache on the main
+    /// thread. If an image is found, it's returned from this method and the completion
+    /// Block is called asynchronously. If this cache misses or no fast cache is set,
+    /// `nil` is returned and the request will be tried to resolve in the background.
+    ///
+    /// First in the background, the slow cache is checked for a match. If successful,
+    /// the completion block is called with the result. If that fails too, the request
+    /// is passed to a queue that manages equivalent requests such that the work of
+    /// downloading and creating the image only needs to be done once. If no equivalent
+    /// request is already being resolved, then this request is resovled using the
+    /// `ImageRequestHandler`. The result of this operation is reported using the
+    /// completion block.
+    ///
+    /// - Note:
+    ///   This method must be called from the main thread
+    ///
+    /// - Parameters:
+    ///   - request:    The image request to resolve.
+    ///   - completion: The completion handler that will be called with the result. This
+    ///                 block is always called asynchronously, even if the request was
+    ///                 resolved using the fast cache.
+    ///
+    /// - Returns:
+    ///   If the request could be resolved using the fast cache, this returns the resolved
+    ///   image. Otherwise `nil` is returned.
+    ///
     public func executeRequest(request: ImageRequest, completion: (UIImage?, NSError?) -> Void) -> UIImage? {
         assert(NSThread.isMainThread(), "You must call this method on the main thread")
 
@@ -193,6 +164,10 @@ public class MatisseContext : NSObject {
         return nil
     }
     
+    
+    // MARK: - Helper
+    
+    /// Cache an image both in the fast and the slow cache
     private func cacheImage(image: UIImage, forRequest request: ImageRequest) {
         let cost = 0 // to be calculated, e.g. using the time it took to create the image
         
@@ -204,6 +179,25 @@ public class MatisseContext : NSObject {
         // cache the result in the fast cache on the main queue
         DispatchQueue.main.async {
             self.fastCache?.storeImage(image, forRequest: request, withCost: cost)
+        }
+    }
+    
+    
+    /// Worker implementation for the image request handler to support task coalescing.
+    private class RequestWorker: CoalescingTaskQueueWorker {
+        
+        let requestHandler: ImageRequestHandler
+        
+        init(requestHandler: ImageRequestHandler) {
+            self.requestHandler = requestHandler
+        }
+        
+        func handleTask(task: ImageRequest, completion: (UIImage?, NSError?) -> Void) {
+            requestHandler.retrieveImageForRequest(task, completion: completion)
+        }
+        
+        func canCoalesceTask(newTask: ImageRequest, withTask currentTask: ImageRequest) -> Bool {
+            return newTask.descriptor == currentTask.descriptor
         }
     }
 }
