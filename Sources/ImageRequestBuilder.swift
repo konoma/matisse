@@ -32,9 +32,6 @@ public class ImageRequestBuilder: NSObject {
     ///   - context: The Matisse instance to execute the built request in.
     ///   - url:     The source URL of the image to fetch.
     ///
-    /// - Returns:
-    ///   An `ImageRequestBuilder` configured for the given `MatisseContext` and URL.
-    ///
     public init(context: MatisseContext, url: NSURL) {
         self.context = context
         self.url = url

@@ -70,9 +70,6 @@ public class MatisseContext: NSObject {
     ///   - slowCache:      The cache to use as slow cache (in the background). Pass `nil` to disable the slow cache.
     ///   - requestHandler: The `ImageRequestHandler` that is used to resolve `ImageRequest`s
     ///
-    /// - Returns:
-    ///   A `MatisseContext` configured with the given caches and request handler.
-    ///
     public convenience init(fastCache: ImageCache?, slowCache: ImageCache?, requestHandler: ImageRequestHandler) {
         self.init(
             fastCache: fastCache,
@@ -83,6 +80,15 @@ public class MatisseContext: NSObject {
     }
 
     /// The internal constructor that also allows to pass the dispatch queue to act as sync queue. Used for testing.
+    ///
+    /// - Parameters:
+    ///   - fastCache:      The cache to use as fast cache (on the main thread). Pass `nil` to disable the fast cache.
+    ///   - slowCache:      The cache to use as slow cache (in the background). Pass `nil` to disable the slow cache.
+    ///   - requestHandler: The `ImageRequestHandler` that is used to resolve `ImageRequest`s
+    ///
+    /// - Returns:
+    ///   A `MatisseContext` configured with the given caches and request handler.
+    ///
     internal init(fastCache: ImageCache?, slowCache: ImageCache?, requestHandler: ImageRequestHandler, syncQueue: dispatch_queue_t) {
         self.fastCache = fastCache
         self.slowCache = slowCache

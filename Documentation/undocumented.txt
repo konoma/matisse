@@ -12,9 +12,8 @@ DiskImageCache.swift
 	public func storeImage(image: UIImage, forRequest request: ImageRequest, withCost cost: Int)
 	public func retrieveImageForRequest(request: ImageRequest) -> UIImage?
 DefaultImageRequestHandler.swift
-	public class DefaultImageRequestHandler: NSObject, ImageRequestHandler
 	public convenience init(imageLoader: ImageLoader)
-	public init(imageLoader: ImageLoader, imageCreator: DefaultImageCreator, workerQueue: dispatch_queue_t)
+	public convenience init(imageLoader: ImageLoader, imageCreator: DefaultImageCreator)
 	public func retrieveImageForRequest(request: ImageRequest, completion: (UIImage?, NSError?) -> Void)
 ResizeTransformation+DSL.swift
 	public func resizeTo(targetSize: CGSize, contentMode: UIViewContentMode = .ScaleToFill) -> Self

@@ -57,7 +57,8 @@
 /// - Parameters:
 ///   - url: The URL to load the image from.
 ///
-/// - Returns: An image request creator configured for the given URL.
+/// - Returns:
+///   An image request creator configured for the given URL.
 ///
 - (MTSObjcImageRequestCreator *)load:(NSURL *)url;
 

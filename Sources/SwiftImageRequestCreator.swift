@@ -38,6 +38,10 @@ public class SwiftImageRequestCreator {
     private let requestBuilder: ImageRequestBuilder
 
     /// Create a new request creator with the given builder.
+    ///
+    /// - Parameters:
+    ///   - requestBuilder: The `ImageRequestBuilder` to create the image request.
+    ///
     internal init(requestBuilder: ImageRequestBuilder) {
         self.requestBuilder = requestBuilder
     }
@@ -49,10 +53,10 @@ public class SwiftImageRequestCreator {
     ///
     /// This method returns the receiver so you can chain calls.
     ///
-    /// - Parameters:
-    ///   - transformation: The `ImageTransformation` to apply to the loaded image.
+    /// - Parameters - transformation: The `ImageTransformation` to apply to the loaded image.
     ///
-    /// - Returns: The receiver
+    /// - Returns:
+    ///   The receiver
     ///
     public func transform(transformation: ImageTransformation) -> Self {
         requestBuilder.addTransformation(transformation)

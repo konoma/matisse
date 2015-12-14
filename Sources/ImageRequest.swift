@@ -28,9 +28,6 @@ public class ImageRequest: NSObject {
     ///   - url:             The URL where to retrieve the image from.
     ///   - transformations: The `ImageTransformation`s to apply to the downloaded image.
     ///
-    /// - Returns:
-    ///   An `ImageRequest` for the given URL and transformations.
-    ///
     public init(url: NSURL, transformations: [ImageTransformation]) {
         self.identifier = NSUUID()
         self.url = url
