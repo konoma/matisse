@@ -11,6 +11,7 @@
 
 @interface NSString (MatisseMD5)
 
+/// Create a MD5 hash from the receiver.
 @property (nonatomic, readonly) NSString *matisseMD5String;
 
 @end

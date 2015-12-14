@@ -13,7 +13,7 @@
     <a title="SwiftImageRequestCreator Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (77% documented)</p>
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -355,16 +355,67 @@ time.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Apply a transformation to resize the image to the given target size with the specified content mode.</p>
+
+<p><li><p>Parameters:</p></p>
+
+<p><ul>
+<li>targetSize:  The target size to resize the image to.</li>
+<li>contentMode: The content mode describing how the image should fit into the target size.
+         Default is <code>UIViewContentMode.ScaleToFill</code>.</li>
+</ul></li>
+<div class="aside aside-returns">
+          <p class="aside-title">Returns</p>
+          <p>The receiver.</p></p>
+<pre class="highlight plaintext"><code>    &lt;/div&gt;
+</code></pre>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">SwiftImageRequestCreator</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">resizeTo</span><span class="p">(</span><span class="nv">targetSize</span><span class="p">:</span> <span class="kt">CGSize</span><span class="p">,</span> <span class="nv">contentMode</span><span class="p">:</span> <span class="kt">UIViewContentMode</span> <span class="o">=</span> <span class="o">.</span><span class="kt">ScaleToFill</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>targetSize</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The target size to resize the image to.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>contentMode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The content mode describing how the image should fit into the target size. Default is <code>UIViewContentMode.ScaleToFill</code>.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The receiver.</p>
+
                       </div>
                     </section>
                   </div>
@@ -382,16 +433,81 @@ time.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Apply a transformation to resize the image to the given target size with the specified content mode.</p>
+
+<p><li><p>Parameters:</p></p>
+
+<p><ul>
+<li>width:       The target width to resize the image to.</li>
+<li>height:      The target height to resize the image to.</li>
+<li>contentMode: The content mode describing how the image should fit into the target size.
+         Default is <code>UIViewContentMode.ScaleToFill</code>.</li>
+</ul></li>
+<div class="aside aside-returns">
+          <p class="aside-title">Returns</p>
+          <p>The receiver.</p></p>
+<pre class="highlight plaintext"><code>    &lt;/div&gt;
+</code></pre>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">SwiftImageRequestCreator</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">resizeTo</span><span class="p">(</span><span class="n">width</span> <span class="nv">width</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">contentMode</span><span class="p">:</span> <span class="kt">UIViewContentMode</span> <span class="o">=</span> <span class="o">.</span><span class="kt">ScaleToFill</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>width</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The target width to resize the image to.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>height</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The target height to resize the image to.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>contentMode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The content mode describing how the image should fit into the target size. Default is <code>UIViewContentMode.ScaleToFill</code>.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The receiver.</p>
+
                       </div>
                     </section>
                   </div>

@@ -12,7 +12,7 @@
     <a title="Classes  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (77% documented)</p>
+        <p><a href="index.html"> Docs</a> (100% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -220,7 +220,8 @@ explicitely configured.</p>
 
 <p>The second level is the slow cache. This cache will only be accessed from the sync
 queue which is in the background. The slow cache may take more time to retrieve
-cache images, and will often involve file IO.</p>
+cache images, and will often involve file IO. The default Matisse instance uses the
+<code><a href="Classes/DiskImageCache.html">DiskImageCache</a></code> for this if not explicitely configured.</p>
 
 <p>You provide the fast and slow cache in the initializer as classes implementing
 <code><a href="Protocols/ImageCache.html">ImageCache</a></code>. You may disable one or both chaches by passing <code>nil</code> instead of
@@ -593,9 +594,17 @@ coalescing.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>An <code><a href="Protocols/ImageTransformation.html">ImageTransformation</a></code> to resize an image.</p>
 
                         <a href="Classes/ResizeTransformation.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ResizeTransformation</span><span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">ImageTransformation</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>

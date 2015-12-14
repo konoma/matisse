@@ -9,18 +9,36 @@
 import UIKit
 
 
+/// An `ImageTransformation` to resize an image.
+///
 @objc(MTSResizeTransformation)
 public class ResizeTransformation: NSObject, ImageTransformation {
 
-    public let targetSize: CGSize
-    public let contentMode: UIViewContentMode
-    public let deviceScale: CGFloat
+    private let targetSize: CGSize
+    private let contentMode: UIViewContentMode
+    private let deviceScale: CGFloat
     private let scaledTargeSize: CGSize
 
+
+    // MARK: - Initialization
+
+    /// Create a new `ResizeTransformation` with the given target size and content mode.
+    ///
+    /// - Parameters:
+    ///   - targetSize:  The target image size.
+    ///   - contentMode: The content mode describing how the image should fit into the target size.
+    ///
     public convenience init(targetSize: CGSize, contentMode: UIViewContentMode) {
         self.init(targetSize: targetSize, contentMode: contentMode, deviceScale: UIScreen.mainScreen().scale)
     }
 
+    /// Create a new `ResizeTransformation` with the given target size and content mode.
+    ///
+    /// - Parameters:
+    ///   - targetSize:  The target image size.
+    ///   - contentMode: The content mode describing how the image should fit into the target size.
+    ///   - deviceScale: The device scale which is applied to the target size.
+    ///
     public init(targetSize: CGSize, contentMode: UIViewContentMode, deviceScale: CGFloat) {
         self.targetSize = targetSize
         self.contentMode = contentMode
@@ -29,10 +47,20 @@ public class ResizeTransformation: NSObject, ImageTransformation {
         self.scaledTargeSize = CGSize(width: (targetSize.width * deviceScale), height: (targetSize.height * deviceScale))
     }
 
-    public var descriptor: String {
-        return "resize(\(targetSize.width),\(targetSize.height),\(deviceScale),\(contentMode.rawValue))"
-    }
 
+    // MARK: - Transforming the Image
+
+    /// Resizes the image with the configured parameters.
+    ///
+    /// - Parameters:
+    ///   - image: The image to transform
+    ///
+    /// - Throws:
+    ///   If the image cannot be resized.
+    ///
+    /// - Returns:
+    ///   The transformed image.
+    ///
     public func transformImage(image: CGImage) throws -> CGImage {
         let bitsPerComponent = CGImageGetBitsPerComponent(image)
         let bytesPerRow = CGImageGetBytesPerRow(image)
@@ -56,7 +84,7 @@ public class ResizeTransformation: NSObject, ImageTransformation {
         if let scaled = CGBitmapContextCreateImage(context) {
             return scaled
         } else {
-            throw NSError(domain: "", code: 0, userInfo: nil)
+            throw NSError.matisseCreationError("Could not resize image")
         }
     }
 
@@ -81,5 +109,14 @@ public class ResizeTransformation: NSObject, ImageTransformation {
         let xOffset = round(targetSize.width - size.width) / 2.0
         let yOffset = round(targetSize.height - size.height) / 2.0
         return CGRect(origin: CGPoint(x: xOffset, y: yOffset), size: size)
+    }
+
+
+    // MARK: - Describing the Transformation
+
+    /// A string describing this transformation.
+    ///
+    public var descriptor: String {
+        return "resize(\(targetSize.width),\(targetSize.height),\(deviceScale),\(contentMode.rawValue))"
     }
 }
