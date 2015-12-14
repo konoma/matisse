@@ -49,7 +49,7 @@ static id<MTSImageRequestHandler> _requestHandler;
     
     _fastCache = [[MTSMemoryImageCache alloc] init];
     _slowCache = [[MTSDiskImageCache alloc] init];
-    _requestHandler = [[MTSDefaultImageRequestHandler alloc] initWithImageLoader:[[MTSDefaultImageLoader alloc] init]];
+    _requestHandler = [[MTSDefaultImageRequestHandler alloc] init];
 }
 
 + (void)useFastCache:(id<MTSImageCache>)cache {
@@ -64,6 +64,15 @@ static id<MTSImageRequestHandler> _requestHandler;
     [self checkUnused];
     
     _slowCache = cache;
+}
+
++ (void)useImageLoader:(id<MTSImageLoader>)imageLoader {
+    NSParameterAssert(imageLoader != nil);
+
+    [self checkMainThread];
+    [self checkUnused];
+
+    _requestHandler = [[MTSDefaultImageRequestHandler alloc] initWithImageLoader:imageLoader];
 }
 
 + (void)useRequestHandler:(id<MTSImageRequestHandler>)requestHandler {

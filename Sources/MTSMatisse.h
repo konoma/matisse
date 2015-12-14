@@ -12,6 +12,7 @@
 @class MTSMatisseContext;
 @class MTSObjcImageRequestCreator;
 @protocol MTSImageRequestHandler;
+@protocol MTSImageLoader;
 @protocol MTSImageCache;
 
 
@@ -86,6 +87,22 @@
 ///   - cache: The cache to use, or `nil` to disable the slow cache
 ///
 + (void)useSlowCache:(id<MTSImageCache>)cache;
+
+/// Use a different image loader for the shared Matisse instance.
+///
+/// This resets the request handler to a `DefaultImageRequestHandler` with the
+/// given image loader. If you want to set the image loader on a custom request
+/// handler, you must do so on the custom request handler and then set the handler
+/// using `+useRequestHandler:`.
+///
+/// - Note:
+///   This method must only be called before using the shared Matisse instance
+///   for the first time.
+///
+/// - Parameters:
+///   - imageLoader: The image loader to use
+///
++ (void)useImageLoader:(id<MTSImageLoader>)imageLoader;
 
 /// Use a different request handler for the shared Matisse instance.
 ///

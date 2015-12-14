@@ -18,11 +18,13 @@ public class DefaultImageRequestHandler: NSObject, ImageRequestHandler {
     private let imageCreator: DefaultImageCreator
     private let workerQueue: DispatchQueue
 
+
+    public override convenience init() {
+        self.init(imageLoader: DefaultImageLoader())
+    }
+
     public convenience init(imageLoader: ImageLoader) {
-        self.init(
-            imageLoader: imageLoader,
-            imageCreator: DefaultImageCreator()
-        )
+        self.init(imageLoader: imageLoader, imageCreator: DefaultImageCreator())
     }
 
     public convenience init(imageLoader: ImageLoader, imageCreator: DefaultImageCreator) {

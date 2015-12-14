@@ -104,6 +104,27 @@ public class Matisse {
         _slowCache = cache
     }
 
+    /// Use a different image loader for the shared Matisse instance.
+    ///
+    /// This resets the request handler to a `DefaultImageRequestHandler` with the
+    /// given image loader. If you want to set the image loader on a custom request
+    /// handler, you must do so on the custom request handler and then set the handler
+    /// using `useRequestHandler(_:)`.
+    ///
+    /// - Note:
+    ///   This method must only be called before using the shared Matisse instance
+    ///   for the first time.
+    ///
+    /// - Parameters:
+    ///   - imageLoader: The image loader to use
+    ///
+    public class func useImageLoader(imageLoader: ImageLoader) {
+        checkMainThread()
+        checkUnused()
+
+        _requestHandler = DefaultImageRequestHandler(imageLoader: imageLoader)
+    }
+
     /// Use a different request handler for the shared Matisse instance.
     ///
     /// - Note:
