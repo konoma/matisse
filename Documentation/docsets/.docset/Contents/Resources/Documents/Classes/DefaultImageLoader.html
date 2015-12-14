@@ -13,7 +13,7 @@
     <a title="DefaultImageLoader Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (53% documented)</p>
+        <p><a href="../index.html"> Docs</a> (77% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -112,31 +112,27 @@
         <section>
           <section class="section">
             <h1>DefaultImageLoader</h1>
-            <p>Undocumented</p>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DefaultImageLoader</span><span class="p">:</span> <span class="kt">ImageLoaderBase</span></code></pre>
+
+                </div>
+              </div>
+            <p>The default image loader provided with Matisse.</p>
+
+<p>Downloads the images using <code>NSURLSession</code> download tasks.</p>
 
           </section>
           <section class="section task-group-section">
             <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Initialization"></a>
+                <a name="//apple_ref/swift/Section/Initialization" class="dashAnchor"></a>
+                <a href="#/Initialization">
+                  <h3 class="section-name">Initialization</h3>
+                </a>
+              </div>
               <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC7Matisse18DefaultImageLoadercFMS0_FT10urlSessionCSo12NSURLSession11fileManagerCSo13NSFileManager_S0_"></a>
-                    <a name="//apple_ref/swift/Method/init(urlSession:fileManager:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC7Matisse18DefaultImageLoadercFMS0_FT10urlSessionCSo12NSURLSession11fileManagerCSo13NSFileManager_S0_">init(urlSession:fileManager:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                    </section>
-                  </div>
-                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -150,12 +146,155 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Create a new <code><a href="../Classes/DefaultImageLoader.html">DefaultImageLoader</a></code> using the shared <code>NSURLSession</code> and a private <code>NSFileManager</code>.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">()</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
                 </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC7Matisse18DefaultImageLoadercFMS0_FT10urlSessionCSo12NSURLSession_S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(urlSession:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC7Matisse18DefaultImageLoadercFMS0_FT10urlSessionCSo12NSURLSession_S0_">init(urlSession:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new <code><a href="../Classes/DefaultImageLoader.html">DefaultImageLoader</a></code> using a custom <code>NSURLSession</code>.</p>
+
+<ul>
+<li>Parameters:
+
+<ul>
+<li>urlSession: The <code>NSURLSession</code> to use to create download tasks.</li>
+</ul></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">urlSession</span><span class="p">:</span> <span class="kt">NSURLSession</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>urlSession</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>NSURLSession</code> to use to create download tasks.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC7Matisse18DefaultImageLoadercFMS0_FT10urlSessionCSo12NSURLSession11fileManagerCSo13NSFileManager_S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(urlSession:fileManager:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC7Matisse18DefaultImageLoadercFMS0_FT10urlSessionCSo12NSURLSession11fileManagerCSo13NSFileManager_S0_">init(urlSession:fileManager:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new <code><a href="../Classes/DefaultImageLoader.html">DefaultImageLoader</a></code> using a custom <code>NSURLSession</code> and <code>NSFileManager</code>.</p>
+
+<ul>
+<li>Parameters:
+
+<ul>
+<li>urlSession:  The <code>NSURLSession</code> to use to create download tasks.</li>
+<li>fileManager: The file manager used for file operations.</li>
+</ul></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">urlSession</span><span class="p">:</span> <span class="kt">NSURLSession</span><span class="p">,</span> <span class="nv">fileManager</span><span class="p">:</span> <span class="kt">NSFileManager</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>urlSession</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>NSURLSession</code> to use to create download tasks.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>fileManager</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The file manager used for file operations.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Downloading%20Images"></a>
+                <a name="//apple_ref/swift/Section/Downloading Images" class="dashAnchor"></a>
+                <a href="#/Downloading%20Images">
+                  <h3 class="section-name">Downloading Images</h3>
+                </a>
+              </div>
+              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -169,8 +308,74 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Donwload the image at the given source URL to a destination URL.</p>
 
+<p>Uses <code>NSURLSession</code> download tasks to download the image and copies them to the requested URL.</p>
+
+<ul>
+<li>Parameters:
+
+<ul>
+<li>sourceURL:      The URL where to download the image from.</li>
+<li>destinationURL: The local URL to save the downloaded image to.</li>
+<li>completion:     The completion block called after the download finishes.</li>
+</ul></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">loadImageAtURL</span><span class="p">(</span><span class="nv">sourceURL</span><span class="p">:</span> <span class="kt">NSURL</span><span class="p">,</span> <span class="n">toURL</span> <span class="nv">destinationURL</span><span class="p">:</span> <span class="kt">NSURL</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="p">(</span><span class="kt">NSURLResponse</span><span class="p">?,</span> <span class="kt">NSError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sourceURL</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The URL where to download the image from.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>destinationURL</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The local URL to save the downloaded image to.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The completion block called after the download finishes.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>

@@ -28,7 +28,8 @@ import Foundation
 ///
 /// The second level is the slow cache. This cache will only be accessed from the sync
 /// queue which is in the background. The slow cache may take more time to retrieve
-/// cache images, and will often involve file IO.
+/// cache images, and will often involve file IO. The default Matisse instance uses the
+/// `DiskImageCache` for this if not explicitely configured.
 ///
 /// You provide the fast and slow cache in the initializer as classes implementing
 /// `ImageCache`. You may disable one or both chaches by passing `nil` instead of

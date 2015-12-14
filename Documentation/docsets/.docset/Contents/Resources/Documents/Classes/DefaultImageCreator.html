@@ -13,7 +13,7 @@
     <a title="DefaultImageCreator Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (53% documented)</p>
+        <p><a href="../index.html"> Docs</a> (77% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -112,7 +112,13 @@
         <section>
           <section class="section">
             <h1>DefaultImageCreator</h1>
-            <p>Undocumented</p>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DefaultImageCreator</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                </div>
+              </div>
+            <p>Creates images from files and applies image transformations.</p>
 
           </section>
           <section class="section task-group-section">
@@ -131,7 +137,69 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Create a new image from the given URL and apply the transformations in the <code><a href="../Classes/ImageRequest.html">ImageRequest</a></code> to it.</p>
+
+<p><li><p>Parameters:</p></p>
+
+<p><ul>
+<li>url:     The URL to the file to create the image from.</li>
+<li>request: The request containing transformations to be applied to the created image.</li>
+</ul></li>
+<div class="aside aside-throws">
+          <p class="aside-title">Throws</p>
+          <p>If either creation or transforming the image fails.</p></p>
+<pre class="highlight plaintext"><code>    &lt;/div&gt;&lt;div class="aside aside-returns"&gt;
+      &lt;p class="aside-title"&gt;Returns&lt;/p&gt;
+      &lt;p&gt;The created and transformed image.&lt;/p&gt;
+
+    &lt;/div&gt;
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">createImageFromURL</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="kt">NSURL</span><span class="p">,</span> <span class="nv">request</span><span class="p">:</span> <span class="kt">ImageRequest</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">UIImage</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>url</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The URL to the file to create the image from.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>request</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The request containing transformations to be applied to the created image.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The created and transformed image.</p>
 
                       </div>
                     </section>

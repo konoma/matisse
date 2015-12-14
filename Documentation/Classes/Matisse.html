@@ -13,7 +13,7 @@
     <a title="Matisse Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (53% documented)</p>
+        <p><a href="../index.html"> Docs</a> (77% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -397,6 +397,69 @@ for the first time.</p></p>
                               <td>
                                 <div>
                                   <p>The cache to use, or <code>nil</code> to disable the slow cache</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC7Matisse7Matisse14useImageLoaderFMS0_FPS_11ImageLoader_T_"></a>
+                    <a name="//apple_ref/swift/Method/useImageLoader(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC7Matisse7Matisse14useImageLoaderFMS0_FPS_11ImageLoader_T_">useImageLoader(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Use a different image loader for the shared Matisse instance.</p>
+
+<p>This resets the request handler to a <code><a href="../Classes/DefaultImageRequestHandler.html">DefaultImageRequestHandler</a></code> with the
+given image loader. If you want to set the image loader on a custom request
+handler, you must do so on the custom request handler and then set the handler
+using <code><a href="../Classes/Matisse.html#/s:ZFC7Matisse7Matisse17useRequestHandlerFMS0_FPS_19ImageRequestHandler_T_">useRequestHandler(_:)</a></code>.</p>
+
+<p><div class="aside aside-note">
+          <p class="aside-title">Note</p>
+          <p>This method must only be called before using the shared Matisse instance
+for the first time.</p></p>
+<pre class="highlight plaintext"><code>    &lt;/div&gt;&lt;li&gt;&lt;p&gt;Parameters:&lt;/p&gt;
+</code></pre>
+
+<p><ul>
+<li>imageLoader: The image loader to use</li>
+</ul></li></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">useImageLoader</span><span class="p">(</span><span class="nv">imageLoader</span><span class="p">:</span> <span class="kt">ImageLoader</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>imageLoader</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The image loader to use</p>
 
                                 </div>
                               </td>

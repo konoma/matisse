@@ -109,9 +109,9 @@ public class ImageLoaderBase: NSObject, ImageLoader {
     /// - Note: You must override this method.
     ///
     /// - Parameters:
-    ///   - sourceURL:      The URL where to download the image from
-    ///   - destinationURL: The local URL to save the downloaded image to
-    ///   - completion:     The completion block to call after the download finishes (either successfully or not)
+    ///   - sourceURL:      The URL where to download the image from.
+    ///   - destinationURL: The local URL to save the downloaded image to.
+    ///   - completion:     The completion block to call after the download finishes (either successfully or not).
     ///
     public func loadImageAtURL(sourceURL: NSURL, toURL destinationURL: NSURL, completion: (NSURLResponse?, NSError?) -> Void) {
         fatalError("You must override this method in a subclass")
@@ -119,7 +119,8 @@ public class ImageLoaderBase: NSObject, ImageLoader {
 
     /// Create a unique temporary file URL.
     ///
-    /// - Returns: A path to a unique temporary file.
+    /// - Returns:
+    ///   A path to a unique temporary file.
     ///
     private func createDestinationURL() -> NSURL {
         return NSURL(fileURLWithPath: NSTemporaryDirectory())

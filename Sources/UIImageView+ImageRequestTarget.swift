@@ -13,11 +13,22 @@ public extension UIImageView {
 
     private static var requestIdentifierKey: Int = 0
 
+    /// The identifier of the `ImageRequest` currently owning this target.
+    ///
     public var matisseRequestIdentifier: NSUUID? {
         get { return objc_getAssociatedObject(self, &UIImageView.requestIdentifierKey) as? NSUUID }
         set { objc_setAssociatedObject(self, &UIImageView.requestIdentifierKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
 
+    /// Update this image view with the results of the given `ImageRequest`.
+    ///
+    /// Sets the image to the given `image`.
+    ///
+    /// - Parameters:
+    ///   - imageRequest: The `ImageRequest` whose results should be displayed. Ignored.
+    ///   - image:        The resolved image if the request was successful, or `nil`.
+    ///   - error:        The error if the request failed, or `nil`. Ignored.
+    ///
     public func updateForImageRequest(imageRequest: ImageRequest, image: UIImage?, error: NSError?) {
         self.image = image
     }
@@ -25,5 +36,4 @@ public extension UIImageView {
 
 // Cannot publicly specify protocol compliance. The image view is
 // still compliant, because the methods are implemented above.
-extension UIImageView : ImageRequestTarget {
-}
+extension UIImageView : ImageRequestTarget { }

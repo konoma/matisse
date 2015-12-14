@@ -12,7 +12,7 @@
     <a title="Classes  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (53% documented)</p>
+        <p><a href="index.html"> Docs</a> (77% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -130,9 +130,17 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Creates images from files and applies image transformations.</p>
 
                         <a href="Classes/DefaultImageCreator.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DefaultImageCreator</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -154,9 +162,25 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>A naive implementation of <code><a href="Protocols/ImageCache.html">ImageCache</a></code> that stores files on disk.</p>
+
+<p>This class stores files in the caches directory of the application.
+It relies on the operating system to cleanup images. Suitable for
+a reasonable amount of images. If you download large numbers of images,
+you should probably look to implement this differently, or find a way
+to manage the directory size.</p>
+
+<p>Images are serialized using <code>NSKeyedArchiver</code> to preserve file type and metadata.</p>
 
                         <a href="Classes/DiskImageCache.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DiskImageCache</span><span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">ImageCache</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -280,7 +304,11 @@ and checking response status codes.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The request handler that is used by the shared <code>Matisse</code>/<code>MTSMatisse</code> instance if not specified differently.</p>
+                        <p>The request handler that is used by the shared <code>Matisse</code>/<code>MTSMatisse</code> DSL instance if not specified differently.</p>
+
+<p>To use a <code>DefaultImageRequestHandler</code> with a different <code><a href="Protocols/ImageLoader.html">ImageLoader</a></code> on the shared DSL instance you
+don&rsquo;t need to create a new object yourself. Instead you can use <code>useImageLoader(_:)</code> on the shared
+DSL class to set the <code><a href="Protocols/ImageLoader.html">ImageLoader</a></code> directly.</p>
 
                         <a href="Classes/DefaultImageRequestHandler.html" class="slightly-smaller">See more</a>
                       </div>
@@ -461,9 +489,19 @@ protecting against modifications after the request was built.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The default image loader provided with Matisse.</p>
+
+<p>Downloads the images using <code>NSURLSession</code> download tasks.</p>
 
                         <a href="Classes/DefaultImageLoader.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DefaultImageLoader</span><span class="p">:</span> <span class="kt">ImageLoaderBase</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -523,9 +561,17 @@ coalescing.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>A <code><a href="Protocols/ImageCache.html">ImageCache</a></code> implementation that uses <code>NSCache</code>.</p>
 
                         <a href="Classes/MemoryImageCache.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">MemoryImageCache</span><span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">ImageCache</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>

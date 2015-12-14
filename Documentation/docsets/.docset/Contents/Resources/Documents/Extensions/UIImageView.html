@@ -13,7 +13,7 @@
     <a title="UIImageView Extension Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (53% documented)</p>
+        <p><a href="../index.html"> Docs</a> (77% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -118,7 +118,8 @@
 
                 </div>
               </div>
-            
+            <p>The identifier of the <code><a href="../Classes/ImageRequest.html">ImageRequest</a></code> currently owning this target.</p>
+
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -136,14 +137,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The identifier of the <code><a href="../Classes/ImageRequest.html">ImageRequest</a></code> currently owning this target.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">class</span> <span class="kt">UIImageView</span> <span class="p">:</span> <span class="kt">UIView</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">matisseRequestIdentifier</span><span class="p">:</span> <span class="kt">NSUUID</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -163,16 +164,74 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Update this image view with the results of the given <code><a href="../Classes/ImageRequest.html">ImageRequest</a></code>.</p>
+
+<p>Sets the image to the given <code>image</code>.</p>
+
+<ul>
+<li>Parameters:
+
+<ul>
+<li>imageRequest: The <code><a href="../Classes/ImageRequest.html">ImageRequest</a></code> whose results should be displayed. Ignored.</li>
+<li>image:        The resolved image if the request was successful, or <code>nil</code>.</li>
+<li>error:        The error if the request failed, or <code>nil</code>. Ignored.</li>
+</ul></li>
+</ul>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">class</span> <span class="kt">UIImageView</span> <span class="p">:</span> <span class="kt">UIView</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">updateForImageRequest</span><span class="p">(</span><span class="nv">imageRequest</span><span class="p">:</span> <span class="kt">ImageRequest</span><span class="p">,</span> <span class="nv">image</span><span class="p">:</span> <span class="kt">UIImage</span><span class="p">?,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">NSError</span><span class="p">?)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>imageRequest</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>ImageRequest</code> whose results should be displayed. Ignored.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>image</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The resolved image if the request was successful, or <code>nil</code>.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The error if the request failed, or <code>nil</code>. Ignored.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
