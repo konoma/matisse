@@ -20,6 +20,9 @@ public protocol ImageTransformation: NSObjectProtocol {
     /// - Parameters:
     ///   - image: The image to transform
     ///
+    /// - Throws:
+    ///   If the passed image cannot be transformed using this `ImageTransformation`.
+    ///
     /// - Returns:
     ///   The transformed image.
     ///

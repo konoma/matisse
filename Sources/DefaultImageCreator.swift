@@ -10,9 +10,23 @@ import Foundation
 import ImageIO
 
 
+/// Creates images from files and applies image transformations.
+///
 @objc(MTSDefaultImageCreator)
 public class DefaultImageCreator: NSObject {
 
+    /// Create a new image from the given URL and apply the transformations in the `ImageRequest` to it.
+    ///
+    /// - Parameters:
+    ///   - url:     The URL to the file to create the image from.
+    ///   - request: The request containing transformations to be applied to the created image.
+    ///
+    /// - Throws:
+    ///   If either creation or transforming the image fails.
+    ///
+    /// - Returns:
+    ///   The created and transformed image.
+    ///
     public func createImageFromURL(url: NSURL, request: ImageRequest) throws -> UIImage {
         let rawImage = try createCGImageFromURL(url)
         let transformedImage = try transformImage(rawImage, withTransformations: request.transformations)
