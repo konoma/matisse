@@ -13,7 +13,7 @@ a single line:
 
 Or in Objective-C:
 
-    [MTSMatisse load:imageURL].showIn(imageView)
+    [MTSMatisse load:imageURL].showIn(imageView);
 
 This automatically takes care of downloading, caching and showing the image
 in the view. If you use this code in a `UITableViewDataSource` it also makes
