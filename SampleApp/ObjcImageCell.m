@@ -6,10 +6,10 @@
 //  Copyright © 2015 konoma GmbH. All rights reserved.
 //
 
-#import "ImageCell.h"
+#import "ObjcImageCell.h"
 
 
-@implementation ImageCell
+@implementation ObjcImageCell
 
 - (void)prepareForReuse {
     [super prepareForReuse];

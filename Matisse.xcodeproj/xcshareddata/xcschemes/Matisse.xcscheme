@@ -103,15 +103,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "05F50C311C022E2500859782"
-            BuildableName = "Matisse.framework"
-            BlueprintName = "Matisse"
+            BlueprintIdentifier = "05F50C4F1C0230D500859782"
+            BuildableName = "Matisse Sample.app"
+            BlueprintName = "SampleApp"
             ReferencedContainer = "container:Matisse.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

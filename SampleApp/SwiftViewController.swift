@@ -10,7 +10,7 @@ import UIKit
 import Matisse
 
 
-class ViewController: UICollectionViewController {
+class SwiftViewController: UICollectionViewController {
     
     private let itemSize: CGFloat = 150.0
     
@@ -38,7 +38,7 @@ class ViewController: UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ImageCell", forIndexPath: indexPath) as! ImageCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ImageCell", forIndexPath: indexPath) as! SwiftImageCell
         let url = imageURLs[indexPath.row % imageURLs.count]
         
         Matisse.load(url)

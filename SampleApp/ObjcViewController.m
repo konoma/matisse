@@ -6,21 +6,21 @@
 //  Copyright © 2015 konoma GmbH. All rights reserved.
 //
 
-#import "ViewController.h"
-#import "ImageCell.h"
+#import "ObjcViewController.h"
+#import "ObjcImageCell.h"
 
 @import Matisse;
 
 
 
-@interface ViewController ()
+@interface ObjcViewController ()
 
 @property (nonatomic, readonly) CGFloat itemSize;
 @property (nonatomic, readonly) NSArray<NSURL*> *imageURLs;
 
 @end
 
-@implementation ViewController
+@implementation ObjcViewController
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -51,7 +51,7 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    ImageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageCell" forIndexPath:indexPath];
+    ObjcImageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageCell" forIndexPath:indexPath];
     NSURL *url = self.imageURLs[indexPath.row % self.imageURLs.count];
     
     [MTSMatisse load:url].resizeTo(CGSizeMake(self.itemSize, self.itemSize), UIViewContentModeScaleAspectFill).showIn(cell.imageView);

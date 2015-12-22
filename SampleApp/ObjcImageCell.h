@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface ImageCell : UICollectionViewCell
+@interface ObjcImageCell : UICollectionViewCell
 
 @property (nonatomic, weak) IBOutlet UIImageView *imageView;
 

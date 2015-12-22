@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  ViewController.h
 //  SampleAppObjc
 //
 //  Created by Markus Gasser on 26.11.15.
@@ -9,9 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
+@interface ObjcViewController : UICollectionViewController
 
 @end
 
