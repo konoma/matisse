@@ -23,7 +23,13 @@ class SwiftViewController: UICollectionViewController {
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
-    
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        collectionView?.contentInset.top = 40.0
+    }
+
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         

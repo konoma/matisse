@@ -1,10 +1,13 @@
 PODS:
+  - DXFPSLabel (0.1.0)
   - Nimble (3.0.0)
 
 DEPENDENCIES:
+  - DXFPSLabel (~> 0.1)
   - Nimble (~> 3)
 
 SPEC CHECKSUMS:
+  DXFPSLabel: a45eaeab2709b954998c7926c7334d7ef098fb00
   Nimble: 4c353d43735b38b545cbb4cb91504588eb5de926
 
 COCOAPODS: 0.39.0

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		050B303A1C29EA17005DAB6E /* ObjcImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 050B30371C29EA17005DAB6E /* ObjcImageCell.m */; };
 		050B303B1C29EA17005DAB6E /* ObjcViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 050B30391C29EA17005DAB6E /* ObjcViewController.m */; };
+		050B303F1C29F0A3005DAB6E /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050B303E1C29F0A3005DAB6E /* MainController.swift */; };
 		055061E71C023D0D009462D9 /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055061E61C023D0D009462D9 /* ImageRequest.swift */; };
 		055061E91C023DB4009462D9 /* MatisseContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055061E81C023DB4009462D9 /* MatisseContext.swift */; };
 		05A4F25C1C1C7A9F0044F72C /* SwiftImageRequestCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A4F25B1C1C7A9F0044F72C /* SwiftImageRequestCreator.swift */; };
@@ -31,8 +32,6 @@
 		05B47AAC1C1C48DE0042FE21 /* ResizeTransformation+DSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B47AAB1C1C48DE0042FE21 /* ResizeTransformation+DSL.swift */; };
 		05C34DDC1C04E79600E0AEC8 /* CoalescingTaskQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C34DDB1C04E79600E0AEC8 /* CoalescingTaskQueue.swift */; };
 		05C34DDF1C07140A00E0AEC8 /* CoalescingTaskQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C34DDE1C07140A00E0AEC8 /* CoalescingTaskQueueTests.swift */; };
-		05C34E091C07ABDF00E0AEC8 /* Matisse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05F50C321C022E2500859782 /* Matisse.framework */; };
-		05C34E0B1C07ABE700E0AEC8 /* Matisse.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05F50C321C022E2500859782 /* Matisse.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05DBCFD81C09F565009C0CC0 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DBCFD71C09F565009C0CC0 /* ImageCache.swift */; };
 		05DBCFDB1C09F752009C0CC0 /* MemoryImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DBCFDA1C09F752009C0CC0 /* MemoryImageCache.swift */; };
 		05DBCFDE1C0A0420009C0CC0 /* ImageRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DBCFDD1C0A0420009C0CC0 /* ImageRequestHandler.swift */; };
@@ -54,17 +53,11 @@
 		05F50C5D1C0230D600859782 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05F50C5B1C0230D600859782 /* LaunchScreen.storyboard */; };
 		05F50C621C02312900859782 /* Matisse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05F50C321C022E2500859782 /* Matisse.framework */; };
 		322BF78201D3BEEE65600C11 /* Pods_UnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80CE975AC9048242613E0051 /* Pods_UnitTests.framework */; };
+		33F47DB7E6BF6B71A5F4CF97 /* Pods_SampleApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1951B43CB555F43A8358242F /* Pods_SampleApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		05A791721C024C1F00A65E7B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 05F50C291C022E2500859782 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 05F50C311C022E2500859782;
-			remoteInfo = Matisse;
-		};
-		05C34E071C07ABDA00E0AEC8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 05F50C291C022E2500859782 /* Project object */;
 			proxyType = 1;
@@ -92,17 +85,6 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		05C34E0C1C07ABE700E0AEC8 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				05C34E0B1C07ABE700E0AEC8 /* Matisse.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +92,8 @@
 		050B30371C29EA17005DAB6E /* ObjcImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjcImageCell.m; sourceTree = "<group>"; };
 		050B30381C29EA17005DAB6E /* ObjcViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjcViewController.h; sourceTree = "<group>"; };
 		050B30391C29EA17005DAB6E /* ObjcViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjcViewController.m; sourceTree = "<group>"; };
+		050B303C1C29ECDD005DAB6E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		050B303E1C29F0A3005DAB6E /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		055061E61C023D0D009462D9 /* ImageRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRequest.swift; sourceTree = "<group>"; };
 		055061E81C023DB4009462D9 /* MatisseContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatisseContext.swift; sourceTree = "<group>"; };
 		05A4F2591C1C79E30044F72C /* Documentation */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Documentation; sourceTree = "<group>"; };
@@ -132,7 +116,6 @@
 		05B47AAB1C1C48DE0042FE21 /* ResizeTransformation+DSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ResizeTransformation+DSL.swift"; sourceTree = "<group>"; };
 		05C34DDB1C04E79600E0AEC8 /* CoalescingTaskQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoalescingTaskQueue.swift; sourceTree = "<group>"; };
 		05C34DDE1C07140A00E0AEC8 /* CoalescingTaskQueueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoalescingTaskQueueTests.swift; sourceTree = "<group>"; };
-		05C34DED1C07A5FC00E0AEC8 /* Matisse Sample Objc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Matisse Sample Objc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		05DBCFD71C09F565009C0CC0 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		05DBCFDA1C09F752009C0CC0 /* MemoryImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryImageCache.swift; sourceTree = "<group>"; };
 		05DBCFDD1C0A0420009C0CC0 /* ImageRequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRequestHandler.swift; sourceTree = "<group>"; };
@@ -158,20 +141,15 @@
 		05F50C591C0230D600859782 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		05F50C5C1C0230D600859782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		05F50C5E1C0230D600859782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1951B43CB555F43A8358242F /* Pods_SampleApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SampleApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C53367B132938835856342A /* Pods-SampleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-SampleApp/Pods-SampleApp.release.xcconfig"; sourceTree = "<group>"; };
 		62ED7FA899BD7D3F53E66C43 /* Pods-UnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		6D393984DC36299E60D2793D /* Pods-UnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		80CE975AC9048242613E0051 /* Pods_UnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B75528C6C4F5F225E947DC35 /* Pods-SampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SampleApp/Pods-SampleApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		05C34DEA1C07A5FC00E0AEC8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				05C34E091C07ABDF00E0AEC8 /* Matisse.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		05F50C2E1C022E2500859782 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -193,6 +171,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05F50C621C02312900859782 /* Matisse.framework in Frameworks */,
+				33F47DB7E6BF6B71A5F4CF97 /* Pods_SampleApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,10 +190,10 @@
 		050B30341C29E9C2005DAB6E /* Objective-C */ = {
 			isa = PBXGroup;
 			children = (
-				050B30361C29EA17005DAB6E /* ObjcImageCell.h */,
-				050B30371C29EA17005DAB6E /* ObjcImageCell.m */,
 				050B30381C29EA17005DAB6E /* ObjcViewController.h */,
 				050B30391C29EA17005DAB6E /* ObjcViewController.m */,
+				050B30361C29EA17005DAB6E /* ObjcImageCell.h */,
+				050B30371C29EA17005DAB6E /* ObjcImageCell.m */,
 			);
 			name = "Objective-C";
 			sourceTree = "<group>";
@@ -336,6 +315,7 @@
 		05F50C281C022E2500859782 = {
 			isa = PBXGroup;
 			children = (
+				050B303C1C29ECDD005DAB6E /* Default-568h@2x.png */,
 				05EE06541C14434E004A0008 /* Readme.md */,
 				05A4F2591C1C79E30044F72C /* Documentation */,
 				05F50C341C022E2500859782 /* Sources */,
@@ -353,7 +333,6 @@
 				05F50C321C022E2500859782 /* Matisse.framework */,
 				05F50C3C1C022E2600859782 /* UnitTests.xctest */,
 				05F50C501C0230D500859782 /* Matisse Sample.app */,
-				05C34DED1C07A5FC00E0AEC8 /* Matisse Sample Objc.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -389,6 +368,7 @@
 				05F50C5B1C0230D600859782 /* LaunchScreen.storyboard */,
 				05F50C561C0230D600859782 /* Main.storyboard */,
 				05F50C521C0230D600859782 /* AppDelegate.swift */,
+				050B303E1C29F0A3005DAB6E /* MainController.swift */,
 				050B30331C29E98B005DAB6E /* Swift */,
 				050B30341C29E9C2005DAB6E /* Objective-C */,
 			);
@@ -400,6 +380,8 @@
 			children = (
 				6D393984DC36299E60D2793D /* Pods-UnitTests.debug.xcconfig */,
 				62ED7FA899BD7D3F53E66C43 /* Pods-UnitTests.release.xcconfig */,
+				B75528C6C4F5F225E947DC35 /* Pods-SampleApp.debug.xcconfig */,
+				1C53367B132938835856342A /* Pods-SampleApp.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -408,6 +390,7 @@
 			isa = PBXGroup;
 			children = (
 				80CE975AC9048242613E0051 /* Pods_UnitTests.framework */,
+				1951B43CB555F43A8358242F /* Pods_SampleApp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -431,25 +414,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		05C34DEC1C07A5FC00E0AEC8 /* SampleAppObjc */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 05C34E011C07A5FD00E0AEC8 /* Build configuration list for PBXNativeTarget "SampleAppObjc" */;
-			buildPhases = (
-				05C34DE91C07A5FC00E0AEC8 /* Sources */,
-				05C34DEA1C07A5FC00E0AEC8 /* Frameworks */,
-				05C34DEB1C07A5FC00E0AEC8 /* Resources */,
-				05C34E0C1C07ABE700E0AEC8 /* Embed Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				05C34E081C07ABDA00E0AEC8 /* PBXTargetDependency */,
-			);
-			name = SampleAppObjc;
-			productName = SampleAppObjc;
-			productReference = 05C34DED1C07A5FC00E0AEC8 /* Matisse Sample Objc.app */;
-			productType = "com.apple.product-type.application";
-		};
 		05F50C311C022E2500859782 /* Matisse */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05F50C461C022E2600859782 /* Build configuration list for PBXNativeTarget "Matisse" */;
@@ -494,10 +458,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05F50C5F1C0230D600859782 /* Build configuration list for PBXNativeTarget "SampleApp" */;
 			buildPhases = (
+				3A979A7D085F25024ED5C990 /* Check Pods Manifest.lock */,
 				05F50C4C1C0230D500859782 /* Sources */,
 				05F50C4D1C0230D500859782 /* Frameworks */,
 				05F50C4E1C0230D500859782 /* Resources */,
 				05A791841C033A2C00A65E7B /* Embed Frameworks */,
+				EFFE68E53605322D537D23C1 /* Embed Pods Frameworks */,
+				9D0DCDA3A1249C1483D5FB5A /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -519,9 +486,6 @@
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "konoma GmbH";
 				TargetAttributes = {
-					05C34DEC1C07A5FC00E0AEC8 = {
-						CreatedOnToolsVersion = 7.1.1;
-					};
 					05F50C311C022E2500859782 = {
 						CreatedOnToolsVersion = 7.1;
 					};
@@ -549,19 +513,11 @@
 				05F50C311C022E2500859782 /* Matisse */,
 				05F50C3B1C022E2600859782 /* UnitTests */,
 				05F50C4F1C0230D500859782 /* SampleApp */,
-				05C34DEC1C07A5FC00E0AEC8 /* SampleAppObjc */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		05C34DEB1C07A5FC00E0AEC8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		05F50C301C022E2500859782 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -619,6 +575,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		3A979A7D085F25024ED5C990 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		4E0884FE28350FF3A190E61F /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -649,16 +620,39 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-/* End PBXShellScriptBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		05C34DE91C07A5FC00E0AEC8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
+		9D0DCDA3A1249C1483D5FB5A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
 			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SampleApp/Pods-SampleApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
+		EFFE68E53605322D537D23C1 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SampleApp/Pods-SampleApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
 		05F50C2D1C022E2500859782 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -705,6 +699,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05F50C551C0230D600859782 /* SwiftViewController.swift in Sources */,
+				050B303F1C29F0A3005DAB6E /* MainController.swift in Sources */,
 				05F50C531C0230D600859782 /* AppDelegate.swift in Sources */,
 				050B303B1C29EA17005DAB6E /* ObjcViewController.m in Sources */,
 				05A7916B1C02484D00A65E7B /* SwiftImageCell.swift in Sources */,
@@ -719,11 +714,6 @@
 			isa = PBXTargetDependency;
 			target = 05F50C311C022E2500859782 /* Matisse */;
 			targetProxy = 05A791721C024C1F00A65E7B /* PBXContainerItemProxy */;
-		};
-		05C34E081C07ABDA00E0AEC8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 05F50C311C022E2500859782 /* Matisse */;
-			targetProxy = 05C34E071C07ABDA00E0AEC8 /* PBXContainerItemProxy */;
 		};
 		05F50C3F1C022E2600859782 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -752,30 +742,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		05C34E021C07A5FD00E0AEC8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				INFOPLIST_FILE = SampleAppObjc/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "ch.konoma.matisse-sample-app-objc";
-				PRODUCT_NAME = "Matisse Sample Objc";
-			};
-			name = Debug;
-		};
-		05C34E031C07A5FD00E0AEC8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				INFOPLIST_FILE = SampleAppObjc/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "ch.konoma.matisse-sample-app-objc";
-				PRODUCT_NAME = "Matisse Sample Objc";
-			};
-			name = Release;
-		};
 		05F50C441C022E2600859782 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -946,6 +912,7 @@
 		};
 		05F50C601C0230D600859782 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B75528C6C4F5F225E947DC35 /* Pods-SampleApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -959,6 +926,7 @@
 		};
 		05F50C611C0230D600859782 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C53367B132938835856342A /* Pods-SampleApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -972,15 +940,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		05C34E011C07A5FD00E0AEC8 /* Build configuration list for PBXNativeTarget "SampleAppObjc" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				05C34E021C07A5FD00E0AEC8 /* Debug */,
-				05C34E031C07A5FD00E0AEC8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		05F50C2C1C022E2500859782 /* Build configuration list for PBXProject "Matisse" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

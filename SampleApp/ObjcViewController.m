@@ -37,6 +37,12 @@
     return YES;
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    self.collectionView.contentInset = UIEdgeInsetsMake(40.0f, 0.0f, 0.0f, 0.0f);
+}
+
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
     
