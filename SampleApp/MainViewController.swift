@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import DXFPSLabel
 import Matisse
 
 
-class SwiftViewController: UICollectionViewController {
+class MainViewController: UICollectionViewController {
     
     private let itemSize: CGFloat = 150.0
     
@@ -26,6 +27,11 @@ class SwiftViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let fpsLabel = DXFPSLabel(frame: CGRect(x: 0.0, y: 0.0, width: view.bounds.width, height: 40.0))
+        fpsLabel.autoresizingMask = [ .FlexibleWidth, .FlexibleBottomMargin ]
+        fpsLabel.backgroundColor = .blackColor()
+        view.addSubview(fpsLabel)
 
         collectionView?.contentInset.top = 40.0
     }
@@ -44,7 +50,7 @@ class SwiftViewController: UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ImageCell", forIndexPath: indexPath) as! SwiftImageCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ImageCell", forIndexPath: indexPath) as! ImageCell
         let url = imageURLs[indexPath.row % imageURLs.count]
         
         Matisse.load(url)

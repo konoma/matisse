@@ -9,7 +9,7 @@
 import UIKit
 
 
-class SwiftImageCell : UICollectionViewCell {
+class ImageCell : UICollectionViewCell {
     
     @IBOutlet var imageView: UIImageView!
     
