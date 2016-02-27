@@ -92,7 +92,6 @@
 		050B30371C29EA17005DAB6E /* ObjcImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjcImageCell.m; sourceTree = "<group>"; };
 		050B30381C29EA17005DAB6E /* ObjcViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjcViewController.h; sourceTree = "<group>"; };
 		050B30391C29EA17005DAB6E /* ObjcViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjcViewController.m; sourceTree = "<group>"; };
-		050B303C1C29ECDD005DAB6E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		050B303E1C29F0A3005DAB6E /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		055061E61C023D0D009462D9 /* ImageRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRequest.swift; sourceTree = "<group>"; };
 		055061E81C023DB4009462D9 /* MatisseContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatisseContext.swift; sourceTree = "<group>"; };
@@ -315,7 +314,6 @@
 		05F50C281C022E2500859782 = {
 			isa = PBXGroup;
 			children = (
-				050B303C1C29ECDD005DAB6E /* Default-568h@2x.png */,
 				05EE06541C14434E004A0008 /* Readme.md */,
 				05A4F2591C1C79E30044F72C /* Documentation */,
 				05F50C341C022E2500859782 /* Sources */,

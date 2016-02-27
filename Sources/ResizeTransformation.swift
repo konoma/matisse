@@ -91,7 +91,7 @@ public class ResizeTransformation: NSObject, ImageTransformation {
     private func calculateImageRectWithOriginalSize(originalSize: CGSize) -> CGRect {
         switch contentMode {
         case .ScaleToFill:
-            return CGRect(origin: CGPointZero, size: scaledTargeSize)
+            return CGRect(origin: .zero, size: scaledTargeSize)
 
         case .ScaleAspectFill:
             let widthScale = originalSize.width / scaledTargeSize.width
