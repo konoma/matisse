@@ -94,7 +94,6 @@ public class DiskImageCache: NSObject, ImageCache {
         }
 
         if let path = fileURL.absoluteURL.path {
-            print("Storing image to file at path \(path)")
             NSKeyedArchiver.archiveRootObject(image, toFile: path)
         }
     }
@@ -114,7 +113,6 @@ public class DiskImageCache: NSObject, ImageCache {
             return nil
         }
 
-        print("Retrieving image from file at path \(path)")
         return NSKeyedUnarchiver.unarchiveObjectWithFile(path) as? UIImage
     }
 
