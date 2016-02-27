@@ -19,6 +19,7 @@ Pod::Spec.new do |s|
   
   s.requires_arc = true
 
-  s.frameworks   = 'Foundation', 'UIKit'
-  s.source_files = 'Sources/**/*.{h,m,mm,swift}'
+  s.frameworks    = 'Foundation', 'UIKit'
+  s.source_files  = 'Sources/**/*.{h,m,mm,swift}'
+  s.exclude_files = 'Sources/Matisse.h' 
 end
