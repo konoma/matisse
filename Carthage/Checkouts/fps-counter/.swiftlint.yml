@@ -1,7 +1,0 @@
-line_length: 140
-
-disabled_rules:
-  - closing_brace
-
-included:
-  - Sources
