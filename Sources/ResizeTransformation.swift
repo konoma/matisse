@@ -16,7 +16,7 @@ public class ResizeTransformation: ImageTransformation {
     private let targetSize: CGSize
     private let contentMode: UIViewContentMode
     private let deviceScale: CGFloat
-    private let scaledTargeSize: CGSize
+    private let scaledTargetSize: CGSize
 
 
     // MARK: - Initialization
@@ -43,7 +43,7 @@ public class ResizeTransformation: ImageTransformation {
         self.contentMode = contentMode
         self.deviceScale = deviceScale
 
-        self.scaledTargeSize = CGSize(width: (targetSize.width * deviceScale), height: (targetSize.height * deviceScale))
+        self.scaledTargetSize = CGSize(width: (targetSize.width * deviceScale), height: (targetSize.height * deviceScale))
     }
 
 
@@ -68,8 +68,8 @@ public class ResizeTransformation: ImageTransformation {
         let originalSize = CGSize(width: CGImageGetWidth(image), height: CGImageGetHeight(image))
 
         let context = CGBitmapContextCreate(nil,
-            Int(scaledTargeSize.width),
-            Int(scaledTargeSize.height),
+            Int(scaledTargetSize.width),
+            Int(scaledTargetSize.height),
             bitsPerComponent,
             0,
             colorSpace,
@@ -93,14 +93,14 @@ public class ResizeTransformation: ImageTransformation {
     private func calculateImageRectWithOriginalSize(originalSize: CGSize) -> CGRect {
         switch contentMode {
         case .ScaleToFill:
-            return CGRect(origin: .zero, size: scaledTargeSize)
+            return CGRect(origin: .zero, size: scaledTargetSize)
 
         case .ScaleAspectFill:
-            let widthScale = originalSize.width / scaledTargeSize.width
-            let heightScale = originalSize.height / scaledTargeSize.height
+            let widthScale = originalSize.width / scaledTargetSize.width
+            let heightScale = originalSize.height / scaledTargetSize.height
             let scale = min(widthScale, heightScale)
             let scaledSize = CGSize(width: round(originalSize.width / scale), height: round(originalSize.height / scale))
-            return centerRectWithSize(scaledSize, inSize: scaledTargeSize)
+            return centerRectWithSize(scaledSize, inSize: scaledTargetSize)
 
         default:
             fatalError("Unsupported contentMode: \(contentMode)")
