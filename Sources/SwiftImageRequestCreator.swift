@@ -53,7 +53,8 @@ public class SwiftImageRequestCreator {
     ///
     /// This method returns the receiver so you can chain calls.
     ///
-    /// - Parameters - transformation: The `ImageTransformation` to apply to the loaded image.
+    /// - Parameters:
+    ///   - transformation: The `ImageTransformation` to apply to the loaded image.
     ///
     /// - Returns:
     ///   The receiver
@@ -70,8 +71,12 @@ public class SwiftImageRequestCreator {
     ///
     /// After calling this method it's not possible to modify the request further.
     ///
-    /// - Parameter completion: The block to call when the image is either downloaded or
-    ///                         if an error happened.
+    /// - Parameters:
+    ///   - completion: The block to call when the image is either downloaded or
+    ///                 if an error happened.
+    ///
+    /// - Returns:
+    ///   The fetched image if it was retrieved from the fast cache, `nil` otherwise.
     ///
     public func fetch(completion: (ImageRequest, UIImage?, NSError?) -> Void) -> UIImage? {
         return requestBuilder.fetch(completion)
@@ -91,6 +96,9 @@ public class SwiftImageRequestCreator {
     }
 
     /// Same as `showInTarget(_: ImageRequestTarget)` but repeated here because of swift limitations.
+    ///
+    /// - Parameters:
+    ///   - imageView: The target image view to show the fetched image in.
     ///
     public func showIn(imageView: UIImageView) {
         requestBuilder.showInTarget(imageView)
