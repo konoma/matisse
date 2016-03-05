@@ -1,3 +1,5 @@
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/Carthage/Carthage) [![CocoaPods](https://img.shields.io/cocoapods/v/Matisse.svg)](https://cocoapods.org/pods/Matisse) [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/konoma/matisse/blob/master/LICENSE)
+
 # Matisse
 
 Matisse is an image retrieval and caching library for iOS inspired by
@@ -34,4 +36,26 @@ it like this:
 
 ## Installation
 
-TBD (Cocoapods)
+### Carthage
+
+To install this library via [Carthage](https://github.com/Carthage/Carthage) add the
+following to your `Cartfile`:
+
+    github "konoma/matisse" ~> 1.0
+
+Then run the standard `carthage update` process.
+
+
+### Cocapods
+
+To install this library via [Cocoapods](https://cocoapods.org) add the following to
+your `Podfile`:
+
+    pod 'Matisse', '~> 1.0'
+
+Then run the standard `pod update` process.
+
+
+## License
+
+Matisse is released under the [MIT License](https://github.com/konoma/matisse/blob/master/LICENSE).
