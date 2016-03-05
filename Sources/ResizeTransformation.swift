@@ -92,6 +92,7 @@ public class ResizeTransformation: ImageTransformation {
 
     private func calculateImageRectWithOriginalSize(originalSize: CGSize) -> CGRect {
         switch contentMode {
+
         case .ScaleToFill:
             return CGRect(origin: .zero, size: scaledTargetSize)
 
@@ -108,6 +109,9 @@ public class ResizeTransformation: ImageTransformation {
             let scale = max(widthScale, heightScale)
             let scaledSize = CGSize(width: round(originalSize.width / scale), height: round(originalSize.height / scale))
             return centerRectWithSize(scaledSize, inSize: scaledTargetSize)
+
+        case .Center:
+            return centerRectWithSize(originalSize, inSize: scaledTargetSize)
 
         default:
             fatalError("Unsupported contentMode: \(contentMode)")
