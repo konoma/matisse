@@ -21,7 +21,6 @@
 		05B47A931C1C2C760042FE21 /* Matisse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B47A921C1C2C760042FE21 /* Matisse.swift */; };
 		05B47A961C1C35A80042FE21 /* UIImageView+ImageRequestTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B47A951C1C35A80042FE21 /* UIImageView+ImageRequestTarget.swift */; };
 		05B47A981C1C36660042FE21 /* ImageRequestTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B47A971C1C36660042FE21 /* ImageRequestTarget.swift */; };
-		05B47AAC1C1C48DE0042FE21 /* ResizeTransformation+DSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B47AAB1C1C48DE0042FE21 /* ResizeTransformation+DSL.swift */; };
 		05C34DDC1C04E79600E0AEC8 /* CoalescingTaskQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C34DDB1C04E79600E0AEC8 /* CoalescingTaskQueue.swift */; };
 		05C34DDF1C07140A00E0AEC8 /* CoalescingTaskQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C34DDE1C07140A00E0AEC8 /* CoalescingTaskQueueTests.swift */; };
 		05DBCFD81C09F565009C0CC0 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DBCFD71C09F565009C0CC0 /* ImageCache.swift */; };
@@ -102,7 +101,6 @@
 		05B47A921C1C2C760042FE21 /* Matisse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matisse.swift; sourceTree = "<group>"; };
 		05B47A951C1C35A80042FE21 /* UIImageView+ImageRequestTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+ImageRequestTarget.swift"; sourceTree = "<group>"; };
 		05B47A971C1C36660042FE21 /* ImageRequestTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRequestTarget.swift; sourceTree = "<group>"; };
-		05B47AAB1C1C48DE0042FE21 /* ResizeTransformation+DSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ResizeTransformation+DSL.swift"; sourceTree = "<group>"; };
 		05C34DDB1C04E79600E0AEC8 /* CoalescingTaskQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoalescingTaskQueue.swift; sourceTree = "<group>"; };
 		05C34DDE1C07140A00E0AEC8 /* CoalescingTaskQueueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoalescingTaskQueueTests.swift; sourceTree = "<group>"; };
 		05DBCFD71C09F565009C0CC0 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
@@ -216,7 +214,6 @@
 			isa = PBXGroup;
 			children = (
 				05A791811C0274E900A65E7B /* ResizeTransformation.swift */,
-				05B47AAB1C1C48DE0042FE21 /* ResizeTransformation+DSL.swift */,
 			);
 			name = Transformations;
 			sourceTree = "<group>";
@@ -504,7 +501,6 @@
 				05DBCFF31C0B122B009C0CC0 /* NSString+MD5.m in Sources */,
 				05DBCFE01C0A0563009C0CC0 /* DefaultImageRequestHandler.swift in Sources */,
 				05B47A931C1C2C760042FE21 /* Matisse.swift in Sources */,
-				05B47AAC1C1C48DE0042FE21 /* ResizeTransformation+DSL.swift in Sources */,
 				05DBCFD81C09F565009C0CC0 /* ImageCache.swift in Sources */,
 				05A791801C0273F500A65E7B /* ImageTransformation.swift in Sources */,
 				05DBCFE41C0AD897009C0CC0 /* ImageRequestBuilder.swift in Sources */,
