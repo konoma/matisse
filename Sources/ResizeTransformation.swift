@@ -102,6 +102,13 @@ public class ResizeTransformation: ImageTransformation {
             let scaledSize = CGSize(width: round(originalSize.width / scale), height: round(originalSize.height / scale))
             return centerRectWithSize(scaledSize, inSize: scaledTargetSize)
 
+        case .ScaleAspectFit:
+            let widthScale = originalSize.width / scaledTargetSize.width
+            let heightScale = originalSize.height / scaledTargetSize.height
+            let scale = max(widthScale, heightScale)
+            let scaledSize = CGSize(width: round(originalSize.width / scale), height: round(originalSize.height / scale))
+            return centerRectWithSize(scaledSize, inSize: scaledTargetSize)
+
         default:
             fatalError("Unsupported contentMode: \(contentMode)")
         }
