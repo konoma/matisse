@@ -98,6 +98,8 @@ public class ResizeTransformation: ImageTransformation {
     }
 
     private func calculateImageRectWithOriginalSize(originalSize: CGSize) -> CGRect {
+        // swiftlint:disable:previous cyclomatic_complexity
+
         switch contentMode {
 
         case .ScaleToFill:
