@@ -62,7 +62,6 @@ public class ResizeTransformation: ImageTransformation {
     ///
     public func transformImage(image: CGImage) throws -> CGImage {
         let bitsPerComponent = CGImageGetBitsPerComponent(image)
-        let bytesPerRow = CGImageGetBytesPerRow(image)
         let colorSpace = CGImageGetColorSpace(image)
         let bitmapInfo = CGImageGetBitmapInfo(image)
 
@@ -72,10 +71,14 @@ public class ResizeTransformation: ImageTransformation {
             Int(scaledTargeSize.width),
             Int(scaledTargeSize.height),
             bitsPerComponent,
-            bytesPerRow,
+            0,
             colorSpace,
             bitmapInfo.rawValue
         )
+
+        if context == nil {
+            throw NSError.matisseCreationError("Could not resize image")
+        }
 
         CGContextSetInterpolationQuality(context, .High)
         CGContextDrawImage(context, calculateImageRectWithOriginalSize(originalSize), image)
