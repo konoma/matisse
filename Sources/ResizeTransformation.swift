@@ -13,6 +13,13 @@ import UIKit
 ///
 public class ResizeTransformation: ImageTransformation {
 
+    private enum AxisPosition {
+
+        case Start
+        case Center
+        case End
+    }
+
     private let targetSize: CGSize
     private let contentMode: UIViewContentMode
     private let deviceScale: CGFloat
@@ -101,27 +108,38 @@ public class ResizeTransformation: ImageTransformation {
             let heightScale = originalSize.height / scaledTargetSize.height
             let scale = min(widthScale, heightScale)
             let scaledSize = CGSize(width: round(originalSize.width / scale), height: round(originalSize.height / scale))
-            return centerRectWithSize(scaledSize, inSize: scaledTargetSize)
+            return rectWithSize(scaledSize, inSize: scaledTargetSize, xAxisPosition: .Center, yAxisPosition: .Center)
 
         case .ScaleAspectFit:
             let widthScale = originalSize.width / scaledTargetSize.width
             let heightScale = originalSize.height / scaledTargetSize.height
             let scale = max(widthScale, heightScale)
             let scaledSize = CGSize(width: round(originalSize.width / scale), height: round(originalSize.height / scale))
-            return centerRectWithSize(scaledSize, inSize: scaledTargetSize)
+            return rectWithSize(scaledSize, inSize: scaledTargetSize, xAxisPosition: .Center, yAxisPosition: .Center)
 
         case .Center:
-            return centerRectWithSize(originalSize, inSize: scaledTargetSize)
+            return rectWithSize(originalSize, inSize: scaledTargetSize, xAxisPosition: .Center, yAxisPosition: .Center)
+
+        
 
         default:
             fatalError("Unsupported contentMode: \(contentMode)")
         }
     }
 
-    private func centerRectWithSize(size: CGSize, inSize targetSize: CGSize) -> CGRect {
-        let xOffset = round(targetSize.width - size.width) / 2.0
-        let yOffset = round(targetSize.height - size.height) / 2.0
+    private func rectWithSize(size: CGSize, inSize targetSize: CGSize, xAxisPosition: AxisPosition, yAxisPosition: AxisPosition) -> CGRect {
+        let xOffset = axisValueForTargetValue(targetSize.width, originalValue: size.width, position: xAxisPosition)
+        let yOffset = axisValueForTargetValue(targetSize.height, originalValue: size.height, position: yAxisPosition)
+
         return CGRect(origin: CGPoint(x: xOffset, y: yOffset), size: size)
+    }
+
+    private func axisValueForTargetValue(targetValue: CGFloat, originalValue: CGFloat, position: AxisPosition) -> CGFloat {
+        switch position {
+        case .Start:  return 0.0
+        case .Center: return round((targetValue - originalValue) / 2.0)
+        case .End:    return targetValue - originalValue
+        }
     }
 
 
