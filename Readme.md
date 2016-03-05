@@ -4,16 +4,12 @@ Matisse is an image retrieval and caching library for iOS inspired by
 [Picasso](https://github.com/square/picasso).
 
 
-## Examples
+## Usage
 
 With Matisse you can download and display an image in an image view with
 a single line:
 
     Matisse.load(imageURL).showIn(imageView)
-
-Or in Objective-C:
-
-    [MTSMatisse load:imageURL].showIn(imageView);
 
 This automatically takes care of downloading, caching and showing the image
 in the view. If you use this code in a `UITableViewDataSource` it also makes
