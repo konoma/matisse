@@ -13,10 +13,17 @@ import UIKit
 ///
 public class ResizeTransformation: ImageTransformation {
 
+    private enum AxisPosition {
+
+        case Start
+        case Center
+        case End
+    }
+
     private let targetSize: CGSize
     private let contentMode: UIViewContentMode
     private let deviceScale: CGFloat
-    private let scaledTargeSize: CGSize
+    private let scaledTargetSize: CGSize
 
 
     // MARK: - Initialization
@@ -43,7 +50,7 @@ public class ResizeTransformation: ImageTransformation {
         self.contentMode = contentMode
         self.deviceScale = deviceScale
 
-        self.scaledTargeSize = CGSize(width: (targetSize.width * deviceScale), height: (targetSize.height * deviceScale))
+        self.scaledTargetSize = CGSize(width: (targetSize.width * deviceScale), height: (targetSize.height * deviceScale))
     }
 
 
@@ -68,8 +75,8 @@ public class ResizeTransformation: ImageTransformation {
         let originalSize = CGSize(width: CGImageGetWidth(image), height: CGImageGetHeight(image))
 
         let context = CGBitmapContextCreate(nil,
-            Int(scaledTargeSize.width),
-            Int(scaledTargeSize.height),
+            Int(scaledTargetSize.width),
+            Int(scaledTargetSize.height),
             bitsPerComponent,
             0,
             colorSpace,
@@ -91,26 +98,71 @@ public class ResizeTransformation: ImageTransformation {
     }
 
     private func calculateImageRectWithOriginalSize(originalSize: CGSize) -> CGRect {
+        // swiftlint:disable:previous cyclomatic_complexity
+
         switch contentMode {
+
         case .ScaleToFill:
-            return CGRect(origin: .zero, size: scaledTargeSize)
+            return CGRect(origin: .zero, size: scaledTargetSize)
 
         case .ScaleAspectFill:
-            let widthScale = originalSize.width / scaledTargeSize.width
-            let heightScale = originalSize.height / scaledTargeSize.height
-            let scale = min(widthScale, heightScale)
-            let scaledSize = CGSize(width: round(originalSize.width / scale), height: round(originalSize.height / scale))
-            return centerRectWithSize(scaledSize, inSize: scaledTargeSize)
+            let scaledSize = self.scaledSizeForSize(originalSize, targetSize: scaledTargetSize, fitting: false)
+            return rectWithSize(scaledSize, inSize: scaledTargetSize, xPosition: .Center, yPosition: .Center)
 
-        default:
-            fatalError("Unsupported contentMode: \(contentMode)")
+        case .ScaleAspectFit:
+            let scaledSize = self.scaledSizeForSize(originalSize, targetSize: scaledTargetSize, fitting: true)
+            return rectWithSize(scaledSize, inSize: scaledTargetSize, xPosition: .Center, yPosition: .Center)
+
+        case .Center, .Redraw:
+            return rectWithSize(originalSize, inSize: scaledTargetSize, xPosition: .Center, yPosition: .Center)
+
+        case .Top:
+            return rectWithSize(originalSize, inSize: scaledTargetSize, xPosition: .Center, yPosition: .End)
+
+        case .Bottom:
+            return rectWithSize(originalSize, inSize: scaledTargetSize, xPosition: .Center, yPosition: .Start)
+
+        case .Left:
+            return rectWithSize(originalSize, inSize: scaledTargetSize, xPosition: .Start, yPosition: .Center)
+
+        case .Right:
+            return rectWithSize(originalSize, inSize: scaledTargetSize, xPosition: .End, yPosition: .Center)
+
+        case .TopLeft:
+            return rectWithSize(originalSize, inSize: scaledTargetSize, xPosition: .Start, yPosition: .End)
+
+        case .TopRight:
+            return rectWithSize(originalSize, inSize: scaledTargetSize, xPosition: .End, yPosition: .End)
+
+        case .BottomLeft:
+            return rectWithSize(originalSize, inSize: scaledTargetSize, xPosition: .Start, yPosition: .Start)
+
+        case .BottomRight:
+            return rectWithSize(originalSize, inSize: scaledTargetSize, xPosition: .End, yPosition: .Start)
         }
     }
 
-    private func centerRectWithSize(size: CGSize, inSize targetSize: CGSize) -> CGRect {
-        let xOffset = round(targetSize.width - size.width) / 2.0
-        let yOffset = round(targetSize.height - size.height) / 2.0
+    private func scaledSizeForSize(size: CGSize, targetSize: CGSize, fitting: Bool) -> CGSize {
+        let widthScale = size.width / targetSize.width
+        let heightScale = size.height / targetSize.height
+        let scale = fitting ? max(widthScale, heightScale) : min(widthScale, heightScale)
+
+        return CGSize(width: round(size.width / scale), height: round(size.height / scale))
+    }
+
+    private func rectWithSize(size: CGSize, inSize targetSize: CGSize, xPosition: AxisPosition, yPosition: AxisPosition) -> CGRect {
+        let xOffset = axisValueForTargetValue(targetSize.width, originalValue: size.width, position: xPosition)
+        let yOffset = axisValueForTargetValue(targetSize.height, originalValue: size.height, position: yPosition)
+
         return CGRect(origin: CGPoint(x: xOffset, y: yOffset), size: size)
+    }
+
+    private func axisValueForTargetValue(targetValue: CGFloat, originalValue: CGFloat, position: AxisPosition) -> CGFloat {
+        switch position {
+        case .Start:  return 0.0
+        case .Center: return round((targetValue - originalValue) / 2.0)
+        case .End:    return targetValue - originalValue
+        }
     }
 
 
