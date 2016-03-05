@@ -120,15 +120,6 @@ public class ImageRequestBuilder {
         }
     }
 
-    /// Same as `showInTarget(_: ImageRequestTarget)` but repeated here because of swift limitations.
-    ///
-    /// - Parameters:
-    ///   - imageView: The target image view to show the fetched image in.
-    ///
-    public func showIn(imageView: UIImageView) {
-        showIn(imageView as ImageRequestTarget)
-    }
-
 
     // MARK: - Helper
 

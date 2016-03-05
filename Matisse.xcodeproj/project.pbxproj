@@ -166,6 +166,7 @@
 		05A7916C1C0249C100A65E7B /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				05B47A921C1C2C760042FE21 /* Matisse.swift */,
 				055061E81C023DB4009462D9 /* MatisseContext.swift */,
 				05DBCFE31C0AD897009C0CC0 /* ImageRequestBuilder.swift */,
 				055061E61C023D0D009462D9 /* ImageRequest.swift */,
@@ -237,14 +238,6 @@
 			name = "Request Handlers";
 			sourceTree = "<group>";
 		};
-		05B47A901C1C2B580042FE21 /* DSL */ = {
-			isa = PBXGroup;
-			children = (
-				05B47A921C1C2C760042FE21 /* Matisse.swift */,
-			);
-			name = DSL;
-			sourceTree = "<group>";
-		};
 		05B47A941C1C35840042FE21 /* Request Targets */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,7 +275,6 @@
 				05F50C371C022E2500859782 /* Info.plist */,
 				05F50C351C022E2500859782 /* Matisse.h */,
 				05A7916C1C0249C100A65E7B /* Core */,
-				05B47A901C1C2B580042FE21 /* DSL */,
 				05B47A8B1C1C25B30042FE21 /* Built-Ins */,
 				05A7917B1C026A1300A65E7B /* Util */,
 			);

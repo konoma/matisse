@@ -24,22 +24,17 @@ public class DiskImageCache: ImageCache {
     private let cacheDirectoryURL: NSURL
     private let fileManager: NSFileManager
 
-    private static var _defaultCacheDirectory = NSFileManager
-        .defaultManager()
-        .URLsForDirectory(.CachesDirectory, inDomains: .AllDomainsMask)
-        .first!
-
 
     // MARK: - Global Configuration
 
-    /// Get the default cache directory for this application.
+    /// The default cache directory for this application.
     ///
-    /// - Returns:
-    ///   The default cache directory for this application.
-    ///
-    public class func defaultCacheDirectory() -> NSURL {
-        return _defaultCacheDirectory
-    }
+    public static var defaultCacheDirectory: NSURL = {
+        return NSFileManager
+            .defaultManager()
+            .URLsForDirectory(.CachesDirectory, inDomains: .AllDomainsMask)
+            .first!
+    }()
 
 
     // MARK: - Initialization
@@ -47,7 +42,7 @@ public class DiskImageCache: ImageCache {
     /// Create a new `DiskImageCache` with the default cache directory and a private file manager.
     ///
     public convenience init() {
-        self.init(cacheDirectoryURL: DiskImageCache.defaultCacheDirectory())
+        self.init(cacheDirectoryURL: DiskImageCache.defaultCacheDirectory)
     }
 
     /// Create a new `DiskImageCache` with a custom cache directory and a private file manager.

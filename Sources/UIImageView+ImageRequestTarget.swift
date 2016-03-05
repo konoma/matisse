@@ -37,3 +37,16 @@ public extension UIImageView {
 // Cannot publicly specify protocol compliance. The image view is
 // still compliant, because the methods are implemented above.
 extension UIImageView : ImageRequestTarget { }
+
+
+extension ImageRequestBuilder {
+
+    /// Same as `showInTarget(_: ImageRequestTarget)` but repeated here because of swift limitations.
+    ///
+    /// - Parameters:
+    ///   - imageView: The target image view to show the fetched image in.
+    ///
+    public func showIn(imageView: UIImageView) {
+        showIn(imageView as ImageRequestTarget)
+    }
+}
