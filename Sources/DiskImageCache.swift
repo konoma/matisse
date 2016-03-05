@@ -53,7 +53,7 @@ public class DiskImageCache: NSObject, ImageCache {
 
     /// Create a new `DiskImageCache` with a custom cache directory and a private file manager.
     ///
-    /// - Parameter:
+    /// - Parameters:
     ///   - cacheDirectoryURL: The URL of the directory to use as the cache.
     ///
     public convenience init(cacheDirectoryURL: NSURL) {
@@ -62,7 +62,7 @@ public class DiskImageCache: NSObject, ImageCache {
 
     /// Create a new `DiskImageCache` with a custom cache directory and file manager.
     ///
-    /// - Parameter:
+    /// - Parameters:
     ///   - cacheDirectoryURL: The URL of the directory to use as the cache.
     ///   - fileManager:       The file manager used to access files.
     ///

@@ -1,7 +1,6 @@
 line_length: 140
 
 disabled_rules:
-  - valid_docs
   - closing_brace
 
 included:
