@@ -104,32 +104,53 @@ public class ResizeTransformation: ImageTransformation {
             return CGRect(origin: .zero, size: scaledTargetSize)
 
         case .ScaleAspectFill:
-            let widthScale = originalSize.width / scaledTargetSize.width
-            let heightScale = originalSize.height / scaledTargetSize.height
-            let scale = min(widthScale, heightScale)
-            let scaledSize = CGSize(width: round(originalSize.width / scale), height: round(originalSize.height / scale))
-            return rectWithSize(scaledSize, inSize: scaledTargetSize, xAxisPosition: .Center, yAxisPosition: .Center)
+            let scaledSize = self.scaledSizeForSize(originalSize, targetSize: scaledTargetSize, fitting: false)
+            return rectWithSize(scaledSize, inSize: scaledTargetSize, xPosition: .Center, yPosition: .Center)
 
         case .ScaleAspectFit:
-            let widthScale = originalSize.width / scaledTargetSize.width
-            let heightScale = originalSize.height / scaledTargetSize.height
-            let scale = max(widthScale, heightScale)
-            let scaledSize = CGSize(width: round(originalSize.width / scale), height: round(originalSize.height / scale))
-            return rectWithSize(scaledSize, inSize: scaledTargetSize, xAxisPosition: .Center, yAxisPosition: .Center)
+            let scaledSize = self.scaledSizeForSize(originalSize, targetSize: scaledTargetSize, fitting: true)
+            return rectWithSize(scaledSize, inSize: scaledTargetSize, xPosition: .Center, yPosition: .Center)
 
-        case .Center:
-            return rectWithSize(originalSize, inSize: scaledTargetSize, xAxisPosition: .Center, yAxisPosition: .Center)
+        case .Center, .Redraw:
+            return rectWithSize(originalSize, inSize: scaledTargetSize, xPosition: .Center, yPosition: .Center)
 
-        
+        case .Top:
+            return rectWithSize(originalSize, inSize: scaledTargetSize, xPosition: .Center, yPosition: .End)
 
-        default:
-            fatalError("Unsupported contentMode: \(contentMode)")
+        case .Bottom:
+            return rectWithSize(originalSize, inSize: scaledTargetSize, xPosition: .Center, yPosition: .Start)
+
+        case .Left:
+            return rectWithSize(originalSize, inSize: scaledTargetSize, xPosition: .Start, yPosition: .Center)
+
+        case .Right:
+            return rectWithSize(originalSize, inSize: scaledTargetSize, xPosition: .End, yPosition: .Center)
+
+        case .TopLeft:
+            return rectWithSize(originalSize, inSize: scaledTargetSize, xPosition: .Start, yPosition: .End)
+
+        case .TopRight:
+            return rectWithSize(originalSize, inSize: scaledTargetSize, xPosition: .End, yPosition: .End)
+
+        case .BottomLeft:
+            return rectWithSize(originalSize, inSize: scaledTargetSize, xPosition: .Start, yPosition: .Start)
+
+        case .BottomRight:
+            return rectWithSize(originalSize, inSize: scaledTargetSize, xPosition: .End, yPosition: .Start)
         }
     }
 
-    private func rectWithSize(size: CGSize, inSize targetSize: CGSize, xAxisPosition: AxisPosition, yAxisPosition: AxisPosition) -> CGRect {
-        let xOffset = axisValueForTargetValue(targetSize.width, originalValue: size.width, position: xAxisPosition)
-        let yOffset = axisValueForTargetValue(targetSize.height, originalValue: size.height, position: yAxisPosition)
+    private func scaledSizeForSize(size: CGSize, targetSize: CGSize, fitting: Bool) -> CGSize {
+        let widthScale = size.width / targetSize.width
+        let heightScale = size.height / targetSize.height
+        let scale = fitting ? max(widthScale, heightScale) : min(widthScale, heightScale)
+
+        return CGSize(width: round(size.width / scale), height: round(size.height / scale))
+    }
+
+    private func rectWithSize(size: CGSize, inSize targetSize: CGSize, xPosition: AxisPosition, yPosition: AxisPosition) -> CGRect {
+        let xOffset = axisValueForTargetValue(targetSize.width, originalValue: size.width, position: xPosition)
+        let yOffset = axisValueForTargetValue(targetSize.height, originalValue: size.height, position: yPosition)
 
         return CGRect(origin: CGPoint(x: xOffset, y: yOffset), size: size)
     }
