@@ -18,8 +18,7 @@ import Foundation
 /// Resolving the request includes downloading the image, creating the image
 /// and applying any transformations on it, if specified by the request.
 ///
-@objc(MTSImageRequestHandler)
-public protocol ImageRequestHandler: NSObjectProtocol {
+public protocol ImageRequestHandler: class {
 
     /// Retrieve and prepare the image for the given `ImageRequest`
     ///

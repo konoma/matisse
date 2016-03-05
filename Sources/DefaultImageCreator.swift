@@ -12,8 +12,7 @@ import ImageIO
 
 /// Creates images from files and applies image transformations.
 ///
-@objc(MTSDefaultImageCreator)
-public class DefaultImageCreator: NSObject {
+public class DefaultImageCreator {
 
     /// Create a new image from the given URL and apply the transformations in the `ImageRequest` to it.
     ///

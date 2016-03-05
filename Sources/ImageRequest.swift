@@ -17,8 +17,7 @@ import Foundation
 /// applied to the image. The descriptor is used for example to implement request
 /// coalescing.
 ///
-@objc(MTSImageRequest)
-public class ImageRequest: NSObject {
+public class ImageRequest {
 
     // MARK: - Initialization
 

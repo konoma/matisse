@@ -11,8 +11,7 @@ import UIKit
 
 /// An `ImageTransformation` to resize an image.
 ///
-@objc(MTSResizeTransformation)
-public class ResizeTransformation: NSObject, ImageTransformation {
+public class ResizeTransformation: ImageTransformation {
 
     private let targetSize: CGSize
     private let contentMode: UIViewContentMode

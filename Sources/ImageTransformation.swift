@@ -12,8 +12,7 @@ import Foundation
 /// The `ImageTransformation` protocol describes objects that are capable of applying
 /// a transformation to a `CGImage`.
 ///
-@objc(MTSImageTransformation)
-public protocol ImageTransformation: NSObjectProtocol {
+public protocol ImageTransformation: class {
 
     /// Apply the transformation to the given `CGImage` and return the transformed image.
     ///

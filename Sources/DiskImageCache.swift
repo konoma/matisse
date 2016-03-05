@@ -19,8 +19,7 @@ import Foundation
 ///
 /// Images are serialized using `NSKeyedArchiver` to preserve file type and metadata.
 ///
-@objc(MTSDiskImageCache)
-public class DiskImageCache: NSObject, ImageCache {
+public class DiskImageCache: ImageCache {
 
     private let cacheDirectoryURL: NSURL
     private let fileManager: NSFileManager
@@ -47,7 +46,7 @@ public class DiskImageCache: NSObject, ImageCache {
 
     /// Create a new `DiskImageCache` with the default cache directory and a private file manager.
     ///
-    public override convenience init() {
+    public convenience init() {
         self.init(cacheDirectoryURL: DiskImageCache.defaultCacheDirectory())
     }
 

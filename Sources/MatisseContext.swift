@@ -49,8 +49,7 @@ import Foundation
 /// If you want to customize downloading or image creation behavior, pass a custom
 /// `ImageRequestHandler` instance when creating the context.
 ///
-@objc(MTSMatisseContext)
-public class MatisseContext: NSObject {
+public class MatisseContext {
 
     private let fastCache: ImageCache?
     private let slowCache: ImageCache?

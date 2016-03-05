@@ -15,8 +15,7 @@ import Foundation
 /// For support in implementing an `ImageLoader` you can use
 /// the `ImageLoaderBase` as a parent class for your image loader.
 ///
-@objc(MTSImageLoader)
-public protocol ImageLoader: NSObjectProtocol {
+public protocol ImageLoader: class {
 
     /// Load the image for the given request.
     ///
@@ -41,8 +40,7 @@ public protocol ImageLoader: NSObjectProtocol {
 /// Implements common logic such as generating temporary URLs
 /// and checking response status codes.
 ///
-@objc(MTSImageLoaderBase)
-public class ImageLoaderBase: NSObject, ImageLoader {
+public class ImageLoaderBase: ImageLoader {
 
     /// The file manager used to create the temporary directory if necessary
     public let fileManager: NSFileManager

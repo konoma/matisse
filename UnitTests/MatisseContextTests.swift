@@ -153,7 +153,7 @@ class MatisseContextTests: XCTestCase {
 }
 
 
-class InspectableImageCache: NSObject, ImageCache {
+class InspectableImageCache: ImageCache {
     
     var cached: [NSUUID: UIImage] = [:]
     
@@ -167,7 +167,7 @@ class InspectableImageCache: NSObject, ImageCache {
 }
 
 
-class InspectableImageRequestHandler: NSObject, ImageRequestHandler {
+class InspectableImageRequestHandler: ImageRequestHandler {
     
     var responses: [NSUUID: AnyObject] = [:]
     

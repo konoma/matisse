@@ -1,4 +1,6 @@
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/Carthage/Carthage) [![CocoaPods](https://img.shields.io/cocoapods/v/Matisse.svg)](https://cocoapods.org/pods/Matisse) [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/konoma/matisse/blob/master/LICENSE)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/Carthage/Carthage)
+[![CocoaPods](https://img.shields.io/cocoapods/v/Matisse.svg)](https://cocoapods.org/pods/Matisse)
+[![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/konoma/matisse/blob/master/LICENSE)
 
 # Matisse
 
@@ -32,6 +34,17 @@ it like this:
            // handle the error
         }
     }
+
+
+### Configuring Matisse
+
+The shared Matisse instance can be configured with a custom image loader and custom caches (disk and in-memory).
+For advanced purposes you can also use a custom request handler that manages image loading as a whole.
+
+#### Configuring the Image Loader
+
+An [`ImageLoader`](Sources/ImageLoader.swift) is a class that is responsible for downloading images.
+
 
 
 ## Installation

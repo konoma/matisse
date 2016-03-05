@@ -21,7 +21,7 @@ import Foundation
 ///     Matisse.load(imageURL).showIn(myImageView)
 ///
 ///
-/// If you need more than one Matisse DSL object you can create them by passing a context in by hand.
+/// If you need more than one Matisse object you can create them by passing a context in by hand.
 ///
 /// Example:
 ///
@@ -56,11 +56,10 @@ public class Matisse {
     /// - Parameters:
     ///   - url: The URL to load the image from.
     ///
-    /// - Returns: An image request creator configured for the given URL.
+    /// - Returns: An image request builder configured for the given URL.
     ///
-    public func load(url: NSURL) -> SwiftImageRequestCreator {
-        let requestBuilder = ImageRequestBuilder(context: self.context, url: url)
-        return SwiftImageRequestCreator(requestBuilder: requestBuilder)
+    public func load(url: NSURL) -> ImageRequestBuilder {
+        return ImageRequestBuilder(context: self.context, url: url)
     }
 
 
@@ -169,9 +168,9 @@ public class Matisse {
     /// - Parameters:
     ///   - url: The URL to load the image from.
     ///
-    /// - Returns: An image request creator configured for the given URL.
+    /// - Returns: An image request builder configured for the given URL.
     ///
-    public class func load(url: NSURL) -> SwiftImageRequestCreator {
+    public class func load(url: NSURL) -> ImageRequestBuilder {
         return shared().load(url)
     }
 

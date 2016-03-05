@@ -9,14 +9,13 @@
 import Foundation
 
 
-/// The request handler that is used by the shared `Matisse`/`MTSMatisse` DSL instance if not specified differently.
+/// The request handler that is used by the shared `Matisse` DSL instance if not specified differently.
 ///
 /// To use a `DefaultImageRequestHandler` with a different `ImageLoader` on the shared DSL instance you
 /// don't need to create a new object yourself. Instead you can use `useImageLoader(_:)` on the shared
 /// DSL class to set the `ImageLoader` directly.
 ///
-@objc(MTSDefaultImageRequestHandler)
-public class DefaultImageRequestHandler: NSObject, ImageRequestHandler {
+public class DefaultImageRequestHandler: ImageRequestHandler {
 
     private let imageLoader: ImageLoader
     private let imageCreator: DefaultImageCreator
@@ -27,7 +26,7 @@ public class DefaultImageRequestHandler: NSObject, ImageRequestHandler {
 
     /// Create a new `DefaultImageRequestHandler` with a default image loader and creator.
     ///
-    public override convenience init() {
+    public convenience init() {
         self.init(imageLoader: DefaultImageLoader())
     }
 

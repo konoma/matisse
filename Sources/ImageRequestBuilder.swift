@@ -11,12 +11,11 @@ import Foundation
 
 /// ImageRequestBuilder provides a common interface for creating an ImageRequest.
 ///
-/// The Swift and Objective-C DSL classes wrap this builder to provide their
-/// interface to API clients. This class encapsulates common logic, such as
-/// protecting against modifications after the request was built.
+/// The Swift DSL classes wrap this builder to provide its interface to API clients.
+/// This class encapsulates common logic, such as protecting against modifications
+/// after the request was built.
 ///
-@objc(MTSImageRequestBuilder)
-public class ImageRequestBuilder: NSObject {
+public class ImageRequestBuilder {
 
     private let context: MatisseContext
     private let url: NSURL
@@ -32,7 +31,7 @@ public class ImageRequestBuilder: NSObject {
     ///   - context: The Matisse instance to execute the built request in.
     ///   - url:     The source URL of the image to fetch.
     ///
-    public init(context: MatisseContext, url: NSURL) {
+    internal init(context: MatisseContext, url: NSURL) {
         self.context = context
         self.url = url
     }
@@ -45,17 +44,20 @@ public class ImageRequestBuilder: NSObject {
     /// Transformations will be applied in the order they are added to the request.
     ///
     /// - Note:
-    ///   You cannot modify the request after it was first accessed.
+    ///   You cannot modify the request after it was fetched.
     ///
     /// - Parameters:
     ///   - transformation: The transformation to apply to the downloaded image.
     ///
-    public func addTransformation(transformation: ImageTransformation) {
+    /// - Returns:
+    ///   The receiver.
+    ///
+    public func transform(transformation: ImageTransformation) -> Self {
         checkNotYetBuilt()
 
         transformations.append(transformation)
+        return self
     }
-
 
     /// The image request created by this builder.
     ///
@@ -107,7 +109,7 @@ public class ImageRequestBuilder: NSObject {
     /// - Parameters:
     ///   - target: The `ImageRequestTarget` to show the image in.
     ///
-    public func showInTarget(target: ImageRequestTarget) {
+    public func showIn(target: ImageRequestTarget) {
         target.matisseRequestIdentifier = imageRequest.identifier
 
         fetch { request, image, error in
@@ -116,6 +118,15 @@ public class ImageRequestBuilder: NSObject {
                 target.matisseRequestIdentifier = nil
             }
         }
+    }
+
+    /// Same as `showInTarget(_: ImageRequestTarget)` but repeated here because of swift limitations.
+    ///
+    /// - Parameters:
+    ///   - imageView: The target image view to show the fetched image in.
+    ///
+    public func showIn(imageView: UIImageView) {
+        showIn(imageView as ImageRequestTarget)
     }
 
 

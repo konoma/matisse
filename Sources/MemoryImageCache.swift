@@ -11,8 +11,7 @@ import Foundation
 
 /// A `ImageCache` implementation that uses `NSCache`.
 ///
-@objc(MTSMemoryImageCache)
-public class MemoryImageCache: NSObject, ImageCache {
+public class MemoryImageCache: ImageCache {
 
     private let cache: NSCache
 
@@ -20,7 +19,7 @@ public class MemoryImageCache: NSObject, ImageCache {
 
     /// Create a new instance with a private `NSCache` instance.
     ///
-    public override convenience init() {
+    public convenience init() {
         self.init(cache: NSCache())
     }
 

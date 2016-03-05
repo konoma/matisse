@@ -9,7 +9,7 @@
 import UIKit
 
 
-public extension SwiftImageRequestCreator {
+public extension ImageRequestBuilder {
 
     /// Apply a transformation to resize the image to the given target size with the specified content mode.
     ///

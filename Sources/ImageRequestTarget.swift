@@ -19,8 +19,7 @@ import Foundation
 /// request don't overwrite now invalid targets. For this the request identifier is stored on
 /// the target.
 ///
-@objc(MTSImageRequestTarget)
-public protocol ImageRequestTarget: NSObjectProtocol {
+public protocol ImageRequestTarget: class {
 
     /// The identifier of the `ImageRequest` currently owning this target.
     ///

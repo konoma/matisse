@@ -26,8 +26,7 @@ import Foundation
 /// background thread, but not concurrently. This means the caches themselves are not required to be
 /// thread safe.
 ///
-@objc(MTSImageCache)
-public protocol ImageCache: NSObjectProtocol {
+public protocol ImageCache: class {
 
     /// Stores an image referenced by the given `ImageRequest` in this cache.
     ///

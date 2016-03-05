@@ -13,7 +13,6 @@ import Foundation
 ///
 /// Downloads the images using `NSURLSession` download tasks.
 ///
-@objc(MTSDefaultImageLoader)
 public class DefaultImageLoader: ImageLoaderBase {
 
     private let urlSession: NSURLSession
