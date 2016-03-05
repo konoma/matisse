@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import DXFPSLabel
 import Matisse
 
 
@@ -27,11 +26,6 @@ class MainViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let fpsLabel = DXFPSLabel(frame: CGRect(x: 0.0, y: 0.0, width: view.bounds.width, height: 40.0))
-        fpsLabel.autoresizingMask = [ .FlexibleWidth, .FlexibleBottomMargin ]
-        fpsLabel.backgroundColor = .blackColor()
-        view.addSubview(fpsLabel)
 
         collectionView?.contentInset.top = 40.0
     }

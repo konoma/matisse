@@ -1,6 +1,0 @@
-framework module DXFPSLabel {
-  umbrella header "DXFPSLabel-umbrella.h"
-
-  export *
-  module * { export * }
-}
