@@ -106,17 +106,30 @@ public class ImageRequestBuilder {
     /// and discards updates if the target was associated with another request in the mean
     /// time.
     ///
+    /// If the image can be retrieved from the fast cache, the target is updated immediately.
+    /// Otherwise it's updated asynchronously on the main thread.
+    ///
     /// - Parameters:
     ///   - target: The `ImageRequestTarget` to show the image in.
     ///
     public func showIn(target: ImageRequestTarget) {
         target.matisseRequestIdentifier = imageRequest.identifier
 
-        fetch { request, image, error in
-            if target.matisseRequestIdentifier == request.identifier {
+        var alreadySet = false
+
+        // fetch the image then show it in the target
+        let fetchedImage = fetch { request, image, error in
+            if !alreadySet && target.matisseRequestIdentifier == request.identifier {
                 target.updateForImageRequest(request, image: image, error: error)
                 target.matisseRequestIdentifier = nil
             }
+        }
+
+        // show the image in the target directly, if it was retrieved from the fast cache
+        // note: this will be executed before the completion block above
+        if let image = fetchedImage {
+            target.updateForImageRequest(imageRequest, image: image, error: nil)
+            alreadySet = true
         }
     }
 
