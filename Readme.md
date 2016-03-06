@@ -13,7 +13,9 @@ Matisse is an image retrieval and caching library for iOS inspired by
 With Matisse you can download and display an image in an image view with
 a single line:
 
+```swift
     Matisse.load(imageURL).showIn(imageView)
+```
 
 This automatically takes care of downloading, caching and showing the image
 in the view. If you use this code in a `UITableViewDataSource` it also makes
@@ -22,11 +24,14 @@ sure that the correct image is shown even in case of a cell reuse.
 If you want to resize the image to fit the image view (generally a good idea)
 you can do so too:
 
+```swift
     Matisse.load(imageURL).resizeTo(myImageSize).showIn(imageView)
+```
 
 If you just need the image, without loading it into a view, then you can fetch
 it like this:
 
+```swift
     Matisse.load(imageURL).resizeTo(myImageSize).fetch { request, image, error in
         if let fetchedImage = image {
            // do something with the image
@@ -34,6 +39,7 @@ it like this:
            // handle the error
         }
     }
+```
 
 
 ### Configuring Matisse
@@ -52,7 +58,9 @@ By default Matisse uses a [`DefaultImageLoader`](Sources/DefaultImageLoader.swif
 
 To customize image loading behavior, you can either provide a different `NSURLSession` like this:
 
+```swift
     Matisse.useImageLoader(DefaultImageLoader(myCustomURLSession))
+```
 
 If that does not suit your needs, you can implement a custom [`ImageLoader`](Sources/ImageLoader.swift)
 subclass and implement `loadImageForRequest(_:completion:)`. There is a `ImageLoaderBase` class intended
@@ -74,6 +82,7 @@ uses an instance of `MemoryImageCache` as the fast cache and `DiskImageCache` fo
 
 You can overwrite (or disable) the caches like this:
 
+```swift
     // provide a custom ImageCache implementations
     Matisse.useFastCache(myFastCache)
     Matisse.useSlowCache(mySlowCache)
@@ -81,7 +90,7 @@ You can overwrite (or disable) the caches like this:
     // disable the caches
     Matisse.useFastCache(nil)
     Matisse.useSlowCache(nil)
-
+```
 
 #### Providing a Custom Request Handler
 
@@ -94,7 +103,9 @@ most cases.
 
 Provide your own `ImageRequestHandler` like this:
 
+```swift
     Matisse.useRequestHandler(myRequestHandler)
+```
 
 _Note_: When you provide a custom request handler, the image loader is ignored. Likewise, if you provide
 a custom image loader, any custom request handler is replaced by the default handler.
@@ -108,6 +119,7 @@ can create local instances of the `Matisse` class.
 When creating a `Matisse` instance you need to provide a `MatisseContext`. This context provides
 the actual image retrieval. To create one you need to provide the caches and a request handler.
 
+```swift
     // use defaults or provide custom instances
     let fastCache = MemoryImageCache()
     let slowCache = DiskImageCache()
@@ -119,6 +131,7 @@ the actual image retrieval. To create one you need to provide the caches and a r
     
     // then use it like you would use the shared instance
     matisse.load(url).showIn(imageView)
+```
 
 
 ### Custom Image Transformations
@@ -133,27 +146,33 @@ to load an image from the cache.
 
 To use a custom transformation apply it when loading image like this:
 
+```swift
     // ColorTransformation would be your custom transformation
     let myTransformation = ColorTransformation(type: "BlackAndWhite")
     
     Matisse.load(url)
         .transform(myTransformation) // use the custom transformation
         .showIn(imageView)
+```
 
 For convenience consider adding an extension to the `ImageRequestBuilder`:
 
+```swift
     extension ImageRequestBuilder {
         
         func colorize(type: String) -> Self {
             return transform(ColorTransformation(type: type))
         }
     }
+```
 
 Then you can use it like this:
 
+```swift
     Matisse.load(url)
         .colorize("BlackAndWhite") // use the custom transformation
         .showIn(imageView)
+```
 
 
 ## Installation
