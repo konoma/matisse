@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
   s.name         = "Matisse"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.homepage     = "https://github.com/konoma/matisse"
   s.summary      = "Matisse is an image retrieval and caching library for iOS inspired by Picasso."
   s.description  = <<-DESC
@@ -32,7 +32,7 @@ Pod::Spec.new do |s|
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
-  s.source = { :git => "https://github.com/konoma/matisse.git", :tag => "1.0.0" }
+  s.source = { :git => "https://github.com/konoma/matisse.git", :tag => "1.0.1" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
