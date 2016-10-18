@@ -55,31 +55,31 @@ internal class CoalescingTaskQueue<Worker: CoalescingTaskQueueWorker> {
     ///   - requestCompletion: The completion block called if this task was actually executed.
     ///   - taskCompletion:    The completion block called when a result for this task was obtained.
     ///
-    func submit(task: Worker.TaskType, requestCompletion: CompletionHandler?, taskCompletion: CompletionHandler) {
+    func submit(task: Worker.TaskType, requestCompletion: /*@escaping*/ CompletionHandler?, taskCompletion: @escaping CompletionHandler) {
         syncQueue.async {
-            if let pendingTask = self.addPendingTask(task, withCompletion: taskCompletion) {
-                self.executePendingTask(pendingTask, requestCompletion: requestCompletion)
+            if let pendingTask = self.addPendingTask(forTask: task, withCompletion: taskCompletion) {
+                self.execute(pendingTask: pendingTask, requestCompletion: requestCompletion)
             }
         }
     }
 
-    private func executePendingTask(pendingTask: Task, requestCompletion: CompletionHandler?) {
-        self.worker.handleTask(pendingTask.task) { result, error in
+    private func execute(pendingTask: Task, requestCompletion: CompletionHandler?) {
+        self.worker.handle(task: pendingTask.task) { result, error in
             self.syncQueue.async {
-                if let index = self.pendingTasks.indexOf({ $0 === pendingTask }) {
-                    self.pendingTasks.removeAtIndex(index)
+                if let index = self.pendingTasks.index(where: { $0 === pendingTask }) {
+                    self.pendingTasks.remove(at: index)
                 }
                 requestCompletion?(result, error)
-                pendingTask.notifyResult(result, error: error)
+                pendingTask.notify(result: result, error: error)
             }
         }
     }
 
-    private func addPendingTask(task: Worker.TaskType, withCompletion completion: CompletionHandler) -> Task? {
+    private func addPendingTask(forTask task: Worker.TaskType, withCompletion completion: @escaping CompletionHandler) -> Task? {
         // try coalescing first
         for pendingTask in pendingTasks {
-            if worker.canCoalesceTask(task, withTask: pendingTask.task) {
-                pendingTask.addCompletionHandler(completion)
+            if worker.canCoalesce(task: task, withTask: pendingTask.task) {
+                pendingTask.add(completionHandler: completion)
                 return nil
             }
         }
@@ -99,8 +99,8 @@ internal class CoalescingTaskQueue<Worker: CoalescingTaskQueueWorker> {
 ///
 internal protocol CoalescingTaskQueueWorker {
 
-    typealias TaskType
-    typealias ResultType
+    associatedtype TaskType
+    associatedtype ResultType
 
 
     /// Execute the given task.
@@ -111,7 +111,7 @@ internal protocol CoalescingTaskQueueWorker {
     ///   - task:       The executed task.
     ///   - completion: The completion handler to call when the task finishes.
     ///
-    func handleTask(task: TaskType, completion: (ResultType?, NSError?) -> Void)
+    func handle(task: TaskType, completion: @escaping (ResultType?, NSError?) -> Void)
 
     /**
      * Called to let the handler decide wether two tasks can be executed as one.
@@ -126,7 +126,7 @@ internal protocol CoalescingTaskQueueWorker {
     /// - Returns:
     ///   `true` if the two tasks can be coalesced, `false` otherwise.
     ///
-    func canCoalesceTask(newTask: TaskType, withTask currentTask: TaskType) -> Bool
+    func canCoalesce(task newTask: TaskType, withTask currentTask: TaskType) -> Bool
 }
 
 
@@ -135,9 +135,10 @@ internal protocol CoalescingTaskQueueWorker {
 ///
 internal class PendingTask<TaskType, ResultType> {
 
-    private let task: TaskType
-    private var completionHandlers: [(ResultType?, NSError?) -> Void]
+    /// The task that caused this pending task
+    let task: TaskType
 
+    private var completionHandlers: [(ResultType?, NSError?) -> Void]
 
     /// Create a new pending task with the given task and completion handler.
     ///
@@ -145,7 +146,7 @@ internal class PendingTask<TaskType, ResultType> {
     ///   - task:              The task that caused this pending task.
     ///   - completionHandler: The initial completion handler for this task.
     ///
-    init(task: TaskType, completionHandler: (ResultType?, NSError?) -> Void) {
+    init(task: TaskType, completionHandler: @escaping (ResultType?, NSError?) -> Void) {
         self.task = task
         self.completionHandlers = [completionHandler]
     }
@@ -158,7 +159,7 @@ internal class PendingTask<TaskType, ResultType> {
     /// - Parameters:
     ///   - completionHandler: The completion handler to call when this pending task is resolved.
     ///
-    func addCompletionHandler(completionHandler: (ResultType?, NSError?) -> Void) {
+    func add(completionHandler: @escaping (ResultType?, NSError?) -> Void) {
         completionHandlers.append(completionHandler)
     }
 
@@ -171,7 +172,7 @@ internal class PendingTask<TaskType, ResultType> {
     ///   - result: The result of the task if successful, `nil` otherwise.
     ///   - error:  The error result of the task if failed, `nil` otherwise.
     ///
-    func notifyResult(result: ResultType?, error: NSError?) {
+    func notify(result: ResultType?, error: NSError?) {
         for handler in completionHandlers {
             handler(result, error)
         }

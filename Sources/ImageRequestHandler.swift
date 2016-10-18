@@ -35,5 +35,5 @@ public protocol ImageRequestHandler: class {
     ///                 succeeded or failed. Pass `nil` for the image to mark the
     ///                 request as failed.
     ///
-    func retrieveImageForRequest(request: ImageRequest, completion: (UIImage?, NSError?) -> Void)
+    func retrieveImage(forRequest request: ImageRequest, completion: @escaping (UIImage?, NSError?) -> Void)
 }

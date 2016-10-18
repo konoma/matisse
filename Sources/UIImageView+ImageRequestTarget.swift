@@ -15,8 +15,8 @@ public extension UIImageView {
 
     /// The identifier of the `ImageRequest` currently owning this target.
     ///
-    public var matisseRequestIdentifier: NSUUID? {
-        get { return objc_getAssociatedObject(self, &UIImageView.requestIdentifierKey) as? NSUUID }
+    public var matisseRequestIdentifier: UUID? {
+        get { return objc_getAssociatedObject(self, &UIImageView.requestIdentifierKey) as? UUID }
         set { objc_setAssociatedObject(self, &UIImageView.requestIdentifierKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
 
@@ -29,7 +29,7 @@ public extension UIImageView {
     ///   - image:        The resolved image if the request was successful, or `nil`.
     ///   - error:        The error if the request failed, or `nil`. Ignored.
     ///
-    public func updateForImageRequest(imageRequest: ImageRequest, image: UIImage?, error: NSError?) {
+    public func update(forImageRequest imageRequest: ImageRequest, image: UIImage?, error: NSError?) {
         self.image = image
     }
 }
@@ -39,14 +39,14 @@ public extension UIImageView {
 extension UIImageView : ImageRequestTarget { }
 
 
-extension ImageRequestBuilder {
+public extension ImageRequestBuilder {
 
     /// Same as `showInTarget(_: ImageRequestTarget)` but repeated here because of swift limitations.
     ///
     /// - Parameters:
     ///   - imageView: The target image view to show the fetched image in.
     ///
-    public func showIn(imageView: UIImageView) {
-        showIn(imageView as ImageRequestTarget)
+    public func showIn(_ imageView: UIImageView) {
+        self.showIn(imageView as ImageRequestTarget)
     }
 }

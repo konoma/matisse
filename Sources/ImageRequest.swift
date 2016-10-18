@@ -27,8 +27,8 @@ public class ImageRequest {
     ///   - url:             The URL where to retrieve the image from.
     ///   - transformations: The `ImageTransformation`s to apply to the downloaded image.
     ///
-    public init(url: NSURL, transformations: [ImageTransformation]) {
-        self.identifier = NSUUID()
+    public init(url: URL, transformations: [ImageTransformation]) {
+        self.identifier = UUID()
         self.url = url
         self.transformations = transformations
     }
@@ -37,10 +37,10 @@ public class ImageRequest {
     // MARK: - Properties
 
     /// The unique identifier for this request
-    public let identifier: NSUUID
+    public let identifier: UUID
 
     /// The source URL for this image
-    public let url: NSURL
+    public let url: URL
 
     /// Any transformations to apply after downloading the image
     public let transformations: [ImageTransformation]
@@ -54,6 +54,6 @@ public class ImageRequest {
     /// the result for both requests.
     ///
     public var descriptor: String {
-        return url.absoluteString + ";" + (transformations.map { $0.descriptor }).joinWithSeparator(";")
+        return url.absoluteString + ";" + (transformations.map { $0.descriptor }).joined(separator: ";")
     }
 }

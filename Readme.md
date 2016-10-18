@@ -25,14 +25,14 @@ If you want to resize the image to fit the image view (generally a good idea)
 you can do so too:
 
 ```swift
-    Matisse.load(imageURL).resizeTo(myImageSize).showIn(imageView)
+    Matisse.load(imageURL).resizeTo(size: myImageSize).showIn(imageView)
 ```
 
 If you just need the image, without loading it into a view, then you can fetch
 it like this:
 
 ```swift
-    Matisse.load(imageURL).resizeTo(myImageSize).fetch { request, image, error in
+    Matisse.load(imageURL).resizeTo(size: myImageSize).fetch { request, image, error in
         if let fetchedImage = image {
            // do something with the image
         } else {
@@ -54,16 +54,16 @@ in your app, see `Creating Multiple Matisse Instances`.
 #### Configuring the Image Loader
 
 By default Matisse uses a [`DefaultImageLoader`](Sources/DefaultImageLoader.swift) which loads images using
-`NSURLSession.sharedSession()`.
+`URLSession.sharedSession()`.
 
-To customize image loading behavior, you can either provide a different `NSURLSession` like this:
+To customize image loading behavior, you can either provide a different `URLSession` like this:
 
 ```swift
     Matisse.useImageLoader(DefaultImageLoader(myCustomURLSession))
 ```
 
 If that does not suit your needs, you can implement a custom [`ImageLoader`](Sources/ImageLoader.swift)
-subclass and implement `loadImageForRequest(_:completion:)`. There is a `ImageLoaderBase` class intended
+subclass and implement `loadImage(forRequest:completion:)`. There is a `ImageLoaderBase` class intended
 to provide common functionality for image loaders.
 
 #### Configuring the Image Caches
@@ -170,7 +170,7 @@ Then you can use it like this:
 
 ```swift
     Matisse.load(url)
-        .colorize("BlackAndWhite") // use the custom transformation
+        .colorize(type: "BlackAndWhite") // use the custom transformation
         .showIn(imageView)
 ```
 
@@ -182,7 +182,7 @@ Then you can use it like this:
 To install this library via [Carthage](https://github.com/Carthage/Carthage) add the
 following to your `Cartfile`:
 
-    github "konoma/matisse" ~> 1.0
+    github "konoma/matisse" ~> 2.0
 
 Then run the standard `carthage update` process.
 
@@ -192,7 +192,7 @@ Then run the standard `carthage update` process.
 To install this library via [CocoaPods](https://cocoapods.org) add the following to
 your `Podfile`:
 
-    pod 'Matisse', '~> 1.0'
+    pod 'Matisse', '~> 2.0'
 
 Then run the standard `pod update` process.
 

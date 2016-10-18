@@ -20,13 +20,13 @@ class MatisseContextTests: XCTestCase {
     var matisse: MatisseContext!
     
     let sampleImage = UIImage()
-    let sampleRequest = ImageRequest(url: NSURL(string: "test://request")!, transformations: [])
+    let sampleRequest = ImageRequest(url: URL(string: "test://request")!, transformations: [])
     
     
     override func setUp() {
         super.setUp()
         
-        matisse = MatisseContext(fastCache: fastCache, slowCache: slowCache, requestHandler: requestHandler, syncQueue: dispatch_get_main_queue())
+        matisse = MatisseContext(fastCache: fastCache, slowCache: slowCache, requestHandler: requestHandler, syncQueue: DispatchQueue.main)
     }
     
     func test_executing_request_returns_from_fastCache() {
@@ -34,7 +34,7 @@ class MatisseContextTests: XCTestCase {
         fastCache.cached[sampleRequest.identifier] = sampleImage
         
         var asyncImage: UIImage?
-        let syncImage = matisse.executeRequest(sampleRequest) { image, error in
+        let syncImage = matisse.execute(request: sampleRequest) { image, error in
             asyncImage = image
         }
         
@@ -48,7 +48,7 @@ class MatisseContextTests: XCTestCase {
         slowCache.cached[sampleRequest.identifier] = sampleImage
         
         var asyncImage: UIImage?
-        let syncImage = matisse.executeRequest(sampleRequest) { image, error in
+        let syncImage = matisse.execute(request: sampleRequest) { image, error in
             asyncImage = image
         }
         
@@ -63,7 +63,7 @@ class MatisseContextTests: XCTestCase {
         requestHandler.responses[sampleRequest.identifier] = sampleImage
         
         var asyncImage: UIImage?
-        let syncImage = matisse.executeRequest(sampleRequest) { image, error in
+        let syncImage = matisse.execute(request: sampleRequest) { image, error in
             asyncImage = image
         }
         
@@ -80,7 +80,7 @@ class MatisseContextTests: XCTestCase {
         
         var asyncImage: UIImage? = UIImage() // to make sure the later check to `nil` is not fooled by a default value
         var asyncError: NSError?
-        let syncImage = matisse.executeRequest(sampleRequest) { image, error in
+        let syncImage = matisse.execute(request: sampleRequest) { image, error in
             asyncImage = image
             asyncError = error
         }
@@ -97,7 +97,7 @@ class MatisseContextTests: XCTestCase {
         requestHandler.responses[sampleRequest.identifier] = sampleImage
         
         // should give both caches a chance to store the result
-        matisse.executeRequest(sampleRequest) { image, error in }
+        matisse.execute(request: sampleRequest) { image, error in }
         
         expect(self.fastCache.cached[self.sampleRequest.identifier]).toEventually(equal(sampleImage))
         expect(self.slowCache.cached[self.sampleRequest.identifier]).toEventually(equal(sampleImage))
@@ -109,7 +109,7 @@ class MatisseContextTests: XCTestCase {
         slowCache.cached[sampleRequest.identifier] = sampleImage
         
         // should give both caches a chance to store the result
-        matisse.executeRequest(sampleRequest) { image, error in }
+        matisse.execute(request: sampleRequest) { image, error in }
         
         expect(self.fastCache.cached[self.sampleRequest.identifier]).toEventually(equal(sampleImage))
     }
@@ -123,8 +123,8 @@ class MatisseContextTests: XCTestCase {
         
         var asyncImage1: UIImage?
         var asyncImage2: UIImage?
-        matisse.executeRequest(sampleRequest) { image, error in asyncImage1 = image }
-        matisse.executeRequest(secondRequest) { image, error in asyncImage2 = image }
+        matisse.execute(request: sampleRequest) { image, error in asyncImage1 = image }
+        matisse.execute(request: secondRequest) { image, error in asyncImage2 = image }
         
         expect(asyncImage1).toEventually(equal(sampleImage))
         expect(asyncImage2).toEventually(equal(sampleImage))
@@ -134,12 +134,12 @@ class MatisseContextTests: XCTestCase {
         // fast cache does not return an image for the request
         // slow cache does not return an image for the request
         // handler will return an image
-        requestHandler.responses[sampleRequest.identifier] = sampleImage
-        let secondRequest = ImageRequest(url: sampleRequest.url, transformations: sampleRequest.transformations)
+        requestHandler.responses[self.sampleRequest.identifier] = self.sampleImage
+        let secondRequest = ImageRequest(url: self.sampleRequest.url, transformations: self.sampleRequest.transformations)
         
         var done = false
-        matisse.executeRequest(sampleRequest) { image, error in }
-        matisse.executeRequest(secondRequest) { image, error in
+        matisse.execute(request: sampleRequest) { image, error in }
+        matisse.execute(request: secondRequest) { image, error in
             // we must check this in here because there is no way (I know of)
             // to make sure the value will _never_ be nil with expect(...)
             // when we get here, the value will already be cached
@@ -155,23 +155,23 @@ class MatisseContextTests: XCTestCase {
 
 class InspectableImageCache: ImageCache {
     
-    var cached: [NSUUID: UIImage] = [:]
+    var cached: [UUID: UIImage] = [:]
     
-    func storeImage(image: UIImage, forRequest request: ImageRequest, withCost cost: Int) {
-        cached[request.identifier] = image
+    func store(image: UIImage, forRequest request: ImageRequest, withCost cost: Int) {
+        self.cached[request.identifier] = image
     }
     
-    func retrieveImageForRequest(request: ImageRequest) -> UIImage? {
-        return cached[request.identifier]
+    func retrieveImage(forRequest request: ImageRequest) -> UIImage? {
+        return self.cached[request.identifier]
     }
 }
 
 
 class InspectableImageRequestHandler: ImageRequestHandler {
     
-    var responses: [NSUUID: AnyObject] = [:]
+    var responses: [UUID: AnyObject] = [:]
     
-    func retrieveImageForRequest(request: ImageRequest, completion: (UIImage?, NSError?) -> Void) {
+    func retrieveImage(forRequest request: ImageRequest, completion: @escaping (UIImage?, NSError?) -> Void) {
         DispatchQueue.main.async {
             let response: AnyObject? = self.responses[request.identifier]
             completion(response as? UIImage, response as? NSError)

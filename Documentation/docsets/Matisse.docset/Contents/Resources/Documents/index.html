@@ -129,12 +129,12 @@ sure that the correct image is shown even in case of a cell reuse.</p>
 
 <p>If you want to resize the image to fit the image view (generally a good idea)
 you can do so too:</p>
-<pre class="highlight swift"><code>    <span class="kt">Matisse</span><span class="o">.</span><span class="nf">load</span><span class="p">(</span><span class="n">imageURL</span><span class="p">)</span><span class="o">.</span><span class="nf">resizeTo</span><span class="p">(</span><span class="n">myImageSize</span><span class="p">)</span><span class="o">.</span><span class="nf">showIn</span><span class="p">(</span><span class="n">imageView</span><span class="p">)</span>
+<pre class="highlight swift"><code>    <span class="kt">Matisse</span><span class="o">.</span><span class="nf">load</span><span class="p">(</span><span class="n">imageURL</span><span class="p">)</span><span class="o">.</span><span class="nf">resizeTo</span><span class="p">(</span><span class="nv">size</span><span class="p">:</span> <span class="n">myImageSize</span><span class="p">)</span><span class="o">.</span><span class="nf">showIn</span><span class="p">(</span><span class="n">imageView</span><span class="p">)</span>
 </code></pre>
 
 <p>If you just need the image, without loading it into a view, then you can fetch
 it like this:</p>
-<pre class="highlight swift"><code>    <span class="kt">Matisse</span><span class="o">.</span><span class="nf">load</span><span class="p">(</span><span class="n">imageURL</span><span class="p">)</span><span class="o">.</span><span class="nf">resizeTo</span><span class="p">(</span><span class="n">myImageSize</span><span class="p">)</span><span class="o">.</span><span class="n">fetch</span> <span class="p">{</span> <span class="n">request</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+<pre class="highlight swift"><code>    <span class="kt">Matisse</span><span class="o">.</span><span class="nf">load</span><span class="p">(</span><span class="n">imageURL</span><span class="p">)</span><span class="o">.</span><span class="nf">resizeTo</span><span class="p">(</span><span class="nv">size</span><span class="p">:</span> <span class="n">myImageSize</span><span class="p">)</span><span class="o">.</span><span class="n">fetch</span> <span class="p">{</span> <span class="n">request</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
         <span class="k">if</span> <span class="k">let</span> <span class="nv">fetchedImage</span> <span class="o">=</span> <span class="n">image</span> <span class="p">{</span>
            <span class="c1">// do something with the image</span>
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
@@ -142,26 +142,26 @@ it like this:</p>
         <span class="p">}</span>
     <span class="p">}</span>
 </code></pre>
-<a href='#configuring_matisse' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='configuring_matisse'>Configuring Matisse</h3>
+<a href='#configuring-matisse' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='configuring-matisse'>Configuring Matisse</h3>
 
 <p>The shared Matisse instance can be configured with a custom image loader and custom caches (disk and in-memory).
 For advanced purposes you can also use a custom request handler that manages image loading as a whole.</p>
 
 <p>You can only configure Matisse before you first use it to load an image. If you need multiple configurations
 in your app, see <code>Creating Multiple Matisse Instances</code>.</p>
-<a href='#configuring_the_image_loader' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='configuring_the_image_loader'>Configuring the Image Loader</h4>
+<a href='#configuring-the-image-loader' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='configuring-the-image-loader'>Configuring the Image Loader</h4>
 
 <p>By default Matisse uses a <a href="Sources/DefaultImageLoader.swift"><code>DefaultImageLoader</code></a> which loads images using
-<code>NSURLSession.sharedSession()</code>.</p>
+<code>URLSession.sharedSession()</code>.</p>
 
-<p>To customize image loading behavior, you can either provide a different <code>NSURLSession</code> like this:</p>
+<p>To customize image loading behavior, you can either provide a different <code>URLSession</code> like this:</p>
 <pre class="highlight swift"><code>    <span class="kt">Matisse</span><span class="o">.</span><span class="nf">useImageLoader</span><span class="p">(</span><span class="kt">DefaultImageLoader</span><span class="p">(</span><span class="n">myCustomURLSession</span><span class="p">))</span>
 </code></pre>
 
 <p>If that does not suit your needs, you can implement a custom <a href="Sources/ImageLoader.swift"><code>ImageLoader</code></a>
-subclass and implement <code>loadImageForRequest(_:completion:)</code>. There is a <code>ImageLoaderBase</code> class intended
+subclass and implement <code>loadImage(forRequest:completion:)</code>. There is a <code>ImageLoaderBase</code> class intended
 to provide common functionality for image loaders.</p>
-<a href='#configuring_the_image_caches' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='configuring_the_image_caches'>Configuring the Image Caches</h4>
+<a href='#configuring-the-image-caches' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='configuring-the-image-caches'>Configuring the Image Caches</h4>
 
 <p>Matisse uses two caches to store images. A fast cache and a slow cache.</p>
 
@@ -184,7 +184,7 @@ uses an instance of <code>MemoryImageCache</code> as the fast cache and <code>Di
     <span class="kt">Matisse</span><span class="o">.</span><span class="nf">useFastCache</span><span class="p">(</span><span class="kc">nil</span><span class="p">)</span>
     <span class="kt">Matisse</span><span class="o">.</span><span class="nf">useSlowCache</span><span class="p">(</span><span class="kc">nil</span><span class="p">)</span>
 </code></pre>
-<a href='#providing_a_custom_request_handler' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='providing_a_custom_request_handler'>Providing a Custom Request Handler</h4>
+<a href='#providing-a-custom-request-handler' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='providing-a-custom-request-handler'>Providing a Custom Request Handler</h4>
 
 <p>To get the most control over the image loading process you can provide your own
 <a href="Sources/ImageRequestHandler.swift"><code>ImageRequestHandler</code></a>. This request handler is called when
@@ -199,7 +199,7 @@ most cases.</p>
 
 <p><em>Note</em>: When you provide a custom request handler, the image loader is ignored. Likewise, if you provide
 a custom image loader, any custom request handler is replaced by the default handler.</p>
-<a href='#creating_multiple_matisse_instances' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='creating_multiple_matisse_instances'>Creating Multiple Matisse Instances</h3>
+<a href='#creating-multiple-matisse-instances' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='creating-multiple-matisse-instances'>Creating Multiple Matisse Instances</h3>
 
 <p>If you need multiple configurations for Matisse (i.e. different image loaders or caches), then you
 can create local instances of the <code>Matisse</code> class.</p>
@@ -218,7 +218,7 @@ the actual image retrieval. To create one you need to provide the caches and a r
     <span class="c1">// then use it like you would use the shared instance</span>
     <span class="n">matisse</span><span class="o">.</span><span class="nf">load</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="nf">showIn</span><span class="p">(</span><span class="n">imageView</span><span class="p">)</span>
 </code></pre>
-<a href='#custom_image_transformations' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='custom_image_transformations'>Custom Image Transformations</h3>
+<a href='#custom-image-transformations' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='custom-image-transformations'>Custom Image Transformations</h3>
 
 <p>Matisse provides an built-in transformation to resize an image to a target size.</p>
 
@@ -248,7 +248,7 @@ to load an image from the cache.</p>
 
 <p>Then you can use it like this:</p>
 <pre class="highlight swift"><code>    <span class="kt">Matisse</span><span class="o">.</span><span class="nf">load</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-        <span class="o">.</span><span class="nf">colorize</span><span class="p">(</span><span class="s">"BlackAndWhite"</span><span class="p">)</span> <span class="c1">// use the custom transformation</span>
+        <span class="o">.</span><span class="nf">colorize</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="s">"BlackAndWhite"</span><span class="p">)</span> <span class="c1">// use the custom transformation</span>
         <span class="o">.</span><span class="nf">showIn</span><span class="p">(</span><span class="n">imageView</span><span class="p">)</span>
 </code></pre>
 <a href='#installation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='installation'>Installation</h2>
@@ -256,7 +256,7 @@ to load an image from the cache.</p>
 
 <p>To install this library via <a href="https://github.com/Carthage/Carthage">Carthage</a> add the
 following to your <code>Cartfile</code>:</p>
-<pre class="highlight plaintext"><code>github "konoma/matisse" ~&gt; 1.0
+<pre class="highlight plaintext"><code>github "konoma/matisse" ~&gt; 2.0
 </code></pre>
 
 <p>Then run the standard <code>carthage update</code> process.</p>
@@ -264,7 +264,7 @@ following to your <code>Cartfile</code>:</p>
 
 <p>To install this library via <a href="https://cocoapods.org">CocoaPods</a> add the following to
 your <code>Podfile</code>:</p>
-<pre class="highlight plaintext"><code>pod 'Matisse', '~&gt; 1.0'
+<pre class="highlight plaintext"><code>pod 'Matisse', '~&gt; 2.0'
 </code></pre>
 
 <p>Then run the standard <code>pod update</code> process.</p>
@@ -275,8 +275,8 @@ your <code>Podfile</code>:</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="https://github.com/konoma/matisse" target="_blank" rel="external">Markus Gasser</a>. All rights reserved. (Last updated: 2016-03-06)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.5.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2016 <a class="link" href="https://github.com/konoma/matisse" target="_blank" rel="external">Markus Gasser</a>. All rights reserved. (Last updated: 2016-10-18)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

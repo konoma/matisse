@@ -1,6 +1,6 @@
 
 # Testing Frameworks
-github "Quick/Nimble" ~> 3.0
+github "Quick/Nimble" ~> 5.0
 
 # Sample App Frameworks
-github "konoma/fps-counter" ~> 1.0
+github "konoma/fps-counter" ~> 2.0

@@ -112,13 +112,13 @@
             <h1>DefaultImageLoader</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DefaultImageLoader</span><span class="p">:</span> <span class="kt">ImageLoaderBase</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DefaultImageLoader</span><span class="p">:</span> <span class="kt"><a href="../Classes/ImageLoaderBase.html">ImageLoaderBase</a></span></code></pre>
 
                 </div>
               </div>
             <p>The default image loader provided with Matisse.</p>
 
-<p>Downloads the images using <code>NSURLSession</code> download tasks.</p>
+<p>Downloads the images using <code>URLSession</code> download tasks.</p>
 
           </section>
           <section class="section task-group-section">
@@ -134,9 +134,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC7Matisse18DefaultImageLoadercFMS0_FT_S0_"></a>
+                    <a name="/s:FC7Matisse18DefaultImageLoadercFT_S0_"></a>
                     <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC7Matisse18DefaultImageLoadercFMS0_FT_S0_">init()</a>
+                    <a class="token" href="#/s:FC7Matisse18DefaultImageLoadercFT_S0_">init()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -144,7 +144,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Create a new <code><a href="../Classes/DefaultImageLoader.html">DefaultImageLoader</a></code> using the shared <code>NSURLSession</code> and a private <code>NSFileManager</code>.</p>
+                        <p>Create a new <code>DefaultImageLoader</code> using the shared <code>URLSession</code> and a private <code>NSFileManager</code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -161,9 +161,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC7Matisse18DefaultImageLoadercFMS0_FT10urlSessionCSo12NSURLSession_S0_"></a>
+                    <a name="/s:FC7Matisse18DefaultImageLoadercFT10urlSessionCSo10URLSession_S0_"></a>
                     <a name="//apple_ref/swift/Method/init(urlSession:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC7Matisse18DefaultImageLoadercFMS0_FT10urlSessionCSo12NSURLSession_S0_">init(urlSession:)</a>
+                    <a class="token" href="#/s:FC7Matisse18DefaultImageLoadercFT10urlSessionCSo10URLSession_S0_">init(urlSession:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -171,13 +171,13 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Create a new <code><a href="../Classes/DefaultImageLoader.html">DefaultImageLoader</a></code> using a custom <code>NSURLSession</code>.</p>
+                        <p>Create a new <code>DefaultImageLoader</code> using a custom <code>URLSession</code>.</p>
 
 <ul>
 <li>Parameters:
 
 <ul>
-<li>urlSession: The <code>NSURLSession</code> to use to create download tasks.</li>
+<li>urlSession: The <code>URLSession</code> to use to create download tasks.</li>
 </ul></li>
 </ul>
 
@@ -186,7 +186,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">urlSession</span><span class="p">:</span> <span class="kt">NSURLSession</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">urlSession</span><span class="p">:</span> <span class="kt">URLSession</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -202,7 +202,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>The <code>NSURLSession</code> to use to create download tasks.</p>
+                                  <p>The <code>URLSession</code> to use to create download tasks.</p>
 
                                 </div>
                               </td>
@@ -216,9 +216,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC7Matisse18DefaultImageLoadercFMS0_FT10urlSessionCSo12NSURLSession11fileManagerCSo13NSFileManager_S0_"></a>
+                    <a name="/s:FC7Matisse18DefaultImageLoadercFT10urlSessionCSo10URLSession11fileManagerCSo11FileManager_S0_"></a>
                     <a name="//apple_ref/swift/Method/init(urlSession:fileManager:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC7Matisse18DefaultImageLoadercFMS0_FT10urlSessionCSo12NSURLSession11fileManagerCSo13NSFileManager_S0_">init(urlSession:fileManager:)</a>
+                    <a class="token" href="#/s:FC7Matisse18DefaultImageLoadercFT10urlSessionCSo10URLSession11fileManagerCSo11FileManager_S0_">init(urlSession:fileManager:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -226,13 +226,13 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Create a new <code><a href="../Classes/DefaultImageLoader.html">DefaultImageLoader</a></code> using a custom <code>NSURLSession</code> and <code>NSFileManager</code>.</p>
+                        <p>Create a new <code>DefaultImageLoader</code> using a custom <code>URLSession</code> and <code>NSFileManager</code>.</p>
 
 <ul>
 <li>Parameters:
 
 <ul>
-<li>urlSession:  The <code>NSURLSession</code> to use to create download tasks.</li>
+<li>urlSession:  The <code>URLSession</code> to use to create download tasks.</li>
 <li>fileManager: The file manager used for file operations.</li>
 </ul></li>
 </ul>
@@ -242,7 +242,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">urlSession</span><span class="p">:</span> <span class="kt">NSURLSession</span><span class="p">,</span> <span class="nv">fileManager</span><span class="p">:</span> <span class="kt">NSFileManager</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">urlSession</span><span class="p">:</span> <span class="kt">URLSession</span><span class="p">,</span> <span class="nv">fileManager</span><span class="p">:</span> <span class="kt">FileManager</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -258,7 +258,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>The <code>NSURLSession</code> to use to create download tasks.</p>
+                                  <p>The <code>URLSession</code> to use to create download tasks.</p>
 
                                 </div>
                               </td>
@@ -296,9 +296,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC7Matisse18DefaultImageLoader14loadImageAtURLFS0_FTCSo5NSURL5toURLS1_10completionFTGSqCSo13NSURLResponse_GSqCSo7NSError__T__T_"></a>
-                    <a name="//apple_ref/swift/Method/loadImageAtURL(_:toURL:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC7Matisse18DefaultImageLoader14loadImageAtURLFS0_FTCSo5NSURL5toURLS1_10completionFTGSqCSo13NSURLResponse_GSqCSo7NSError__T__T_">loadImageAtURL(_:toURL:completion:)</a>
+                    <a name="/s:FC7Matisse18DefaultImageLoader9loadImageFT5atUrlV10Foundation3URL5toUrlS2_10completionFTGSqCSo11URLResponse_GSqCSo7NSError__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/loadImage(atUrl:toUrl:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC7Matisse18DefaultImageLoader9loadImageFT5atUrlV10Foundation3URL5toUrlS2_10completionFTGSqCSo11URLResponse_GSqCSo7NSError__T__T_">loadImage(atUrl:toUrl:completion:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -308,7 +308,7 @@
                       <div class="abstract">
                         <p>Donwload the image at the given source URL to a destination URL.</p>
 
-<p>Uses <code>NSURLSession</code> download tasks to download the image and copies them to the requested URL.</p>
+<p>Uses <code>URLSession</code> download tasks to download the image and copies them to the requested URL.</p>
 
 <ul>
 <li>Parameters:
@@ -325,7 +325,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">loadImageAtURL</span><span class="p">(</span><span class="nv">sourceURL</span><span class="p">:</span> <span class="kt">NSURL</span><span class="p">,</span> <span class="n">toURL</span> <span class="nv">destinationURL</span><span class="p">:</span> <span class="kt">NSURL</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="p">(</span><span class="kt">NSURLResponse</span><span class="p">?,</span> <span class="kt">NSError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">loadImage</span><span class="p">(</span><span class="n">atUrl</span> <span class="nv">source</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="n">toUrl</span> <span class="nv">destination</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">URLResponse</span><span class="p">?,</span> <span class="kt">NSError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -383,8 +383,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="https://github.com/konoma/matisse" target="_blank" rel="external">Markus Gasser</a>. All rights reserved. (Last updated: 2016-03-06)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.5.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2016 <a class="link" href="https://github.com/konoma/matisse" target="_blank" rel="external">Markus Gasser</a>. All rights reserved. (Last updated: 2016-10-18)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

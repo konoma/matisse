@@ -14,13 +14,13 @@ import Foundation
 public enum MatisseErrorCode: Int {
 
     /// An unknown error happened.
-    case Unknown = 0
+    case unknown = 0
 
     /// An error downloading the image happened.
-    case DownloadError = 1
+    case downloadError = 1
 
     /// An error creating or resizing the image happened.
-    case CreationError = 2
+    case creationError = 2
 }
 
 
@@ -48,7 +48,7 @@ public extension NSError {
     /// If the receiver is not a matisse error, returns `MatisseErrorCode.Unknown`.
     ///
     public var matisseErrorCode: MatisseErrorCode {
-        return isMatisseError ? (MatisseErrorCode(rawValue: code) ?? .Unknown) : .Unknown
+        return isMatisseError ? (MatisseErrorCode(rawValue: code) ?? .unknown) : .unknown
     }
 
 
@@ -62,8 +62,8 @@ public extension NSError {
     /// - Returns:
     ///   A new `NSError` instance with the Matisse error domain and the unknown error code.
     ///
-    public class func matisseUnknownError(message: String? = nil) -> NSError {
-        return matisseErrorWithCode(.Unknown, message: message)
+    public class func matisseUnknownError(_ message: String? = nil) -> NSError {
+        return matisseErrorWithCode(.unknown, message: message)
     }
 
     /// Create a new matisse error with code `MatisseErrorCode.DownloadError`.
@@ -74,8 +74,8 @@ public extension NSError {
     /// - Returns:
     ///   A new `NSError` instance with the Matisse error domain and the download error code.
     ///
-    public class func matisseDownloadError(message: String? = nil) -> NSError {
-        return matisseErrorWithCode(.DownloadError, message: message)
+    public class func matisseDownloadError(_ message: String? = nil) -> NSError {
+        return matisseErrorWithCode(.downloadError, message: message)
     }
 
     /// Create a new matisse error with code `MatisseErrorCode.CreationError`.
@@ -86,8 +86,8 @@ public extension NSError {
     /// - Returns:
     ///   A new `NSError` instance with the Matisse error domain and the creation error code.
     ///
-    public class func matisseCreationError(message: String? = nil) -> NSError {
-        return matisseErrorWithCode(.CreationError, message: message)
+    public class func matisseCreationError(_ message: String? = nil) -> NSError {
+        return matisseErrorWithCode(.creationError, message: message)
     }
 
     /// Create a new matisse error with the given code.
@@ -99,11 +99,11 @@ public extension NSError {
     /// - Returns:
     ///   A new `NSError` instance with the Matisse error domain and the specified error code.
     ///
-    public class func matisseErrorWithCode(code: MatisseErrorCode, message: String? = nil) -> NSError {
+    public class func matisseErrorWithCode(_ code: MatisseErrorCode, message: String? = nil) -> NSError {
         let userInfo: [String: AnyObject]
 
         if let message = message {
-            userInfo = [ NSLocalizedDescriptionKey: message ]
+            userInfo = [ NSLocalizedDescriptionKey: message as AnyObject ]
         } else {
             userInfo = [:]
         }

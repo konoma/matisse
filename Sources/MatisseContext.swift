@@ -75,7 +75,7 @@ public class MatisseContext {
             fastCache: fastCache,
             slowCache: slowCache,
             requestHandler: requestHandler,
-            syncQueue: dispatch_queue_create("ch.konoma.matisse/syncQueue", DISPATCH_QUEUE_SERIAL)
+            syncQueue: DispatchQueue(label: "ch.konoma.matisse/syncQueue", attributes: [])
         )
     }
 
@@ -86,10 +86,10 @@ public class MatisseContext {
     ///   - slowCache:      The cache to use as slow cache (in the background). Pass `nil` to disable the slow cache.
     ///   - requestHandler: The `ImageRequestHandler` that is used to resolve `ImageRequest`s
     ///
-    internal init(fastCache: ImageCache?, slowCache: ImageCache?, requestHandler: ImageRequestHandler, syncQueue: dispatch_queue_t) {
+    internal init(fastCache: ImageCache?, slowCache: ImageCache?, requestHandler: ImageRequestHandler, syncQueue: DispatchQueue) {
         self.fastCache = fastCache
         self.slowCache = slowCache
-        self.syncQueue = DispatchQueue(dispatchQueue: syncQueue)
+        self.syncQueue = syncQueue
         self.requestQueue = CoalescingTaskQueue(worker: RequestWorker(requestHandler: requestHandler), syncQueue: self.syncQueue)
     }
 
@@ -124,34 +124,34 @@ public class MatisseContext {
     ///   If the request could be resolved using the fast cache, this returns the resolved
     ///   image. Otherwise `nil` is returned.
     ///
-    public func executeRequest(request: ImageRequest, completion: (UIImage?, NSError?) -> Void) -> UIImage? {
-        assert(NSThread.isMainThread(), "You must call this method on the main thread")
+    @discardableResult public func execute(request: ImageRequest, completion: @escaping (UIImage?, NSError?) -> Void) -> UIImage? {
+        assert(Thread.isMainThread, "You must call this method on the main thread")
 
         // first try to get an image from the fastCache, without going to a background queue
-        if let image = fastCache?.retrieveImageForRequest(request) {
+        if let image = self.fastCache?.retrieveImage(forRequest: request) {
             DispatchQueue.main.async { completion(image, nil) }
             return image
         }
 
         // if we can't get an image out of the fast cache, go to background
-        syncQueue.async {
+        self.syncQueue.async {
 
             // secondly try to get an image from the slow cache
-            if let image = self.slowCache?.retrieveImageForRequest(request) {
+            if let image = self.slowCache?.retrieveImage(forRequest: request) {
                 DispatchQueue.main.async {
                     // store it also in the fast cache
-                    self.fastCache?.storeImage(image, forRequest: request, withCost: 0)
+                    self.fastCache?.store(image: image, forRequest: request, withCost: 0)
                     completion(image, nil)
                 }
                 return
             }
 
             // if we can't get a cached image, try to retrieve it from the handler and cache it in turn
-            self.requestQueue.submit(request,
+            self.requestQueue.submit(task: request,
 
                 requestCompletion: { image, error in
                     if let image = image {
-                        self.cacheImage(image, forRequest: request)
+                        self.cache(image: image, forRequest: request)
                     }
                 },
 
@@ -171,17 +171,17 @@ public class MatisseContext {
     // MARK: - Helper
 
     // Cache an image both in the fast and the slow cache
-    private func cacheImage(image: UIImage, forRequest request: ImageRequest) {
+    private func cache(image: UIImage, forRequest request: ImageRequest) {
         let cost = 0 // to be calculated, e.g. using the time it took to create the image
 
         // cache the result in the slow cache on the background sync queue
         self.syncQueue.async {
-            self.slowCache?.storeImage(image, forRequest: request, withCost: cost)
+            self.slowCache?.store(image: image, forRequest: request, withCost: cost)
         }
 
         // cache the result in the fast cache on the main queue
         DispatchQueue.main.async {
-            self.fastCache?.storeImage(image, forRequest: request, withCost: cost)
+            self.fastCache?.store(image: image, forRequest: request, withCost: cost)
         }
     }
 
@@ -195,11 +195,11 @@ public class MatisseContext {
             self.requestHandler = requestHandler
         }
 
-        func handleTask(task: ImageRequest, completion: (UIImage?, NSError?) -> Void) {
-            requestHandler.retrieveImageForRequest(task, completion: completion)
+        func handle(task: ImageRequest, completion: @escaping (UIImage?, NSError?) -> Void) {
+            self.requestHandler.retrieveImage(forRequest: task, completion: completion)
         }
 
-        func canCoalesceTask(newTask: ImageRequest, withTask currentTask: ImageRequest) -> Bool {
+        func canCoalesce(task newTask: ImageRequest, withTask currentTask: ImageRequest) -> Bool {
             return newTask.descriptor == currentTask.descriptor
         }
     }

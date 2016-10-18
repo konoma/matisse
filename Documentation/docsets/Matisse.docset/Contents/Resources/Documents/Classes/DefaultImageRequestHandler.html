@@ -112,7 +112,7 @@
             <h1>DefaultImageRequestHandler</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DefaultImageRequestHandler</span><span class="p">:</span> <span class="kt">ImageRequestHandler</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DefaultImageRequestHandler</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ImageRequestHandler.html">ImageRequestHandler</a></span></code></pre>
 
                 </div>
               </div>
@@ -136,9 +136,9 @@ DSL class to set the <code><a href="../Protocols/ImageLoader.html">ImageLoader</
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC7Matisse26DefaultImageRequestHandlercFMS0_FT_S0_"></a>
+                    <a name="/s:FC7Matisse26DefaultImageRequestHandlercFT_S0_"></a>
                     <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC7Matisse26DefaultImageRequestHandlercFMS0_FT_S0_">init()</a>
+                    <a class="token" href="#/s:FC7Matisse26DefaultImageRequestHandlercFT_S0_">init()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -146,7 +146,7 @@ DSL class to set the <code><a href="../Protocols/ImageLoader.html">ImageLoader</
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Create a new <code><a href="../Classes/DefaultImageRequestHandler.html">DefaultImageRequestHandler</a></code> with a default image loader and creator.</p>
+                        <p>Create a new <code>DefaultImageRequestHandler</code> with a default image loader and creator.</p>
 
                       </div>
                       <div class="declaration">
@@ -163,9 +163,9 @@ DSL class to set the <code><a href="../Protocols/ImageLoader.html">ImageLoader</
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC7Matisse26DefaultImageRequestHandlercFMS0_FT11imageLoaderPS_11ImageLoader__S0_"></a>
+                    <a name="/s:FC7Matisse26DefaultImageRequestHandlercFT11imageLoaderPS_11ImageLoader__S0_"></a>
                     <a name="//apple_ref/swift/Method/init(imageLoader:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC7Matisse26DefaultImageRequestHandlercFMS0_FT11imageLoaderPS_11ImageLoader__S0_">init(imageLoader:)</a>
+                    <a class="token" href="#/s:FC7Matisse26DefaultImageRequestHandlercFT11imageLoaderPS_11ImageLoader__S0_">init(imageLoader:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -173,7 +173,7 @@ DSL class to set the <code><a href="../Protocols/ImageLoader.html">ImageLoader</
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Create a new <code><a href="../Classes/DefaultImageRequestHandler.html">DefaultImageRequestHandler</a></code> with a specified image loader.</p>
+                        <p>Create a new <code>DefaultImageRequestHandler</code> with a specified image loader.</p>
 
 <ul>
 <li>Parameters:
@@ -188,7 +188,7 @@ DSL class to set the <code><a href="../Protocols/ImageLoader.html">ImageLoader</
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">imageLoader</span><span class="p">:</span> <span class="kt">ImageLoader</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">imageLoader</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ImageLoader.html">ImageLoader</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -229,9 +229,9 @@ DSL class to set the <code><a href="../Protocols/ImageLoader.html">ImageLoader</
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC7Matisse26DefaultImageRequestHandler23retrieveImageForRequestFS0_FTCS_12ImageRequest10completionFTGSqCSo7UIImage_GSqCSo7NSError__T__T_"></a>
-                    <a name="//apple_ref/swift/Method/retrieveImageForRequest(_:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC7Matisse26DefaultImageRequestHandler23retrieveImageForRequestFS0_FTCS_12ImageRequest10completionFTGSqCSo7UIImage_GSqCSo7NSError__T__T_">retrieveImageForRequest(_:completion:)</a>
+                    <a name="/s:FC7Matisse26DefaultImageRequestHandler13retrieveImageFT10forRequestCS_12ImageRequest10completionFTGSqCSo7UIImage_GSqCSo7NSError__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/retrieveImage(forRequest:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC7Matisse26DefaultImageRequestHandler13retrieveImageFT10forRequestCS_12ImageRequest10completionFTGSqCSo7UIImage_GSqCSo7NSError__T__T_">retrieveImage(forRequest:completion:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -258,7 +258,7 @@ Then applies the transformations from the request to the downloaded image.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">retrieveImageForRequest</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="kt">ImageRequest</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="p">(</span><span class="kt">UIImage</span><span class="p">?,</span> <span class="kt">NSError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">retrieveImage</span><span class="p">(</span><span class="n">forRequest</span> <span class="nv">request</span><span class="p">:</span> <span class="kt"><a href="../Classes/ImageRequest.html">ImageRequest</a></span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">UIImage</span><span class="p">?,</span> <span class="kt">NSError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -303,8 +303,8 @@ Then applies the transformations from the request to the downloaded image.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="https://github.com/konoma/matisse" target="_blank" rel="external">Markus Gasser</a>. All rights reserved. (Last updated: 2016-03-06)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.5.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2016 <a class="link" href="https://github.com/konoma/matisse" target="_blank" rel="external">Markus Gasser</a>. All rights reserved. (Last updated: 2016-10-18)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

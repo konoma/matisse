@@ -26,7 +26,7 @@ public protocol ImageRequestTarget: class {
     /// When a request finishes it checks to see wether the request is still
     /// the owner of this target, and if not discards the results.
     ///
-    var matisseRequestIdentifier: NSUUID? { get set }
+    var matisseRequestIdentifier: UUID? { get set }
 
     /// Update the target with the results of the given `ImageRequest`.
     ///
@@ -35,5 +35,5 @@ public protocol ImageRequestTarget: class {
     ///   - image:        The resolved image if the request was successful, or `nil`.
     ///   - error:        The error if the request failed, or `nil`.
     ///
-    func updateForImageRequest(imageRequest: ImageRequest, image: UIImage?, error: NSError?)
+    func update(forImageRequest imageRequest: ImageRequest, image: UIImage?, error: NSError?)
 }

@@ -58,17 +58,17 @@ public class Matisse {
     ///
     /// - Returns: An image request builder configured for the given URL.
     ///
-    public func load(url: NSURL) -> ImageRequestBuilder {
+    public func load(_ url: URL) -> ImageRequestBuilder {
         return ImageRequestBuilder(context: self.context, url: url)
     }
 
 
     // MARK: - Shared Matisse Instance - Configuration
 
-    private static var _sharedInstance: Matisse?
-    private static var _fastCache: ImageCache? = MemoryImageCache()
-    private static var _slowCache: ImageCache? = DiskImageCache()
-    private static var _requestHandler: ImageRequestHandler = DefaultImageRequestHandler(imageLoader: DefaultImageLoader())
+    private static var sharedInstance: Matisse?
+    private static var fastCache: ImageCache? = MemoryImageCache()
+    private static var slowCache: ImageCache? = DiskImageCache()
+    private static var requestHandler: ImageRequestHandler = DefaultImageRequestHandler(imageLoader: DefaultImageLoader())
 
 
     /// Use a different fast cache for the shared Matisse instance.
@@ -80,11 +80,11 @@ public class Matisse {
     /// - Parameters:
     ///   - cache: The cache to use, or `nil` to disable the fast cache
     ///
-    public class func useFastCache(cache: ImageCache?) {
-        checkMainThread()
-        checkUnused()
+    public class func useFastCache(_ cache: ImageCache?) {
+        self.checkMainThread()
+        self.checkUnused()
 
-        _fastCache = cache
+        self.fastCache = cache
     }
 
     /// Use a different slow cache for the shared Matisse instance.
@@ -96,11 +96,11 @@ public class Matisse {
     /// - Parameters:
     ///   - cache: The cache to use, or `nil` to disable the slow cache
     ///
-    public class func useSlowCache(cache: ImageCache?) {
-        checkMainThread()
-        checkUnused()
+    public class func useSlowCache(_ cache: ImageCache?) {
+        self.checkMainThread()
+        self.checkUnused()
 
-        _slowCache = cache
+        self.slowCache = cache
     }
 
     /// Use a different image loader for the shared Matisse instance.
@@ -117,11 +117,11 @@ public class Matisse {
     /// - Parameters:
     ///   - imageLoader: The image loader to use
     ///
-    public class func useImageLoader(imageLoader: ImageLoader) {
-        checkMainThread()
-        checkUnused()
+    public class func useImageLoader(_ imageLoader: ImageLoader) {
+        self.checkMainThread()
+        self.checkUnused()
 
-        _requestHandler = DefaultImageRequestHandler(imageLoader: imageLoader)
+        self.requestHandler = DefaultImageRequestHandler(imageLoader: imageLoader)
     }
 
     /// Use a different request handler for the shared Matisse instance.
@@ -133,11 +133,11 @@ public class Matisse {
     /// - Parameters:
     ///   - requestHandler: The request handler to use
     ///
-    public class func useRequestHandler(requestHandler: ImageRequestHandler) {
-        checkMainThread()
-        checkUnused()
+    public class func useRequestHandler(_ requestHandler: ImageRequestHandler) {
+        self.checkMainThread()
+        self.checkUnused()
 
-        _requestHandler = requestHandler
+        self.requestHandler = requestHandler
     }
 
     /// Access the shared Matisse instance.
@@ -150,14 +150,18 @@ public class Matisse {
     ///
     /// - Returns: The shared Matisse instance
     ///
-    public class func shared() -> Matisse {
-        checkMainThread()
+    public static var shared: Matisse {
+        self.checkMainThread()
 
-        if _sharedInstance == nil {
-            let context = MatisseContext(fastCache: _fastCache, slowCache: _slowCache, requestHandler: _requestHandler)
-            _sharedInstance = Matisse(context: context)
+        if let shared = self.sharedInstance {
+            return shared
         }
-        return _sharedInstance!
+
+        let context = MatisseContext(fastCache: self.fastCache, slowCache: self.slowCache, requestHandler: self.requestHandler)
+        let shared = Matisse(context: context)
+        self.sharedInstance = shared
+
+        return shared
     }
 
 
@@ -170,8 +174,8 @@ public class Matisse {
     ///
     /// - Returns: An image request builder configured for the given URL.
     ///
-    public class func load(url: NSURL) -> ImageRequestBuilder {
-        return shared().load(url)
+    public class func load(_ url: URL) -> ImageRequestBuilder {
+        return self.shared.load(url)
     }
 
 
@@ -179,11 +183,11 @@ public class Matisse {
 
     /// Checks wether the shared instance was already built
     private class func checkUnused() {
-        assert(_sharedInstance == nil, "You cannot modify the shared Matisse instance after it was first used")
+        assert(self.sharedInstance == nil, "You cannot modify the shared Matisse instance after it was first used")
     }
 
     /// Checks that all access is done on the main thread
     private class func checkMainThread() {
-        assert(NSThread.isMainThread(), "You must access Matisse from the main thread")
+        assert(Thread.isMainThread, "You must access Matisse from the main thread")
     }
 }

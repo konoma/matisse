@@ -13,7 +13,7 @@ import Foundation
 ///
 public class MemoryImageCache: ImageCache {
 
-    private let cache: NSCache
+    private let cache: NSCache<AnyObject, AnyObject>
 
     // MARK: - Initialization
 
@@ -28,7 +28,7 @@ public class MemoryImageCache: ImageCache {
     /// - Parameters:
     ///   - cache: The `NSCache` instance used to cache images.
     ///
-    public init(cache: NSCache) {
+    public init(cache: NSCache<AnyObject, AnyObject>) {
         self.cache = cache
     }
 
@@ -43,8 +43,8 @@ public class MemoryImageCache: ImageCache {
     ///   - cost:    Optional hint on how expensive it is to recreate the image if evicted.
     ///              Pass `0` if no useful data is available.
     ///
-    public func storeImage(image: UIImage, forRequest request: ImageRequest, withCost cost: Int) {
-        cache.setObject(image, forKey: request.descriptor, cost: cost)
+    public func store(image: UIImage, forRequest request: ImageRequest, withCost cost: Int) {
+        self.cache.setObject(image, forKey: request.descriptor as AnyObject, cost: cost)
     }
 
     /// Returns the image for this request if it's still in the chache.
@@ -55,7 +55,7 @@ public class MemoryImageCache: ImageCache {
     /// - Returns:
     ///   The image associated with this request if it's still in the cache. Otherwise `nil`.
     ///
-    public func retrieveImageForRequest(request: ImageRequest) -> UIImage? {
-        return cache.objectForKey(request.descriptor) as? UIImage
+    public func retrieveImage(forRequest request: ImageRequest) -> UIImage? {
+        return self.cache.object(forKey: request.descriptor as AnyObject) as? UIImage
     }
 }

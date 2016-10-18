@@ -21,19 +21,16 @@ import Foundation
 ///
 public class DiskImageCache: ImageCache {
 
-    private let cacheDirectoryURL: NSURL
-    private let fileManager: NSFileManager
+    private let cacheDirectoryURL: URL
+    private let fileManager: FileManager
 
 
     // MARK: - Global Configuration
 
     /// The default cache directory for this application.
     ///
-    public static var defaultCacheDirectory: NSURL = {
-        return NSFileManager
-            .defaultManager()
-            .URLsForDirectory(.CachesDirectory, inDomains: .AllDomainsMask)
-            .first!
+    public static var defaultCacheDirectory: URL = {
+        return FileManager.default.urls(for: .cachesDirectory, in: .allDomainsMask)[0]
     }()
 
 
@@ -50,8 +47,8 @@ public class DiskImageCache: ImageCache {
     /// - Parameters:
     ///   - cacheDirectoryURL: The URL of the directory to use as the cache.
     ///
-    public convenience init(cacheDirectoryURL: NSURL) {
-        self.init(cacheDirectoryURL: cacheDirectoryURL, fileManager: NSFileManager())
+    public convenience init(cacheDirectoryURL: URL) {
+        self.init(cacheDirectoryURL: cacheDirectoryURL, fileManager: FileManager())
     }
 
     /// Create a new `DiskImageCache` with a custom cache directory and file manager.
@@ -60,7 +57,7 @@ public class DiskImageCache: ImageCache {
     ///   - cacheDirectoryURL: The URL of the directory to use as the cache.
     ///   - fileManager:       The file manager used to access files.
     ///
-    public init(cacheDirectoryURL: NSURL, fileManager: NSFileManager) {
+    public init(cacheDirectoryURL: URL, fileManager: FileManager) {
         self.cacheDirectoryURL = cacheDirectoryURL
         self.fileManager = fileManager
     }
@@ -75,21 +72,18 @@ public class DiskImageCache: ImageCache {
     ///   - request: The `ImageRequest` to store this image for.
     ///   - cost:    Ignored.
     ///
-    public func storeImage(image: UIImage, forRequest request: ImageRequest, withCost cost: Int) {
-        let fileURL = fileURLFromRequest(request)
+    public func store(image: UIImage, forRequest request: ImageRequest, withCost cost: Int) {
+        let fileUrl = self.fileUrl(fromRequest: request)
 
         // make sure the destination directory exists
-        if let directoryURL = fileURL.URLByDeletingLastPathComponent {
-            do {
-                try fileManager.createDirectoryAtURL(directoryURL, withIntermediateDirectories: true, attributes: nil)
-            } catch {
-                // We can safely ignore this error. If it's something serious it will be caught later.
-            }
+        do {
+            let directoryURL = fileUrl.deletingLastPathComponent()
+            try self.fileManager.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
+        } catch {
+            // We can safely ignore this error. If it's something serious it will be caught later.
         }
 
-        if let path = fileURL.absoluteURL.path {
-            NSKeyedArchiver.archiveRootObject(image, toFile: path)
-        }
+        NSKeyedArchiver.archiveRootObject(image, toFile: fileUrl.absoluteURL.path)
     }
 
     /// Returns the image for this request if it's still in the chache.
@@ -100,20 +94,16 @@ public class DiskImageCache: ImageCache {
     /// - Returns:
     ///   The image associated with this request if it's still in the cache. Otherwise `nil`.
     ///
-    public func retrieveImageForRequest(request: ImageRequest) -> UIImage? {
-        let fileURL = fileURLFromRequest(request)
+    public func retrieveImage(forRequest request: ImageRequest) -> UIImage? {
+        let fileUrl = self.fileUrl(fromRequest: request)
 
-        guard let path = fileURL.absoluteURL.path else {
-            return nil
-        }
-
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(path) as? UIImage
+        return NSKeyedUnarchiver.unarchiveObject(withFile: fileUrl.absoluteURL.path) as? UIImage
     }
 
 
     // MARK: - Helpers
 
-    private func fileURLFromRequest(request: ImageRequest) -> NSURL {
-        return cacheDirectoryURL.URLByAppendingPathComponent(request.descriptor.matisseMD5String)
+    private func fileUrl(fromRequest request: ImageRequest) -> URL {
+        return self.cacheDirectoryURL.appendingPathComponent(request.descriptor.matisseMD5)
     }
 }

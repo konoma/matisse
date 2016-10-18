@@ -18,7 +18,7 @@ import Foundation
 public class ImageRequestBuilder {
 
     private let context: MatisseContext
-    private let url: NSURL
+    private let url: URL
     private var transformations: [ImageTransformation] = []
     private var builtRequest: ImageRequest?
 
@@ -31,7 +31,7 @@ public class ImageRequestBuilder {
     ///   - context: The Matisse instance to execute the built request in.
     ///   - url:     The source URL of the image to fetch.
     ///
-    internal init(context: MatisseContext, url: NSURL) {
+    internal init(context: MatisseContext, url: URL) {
         self.context = context
         self.url = url
     }
@@ -52,10 +52,10 @@ public class ImageRequestBuilder {
     /// - Returns:
     ///   The receiver.
     ///
-    public func transform(transformation: ImageTransformation) -> Self {
-        checkNotYetBuilt()
+    public func transform(_ transformation: ImageTransformation) -> Self {
+        self.checkNotYetBuilt()
 
-        transformations.append(transformation)
+        self.transformations.append(transformation)
         return self
     }
 
@@ -66,12 +66,12 @@ public class ImageRequestBuilder {
     /// the request further.
     ///
     public var imageRequest: ImageRequest {
-        if let request = builtRequest {
+        if let request = self.builtRequest {
             return request
         }
 
-        let request = ImageRequest(url: url, transformations: transformations)
-        builtRequest = request
+        let request = ImageRequest(url: self.url, transformations: self.transformations)
+        self.builtRequest = request
         return request
     }
 
@@ -92,10 +92,10 @@ public class ImageRequestBuilder {
     /// - Returns:
     ///   The cached image if the request was fulfilled from the fast cache, otherwise `nil`.
     ///
-    public func fetch(completion: (ImageRequest, UIImage?, NSError?) -> Void) -> UIImage? {
-        let request = imageRequest
+    public func fetch(_ completion: @escaping (ImageRequest, UIImage?, NSError?) -> Void) -> UIImage? {
+        let request = self.imageRequest
 
-        return context.executeRequest(request) { image, error in
+        return self.context.execute(request: request) { image, error in
             completion(request, image, error)
         }
     }
@@ -112,15 +112,15 @@ public class ImageRequestBuilder {
     /// - Parameters:
     ///   - target: The `ImageRequestTarget` to show the image in.
     ///
-    public func showIn(target: ImageRequestTarget) {
-        target.matisseRequestIdentifier = imageRequest.identifier
+    public func showIn(_ target: ImageRequestTarget) {
+        target.matisseRequestIdentifier = self.imageRequest.identifier
 
         var alreadySet = false
 
         // fetch the image then show it in the target
-        let fetchedImage = fetch { request, image, error in
+        let fetchedImage = self.fetch { request, image, error in
             if !alreadySet && target.matisseRequestIdentifier == request.identifier {
-                target.updateForImageRequest(request, image: image, error: error)
+                target.update(forImageRequest: request, image: image, error: error)
                 target.matisseRequestIdentifier = nil
             }
         }
@@ -128,7 +128,7 @@ public class ImageRequestBuilder {
         // show the image in the target directly, if it was retrieved from the fast cache
         // note: this will be executed before the completion block above
         if let image = fetchedImage {
-            target.updateForImageRequest(imageRequest, image: image, error: nil)
+            target.update(forImageRequest: self.imageRequest, image: image, error: nil)
             alreadySet = true
         }
     }
@@ -138,6 +138,6 @@ public class ImageRequestBuilder {
 
     /// Makes sure the request was not built before. Should be checked when trying to modify the request.
     private func checkNotYetBuilt() {
-        assert(builtRequest == nil, "Cannot modify the request because it was already built")
+        assert(self.builtRequest == nil, "Cannot modify the request because it was already built")
     }
 }

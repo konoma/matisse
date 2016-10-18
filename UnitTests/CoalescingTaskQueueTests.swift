@@ -18,7 +18,7 @@ class CoalescingTaskQueueTests: XCTestCase {
         let queue = CoalescingTaskQueue(worker: InspectableTaskQueueWorker(coalesce: true), syncQueue: DispatchQueue.main)
         
         var resultValue: String?
-        queue.submit("Test", requestCompletion: nil) { result, error in
+        queue.submit(task: "Test", requestCompletion: nil) { result, error in
             resultValue = result
         }
         
@@ -30,8 +30,8 @@ class CoalescingTaskQueueTests: XCTestCase {
         let queue = CoalescingTaskQueue(worker: worker, syncQueue: DispatchQueue.main)
         
         var resultCount = 0
-        queue.submit("Test", requestCompletion: nil) { result, _ in expect(result).to(equal("Test")); resultCount += 1 }
-        queue.submit("Test", requestCompletion: nil) { result, _ in expect(result).to(equal("Test")); resultCount += 1 }
+        queue.submit(task: "Test", requestCompletion: nil) { result, _ in expect(result).to(equal("Test")); resultCount += 1 }
+        queue.submit(task: "Test", requestCompletion: nil) { result, _ in expect(result).to(equal("Test")); resultCount += 1 }
         
         // we expect two completion calls to be made, but only one task should be executed
         expect(resultCount).toEventually(equal(2))
@@ -43,8 +43,8 @@ class CoalescingTaskQueueTests: XCTestCase {
         let queue = CoalescingTaskQueue(worker: worker, syncQueue: DispatchQueue.main)
         
         var resultCount = 0
-        queue.submit("Test", requestCompletion: nil) { result, _ in expect(result).to(equal("Test")); resultCount += 1 }
-        queue.submit("Test", requestCompletion: nil) { result, _ in expect(result).to(equal("Test")); resultCount += 1 }
+        queue.submit(task: "Test", requestCompletion: nil) { result, _ in expect(result).to(equal("Test")); resultCount += 1 }
+        queue.submit(task: "Test", requestCompletion: nil) { result, _ in expect(result).to(equal("Test")); resultCount += 1 }
         
         // we expect two completion calls to be made, and also two tasks to be executed
         expect(resultCount).toEventually(equal(2))
@@ -58,8 +58,8 @@ class CoalescingTaskQueueTests: XCTestCase {
         var resultCount = 0
         let requestCompletion = { (result: String?, _: NSError?) in expect(result).to(equal("Test")); resultCount += 1 }
         
-        queue.submit("Test", requestCompletion: requestCompletion) { _, _ in }
-        queue.submit("Test", requestCompletion: requestCompletion) { _, _ in }
+        queue.submit(task: "Test", requestCompletion: requestCompletion) { _, _ in }
+        queue.submit(task: "Test", requestCompletion: requestCompletion) { _, _ in }
         
         // we expect two completion calls to be made, and also two tasks to be executed
         expect(resultCount).toEventually(equal(1))
@@ -72,8 +72,8 @@ class CoalescingTaskQueueTests: XCTestCase {
         var resultCount = 0
         let requestCompletion = { (result: String?, _: NSError?) in expect(result).to(equal("Test")); resultCount += 1 }
         
-        queue.submit("Test", requestCompletion: requestCompletion) { _, _ in }
-        queue.submit("Test", requestCompletion: requestCompletion) { _, _ in }
+        queue.submit(task: "Test", requestCompletion: requestCompletion) { _, _ in }
+        queue.submit(task: "Test", requestCompletion: requestCompletion) { _, _ in }
         
         // we expect two completion calls to be made, and also two tasks to be executed
         expect(resultCount).toEventually(equal(2))
@@ -91,12 +91,12 @@ private class InspectableTaskQueueWorker: CoalescingTaskQueueWorker {
     
     var handledTaskCount = 0
     
-    func handleTask(task: String, completion: (String?, NSError?) -> Void) {
+    func handle(task: String, completion: @escaping (String?, NSError?) -> Void) {
         handledTaskCount += 1
         completion(task, nil)
     }
     
-    func canCoalesceTask(newTask: String, withTask currentTask: String) -> Bool {
+    func canCoalesce(task newTask: String, withTask currentTask: String) -> Bool {
         return coalesce && newTask == currentTask
     }
 }

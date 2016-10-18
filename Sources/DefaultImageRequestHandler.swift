@@ -39,7 +39,7 @@ public class DefaultImageRequestHandler: ImageRequestHandler {
         self.init(
             imageLoader: imageLoader,
             imageCreator: DefaultImageCreator(),
-            workerQueue: dispatch_queue_create("ch.konoma.matisse/creatorQueue", DISPATCH_QUEUE_CONCURRENT)
+            workerQueue: DispatchQueue(label: "ch.konoma.matisse/creatorQueue", attributes: .concurrent)
         )
     }
 
@@ -50,10 +50,10 @@ public class DefaultImageRequestHandler: ImageRequestHandler {
     ///   - imageCreator: The image creator to use for this request handler.
     ///   - workerQueue:  The dispatch queue to execute requests on.
     ///
-    internal init(imageLoader: ImageLoader, imageCreator: DefaultImageCreator, workerQueue: dispatch_queue_t) {
+    internal init(imageLoader: ImageLoader, imageCreator: DefaultImageCreator, workerQueue: DispatchQueue) {
         self.imageLoader = imageLoader
         self.imageCreator = imageCreator
-        self.workerQueue = DispatchQueue(dispatchQueue: workerQueue)
+        self.workerQueue = workerQueue
     }
 
 
@@ -68,21 +68,21 @@ public class DefaultImageRequestHandler: ImageRequestHandler {
     ///   - request:    The `ImageRequest` to resolve.
     ///   - completion: The completion block that is called when the request finished.
     ///
-    public func retrieveImageForRequest(request: ImageRequest, completion: (UIImage?, NSError?) -> Void) {
-        imageLoader.loadImageForRequest(request) { url, error in
+    public func retrieveImage(forRequest request: ImageRequest, completion: @escaping (UIImage?, NSError?) -> Void) {
+        self.imageLoader.loadImage(forRequest: request) { url, error in
             guard let url = url else {
                 completion(nil, error)
                 return
             }
 
-            self.createImageFromURL(url, request: request, completion: completion)
+            self.createImage(fromUrl: url, request: request, completion: completion)
         }
     }
 
-    private func createImageFromURL(url: NSURL, request: ImageRequest, completion: (UIImage?, NSError?) -> Void) {
-        workerQueue.async {
+    private func createImage(fromUrl url: URL, request: ImageRequest, completion: @escaping (UIImage?, NSError?) -> Void) {
+        self.workerQueue.async {
             do {
-                let image = try self.imageCreator.createImageFromURL(url, request: request)
+                let image = try self.imageCreator.createImage(fromUrl: url, request: request)
                 completion(image, nil)
             } catch {
                 completion(nil, error as NSError)

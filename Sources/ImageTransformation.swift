@@ -25,7 +25,7 @@ public protocol ImageTransformation: class {
     /// - Returns:
     ///   The transformed image.
     ///
-    func transformImage(image: CGImage) throws -> CGImage
+    func transform(image: CGImage) throws -> CGImage
 
     /// A string describing this transformation.
     ///

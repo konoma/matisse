@@ -26,17 +26,17 @@ public class DefaultImageCreator {
     /// - Returns:
     ///   The created and transformed image.
     ///
-    public func createImageFromURL(url: NSURL, request: ImageRequest) throws -> UIImage {
-        let rawImage = try createCGImageFromURL(url)
-        let transformedImage = try transformImage(rawImage, withTransformations: request.transformations)
+    public func createImage(fromUrl url: URL, request: ImageRequest) throws -> UIImage {
+        let rawImage = try createCGImage(fromUrl: url)
+        let transformedImage = try transform(rawImage: rawImage, withTransformations: request.transformations)
 
-        return UIImage(CGImage: transformedImage, scale: UIScreen.mainScreen().scale, orientation: .Up)
+        return UIImage(cgImage: transformedImage, scale: UIScreen.main.scale, orientation: .up)
     }
 
-    private func createCGImageFromURL(url: NSURL) throws -> CGImage {
+    private func createCGImage(fromUrl url: URL) throws -> CGImage {
         let options = [ (kCGImageSourceShouldCache as NSString): false ] as NSDictionary
 
-        guard let source = CGImageSourceCreateWithURL(url, options) else {
+        guard let source = CGImageSourceCreateWithURL(url as CFURL, options) else {
             throw NSError.matisseCreationError("Could not create CGImageSource from URL \(url)")
         }
 
@@ -47,9 +47,9 @@ public class DefaultImageCreator {
         return image
     }
 
-    private func transformImage(rawImage: CGImage, withTransformations transformations: [ImageTransformation]) throws -> CGImage {
+    private func transform(rawImage: CGImage, withTransformations transformations: [ImageTransformation]) throws -> CGImage {
         return try transformations.reduce(rawImage) { image, transformation in
-            try transformation.transformImage(image)
+            try transformation.transform(image: image)
         }
     }
 }

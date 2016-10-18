@@ -141,7 +141,7 @@ cache images, and will often involve file IO. The default Matisse instance uses 
 <code><a href="../Protocols/ImageCache.html">ImageCache</a></code>. You may disable one or both chaches by passing <code>nil</code> instead of
 a cache object.</p>
 
-<p><a href='#request_handling' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='request_handling'>Request Handling</h2></p>
+<p><a href='#request-handling' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='request-handling'>Request Handling</h2></p>
 
 <p>When an image request is submitted, the context first tries to find a matching
 image in the slow cache, and if this fails the fast cache. If that fails, it
@@ -168,9 +168,9 @@ is then cached if possible and returned for all equivalent requests.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC7Matisse14MatisseContextcFMS0_FT9fastCacheGSqPS_10ImageCache__9slowCacheGSqPS1___14requestHandlerPS_19ImageRequestHandler__S0_"></a>
+                    <a name="/s:FC7Matisse14MatisseContextcFT9fastCacheGSqPS_10ImageCache__9slowCacheGSqPS1___14requestHandlerPS_19ImageRequestHandler__S0_"></a>
                     <a name="//apple_ref/swift/Method/init(fastCache:slowCache:requestHandler:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC7Matisse14MatisseContextcFMS0_FT9fastCacheGSqPS_10ImageCache__9slowCacheGSqPS1___14requestHandlerPS_19ImageRequestHandler__S0_">init(fastCache:slowCache:requestHandler:)</a>
+                    <a class="token" href="#/s:FC7Matisse14MatisseContextcFT9fastCacheGSqPS_10ImageCache__9slowCacheGSqPS1___14requestHandlerPS_19ImageRequestHandler__S0_">init(fastCache:slowCache:requestHandler:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -180,7 +180,7 @@ is then cached if possible and returned for all equivalent requests.</p>
                       <div class="abstract">
                         <p>Create a custom matisse context with the given caches and request handler.</p>
 
-<p>You only need to create a custom <code><a href="../Classes/MatisseContext.html">MatisseContext</a></code> if you want to create your own DSL object.
+<p>You only need to create a custom <code>MatisseContext</code> if you want to create your own DSL object.
 If you want to configure the main DSL object you can do so directly using class methods on
 the DSL class (see the respective class documentation for Swift/Objective-C).</p>
 
@@ -199,7 +199,7 @@ the DSL class (see the respective class documentation for Swift/Objective-C).</p
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">fastCache</span><span class="p">:</span> <span class="kt">ImageCache</span><span class="p">?,</span> <span class="nv">slowCache</span><span class="p">:</span> <span class="kt">ImageCache</span><span class="p">?,</span> <span class="nv">requestHandler</span><span class="p">:</span> <span class="kt">ImageRequestHandler</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">fastCache</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ImageCache.html">ImageCache</a></span><span class="p">?,</span> <span class="nv">slowCache</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ImageCache.html">ImageCache</a></span><span class="p">?,</span> <span class="nv">requestHandler</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ImageRequestHandler.html">ImageRequestHandler</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -266,9 +266,9 @@ the DSL class (see the respective class documentation for Swift/Objective-C).</p
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC7Matisse14MatisseContext14executeRequestFS0_FTCS_12ImageRequest10completionFTGSqCSo7UIImage_GSqCSo7NSError__T__GSqS2__"></a>
-                    <a name="//apple_ref/swift/Method/executeRequest(_:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC7Matisse14MatisseContext14executeRequestFS0_FTCS_12ImageRequest10completionFTGSqCSo7UIImage_GSqCSo7NSError__T__GSqS2__">executeRequest(_:completion:)</a>
+                    <a name="/s:FC7Matisse14MatisseContext7executeFT7requestCS_12ImageRequest10completionFTGSqCSo7UIImage_GSqCSo7NSError__T__GSqS2__"></a>
+                    <a name="//apple_ref/swift/Method/execute(request:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC7Matisse14MatisseContext7executeFT7requestCS_12ImageRequest10completionFTGSqCSo7UIImage_GSqCSo7NSError__T__GSqS2__">execute(request:completion:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -317,7 +317,7 @@ image. Otherwise <code>nil</code> is returned.</p></p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">executeRequest</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="kt">ImageRequest</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="p">(</span><span class="kt">UIImage</span><span class="p">?,</span> <span class="kt">NSError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIImage</span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">execute</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="kt"><a href="../Classes/ImageRequest.html">ImageRequest</a></span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">UIImage</span><span class="p">?,</span> <span class="kt">NSError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIImage</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -367,8 +367,8 @@ image. Otherwise <code>nil</code> is returned.</p></p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="https://github.com/konoma/matisse" target="_blank" rel="external">Markus Gasser</a>. All rights reserved. (Last updated: 2016-03-06)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.5.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2016 <a class="link" href="https://github.com/konoma/matisse" target="_blank" rel="external">Markus Gasser</a>. All rights reserved. (Last updated: 2016-10-18)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

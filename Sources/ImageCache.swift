@@ -44,7 +44,7 @@ public protocol ImageCache: class {
     ///   - cost:    Optional hint on how expensive it is to recreate the image if evicted.
     ///              Pass `0` if no useful data is available.
     ///
-    func storeImage(image: UIImage, forRequest request: ImageRequest, withCost cost: Int)
+    func store(image: UIImage, forRequest request: ImageRequest, withCost cost: Int)
 
     /// Returns the image for this request if it's still in the chache.
     ///
@@ -57,5 +57,5 @@ public protocol ImageCache: class {
     /// - Returns:
     ///   The image associated with this request if it's still in the cache. Otherwise `nil`.
     ///
-    func retrieveImageForRequest(request: ImageRequest) -> UIImage?
+    func retrieveImage(forRequest request: ImageRequest) -> UIImage?
 }
