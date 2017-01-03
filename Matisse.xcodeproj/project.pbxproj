@@ -87,6 +87,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0537FFED1E1BEDB5003E4765 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		055061E61C023D0D009462D9 /* ImageRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRequest.swift; sourceTree = "<group>"; };
 		055061E81C023DB4009462D9 /* MatisseContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatisseContext.swift; sourceTree = "<group>"; };
 		0595C9621C8ACC3F000B3A87 /* FPSCounter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FPSCounter.framework; path = Carthage/Build/iOS/FPSCounter.framework; sourceTree = "<group>"; };
@@ -243,6 +244,7 @@
 			children = (
 				05EE06541C14434E004A0008 /* Readme.md */,
 				0595C9691C8ACF96000B3A87 /* Matisse.podspec */,
+				0537FFED1E1BEDB5003E4765 /* .swiftlint.yml */,
 				05F50C341C022E2500859782 /* Sources */,
 				05F50C401C022E2600859782 /* UnitTests */,
 				05F50C511C0230D600859782 /* SampleApp */,

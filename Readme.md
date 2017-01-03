@@ -14,7 +14,7 @@ With Matisse you can download and display an image in an image view with
 a single line:
 
 ```swift
-    Matisse.load(imageURL).showIn(imageView)
+Matisse.load(imageURL).showIn(imageView)
 ```
 
 This automatically takes care of downloading, caching and showing the image
@@ -25,20 +25,20 @@ If you want to resize the image to fit the image view (generally a good idea)
 you can do so too:
 
 ```swift
-    Matisse.load(imageURL).resizeTo(size: myImageSize).showIn(imageView)
+Matisse.load(imageURL).resizeTo(size: myImageSize).showIn(imageView)
 ```
 
 If you just need the image, without loading it into a view, then you can fetch
 it like this:
 
 ```swift
-    Matisse.load(imageURL).resizeTo(size: myImageSize).fetch { request, image, error in
-        if let fetchedImage = image {
-           // do something with the image
-        } else {
-           // handle the error
-        }
+Matisse.load(imageURL).resizeTo(size: myImageSize).fetch { request, image, error in
+    if let fetchedImage = image {
+       // do something with the image
+    } else {
+       // handle the error
     }
+}
 ```
 
 
@@ -59,7 +59,7 @@ By default Matisse uses a [`DefaultImageLoader`](Sources/DefaultImageLoader.swif
 To customize image loading behavior, you can either provide a different `URLSession` like this:
 
 ```swift
-    Matisse.useImageLoader(DefaultImageLoader(myCustomURLSession))
+Matisse.useImageLoader(DefaultImageLoader(myCustomURLSession))
 ```
 
 If that does not suit your needs, you can implement a custom [`ImageLoader`](Sources/ImageLoader.swift)
@@ -83,13 +83,13 @@ uses an instance of `MemoryImageCache` as the fast cache and `DiskImageCache` fo
 You can overwrite (or disable) the caches like this:
 
 ```swift
-    // provide a custom ImageCache implementations
-    Matisse.useFastCache(myFastCache)
-    Matisse.useSlowCache(mySlowCache)
-    
-    // disable the caches
-    Matisse.useFastCache(nil)
-    Matisse.useSlowCache(nil)
+// provide a custom ImageCache implementations
+Matisse.useFastCache(myFastCache)
+Matisse.useSlowCache(mySlowCache)
+
+// disable the caches
+Matisse.useFastCache(nil)
+Matisse.useSlowCache(nil)
 ```
 
 #### Providing a Custom Request Handler
@@ -104,7 +104,7 @@ most cases.
 Provide your own `ImageRequestHandler` like this:
 
 ```swift
-    Matisse.useRequestHandler(myRequestHandler)
+Matisse.useRequestHandler(myRequestHandler)
 ```
 
 _Note_: When you provide a custom request handler, the image loader is ignored. Likewise, if you provide
@@ -120,17 +120,17 @@ When creating a `Matisse` instance you need to provide a `MatisseContext`. This 
 the actual image retrieval. To create one you need to provide the caches and a request handler.
 
 ```swift
-    // use defaults or provide custom instances
-    let fastCache = MemoryImageCache()
-    let slowCache = DiskImageCache()
-    let requestHandler = DefaultImageRequestHandler()
-    
-    // create a local matisse instance
-    let context = MatisseContext(fastCache: fastCache, slowCache: slowCache, requestHandler: requestHandler)
-    let matisse = Matisse(context: context)
-    
-    // then use it like you would use the shared instance
-    matisse.load(url).showIn(imageView)
+// use defaults or provide custom instances
+let fastCache = MemoryImageCache()
+let slowCache = DiskImageCache()
+let requestHandler = DefaultImageRequestHandler()
+
+// create a local matisse instance
+let context = MatisseContext(fastCache: fastCache, slowCache: slowCache, requestHandler: requestHandler)
+let matisse = Matisse(context: context)
+
+// then use it like you would use the shared instance
+matisse.load(url).showIn(imageView)
 ```
 
 
@@ -147,31 +147,31 @@ to load an image from the cache.
 To use a custom transformation apply it when loading image like this:
 
 ```swift
-    // ColorTransformation would be your custom transformation
-    let myTransformation = ColorTransformation(type: "BlackAndWhite")
-    
-    Matisse.load(url)
-        .transform(myTransformation) // use the custom transformation
-        .showIn(imageView)
+// ColorTransformation would be your custom transformation
+let myTransformation = ColorTransformation(type: "BlackAndWhite")
+
+Matisse.load(url)
+    .transform(myTransformation) // use the custom transformation
+    .showIn(imageView)
 ```
 
 For convenience consider adding an extension to the `ImageRequestBuilder`:
 
 ```swift
-    extension ImageRequestBuilder {
-        
-        func colorize(type: String) -> Self {
-            return transform(ColorTransformation(type: type))
-        }
+extension ImageRequestBuilder {
+    
+    func colorize(type: String) -> Self {
+        return transform(ColorTransformation(type: type))
     }
+}
 ```
 
 Then you can use it like this:
 
 ```swift
-    Matisse.load(url)
-        .colorize(type: "BlackAndWhite") // use the custom transformation
-        .showIn(imageView)
+Matisse.load(url)
+    .colorize(type: "BlackAndWhite") // use the custom transformation
+    .showIn(imageView)
 ```
 
 
@@ -182,7 +182,9 @@ Then you can use it like this:
 To install this library via [Carthage](https://github.com/Carthage/Carthage) add the
 following to your `Cartfile`:
 
-    github "konoma/matisse" ~> 2.0
+```ruby
+github "konoma/matisse" ~> 2.0
+```
 
 Then run the standard `carthage update` process.
 
@@ -192,7 +194,9 @@ Then run the standard `carthage update` process.
 To install this library via [CocoaPods](https://cocoapods.org) add the following to
 your `Podfile`:
 
-    pod 'Matisse', '~> 2.0'
+```ruby
+pod 'Matisse', '~> 2.0'
+```
 
 Then run the standard `pod update` process.
 

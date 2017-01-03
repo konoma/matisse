@@ -1,6 +1,7 @@
 line_length: 140
 
 disabled_rules:
+  - vertical_whitespace
   - closing_brace
 
 included:
