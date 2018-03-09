@@ -92,7 +92,7 @@ public class ImageRequestBuilder {
     /// - Returns:
     ///   The cached image if the request was fulfilled from the fast cache, otherwise `nil`.
     ///
-    public func fetch(_ completion: @escaping (ImageRequest, UIImage?, NSError?) -> Void) -> UIImage? {
+    @discardableResult public func fetch(_ completion: @escaping (ImageRequest, UIImage?, NSError?) -> Void) -> UIImage? {
         let request = self.imageRequest
 
         return self.context.execute(request: request) { image, error in
