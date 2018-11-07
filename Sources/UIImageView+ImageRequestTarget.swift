@@ -36,7 +36,7 @@ public extension UIImageView {
 
 // Cannot publicly specify protocol compliance. The image view is
 // still compliant, because the methods are implemented above.
-extension UIImageView : ImageRequestTarget { }
+extension UIImageView: ImageRequestTarget { }
 
 
 public extension ImageRequestBuilder {

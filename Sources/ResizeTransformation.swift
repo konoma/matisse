@@ -21,7 +21,7 @@ public class ResizeTransformation: ImageTransformation {
     }
 
     private let targetSize: CGSize
-    private let contentMode: UIViewContentMode
+    private let contentMode: UIView.ContentMode
     private let deviceScale: CGFloat
     private let scaledTargetSize: CGSize
 
@@ -34,7 +34,7 @@ public class ResizeTransformation: ImageTransformation {
     ///   - targetSize:  The target image size.
     ///   - contentMode: The content mode describing how the image should fit into the target size.
     ///
-    public convenience init(targetSize: CGSize, contentMode: UIViewContentMode) {
+    public convenience init(targetSize: CGSize, contentMode: UIView.ContentMode) {
         self.init(targetSize: targetSize, contentMode: contentMode, deviceScale: UIScreen.main.scale)
     }
 
@@ -45,7 +45,7 @@ public class ResizeTransformation: ImageTransformation {
     ///   - contentMode: The content mode describing how the image should fit into the target size.
     ///   - deviceScale: The device scale which is applied to the target size.
     ///
-    public init(targetSize: CGSize, contentMode: UIViewContentMode, deviceScale: CGFloat) {
+    public init(targetSize: CGSize, contentMode: UIView.ContentMode, deviceScale: CGFloat) {
         self.targetSize = targetSize
         self.contentMode = contentMode
         self.deviceScale = deviceScale
@@ -188,7 +188,7 @@ public extension ImageRequestBuilder {
     /// - Returns:
     ///   The receiver.
     ///
-    public func resizeTo(size: CGSize, contentMode: UIViewContentMode = .scaleToFill) -> Self {
+    public func resizeTo(size: CGSize, contentMode: UIView.ContentMode = .scaleToFill) -> Self {
         return transform(ResizeTransformation(targetSize: size, contentMode: contentMode))
     }
 
@@ -203,7 +203,7 @@ public extension ImageRequestBuilder {
     /// - Returns:
     ///   The receiver.
     ///
-    public func resizeTo(width: CGFloat, height: CGFloat, contentMode: UIViewContentMode = .scaleToFill) -> Self {
+    public func resizeTo(width: CGFloat, height: CGFloat, contentMode: UIView.ContentMode = .scaleToFill) -> Self {
         return resizeTo(size: CGSize(width: width, height: height), contentMode: contentMode)
     }
 }
