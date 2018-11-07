@@ -66,7 +66,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Enums.html">Enums</a>
+            <a href="../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Enums/MatisseErrorCode.html">MatisseErrorCode</a>
@@ -112,7 +112,7 @@
             <h1>ImageTransformation</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ImageTransformation</span><span class="p">:</span> <span class="kd">class</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ImageTransformation</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
 
                 </div>
               </div>
@@ -126,9 +126,9 @@ a transformation to a <code>CGImage</code>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP7Matisse19ImageTransformation9transformFzT5imageCSo7CGImage_S1_"></a>
+                    <a name="/s:7Matisse19ImageTransformationP9transform5imageSo10CGImageRefaAG_tKF"></a>
                     <a name="//apple_ref/swift/Method/transform(image:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP7Matisse19ImageTransformation9transformFzT5imageCSo7CGImage_S1_">transform(image:)</a>
+                    <a class="token" href="#/s:7Matisse19ImageTransformationP9transform5imageSo10CGImageRefaAG_tKF">transform(image:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -137,29 +137,18 @@ a transformation to a <code>CGImage</code>.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Apply the transformation to the given <code>CGImage</code> and return the transformed image.</p>
-
-<p><li><p>Parameters:</p></p>
-
-<p><ul>
-<li>image: The image to transform</li>
-</ul></li>
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
-    <p>If the passed image cannot be transformed using this <code>ImageTransformation</code>.</p></p>
+    <p>If the passed image cannot be transformed using this <code>ImageTransformation</code>.</p>
 
-<p></div>
-<div class="aside aside-returns">
-    <p class="aside-title">Returns</p>
-    <p>The transformed image.</p></p>
-
-<p></div></p>
+</div>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">transform</span><span class="p">(</span><span class="nv">image</span><span class="p">:</span> <span class="kt">CGImage</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">CGImage</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">transform</span><span class="p">(</span><span class="nv">image</span><span class="p">:</span> <span class="kt">CGImage</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">CGImage</span></code></pre>
 
                         </div>
                       </div>
@@ -176,7 +165,6 @@ a transformation to a <code>CGImage</code>.</p>
                               <td>
                                 <div>
                                   <p>The image to transform</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -186,7 +174,6 @@ a transformation to a <code>CGImage</code>.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>The transformed image.</p>
-
                       </div>
                     </section>
                   </div>
@@ -194,9 +181,9 @@ a transformation to a <code>CGImage</code>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vP7Matisse19ImageTransformation10descriptorSS"></a>
+                    <a name="/s:7Matisse19ImageTransformationP10descriptorSSvp"></a>
                     <a name="//apple_ref/swift/Property/descriptor" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vP7Matisse19ImageTransformation10descriptorSS">descriptor</a>
+                    <a class="token" href="#/s:7Matisse19ImageTransformationP10descriptorSSvp">descriptor</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -217,7 +204,7 @@ the descriptor.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">descriptor</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">descriptor</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -229,8 +216,8 @@ the descriptor.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="https://github.com/konoma/matisse" target="_blank" rel="external">Markus Gasser</a>. All rights reserved. (Last updated: 2016-10-18)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2018 <a class="link" href="https://github.com/konoma/matisse" target="_blank" rel="external">Markus Gasser</a>. All rights reserved. (Last updated: 2018-11-07)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

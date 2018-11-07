@@ -66,7 +66,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Enums.html">Enums</a>
+            <a href="../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Enums/MatisseErrorCode.html">MatisseErrorCode</a>
@@ -112,7 +112,7 @@
             <h1>ImageCache</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ImageCache</span><span class="p">:</span> <span class="kd">class</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ImageCache</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
 
                 </div>
               </div>
@@ -140,9 +140,9 @@ thread safe.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP7Matisse10ImageCache5storeFT5imageCSo7UIImage10forRequestCS_12ImageRequest8withCostSi_T_"></a>
+                    <a name="/s:7Matisse10ImageCacheP5store5image10forRequest8withCostySo7UIImageC_AA0bG0CSitF"></a>
                     <a name="//apple_ref/swift/Method/store(image:forRequest:withCost:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP7Matisse10ImageCache5storeFT5imageCSo7UIImage10forRequestCS_12ImageRequest8withCostSi_T_">store(image:forRequest:withCost:)</a>
+                    <a class="token" href="#/s:7Matisse10ImageCacheP5store5image10forRequest8withCostySo7UIImageC_AA0bG0CSitF">store(image:forRequest:withCost:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -156,28 +156,18 @@ thread safe.</p>
 how expensive it is to recreate this image. This information may be used by the cache to
 decide what objects to evict when space gets tight. It&rsquo;s not guaranteed that this value
 is set. If no hint is given then <code>0</code> will be passed.</p>
-
 <div class="aside aside-note">
     <p class="aside-title">Note</p>
     <p>May be called from a background thread, but never concurrently.</p>
 
 </div>
 
-<p><li><p>Parameters:</p></p>
-
-<p><ul>
-<li>image:   The image to store.</li>
-<li>request: The <code><a href="../Classes/ImageRequest.html">ImageRequest</a></code> to store this image for.</li>
-<li>cost:    Optional hint on how expensive it is to recreate the image if evicted.
-     Pass <code>0</code> if no useful data is available.</li>
-</ul></li></p>
-
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">store</span><span class="p">(</span><span class="nv">image</span><span class="p">:</span> <span class="kt">UIImage</span><span class="p">,</span> <span class="n">forRequest</span> <span class="nv">request</span><span class="p">:</span> <span class="kt"><a href="../Classes/ImageRequest.html">ImageRequest</a></span><span class="p">,</span> <span class="n">withCost</span> <span class="nv">cost</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">store</span><span class="p">(</span><span class="nv">image</span><span class="p">:</span> <span class="kt">UIImage</span><span class="p">,</span> <span class="n">forRequest</span> <span class="nv">request</span><span class="p">:</span> <span class="kt"><a href="../Classes/ImageRequest.html">ImageRequest</a></span><span class="p">,</span> <span class="n">withCost</span> <span class="nv">cost</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -194,7 +184,6 @@ is set. If no hint is given then <code>0</code> will be passed.</p>
                               <td>
                                 <div>
                                   <p>The image to store.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -206,8 +195,7 @@ is set. If no hint is given then <code>0</code> will be passed.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The <code>ImageRequest</code> to store this image for.</p>
-
+                                  <p>The <code><a href="../Classes/ImageRequest.html">ImageRequest</a></code> to store this image for.</p>
                                 </div>
                               </td>
                             </tr>
@@ -219,8 +207,8 @@ is set. If no hint is given then <code>0</code> will be passed.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Optional hint on how expensive it is to recreate the image if evicted. Pass <code>0</code> if no useful data is available.</p>
-
+                                  <p>Optional hint on how expensive it is to recreate the image if evicted.
+     Pass <code>0</code> if no useful data is available.</p>
                                 </div>
                               </td>
                             </tr>
@@ -233,9 +221,9 @@ is set. If no hint is given then <code>0</code> will be passed.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP7Matisse10ImageCache13retrieveImageFT10forRequestCS_12ImageRequest_GSqCSo7UIImage_"></a>
+                    <a name="/s:7Matisse10ImageCacheP08retrieveB010forRequestSo7UIImageCSgAA0bF0C_tF"></a>
                     <a name="//apple_ref/swift/Method/retrieveImage(forRequest:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP7Matisse10ImageCache13retrieveImageFT10forRequestCS_12ImageRequest_GSqCSo7UIImage_">retrieveImage(forRequest:)</a>
+                    <a class="token" href="#/s:7Matisse10ImageCacheP08retrieveB010forRequestSo7UIImageCSgAA0bF0C_tF">retrieveImage(forRequest:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -244,30 +232,18 @@ is set. If no hint is given then <code>0</code> will be passed.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Returns the image for this request if it&rsquo;s still in the chache.</p>
-
 <div class="aside aside-note">
     <p class="aside-title">Note</p>
     <p>May be called from a background thread, but never concurrently.</p>
 
 </div>
 
-<p><li><p>Parameters:</p></p>
-
-<p><ul>
-<li>request: The <code><a href="../Classes/ImageRequest.html">ImageRequest</a></code> to return the image for.</li>
-</ul></li>
-<div class="aside aside-returns">
-    <p class="aside-title">Returns</p>
-    <p>The image associated with this request if it&rsquo;s still in the cache. Otherwise <code>nil</code>.</p></p>
-
-<p></div></p>
-
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">retrieveImage</span><span class="p">(</span><span class="n">forRequest</span> <span class="nv">request</span><span class="p">:</span> <span class="kt"><a href="../Classes/ImageRequest.html">ImageRequest</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIImage</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">retrieveImage</span><span class="p">(</span><span class="n">forRequest</span> <span class="nv">request</span><span class="p">:</span> <span class="kt"><a href="../Classes/ImageRequest.html">ImageRequest</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIImage</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -283,8 +259,7 @@ is set. If no hint is given then <code>0</code> will be passed.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The <code>ImageRequest</code> to return the image for.</p>
-
+                                  <p>The <code><a href="../Classes/ImageRequest.html">ImageRequest</a></code> to return the image for.</p>
                                 </div>
                               </td>
                             </tr>
@@ -293,8 +268,7 @@ is set. If no hint is given then <code>0</code> will be passed.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>The image associated with this request if it’s still in the cache. Otherwise <code>nil</code>.</p>
-
+                        <p>The image associated with this request if it&rsquo;s still in the cache. Otherwise <code>nil</code>.</p>
                       </div>
                     </section>
                   </div>
@@ -304,8 +278,8 @@ is set. If no hint is given then <code>0</code> will be passed.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="https://github.com/konoma/matisse" target="_blank" rel="external">Markus Gasser</a>. All rights reserved. (Last updated: 2016-10-18)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2018 <a class="link" href="https://github.com/konoma/matisse" target="_blank" rel="external">Markus Gasser</a>. All rights reserved. (Last updated: 2018-11-07)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

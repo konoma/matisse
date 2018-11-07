@@ -183,7 +183,7 @@ To install this library via [Carthage](https://github.com/Carthage/Carthage) add
 following to your `Cartfile`:
 
 ```ruby
-github "konoma/matisse" ~> 2.0
+github "konoma/matisse" ~> 3.0
 ```
 
 Then run the standard `carthage update` process.
@@ -195,7 +195,7 @@ To install this library via [CocoaPods](https://cocoapods.org) add the following
 your `Podfile`:
 
 ```ruby
-pod 'Matisse', '~> 2.0'
+pod 'Matisse', '~> 3.0'
 ```
 
 Then run the standard `pod update` process.

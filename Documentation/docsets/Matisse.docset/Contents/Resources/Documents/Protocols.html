@@ -10,6 +10,7 @@
     
   </head>
   <body>
+    <a name="//apple_ref/swift/Section/Protocols" class="dashAnchor"></a>
     <a title="Protocols  Reference"></a>
     <header>
       <div class="content-wrapper">
@@ -65,7 +66,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="Enums.html">Enums</a>
+            <a href="Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="Enums/MatisseErrorCode.html">MatisseErrorCode</a>
@@ -118,44 +119,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:P7Matisse11ImageLoader"></a>
-                    <a name="//apple_ref/swift/Protocol/ImageLoader" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P7Matisse11ImageLoader">ImageLoader</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>An <code>ImageLoader</code> is responsible for downloading images.</p>
-
-<p>For support in implementing an <code>ImageLoader</code> you can use
-the <code><a href="Classes/ImageLoaderBase.html">ImageLoaderBase</a></code> as a parent class for your image loader.</p>
-
-                        <a href="Protocols/ImageLoader.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ImageLoader</span><span class="p">:</span> <span class="kd">class</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:P7Matisse10ImageCache"></a>
+                    <a name="/s:7Matisse10ImageCacheP"></a>
                     <a name="//apple_ref/swift/Protocol/ImageCache" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P7Matisse10ImageCache">ImageCache</a>
+                    <a class="token" href="#/s:7Matisse10ImageCacheP">ImageCache</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -186,7 +152,7 @@ thread safe.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ImageCache</span><span class="p">:</span> <span class="kd">class</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ImageCache</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
 
                         </div>
                       </div>
@@ -200,9 +166,9 @@ thread safe.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:P7Matisse19ImageTransformation"></a>
-                    <a name="//apple_ref/swift/Protocol/ImageTransformation" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P7Matisse19ImageTransformation">ImageTransformation</a>
+                    <a name="/s:7Matisse11ImageLoaderP"></a>
+                    <a name="//apple_ref/swift/Protocol/ImageLoader" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Matisse11ImageLoaderP">ImageLoader</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -210,16 +176,18 @@ thread safe.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The <code>ImageTransformation</code> protocol describes objects that are capable of applying
-a transformation to a <code>CGImage</code>.</p>
+                        <p>An <code>ImageLoader</code> is responsible for downloading images.</p>
 
-                        <a href="Protocols/ImageTransformation.html" class="slightly-smaller">See more</a>
+<p>For support in implementing an <code>ImageLoader</code> you can use
+the <code><a href="Classes/ImageLoaderBase.html">ImageLoaderBase</a></code> as a parent class for your image loader.</p>
+
+                        <a href="Protocols/ImageLoader.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ImageTransformation</span><span class="p">:</span> <span class="kd">class</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ImageLoader</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
 
                         </div>
                       </div>
@@ -233,9 +201,48 @@ a transformation to a <code>CGImage</code>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:P7Matisse18ImageRequestTarget"></a>
+                    <a name="/s:7Matisse19ImageRequestHandlerP"></a>
+                    <a name="//apple_ref/swift/Protocol/ImageRequestHandler" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Matisse19ImageRequestHandlerP">ImageRequestHandler</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An <code>ImageRequestHandler</code> is responsible for resolving an <code><a href="Classes/ImageRequest.html">ImageRequest</a></code>.</p>
+
+<p>The request handler is called by the <code><a href="Classes/MatisseContext.html">MatisseContext</a></code> if a request cannot
+be fulfilled from the caches. The handler is likely to be called from a
+background thread, but is never called concurrently on multiple threads.</p>
+
+<p>Resolving the request includes downloading the image, creating the image
+and applying any transformations on it, if specified by the request.</p>
+
+                        <a href="Protocols/ImageRequestHandler.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ImageRequestHandler</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Matisse18ImageRequestTargetP"></a>
                     <a name="//apple_ref/swift/Protocol/ImageRequestTarget" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P7Matisse18ImageRequestTarget">ImageRequestTarget</a>
+                    <a class="token" href="#/s:7Matisse18ImageRequestTargetP">ImageRequestTarget</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -259,7 +266,7 @@ the target.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ImageRequestTarget</span><span class="p">:</span> <span class="kd">class</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ImageRequestTarget</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
 
                         </div>
                       </div>
@@ -273,9 +280,9 @@ the target.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:P7Matisse19ImageRequestHandler"></a>
-                    <a name="//apple_ref/swift/Protocol/ImageRequestHandler" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P7Matisse19ImageRequestHandler">ImageRequestHandler</a>
+                    <a name="/s:7Matisse19ImageTransformationP"></a>
+                    <a name="//apple_ref/swift/Protocol/ImageTransformation" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Matisse19ImageTransformationP">ImageTransformation</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -283,22 +290,16 @@ the target.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>An <code>ImageRequestHandler</code> is responsible for resolving an <code><a href="Classes/ImageRequest.html">ImageRequest</a></code>.</p>
+                        <p>The <code>ImageTransformation</code> protocol describes objects that are capable of applying
+a transformation to a <code>CGImage</code>.</p>
 
-<p>The request handler is called by the <code><a href="Classes/MatisseContext.html">MatisseContext</a></code> if a request cannot
-be fulfilled from the caches. The handler is likely to be called from a
-background thread, but is never called concurrently on multiple threads.</p>
-
-<p>Resolving the request includes downloading the image, creating the image
-and applying any transformations on it, if specified by the request.</p>
-
-                        <a href="Protocols/ImageRequestHandler.html" class="slightly-smaller">See more</a>
+                        <a href="Protocols/ImageTransformation.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ImageRequestHandler</span><span class="p">:</span> <span class="kd">class</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ImageTransformation</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
 
                         </div>
                       </div>
@@ -310,8 +311,8 @@ and applying any transformations on it, if specified by the request.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="https://github.com/konoma/matisse" target="_blank" rel="external">Markus Gasser</a>. All rights reserved. (Last updated: 2016-10-18)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2018 <a class="link" href="https://github.com/konoma/matisse" target="_blank" rel="external">Markus Gasser</a>. All rights reserved. (Last updated: 2018-11-07)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

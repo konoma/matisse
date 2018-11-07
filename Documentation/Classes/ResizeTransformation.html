@@ -66,7 +66,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Enums.html">Enums</a>
+            <a href="../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Enums/MatisseErrorCode.html">MatisseErrorCode</a>
@@ -112,7 +112,7 @@
             <h1>ResizeTransformation</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ResizeTransformation</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ImageTransformation.html">ImageTransformation</a></span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ResizeTransformation</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/ImageTransformation.html">ImageTransformation</a></span></code></pre>
 
                 </div>
               </div>
@@ -132,9 +132,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC7Matisse20ResizeTransformationcFT10targetSizeVSC6CGSize11contentModeOSC17UIViewContentMode_S0_"></a>
+                    <a name="/s:7Matisse20ResizeTransformationC10targetSize11contentModeACSo6CGSizeV_So013UIViewContentG0Vtcfc"></a>
                     <a name="//apple_ref/swift/Method/init(targetSize:contentMode:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC7Matisse20ResizeTransformationcFT10targetSizeVSC6CGSize11contentModeOSC17UIViewContentMode_S0_">init(targetSize:contentMode:)</a>
+                    <a class="token" href="#/s:7Matisse20ResizeTransformationC10targetSize11contentModeACSo6CGSizeV_So013UIViewContentG0Vtcfc">init(targetSize:contentMode:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -144,21 +144,12 @@
                       <div class="abstract">
                         <p>Create a new <code>ResizeTransformation</code> with the given target size and content mode.</p>
 
-<ul>
-<li>Parameters:
-
-<ul>
-<li>targetSize:  The target image size.</li>
-<li>contentMode: The content mode describing how the image should fit into the target size.</li>
-</ul></li>
-</ul>
-
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">targetSize</span><span class="p">:</span> <span class="kt">CGSize</span><span class="p">,</span> <span class="nv">contentMode</span><span class="p">:</span> <span class="kt">UIViewContentMode</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">targetSize</span><span class="p">:</span> <span class="kt">CGSize</span><span class="p">,</span> <span class="nv">contentMode</span><span class="p">:</span> <span class="kt">UIView</span><span class="o">.</span><span class="kt">ContentMode</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -175,7 +166,6 @@
                               <td>
                                 <div>
                                   <p>The target image size.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -188,7 +178,6 @@
                               <td>
                                 <div>
                                   <p>The content mode describing how the image should fit into the target size.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -201,9 +190,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC7Matisse20ResizeTransformationcFT10targetSizeVSC6CGSize11contentModeOSC17UIViewContentMode11deviceScaleV12CoreGraphics7CGFloat_S0_"></a>
+                    <a name="/s:7Matisse20ResizeTransformationC10targetSize11contentMode11deviceScaleACSo6CGSizeV_So013UIViewContentG0V12CoreGraphics7CGFloatVtcfc"></a>
                     <a name="//apple_ref/swift/Method/init(targetSize:contentMode:deviceScale:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC7Matisse20ResizeTransformationcFT10targetSizeVSC6CGSize11contentModeOSC17UIViewContentMode11deviceScaleV12CoreGraphics7CGFloat_S0_">init(targetSize:contentMode:deviceScale:)</a>
+                    <a class="token" href="#/s:7Matisse20ResizeTransformationC10targetSize11contentMode11deviceScaleACSo6CGSizeV_So013UIViewContentG0V12CoreGraphics7CGFloatVtcfc">init(targetSize:contentMode:deviceScale:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -213,22 +202,12 @@
                       <div class="abstract">
                         <p>Create a new <code>ResizeTransformation</code> with the given target size and content mode.</p>
 
-<ul>
-<li>Parameters:
-
-<ul>
-<li>targetSize:  The target image size.</li>
-<li>contentMode: The content mode describing how the image should fit into the target size.</li>
-<li>deviceScale: The device scale which is applied to the target size.</li>
-</ul></li>
-</ul>
-
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">targetSize</span><span class="p">:</span> <span class="kt">CGSize</span><span class="p">,</span> <span class="nv">contentMode</span><span class="p">:</span> <span class="kt">UIViewContentMode</span><span class="p">,</span> <span class="nv">deviceScale</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">targetSize</span><span class="p">:</span> <span class="kt">CGSize</span><span class="p">,</span> <span class="nv">contentMode</span><span class="p">:</span> <span class="kt">UIView</span><span class="o">.</span><span class="kt">ContentMode</span><span class="p">,</span> <span class="nv">deviceScale</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -245,7 +224,6 @@
                               <td>
                                 <div>
                                   <p>The target image size.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -258,7 +236,6 @@
                               <td>
                                 <div>
                                   <p>The content mode describing how the image should fit into the target size.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -271,7 +248,6 @@
                               <td>
                                 <div>
                                   <p>The device scale which is applied to the target size.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -295,9 +271,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC7Matisse20ResizeTransformation9transformFzT5imageCSo7CGImage_S1_"></a>
+                    <a name="/s:7Matisse20ResizeTransformationC9transform5imageSo10CGImageRefaAG_tKF"></a>
                     <a name="//apple_ref/swift/Method/transform(image:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC7Matisse20ResizeTransformation9transformFzT5imageCSo7CGImage_S1_">transform(image:)</a>
+                    <a class="token" href="#/s:7Matisse20ResizeTransformationC9transform5imageSo10CGImageRefaAG_tKF">transform(image:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -306,29 +282,18 @@
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Resizes the image with the configured parameters.</p>
-
-<p><li><p>Parameters:</p></p>
-
-<p><ul>
-<li>image: The image to transform</li>
-</ul></li>
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
-    <p>If the image cannot be resized.</p></p>
+    <p>If the image cannot be resized.</p>
 
-<p></div>
-<div class="aside aside-returns">
-    <p class="aside-title">Returns</p>
-    <p>The transformed image.</p></p>
-
-<p></div></p>
+</div>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">transform</span><span class="p">(</span><span class="nv">image</span><span class="p">:</span> <span class="kt">CGImage</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">CGImage</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">transform</span><span class="p">(</span><span class="nv">image</span><span class="p">:</span> <span class="kt">CGImage</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">CGImage</span></code></pre>
 
                         </div>
                       </div>
@@ -345,7 +310,6 @@
                               <td>
                                 <div>
                                   <p>The image to transform</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -355,7 +319,6 @@
                       <div>
                         <h4>Return Value</h4>
                         <p>The transformed image.</p>
-
                       </div>
                     </section>
                   </div>
@@ -374,9 +337,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC7Matisse20ResizeTransformation10descriptorSS"></a>
+                    <a name="/s:7Matisse20ResizeTransformationC10descriptorSSvp"></a>
                     <a name="//apple_ref/swift/Property/descriptor" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC7Matisse20ResizeTransformation10descriptorSS">descriptor</a>
+                    <a class="token" href="#/s:7Matisse20ResizeTransformationC10descriptorSSvp">descriptor</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -391,7 +354,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">descriptor</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">descriptor</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -403,8 +366,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="https://github.com/konoma/matisse" target="_blank" rel="external">Markus Gasser</a>. All rights reserved. (Last updated: 2016-10-18)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2018 <a class="link" href="https://github.com/konoma/matisse" target="_blank" rel="external">Markus Gasser</a>. All rights reserved. (Last updated: 2018-11-07)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

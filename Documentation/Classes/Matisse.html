@@ -66,7 +66,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Enums.html">Enums</a>
+            <a href="../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Enums/MatisseErrorCode.html">MatisseErrorCode</a>
@@ -112,7 +112,7 @@
             <h1>Matisse</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Matisse</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Matisse</span></code></pre>
 
                 </div>
               </div>
@@ -122,17 +122,15 @@
 simply use the class methods.</p>
 
 <p>Example:</p>
-
-<pre class="highlight plaintext"><code>Matisse.load(imageURL).showIn(myImageView)
+<pre class="highlight swift"><code><span class="kt">Matisse</span><span class="o">.</span><span class="nf">load</span><span class="p">(</span><span class="n">imageURL</span><span class="p">)</span><span class="o">.</span><span class="nf">showIn</span><span class="p">(</span><span class="n">myImageView</span><span class="p">)</span>
 </code></pre>
 
 <p>If you need more than one Matisse object you can create them by passing a context in by hand.</p>
 
 <p>Example:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">customMatisse</span> <span class="o">=</span> <span class="kt">Matisse</span><span class="p">(</span><span class="nv">context</span><span class="p">:</span> <span class="n">preconfiguredContext</span><span class="p">)</span>
 
-<pre class="highlight plaintext"><code>let customMatisse = Matisse(context: preconfiguredContext)
-
-customMatisse.load(imageURL).showIn(myImageView)
+<span class="n">customMatisse</span><span class="o">.</span><span class="nf">load</span><span class="p">(</span><span class="n">imageURL</span><span class="p">)</span><span class="o">.</span><span class="nf">showIn</span><span class="p">(</span><span class="n">myImageView</span><span class="p">)</span>
 </code></pre>
 
           </section>
@@ -149,9 +147,9 @@ customMatisse.load(imageURL).showIn(myImageView)
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC7Matisse7MatissecFT7contextCS_14MatisseContext_S0_"></a>
+                    <a name="/s:7MatisseAAC7contextAbA0A7ContextC_tcfc"></a>
                     <a name="//apple_ref/swift/Method/init(context:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC7Matisse7MatissecFT7contextCS_14MatisseContext_S0_">init(context:)</a>
+                    <a class="token" href="#/s:7MatisseAAC7contextAbA0A7ContextC_tcfc">init(context:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -164,20 +162,12 @@ customMatisse.load(imageURL).showIn(myImageView)
 <p>If for some reason you need to have multiple different Matisse DSL objects you can create
 new ones by passing a configured <code><a href="../Classes/MatisseContext.html">MatisseContext</a></code> to this initializer.</p>
 
-<ul>
-<li>Parameters:
-
-<ul>
-<li>context: The <code><a href="../Classes/MatisseContext.html">MatisseContext</a></code> to use for this DSL instance.</li>
-</ul></li>
-</ul>
-
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Classes/MatisseContext.html">MatisseContext</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Classes/MatisseContext.html">MatisseContext</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -193,8 +183,7 @@ new ones by passing a configured <code><a href="../Classes/MatisseContext.html">
                               </td>
                               <td>
                                 <div>
-                                  <p>The <code>MatisseContext</code> to use for this DSL instance.</p>
-
+                                  <p>The <code><a href="../Classes/MatisseContext.html">MatisseContext</a></code> to use for this DSL instance.</p>
                                 </div>
                               </td>
                             </tr>
@@ -218,9 +207,9 @@ new ones by passing a configured <code><a href="../Classes/MatisseContext.html">
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC7Matisse7Matisse4loadFV10Foundation3URLCS_19ImageRequestBuilder"></a>
+                    <a name="/s:7MatisseAAC4loadyAA19ImageRequestBuilderC10Foundation3URLVF"></a>
                     <a name="//apple_ref/swift/Method/load(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC7Matisse7Matisse4loadFV10Foundation3URLCS_19ImageRequestBuilder">load(_:)</a>
+                    <a class="token" href="#/s:7MatisseAAC4loadyAA19ImageRequestBuilderC10Foundation3URLVF">load(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -230,23 +219,12 @@ new ones by passing a configured <code><a href="../Classes/MatisseContext.html">
                       <div class="abstract">
                         <p>Start a new image request for the given URL.</p>
 
-<p><li><p>Parameters:</p></p>
-
-<p><ul>
-<li>url: The URL to load the image from.</li>
-</ul></li>
-<div class="aside aside-returns">
-    <p class="aside-title">Returns</p>
-    <p>An image request builder configured for the given URL.</p></p>
-
-<p></div></p>
-
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">load</span><span class="p">(</span><span class="n">_</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/ImageRequestBuilder.html">ImageRequestBuilder</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">load</span><span class="p">(</span><span class="n">_</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/ImageRequestBuilder.html">ImageRequestBuilder</a></span></code></pre>
 
                         </div>
                       </div>
@@ -263,7 +241,6 @@ new ones by passing a configured <code><a href="../Classes/MatisseContext.html">
                               <td>
                                 <div>
                                   <p>The URL to load the image from.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -273,7 +250,6 @@ new ones by passing a configured <code><a href="../Classes/MatisseContext.html">
                       <div>
                         <h4>Return Value</h4>
                         <p>An image request builder configured for the given URL.</p>
-
                       </div>
                     </section>
                   </div>
@@ -292,9 +268,9 @@ new ones by passing a configured <code><a href="../Classes/MatisseContext.html">
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFC7Matisse7Matisse12useFastCacheFGSqPS_10ImageCache__T_"></a>
+                    <a name="/s:7MatisseAAC12useFastCacheyyAA05ImageD0_pSgFZ"></a>
                     <a name="//apple_ref/swift/Method/useFastCache(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC7Matisse7Matisse12useFastCacheFGSqPS_10ImageCache__T_">useFastCache(_:)</a>
+                    <a class="token" href="#/s:7MatisseAAC12useFastCacheyyAA05ImageD0_pSgFZ">useFastCache(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -303,7 +279,6 @@ new ones by passing a configured <code><a href="../Classes/MatisseContext.html">
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Use a different fast cache for the shared Matisse instance.</p>
-
 <div class="aside aside-note">
     <p class="aside-title">Note</p>
     <p>This method must only be called before using the shared Matisse instance
@@ -311,18 +286,12 @@ for the first time.</p>
 
 </div>
 
-<p><li><p>Parameters:</p></p>
-
-<p><ul>
-<li>cache: The cache to use, or <code>nil</code> to disable the fast cache</li>
-</ul></li></p>
-
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">useFastCache</span><span class="p">(</span><span class="n">_</span> <span class="nv">cache</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ImageCache.html">ImageCache</a></span><span class="p">?)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">useFastCache</span><span class="p">(</span><span class="n">_</span> <span class="nv">cache</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ImageCache.html">ImageCache</a></span><span class="p">?)</span></code></pre>
 
                         </div>
                       </div>
@@ -339,7 +308,6 @@ for the first time.</p>
                               <td>
                                 <div>
                                   <p>The cache to use, or <code>nil</code> to disable the fast cache</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -352,9 +320,9 @@ for the first time.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFC7Matisse7Matisse12useSlowCacheFGSqPS_10ImageCache__T_"></a>
+                    <a name="/s:7MatisseAAC12useSlowCacheyyAA05ImageD0_pSgFZ"></a>
                     <a name="//apple_ref/swift/Method/useSlowCache(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC7Matisse7Matisse12useSlowCacheFGSqPS_10ImageCache__T_">useSlowCache(_:)</a>
+                    <a class="token" href="#/s:7MatisseAAC12useSlowCacheyyAA05ImageD0_pSgFZ">useSlowCache(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -363,7 +331,6 @@ for the first time.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Use a different slow cache for the shared Matisse instance.</p>
-
 <div class="aside aside-note">
     <p class="aside-title">Note</p>
     <p>This method must only be called before using the shared Matisse instance
@@ -371,18 +338,12 @@ for the first time.</p>
 
 </div>
 
-<p><li><p>Parameters:</p></p>
-
-<p><ul>
-<li>cache: The cache to use, or <code>nil</code> to disable the slow cache</li>
-</ul></li></p>
-
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">useSlowCache</span><span class="p">(</span><span class="n">_</span> <span class="nv">cache</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ImageCache.html">ImageCache</a></span><span class="p">?)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">useSlowCache</span><span class="p">(</span><span class="n">_</span> <span class="nv">cache</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ImageCache.html">ImageCache</a></span><span class="p">?)</span></code></pre>
 
                         </div>
                       </div>
@@ -399,7 +360,6 @@ for the first time.</p>
                               <td>
                                 <div>
                                   <p>The cache to use, or <code>nil</code> to disable the slow cache</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -412,9 +372,9 @@ for the first time.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFC7Matisse7Matisse14useImageLoaderFPS_11ImageLoader_T_"></a>
+                    <a name="/s:7MatisseAAC14useImageLoaderyyAA0cD0_pFZ"></a>
                     <a name="//apple_ref/swift/Method/useImageLoader(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC7Matisse7Matisse14useImageLoaderFPS_11ImageLoader_T_">useImageLoader(_:)</a>
+                    <a class="token" href="#/s:7MatisseAAC14useImageLoaderyyAA0cD0_pFZ">useImageLoader(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -427,8 +387,7 @@ for the first time.</p>
 <p>This resets the request handler to a <code><a href="../Classes/DefaultImageRequestHandler.html">DefaultImageRequestHandler</a></code> with the
 given image loader. If you want to set the image loader on a custom request
 handler, you must do so on the custom request handler and then set the handler
-using <code><a href="../Classes/Matisse.html#/s:ZFC7Matisse7Matisse17useRequestHandlerFPS_19ImageRequestHandler_T_">useRequestHandler(_:)</a></code>.</p>
-
+using <code><a href="../Classes/Matisse.html#/s:7MatisseAAC17useRequestHandleryyAA05ImagecD0_pFZ">useRequestHandler(_:)</a></code>.</p>
 <div class="aside aside-note">
     <p class="aside-title">Note</p>
     <p>This method must only be called before using the shared Matisse instance
@@ -436,18 +395,12 @@ for the first time.</p>
 
 </div>
 
-<p><li><p>Parameters:</p></p>
-
-<p><ul>
-<li>imageLoader: The image loader to use</li>
-</ul></li></p>
-
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">useImageLoader</span><span class="p">(</span><span class="n">_</span> <span class="nv">imageLoader</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ImageLoader.html">ImageLoader</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">useImageLoader</span><span class="p">(</span><span class="n">_</span> <span class="nv">imageLoader</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ImageLoader.html">ImageLoader</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -464,7 +417,6 @@ for the first time.</p>
                               <td>
                                 <div>
                                   <p>The image loader to use</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -477,9 +429,9 @@ for the first time.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFC7Matisse7Matisse17useRequestHandlerFPS_19ImageRequestHandler_T_"></a>
+                    <a name="/s:7MatisseAAC17useRequestHandleryyAA05ImagecD0_pFZ"></a>
                     <a name="//apple_ref/swift/Method/useRequestHandler(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC7Matisse7Matisse17useRequestHandlerFPS_19ImageRequestHandler_T_">useRequestHandler(_:)</a>
+                    <a class="token" href="#/s:7MatisseAAC17useRequestHandleryyAA05ImagecD0_pFZ">useRequestHandler(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -488,7 +440,6 @@ for the first time.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Use a different request handler for the shared Matisse instance.</p>
-
 <div class="aside aside-note">
     <p class="aside-title">Note</p>
     <p>This method must only be called before using the shared Matisse instance
@@ -496,18 +447,12 @@ for the first time.</p>
 
 </div>
 
-<p><li><p>Parameters:</p></p>
-
-<p><ul>
-<li>requestHandler: The request handler to use</li>
-</ul></li></p>
-
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">useRequestHandler</span><span class="p">(</span><span class="n">_</span> <span class="nv">requestHandler</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ImageRequestHandler.html">ImageRequestHandler</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">useRequestHandler</span><span class="p">(</span><span class="n">_</span> <span class="nv">requestHandler</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ImageRequestHandler.html">ImageRequestHandler</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -524,7 +469,6 @@ for the first time.</p>
                               <td>
                                 <div>
                                   <p>The request handler to use</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -537,9 +481,9 @@ for the first time.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvC7Matisse7Matisse6sharedS0_"></a>
+                    <a name="/s:7MatisseAAC6sharedABvpZ"></a>
                     <a name="//apple_ref/swift/Variable/shared" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvC7Matisse7Matisse6sharedS0_">shared</a>
+                    <a class="token" href="#/s:7MatisseAAC6sharedABvpZ">shared</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -555,25 +499,18 @@ Afterwards it&rsquo;s not possible to change this instance anymore.</p>
 <p>Usually you don&rsquo;t need to access the shared instance directly, instead
 you can use the <code>load()</code> class func which will in turn access this instance.</p>
 
-<div class="aside aside-returns">
-    <p class="aside-title">Returns</p>
-    The shared Matisse instance
-
-</div>
-
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">shared</span><span class="p">:</span> <span class="kt">Matisse</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">shared</span><span class="p">:</span> <span class="kt">Matisse</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div>
                         <h4>Return Value</h4>
                         <p>The shared Matisse instance</p>
-
                       </div>
                     </section>
                   </div>
@@ -592,9 +529,9 @@ you can use the <code>load()</code> class func which will in turn access this in
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFC7Matisse7Matisse4loadFV10Foundation3URLCS_19ImageRequestBuilder"></a>
+                    <a name="/s:7MatisseAAC4loadyAA19ImageRequestBuilderC10Foundation3URLVFZ"></a>
                     <a name="//apple_ref/swift/Method/load(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC7Matisse7Matisse4loadFV10Foundation3URLCS_19ImageRequestBuilder">load(_:)</a>
+                    <a class="token" href="#/s:7MatisseAAC4loadyAA19ImageRequestBuilderC10Foundation3URLVFZ">load(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -604,23 +541,12 @@ you can use the <code>load()</code> class func which will in turn access this in
                       <div class="abstract">
                         <p>Start a new image request for the given URL using the shared Matisse instance.</p>
 
-<p><li><p>Parameters:</p></p>
-
-<p><ul>
-<li>url: The URL to load the image from.</li>
-</ul></li>
-<div class="aside aside-returns">
-    <p class="aside-title">Returns</p>
-    <p>An image request builder configured for the given URL.</p></p>
-
-<p></div></p>
-
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">load</span><span class="p">(</span><span class="n">_</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/ImageRequestBuilder.html">ImageRequestBuilder</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">load</span><span class="p">(</span><span class="n">_</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/ImageRequestBuilder.html">ImageRequestBuilder</a></span></code></pre>
 
                         </div>
                       </div>
@@ -637,7 +563,6 @@ you can use the <code>load()</code> class func which will in turn access this in
                               <td>
                                 <div>
                                   <p>The URL to load the image from.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -647,7 +572,6 @@ you can use the <code>load()</code> class func which will in turn access this in
                       <div>
                         <h4>Return Value</h4>
                         <p>An image request builder configured for the given URL.</p>
-
                       </div>
                     </section>
                   </div>
@@ -657,8 +581,8 @@ you can use the <code>load()</code> class func which will in turn access this in
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="https://github.com/konoma/matisse" target="_blank" rel="external">Markus Gasser</a>. All rights reserved. (Last updated: 2016-10-18)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2018 <a class="link" href="https://github.com/konoma/matisse" target="_blank" rel="external">Markus Gasser</a>. All rights reserved. (Last updated: 2018-11-07)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
