@@ -2,6 +2,9 @@
 [![CocoaPods](https://img.shields.io/cocoapods/v/Matisse.svg)](https://cocoapods.org/pods/Matisse)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/konoma/matisse/blob/master/LICENSE)
 
+> [!WARNING]  
+> This project is not maintained anymore.
+
 # Matisse
 
 Matisse is an image retrieval and caching library for iOS inspired by
